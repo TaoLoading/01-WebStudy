@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //ReferenceError
+
+    //  console.log(a)
+    //  console.log('出错之后,后面不再运行')
+     
+    let b = null
+
+    //console.log(b.hh) //TypeError: Cannot read property 'xxx' of null
+
+    let c ={}
+    //console.log(c.xx)  //undefined
+   // c()  //TypeError: c.xxx is not a function
+
+
+   // RangeError: Maximum call stack size exceeded
+
+    // function fn(){
+    //     fn()
+    // }
+    //  fn()
+  
+    // const d = ''hh''
+     
+
+    let f = 3
+
+    // console.log(f.xx)
+   // console.log(new Number(f).xx)
+
+
+   //捕获error
+
+    // try {
+    //     const e ={}
+    //      e()
+    // }catch(error){
+    //    console.log(error.message)  
+    //    console.log(error.stack)  
+    // }
+
+    // const hh ={}
+    // hh()
+
+    function doThing(){
+        const time = Date.now()
+        if(time%2 == 1){
+            console.log('当前时间为奇数, 可以正常工作....' + time)
+        }else{
+            throw new Error('当前时间为偶数, 干不了 ' + time)
+        }
+    }
+
+    try {
+        doThing()
+    }
+     catch(error){
+         console.log(error.message)
+     }
+    </script>
+</body>
+</html>

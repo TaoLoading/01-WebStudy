@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>原生js_ajax_GET</title>
+	</head>
+	<body>
+		<h1>该页面是测试取消上一次请求</h1>
+		<button id="btn">点我获取验证码</button>
+
+		<script type="text/javascript">
+			let btn = document.getElementById('btn')
+			let lastXhr
+
+			btn.onclick = function () {
+				// 取消上次一请求的具体思路：
+				// 拿到上一次请求的xhr，当发生新的请求时清除掉上一次的xhr
+				if (lastXhr) {
+					lastXhr.abort()
+				}
+				lastXhr = getAuthCode()
+			}
+
+			//专门用于请求验证码的函数
+			function getAuthCode() {
+				let xhr = new XMLHttpRequest()
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState === 4 && xhr.status === 200) {
+						//如果进入此判断，意味着：请求成功了，且数据已经回来了
+						console.log(xhr.response)
+					}
+				}
+				xhr.open('get', 'http://localhost:3000/get_code')
+				xhr.send()
+				//xhr.abort() //用于“取消”本次请求
+				/*
+				 * 关于xhr.abort
+				 *     1.如果来得及，半路取消，请求根本没有到达服务器。
+				 *     2.如果来不及，拒之门外，请求已经到达了服务器，且服务器已经给出响应。
+				 *     3.也存在根本不起作用的情况。
+				 * */
+				return xhr
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>外部css样式</title>
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+	</head>
+	<body>
+		<img src="img/01.jpg" />
+		<!--
+    1.link进来的样式，是由css解析器去解析，并且是同步解析的。
+    2.css解析器会阻塞页面的渲染。（也可以说link进来的外部样式会阻塞页面渲染，利用他避免闪屏）
+    3.推荐使用link方式去引入样式。
+
+
+    阻塞的原因：css解析器解析link进来的css是同步的，虽然html解析器解析页面是异步的，但在css解析器解析css这一步时，
+    必须等css解析器解析完全部css后才能进行下一步，此时就造成了阻塞
+  -->
+	</body>
+</html>

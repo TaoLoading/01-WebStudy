@@ -1,0 +1,99 @@
+{{extend './common/layout.art'}}
+
+{{block 'main'}}
+    <!-- 头部 -->
+    {{include './common/header.art'}}
+        <!-- 网站标志 -->
+        <div class="logo fl">
+            <div class="logo fl">
+              黑马程序员 <i>ITHEIMA</i>
+            </div>
+        </div>
+        <!-- /网站标志 -->
+        <!-- 用户信息 -->
+        <div class="info">
+            <div class="profile dropdown fr">
+                <span class="btn dropdown-toggle" data-toggle="dropdown">
+                    admin
+                    <span class="caret"></span>
+                </span>
+                <ul class="dropdown-menu">
+                    <li><a href="user-edit.html">个人资料</a></li>
+                    <li><a href="#">退出登录</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /用户信息 -->
+    </div>
+    <!-- /头部 -->
+    <!-- 主体内容 -->
+    <div class="content">
+        <!-- 侧边栏 -->
+        {{include './common/aside.art'}}
+        <!-- 侧边栏 -->
+        <div class="main">
+            <!-- 分类标题 -->
+            <div class="title">
+                <h4>5b9a716cb2d2bf17706bcc0a</h4>
+            </div>
+            <!-- /分类标题 -->
+            <form class="form-container" action="/admin/article-add" method="post" enctype="multipart/form-data">
+                <!-- 
+                    enctype:指定表单数据的编码形式
+                        application/x-www-form-urlencoded (默认值)
+                        multipart/form-data (将表单数据编码成二进制类型，涉及到文件上传时就需要修改成该类型)
+
+                 -->
+                <div class="form-group">
+                    <label>标题</label>
+                    <input name="title" type="text" class="form-control" placeholder="请输入文章标题">
+                </div>
+                <div class="form-group">
+                    <label>作者</label>
+                    <input name="author" type="text" class="form-control" readonly value="{{@userInfo._id}}">
+                </div>
+                <div class="form-group">
+                    <label>发布时间</label>
+                    <input name="publishDate" type="date" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                   <label for="exampleInputFile">文章封面</label>
+                   <input name="cover" type="file" id="file">
+                   <!-- 在input里加上multipe可以选择多个文件 -->
+                   <div class="thumbnail-waper">
+                       <img class="img-thumbnail" src="" id="preview">
+                   </div>
+                </div>
+                <div class="form-group">
+                    <label>内容</label>
+                    <textarea name="content" class="form-control" id="editor"></textarea>
+                </div>
+                <div class="buttons">
+                    <input type="submit" class="btn btn-primary">
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- /主体内容 -->
+{{/block}}
+{{block 'script'}}
+<script>
+    // 获取放置图片的位置
+    var preview = document.querySelector('#preview')
+    // 获取选择文件上传控件
+    var file = document.querySelector('#file')
+    // 选择完文件后读取文件
+    file.onchange = function(){
+        // 1.创建文件读取对象
+        var reader = new FileReader()
+        // 2.读取文件
+        reader.readAsDataURL(this.files[0]) // this.files是选择文件的列表，this.files[0]就是选择的那个文件
+        // 3.监听onload(因为readAsDataURL()是一个异步方法，不能通过返回值的方式拿到读取的结果)
+        reader.onload = function(){
+            // 4.将文件读取的结果显示在页面上
+            preview.src = reader.result
+        }
+    }
+</script>
+{{/block}}

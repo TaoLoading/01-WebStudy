@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Iterator遍历器(迭代器)</title>
+	</head>
+	<body>
+		<!--
+    概念： iterator是一种接口机制，为各种不同的数据结构提供统一的访问机制
+    作用：
+      1、为各种数据结构，提供一个统一的、简便的访问接口；
+      2、使得数据结构的成员能够按某种次序排列
+      3、ES6创造了一种新的遍历命令for...of循环，Iterator接口主要供for...of消费。
+    工作原理：
+      - 创建一个指针对象，指向数据结构的起始位置。
+      - 第一次调用next方法，指针自动指向数据结构的第一个成员
+      - 接下来不断调用next方法，指针会一直往后移动，直到指向最后一个成员
+      - 每调用next方法返回的是一个包含value和done的对象，{value: 当前成员的值,done: 布尔值}
+        * value表示当前成员的值，done对应的布尔值表示当前的数据的结构是否遍历结束。
+        * 当遍历结束的时候返回的value值是undefined，done值为false
+    原生具备iterator接口的数据(可用for of遍历)
+      1、Array
+      2、arguments
+      3、set容器
+      4、map容器
+      5、String
+      。。。
+  -->
+
+		<script type="text/javascript">
+			let arr = [1, 2, 3, 4]
+			// for of循环遍历数组，之所以能够遍历是因为调用了arr原型中的Symbol.iterator接口
+			// 证明：
+			// Array.prototype[Symbol.iterator] = 123 // 将Symbol.iterator接口改变以后for of循环则会报错
+			for (let item of arr) {
+				console.log(item)
+			}
+
+			// 手动书写实现iterator接口/方法/API
+			function iteratorUtil(target) {
+				// 标识指针起始位置
+				let index = 0
+				return {
+					// 生成iterator遍历器对象
+					next: function () {
+						// 判断指针位置，当遍历结束(即指针指到结束位置)时，done为true
+						return index < target.length
+							? { value: target[index++], done: false } // index++，先使用后加加，故运算可以从下标为0开始，并且每次调用指针都会往后移
+							: { value: target[index++], done: true }
+					},
+				}
+			}
+			// 生成iterator遍历器对象
+			let iteratorObj = iteratorUtil(arr)
+			console.log(iteratorObj.next())
+			console.log(iteratorObj.next())
+			console.log(iteratorObj.next())
+			console.log(iteratorObj.next())
+			console.log(iteratorObj.next())
+
+			// var obj = { name: 'kobe', age: 40 }
+			// //    console.log(obj[Symbol.iterator]); // undefined
+			// //    console.log(arr[Symbol.iterator]); // function
+
+			// function mockIterator() {
+			// 	console.log('执行了')
+			// 	console.log(this)
+			// 	let that = this
+
+			// 	let index = 0
+			// 	let length = 0
+			// 	if (that instanceof Array) {
+			// 		length = that.length
+			// 		return {
+			// 			next: function () {
+			// 				return index < length
+			// 					? { value: that[index++], done: false }
+			// 					: { value: that[index++], done: true }
+			// 			},
+			// 		}
+			// 	} else {
+			// 		length = Object.keys(that).length
+			// 		let keys = Object.keys(that)
+			// 		return {
+			// 			next: function () {
+			// 				return index < length
+			// 					? { value: that[keys[index++]], done: false }
+			// 					: { value: that[keys[index++]], done: true }
+			// 			},
+			// 		}
+			// 	}
+			// }
+
+			// // let iteratorObj = mockIterator(arr);
+			// //    console.log(iteratorObj.next());
+			// //    console.log(iteratorObj.next());
+			// //    console.log(iteratorObj.next());
+			// //    console.log(iteratorObj.next());
+			// //    console.log(iteratorObj.next());
+			// //    console.log(iteratorObj.next());
+
+			// Array.prototype[Symbol.iterator] = mockIterator
+			// Object.prototype[Symbol.iterator] = mockIterator
+			// for (let i of arr) {
+			// 	console.log(i)
+			// }
+			// for (let i of obj) {
+			// 	console.log(i)
+			// }
+			// console.log(obj)
+
+			// // 使用运算符， 解构赋值，Generator函数会自动条用iterator接口
+		</script>
+	</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            /* 动画 */
+            /* 动画名称 */
+            animation-name: move;
+            /* 动画花费时长 */
+            animation-duration: 2s;
+            /* 动画运动曲线 */
+            animation-timing-function: ease-in-out;
+            /* 动画开始时间 */
+            animation-delay: 1s;
+            /* 动画播放次数 */
+            animation-iteration-count: infinite;
+            /* 是否逆行播放 */
+            animation-direction: alternate;
+            /* 动画结束后的状态 */
+            animation-fill-mode: forwards;
+            /* 简写，前两个必须写，其他的可以省略 */
+            /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+        }
+        
+        div:hover {
+            /* 动画播放或者暂停 */
+            animation-play-state: paused;
+        }
+        
+        @keyframes move {
+            0% {
+                transform: translate(0px);
+            }
+            100% {
+                transform: translate(1000px, 0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+</body>
+
+</html>

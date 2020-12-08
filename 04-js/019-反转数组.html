@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>反转数组</title>
+    <script>
+        var arr = [1, 2, 3, 4, 5];
+
+        //方法一：使用新数组实现反转数组
+        var newArr = [];
+
+        for (var i = arr.length - 1; i >= 0; i--) {
+            newArr[newArr.length] = arr[i];
+        }
+
+        console.log(newArr);
+
+        //方法二：不使用新数组实现反转数组
+
+        for (var i = 0; i < arr.length / 2; i++) { //注意arr.length / 2
+            var temp = arr[i];
+            arr[i] = arr[arr.length - 1 - i]; //注意arr.length-1 - i
+            arr[arr.length - 1 - i] = temp;
+        }
+
+        console.log(arr);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

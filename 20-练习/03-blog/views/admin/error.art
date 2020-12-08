@@ -1,0 +1,14 @@
+{{extend './common/layout.art'}}
+
+{{block 'main'}}
+<p><h1>{{ msg }}，三秒后将跳转到登录界面...</h1></p>
+{{/block}}
+
+{{block 'script'}}
+<script>
+	// 三秒后跳转到登录界面
+	setTimeout(function () {
+		location.href = '/admin/login'
+    }, 3000)
+</script>
+{{/block}}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>12_指令_自定义指令</title>
+</head>
+<body>
+
+<!--
+1. 注册全局指令
+  Vue.directive('my-directive', function(el, binding){
+    el.innerHTML = binding.value.toupperCase()
+  })
+2. 注册局部指令
+  directives : {
+    'my-directive' : {
+        bind (el, binding) {
+          el.innerHTML = binding.value.toupperCase()
+        }
+    }
+  }
+3. 使用指令
+  v-my-directive='xxx'
+-->
+<!--
+需求: 自定义2个指令
+  1. 功能类型于v-text, 但转换为全大写
+  2. 功能类型于v-text, 但转换为全小写
+-->
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>12_Promise相关面试题5</title>
+</head>
+<body>
+
+  <script>
+    async function async1() {
+      console.log('async1 start')
+      await async2()  // async2().then(() => {})
+      console.log('async1 end')
+    }
+
+    async function async2() {
+      console.log('async2')
+    }
+
+    console.log('script start')
+
+    setTimeout(() => {
+      console.log('setTimeout')
+    }, 0)
+
+    async1()
+    
+    new Promise(function (resolve) {
+      console.log('promise1')
+      resolve()
+    }).then(function () {
+      console.log('promise2')
+    })
+    console.log('script end')
+
+    /*
+      宏: []
+      微: []
+      */
+
+    /* 
+    输出: 
+      script start
+      async1 start
+      async2
+      promise1
+      script end
+      async1 end
+      promise2
+      setTimeout
+     */
+  </script>
+
+</body>
+</html>

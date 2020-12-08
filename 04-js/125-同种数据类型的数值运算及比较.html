@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>同种数据类型的数值运算及比较</title>
+    <script></script>
+</head>
+
+<body>
+    <script>
+        // Number和Number
+        // Number和Number进行运算与比较时就是数的运算与比较
+
+        // String和String
+        var a = 'i';
+        var b = 'love you';
+        // console.log(a + b);
+        // console.log(a - b); // 返回NaN
+        // console.log(a * b); // 返回NaN
+        // console.log(a / b); // 返回NaN
+        // console.log(a % b); // 返回NaN
+        var c = '123';
+        var d = '623';
+        var e = '23';
+        console.log(c > e); // 返回false
+        console.log(d > e); // 返回true，// 字符串数字比较，比较的是ASCII
+
+        // Boolean和Boolean
+        // a = true;
+        // b = false;
+        // console.log(a + b); // 返回1
+        // console.log(a - b); // 返回1
+        // console.log(a * b); // 返回0
+        // console.log(a / b); // 返回Infinity
+        // console.log(a % b); // 返回NaN
+        // console.log(a > b); // 返回true
+        // console.log(a < b); // 返回false
+
+        // undefined和undefined
+        a = undefined;
+        b = undefined;
+        // console.log(a + b); // 返回NaN
+        // console.log(a - b); // 返回NaN
+        // console.log(a * b); // 返回NaN
+        // console.log(a / b); // 返回NaN
+        // console.log(a % b); // 返回NaN
+        // console.log(a > b); // 返回false
+        // console.log(a < b); // 返回true
+        // console.log(a == b); // 返回true
+
+        // null和null
+        a = null;
+        b = null;
+        // console.log(a + b); // 返回0，注意与undefined的区别
+        // console.log(a - b); // 返回0
+        // console.log(a * b); // 返回0
+        // console.log(a / b); // 返回NaN
+        // console.log(a % b); // 返回NaN
+        // console.log(a > b); // 返回false
+        // console.log(a < b); // 返回false
+        // console.log(a == b); // 返回true
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定时器</title>
+</head>
+
+<body>
+    <button>清除定时器</button>
+
+
+
+    <script>
+        var btn = document.querySelector('button');
+        var a = 3;
+        var b = 4;
+        // 单次定时器（延迟定时器）
+        var timer = setTimeout(function() { // setTimeout是window下的一个圈布局方法，两个参数，第一个是回调函数，第二个是延迟时间（毫秒为单位）
+            console.log(a + b);
+        }, 5000);
+
+        console.log('i love you'); // 前面设置定时器，发现定时器和这句代码同时执行，证明定时器是异步操作
+
+        // 清除单次定时器
+        btn.onclick = function() {
+            clearTimeout(timer);
+        }
+    </script>
+</body>
+
+</html>

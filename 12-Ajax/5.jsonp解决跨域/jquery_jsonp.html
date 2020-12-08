@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Title</title>
+	</head>
+	<body>
+		<script
+			type="text/javascript"
+			src="./public/js/jquery-1.12.4.js"
+		></script>
+		<button id="btn">点我使用jquery封装的jsonp获取数据</button>
+
+		<script type="text/javascript">
+			/*
+  * 1.提前定义好一个等待被调用的函数
+    2.创建一个script节点
+    3.为节点指定src地址，同时指定好回调函数的名字
+    4.将节点插入页面
+    备注：以上所有步骤，都由jquery底层全部完成
+  * */
+
+			$('#btn').click(function () {
+				//完整写法
+				$.ajax({
+					url: 'http://localhost:3000/test',
+					method: 'get',
+					dataType: 'jsonp', //该属性，控制了上面的4步
+					data: { name: 'zhangsan', age: 18 },
+					success: function (result) {
+						console.log(result)
+					},
+					error: function (err) {
+						console.log(err)
+					},
+				})
+
+				//精简写法
+				/* $.getJSON(
+					'http://localhost:3000/test?callback=?',
+					{ name: 'zhangsan', age: 18 },
+					function (data) {
+						console.log(data)
+					}
+				) */
+			})
+		</script>
+	</body>
+</html>

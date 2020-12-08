@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>09_自定义Promise</title>
+</head>
+
+<body>
+  
+  <!-- <script src="./lib/Promise.js"></script> -->
+  <script src="./lib/Promise_class.js"></script>
+  <script>
+    new Promise((resolve, reject) => {
+      // resolve(1)
+      // setTimeout(() => {
+        reject(2)
+      // }, 1000);
+    })
+    .then(value => {
+      console.log('onResolve()1')
+    })
+    .then(
+      value => {console.log('onResolved()2', value)},
+      reason => {
+        console.log('onRejected2()', reason)
+        // return 3
+        // throw 4
+        // return new Promise((resolve, reject) =>resolve(5))
+        return new Promise((resolve, reject) =>reject(6))
+      }
+    ).then(
+      value => {console.log('onResolved3()', value)},
+      reason => {
+        console.log('onRejected3()', reason)
+        // throw reason
+      }
+    ).catch(reason => {
+      console.log('onRejected4()', reason)
+    }).then(
+      value => {console.log('onResolved5()', value)},
+      reason => {
+        console.log('onRejected5()', reason)
+      }
+    )
+  </script>
+</body>
+
+</html>

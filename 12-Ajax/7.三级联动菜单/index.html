@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>三级联动菜单</title>
+	</head>
+	<body>
+        <script type="text/javascript" src="./jquery-1.12.4.js"></script>
+        省份：
+        <select id="province">
+            <option value="">请选择省份</option>
+        </select>
+
+        市：
+        <select id="city">
+            <option value="">请选择市</option>
+        </select>
+
+        区/县：
+        <select id="county">
+            <option value=>请选择区/县</option>
+    </select>
+
+		<script type="text/javascript">
+			//获取三个选择框节点(jquery对象)
+			let $province = $('#province')
+			let $city = $('#city')
+			let $county = $('#county')
+
+			$(() => {
+				//一上来就请求中国所有的省份信息，放入省份选择框
+				$.get('http://localhost:3000/get_all_province', function (
+					result
+				) {
+					let { status, data, err } = result
+					if (status === 1) {
+						let html = ''
+						data.forEach((item) => {
+							html += `<option value="${item.province}">${item.name}</option>`
+						})
+						$province.append(html)
+					} else {
+						alert(err)
+					}
+				})
+
+				//当省份选择框变化时：1.获取所选省份编码  2.发请求
+				$province.change(function () {
+					//1.获取所选省份编码
+					let province = this.value
+					$city.html('<option value="">请选择市</option>')
+					$county.html('<option value=>请选择区/县</option>')
+					if (!province) {
+						return
+                    }
+                    console.log('发请求了！');
+					$.get(
+						'http://localhost:3000/get_cities_by_province',
+						{ province },
+						function (result) {
+							let { status, data, err } = result
+							if (status === 1) {
+								let html = ''
+								data.forEach((item) => {
+									html += `<option value="${item.city}">${item.name}</option>`
+								})
+								$city.append(html)
+							} else {
+								alert(err)
+							}
+						}
+					)
+				})
+
+				//当市选择框变化时：1.获取所选省份编码和市编码  2.发请求
+				$city.change(function () {
+					//1.获取所选省份编码和市编码
+					let city = this.value
+					let province = $province.val()
+					$county.html(' <option value=>请选择区/县</option>')
+					if (!city) {
+						return
+					}
+					$.get(
+						'http://localhost:3000/get_counties_by_province_and_city',
+						{ city, province },
+						function (result) {
+							let { status, data, err } = result
+							if (status === 1) {
+								let html = ''
+								data.forEach((item) => {
+									html += `<option value="${item.county}">${item.name}</option>`
+								})
+								$county.append(html)
+							} else {
+								alert(err)
+							}
+						}
+					)
+				})
+			})
+		</script>
+	</body>
+</html>

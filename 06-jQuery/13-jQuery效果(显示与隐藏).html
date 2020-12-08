@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>jQuery效果(显示与隐藏)</title>
+		<script src="00-jQuery.js"></script>
+		<style>
+			div {
+				width: 100px;
+				height: 200px;
+				background-color: skyblue;
+			}
+		</style>
+	</head>
+	<body>
+		<button>显示</button>
+		<button>隐藏</button>
+		<button>切换</button>
+		<br />
+		<div></div>
+		<img
+			src="img/隐藏.png"
+			alt=""
+			title="隐藏语法，显示与切换语法与之相同"
+		/>
+
+		<script>
+			$(function () {
+				// 显示  show()
+				$('button')
+					.eq(0)
+					.click(function () {
+						$('div').show(1000)
+					})
+				// 隐藏 hide()
+				$('button')
+					.eq(1)
+					.click(function () {
+						$('div').hide(1000)
+					})
+				// 切换  toggle()
+				$('button')
+					.eq(2)
+					.click(function () {
+						$('div').toggle(1000)
+					})
+			})
+		</script>
+	</body>
+</html>

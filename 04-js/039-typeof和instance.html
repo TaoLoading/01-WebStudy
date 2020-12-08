@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>typeof和instance</title>
+    <script>
+        var a = 10; //number
+        a = 'str'; //string
+        a = true; //Boolean
+        a = undefined; //undefined
+        a = null; //object
+        a = [1, 2, 3]; //object
+        a = function() {}; //function
+        a = {}; //object
+        console.log(typeof a);
+        //typeof 在判断基本数据类型当中的数字、字符串、Boolean、undefined以及函数的时候可以派上用场
+        //但typeof不能区分出数组、对象和null
+
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        var per = new Person('秦始皇', 13);
+
+        //instanceof 可以区分判断是一个数组对象还是一个其它构造函数的实例对象
+        //通过判断这个对象是哪个构造函数的实例对象，可以区分出来是数组还是其它的对象
+        console.log(a instanceof Array);
+        console.log(a instanceof Object);
+        console.log(typeof per); //typeof 区分不了对象
+        console.log(per instanceof Person); //判断per是不是Person实例化出来的
+
+        a = [];
+        console.log(a == null);
+        //==  专门用来判断null，如果相等就是null
+        console.log(Array.isArray(a));
+        //判断是否为数组
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

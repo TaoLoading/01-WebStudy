@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="jquery-1.12.4.js"></script>
+	</head>
+	<body>
+		省：
+		<select id="province">
+			<option value="">请选择省</option>
+		</select>
+		市：
+		<select id="city">
+			<option value="">请选择市</option>
+		</select>
+		区/县：
+		<select id="county">
+			<option value="">请选择区/县</option>
+		</select>
+
+		<script>
+			// 获取三个选框节点
+			let $province = $('#province')
+			let $city = $('#city')
+			let $county = $('#county')
+
+			// 连接数据库
+			$(() => {
+				// 请求省份信息放入选框
+				$.get('http://localhost:3000/get_all_province', function (
+					result
+				) {
+					let { status, data, err } = result
+					if (status == 1) {
+						let html = ''
+						data.forEach((item) => {
+							html += `<option value="${item.province}">${item.name}</option>`
+						})
+						$province.append(html)
+					} else {
+						alert(err)
+					}
+				})
+
+				// 当省份选框发生变化时，请求对应的市信息放入选框
+				$province.change(function () {
+					//1.获取所选省份编码
+					let province = this.value
+					$city.html('<option value="">请选择市</option>')
+					$county.html('<option value=>请选择区/县</option>')
+					// 当没有选中省份时不对服务器进行请求
+					if (!province) {
+						return
+					}
+					$.get(
+						'http://localhost:3000/get_cities_by_province',
+						{ province },
+						function (result) {
+							let { status, data, err } = result
+							if (status === 1) {
+								let html = ''
+								data.forEach((item) => {
+									html += `<option value="${item.city}">${item.name}</option>`
+								})
+								$city.append(html)
+							} else {
+								alert(err)
+							}
+						}
+					)
+				})
+
+				// 当市选框发生变化时，请求对应的区/县信息放入选框
+				$city.change(function () {
+					let city = this.value
+					let province = $province.val()
+
+					$.get(
+						'http://localhost:3000/get_counties_by_province_and_city',
+						{ province, city },
+						function (result) {
+							let { status, data, err } = result
+							if (status === 1) {
+								let html = ''
+								data.forEach((item) => {
+									html += `<option value="${item.county}">${item.name}</option>`
+								})
+								$county.append(html)
+							} else {
+								alert(err)
+							}
+						}
+					)
+				})
+			})
+		</script>
+	</body>
+</html>

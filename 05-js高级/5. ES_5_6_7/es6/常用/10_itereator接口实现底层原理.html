@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>10_itereator接口实现底层原理</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			console.log(
+				'------ 用书写的iteratorUtil接口代替原生的Symbol.iterator接口 ------'
+			)
+			// 使用书写的iteratorUtil接口代替原生的Symbol.iterator接口
+			function iteratorUtil() {
+				// console.log(target) // undefined。之前使用iteratorUtil时是传一个实参到target，但更换接口后并没有传实参，故返回undefined
+				// console.log('我的方法被调用了', this) // this是被遍历的目标数组，故可以使用this替代target
+				//                                  // 但下方next对象中的this指向是next对象，故不能直接修改target为this
+				//                                 // 方法一就是将next中的function修改为箭头函数，以改变this指向到被遍历的目标数组
+				// 方法二 缓存this
+				var that = this
+				// 标识指针起始位置
+				let index = 0
+				// 获取对象中所有keys组成的数组
+				var keys = Object.keys(that)
+
+				// 判断调用方法的是数组还是对象
+				if (this instanceof Array) {
+					// 遍历数组
+					return {
+						// 生成iterator遍历器对象
+						next: function () {
+							// 判断指针位置，当遍历结束(即指针指到结束位置)时，done为true
+							return index < keys.length
+								? { value: that[index++], done: false } // index++，先使用后加加，故运算可以从下标为0开始，并且每次调用指针都会往后移
+								: { value: that[index++], done: true }
+						},
+					}
+				} else {
+					// 遍历对象
+					return {
+						// 生成iterator遍历器对象
+						next: function () {
+							// 判断指针位置，当遍历结束(即指针指到结束位置)时，done为true
+							return index < keys.length
+								? { value: that[keys[index++]], done: false } // index++，先使用后加加，故运算可以从下标为0开始，并且每次调用指针都会往后移
+								: { value: that[keys[index++]], done: true }
+						},
+					}
+				}
+			}
+			// 更换数组原型对象中的接口
+			Array.prototype[Symbol.iterator] = iteratorUtil
+			let arr = [1, 2, 3, 4]
+			for (let item of arr) {
+				console.log(item)
+			}
+
+			// for of和三点运算符都是使用的iterator接口
+
+			// for of和三点运算符只能对数组起作用，不能对对象起作用，是因为对象的原型对象中找不到Symbol.iterato接口
+			var obj = {
+				name: 'lht',
+				age: '21',
+			}
+			console.log(obj)
+
+			console.log(
+				'------ 给对象的原型添加iteratorUtil接口使三点运算符能拆解对象 ------'
+			)
+			// 给对象的原型添加iteratorUtil接口使三点运算符能拆解对象
+			// 因为对象没有下标和length，故原方法不能使用，故进行修改判断输入的是对象还是数组
+			Object.prototype[Symbol.iterator] = iteratorUtil
+			for (var item of obj) {
+				console.log(item)
+			}
+			console.log(obj)
+		</script>
+	</body>
+</html>

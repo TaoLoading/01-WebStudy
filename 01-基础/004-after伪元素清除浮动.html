@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>after伪元素清除浮动（百度、淘宝、网易）</title>
+    <style>
+        /* 声明清除浮动的样式 */
+        .clearfix:after {
+            content: "";
+            display: block;
+            height: 0;
+            visibility: hidden;
+            clear: both;
+        }
+        /* ie6/7专门清除浮动的样式 */
+        .clearfix {
+            *zoom: 1;
+        }
+        
+        .one {
+            width: 500px;
+            border: 1px solid #000;
+        }
+        .oneson {
+            float: left;
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+        .twoson {
+            float: left;
+            width: 200px;
+            height: 200px;
+            background-color: purple;
+        }
+        .two {
+            width: 100%;
+            height: 200px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <!-- 在需要清除浮动的盒子上后加clearfix -->
+    <div class="one clearfix">
+        <div class="oneson"></div>
+        <div class="twoson"></div>
+    </div>
+    <div class="two"></div>
+</body>
+</html>

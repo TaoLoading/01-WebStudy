@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>06_箭头函数</title>
+	</head>
+	<body>
+		<button id="btn1">测试箭头函数this_1</button>
+		<button id="btn2">测试箭头函数this_2</button>
+		<button id="btn3">测试箭头函数this_3</button>
+		<button id="btn4">测试箭头函数this_4</button>
+
+		<!--
+    * 作用: 定义匿名函数
+    * 基本语法: let 函数名 = 形参 =>函数体;
+    * 没有参数: () => console.log('xxxx')
+    * 一个参数: i => i+2
+    * 大于一个参数: (i,j) => i+j
+    * 函数体不用大括号: 默认返回结果
+    * 函数体如果有多个语句, 需要用{}包围，若有需要返回的内容，需要手动返回
+    * 使用场景: 多用来定义回调函数
+
+    * 箭头函数的特点：
+        1、简洁
+        2、官方理解：箭头函数没有自己的this，箭头函数的this不是调用的时候决定的，而是在定义的时候处在的上下文对象就是它的this
+        3、直白理解： 箭头函数的this看外层的是否有函数，
+            如果有，外层函数的this就是内部箭头函数的this，
+            如果没有，则this是window。
+    -->
+		<script type="text/javascript">
+			console.log('------------ 常规函数 -------------')
+			let fun = function () {
+				console.log('fun()')
+			}
+			fun()
+
+			console.log('------------ 箭头函数(没有形参时) -------------')
+			// 没有形参，并且函数体只有一条语句
+			// 箭头函数没有形参时，()不能省略
+			let fun1 = () => console.log('没有形参')
+			fun1()
+
+			console.log('------------ 箭头函数(有一个形参时) -------------')
+			//一个形参，并且函数体只有一条语句
+			// 箭头函数有一个形参时，()可以省略，也可以不省略
+			let fun2 = (x) => console.log('有一个形参', x)
+			fun2(5)
+
+			console.log('------------ 箭头函数(有多个形参时) -------------')
+			// 形参是一个以上
+			// 箭头函数有多个形参时，()不能省略
+			let fun3 = (x, y) => console.log('有多个形参', x, y)
+			fun3(25, 39) //64
+
+			console.log('--------- 箭头函数(函数体只有一条语句时) ----------')
+			// 箭头函数函数体只有一条语句时，{}可以省略，省略后会自动return当前语句或表达式的结果
+			// 不省略{}手动指定返回结果，否则默认执行return value:undefined;
+			let fun4 = () => console.log('函数体只有一条语句')
+			console.log(fun4()) // 语句的返回结果。console.log语句返回undefined
+			let fun4_2 = () => 123
+			console.log(fun4_2()) // 表达式的返回结果。当前表达式返回123
+
+			console.log('--------- 箭头函数(函数体有多条语句时) ----------')
+			// 箭头函数函数体有多条语句时，{}不能省略，不省略{}手动指定返回结果，否则默认执行return value:undefined;
+			let fun5 = (x, y) => {
+				console.log(x, y)
+				return x + y
+			}
+			console.log(fun5(34, 48)) //82
+
+			console.log('------------ 箭头函数特点this指向 -------------')
+			let btn1 = document.getElementById('btn1')
+			let btn2 = document.getElementById('btn2')
+			let btn3 = document.getElementById('btn3')
+			let btn4 = document.getElementById('btn4')
+			// 没有箭头函数
+			btn1.onclick = function () {
+				console.log(this) // btn
+			}
+			// 箭头函数(类型一)
+			btn2.onclick = () => console.log(this) // window
+			// 箭头函数(类型二)
+			let obj1 = {
+				name: 'kobe',
+				age: 39,
+				getName() {
+					btn3.onclick = () => console.log(this) // obj1
+				},
+			}
+			obj1.getName()
+			// 箭头函数(类型三)
+			let obj2 = {
+				name: 'kobe',
+				age: 39,
+				getName: () => {
+					btn4.onclick = () => console.log(this) // window
+				},
+			}
+			obj2.getName()
+
+			// 箭头函数不能当做构造函数使用，因为此时箭头函数this指向window，而构造函数的this应该指向实例对象
+			// let Person = () => (this.name = 'lht')
+			// let person1 = new Person()
+			// console.log(person.name) // 报错Person is not a constructor
+		</script>
+	</body>
+</html>

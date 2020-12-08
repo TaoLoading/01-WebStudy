@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全局变量与局部变量定义</title>
+    <script>
+        //当我们定义变量时，一般都会添加var，但也有不加var的情况，分出现在全局和局部：
+        //在全局中：如果之前没有定义过这个变量，则在定义时必须给这个变量赋值，且相当于加了var。此时该变量是全局变量
+        //在局部中：如果在局部中（函数体、参数）没有定义过该变量，则首先看全局外部是否定义了该变量
+        //         如果外部定义了，则相当于在操作这个全局变量，此时该变量时全局变量；如果没有外部定义，则相当于在全局中var了一个变量
+        //         如果局部函数体中没有定义，但参数中有这个变量，则也相当于是在函数体中var了这个变量，此时该变量是局部变量
+
+        var num = 10;
+
+        function f1() {
+            var num = 20;
+            f2();
+        }
+
+        function f2() {
+            console.log(num); //最终打印结果是10
+        }
+
+        f1();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

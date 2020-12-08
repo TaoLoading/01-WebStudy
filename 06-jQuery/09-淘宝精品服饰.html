@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>淘宝精品服饰</title>
+		<script src="00-jQuery.js"></script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				font-size: 12px;
+			}
+
+			ul {
+				list-style: none;
+			}
+
+			a {
+				text-decoration: none;
+			}
+
+			.wrapper {
+				width: 250px;
+				height: 248px;
+				margin: 100px auto 0;
+				border: 1px solid pink;
+				border-right: 0;
+				overflow: hidden;
+			}
+
+			#left,
+			#content {
+				float: left;
+			}
+
+			#left li {
+				background: url(img/淘宝精品服饰/lili.jpg) repeat-x;
+			}
+
+			#left li a {
+				display: block;
+				width: 48px;
+				height: 27px;
+				border-bottom: 1px solid pink;
+				line-height: 27px;
+				text-align: center;
+				color: black;
+			}
+
+			#left li a:hover {
+				background-image: url(img/淘宝精品服饰/abg.gif);
+			}
+
+			#content {
+				border-left: 1px solid pink;
+				border-right: 1px solid pink;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrapper">
+			<ul id="left">
+				<li><a href="#">女靴</a></li>
+				<li><a href="#">雪地靴</a></li>
+				<li><a href="#">冬裙</a></li>
+				<li><a href="#">呢大衣</a></li>
+				<li><a href="#">毛衣</a></li>
+				<li><a href="#">棉服</a></li>
+				<li><a href="#">女裤</a></li>
+				<li><a href="#">羽绒服</a></li>
+				<li><a href="#">牛仔裤</a></li>
+			</ul>
+			<div id="content">
+				<div>
+					<a href="#"
+						><img
+							src="img/淘宝精品服饰/女靴.jpg"
+							width="200"
+							height="250"
+					/></a>
+				</div>
+				<div>
+					<a href="#"
+						><img
+							src="img/淘宝精品服饰/雪地靴.jpg"
+							width="200"
+							height="250"
+					/></a>
+				</div>
+				<div>
+					<a href="#"
+						><img
+							src="img/淘宝精品服饰/冬裙.jpg"
+							width="200"
+							height="250"
+					/></a>
+				</div>
+				<div>
+					<a href="#"
+						><img
+							src="img/淘宝精品服饰/呢大衣.jpg"
+							width="200"
+							height="250"
+					/></a>
+				</div>
+				<div>
+					<a href="#"
+						><img
+							src="img/淘宝精品服饰/毛衣.jpg"
+							width="200"
+							height="250"
+					/></a>
+				</div>
+				<div>
+					<a href="#"
+						><img
+							src="img/淘宝精品服饰/棉服.jpg"
+							width="200"
+							height="250"
+					/></a>
+				</div>
+				<div>
+					<a href="#"
+						><img
+							src="img/淘宝精品服饰/女裤.jpg"
+							width="200"
+							height="250"
+					/></a>
+				</div>
+				<div>
+					<a href="#"
+						><img
+							src="img/淘宝精品服饰/羽绒服.jpg"
+							width="200"
+							height="250"
+					/></a>
+				</div>
+				<div>
+					<a href="#"
+						><img
+							src="img/淘宝精品服饰/牛仔裤.jpg"
+							width="200"
+							height="250"
+					/></a>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			$(function () {
+				// 鼠标经过li
+				$('#left li').mouseover(function () {
+					// 获得当前li的下标
+					var index = $(this).index() // $(this).index()：获得当前元素的下标
+					// 右侧盒子对应下标图片显示
+					$('#content div').eq(index).show()
+					// 其他图片隐藏
+					$('#content div').eq(index).siblings().hide()
+				})
+			})
+		</script>
+	</body>
+</html>

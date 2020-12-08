@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<style type="text/css">
+			#test{
+				/*visibility: visible;*/
+				opacity: 1;
+				width: 100px;
+				height: 100px;
+				background: pink;
+				will-change: transform;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="test">
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		var testNode = document.querySelector("#test");
+		setTimeout(function(){
+			//testNode.style.visibility="hidden";
+			testNode.style.opacity=0;
+		},2000);
+		
+	</script>
+</html>

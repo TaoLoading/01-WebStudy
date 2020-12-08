@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获取元素的方法</title>
+</head>
+
+<body>
+    <p id="ppp">1</p>
+    <p class="pp">2</p>
+    <p class="pp">3</p>
+    <p class="pp">4</p>
+
+
+    <script>
+        var pList1 = document.getElementById('ppp');
+        var pList2 = document.getElementsByTagName('p'); // 获取标签名，返回元素对象集合（伪数组）
+        var pList3 = document.getElementsByClassName('pp'); // 获取类名，返回元素对象集合（伪数组）
+
+        // querySelector和querySelectorAll里面要放选择器
+        var pList4 = document.querySelector('.pp'); // 专门用来获取选择器中只有一个元素，返回第一个元素对象
+        var pList5 = document.querySelectorAll('.pp'); // 返回的也是一个数组
+
+        //除document.getElementById()外，其他IE8以下不支持
+    </script>
+</body>
+
+</html>

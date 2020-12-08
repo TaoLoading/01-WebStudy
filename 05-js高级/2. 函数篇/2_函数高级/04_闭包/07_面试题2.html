@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>07_面试题2</title>
+</head>
+
+<body>
+
+    <script type="text/javascript">
+        // 说说它们的输出情况
+
+        function fun(n, o) {
+            console.log(o);
+            return {
+                fun: function(m) { // 满足闭包产生的条件，产生了一个闭包引用 ---> 外部函数fun的变量对象 === {n:0, o:undifined}
+                    return fun(m, n); // 此处fun为最外层的fun，若使用里层的fun应该是this.fun
+                    // 因为里层的function在对象里面，故调用应该是对象.方法，所以外部函数的this就是这个对象，多以this.fun找到这个里层函数
+
+                    // 下述例题中m都已传值，而n的值由于闭包会到外部函数中查找，即fun(n,o)，传给fun(n,o)中n的值为几，那内部函数n就为几，这样就确定了函数fun(m,n)的传值
+                    // 确定了fun(m,n)中m和n的值后，由于是调用的外层函数，故会执行外层函数fun(n,o)，其中n和o的值就依次是m和n的值
+                }
+            }
+        }
+        var a = fun(0); // a = {function(){}}
+        a.fun(1); // {m = 1, n = 0}(在外部函数中找到n为0) ---> o:0
+        a.fun(2); // {m = 2, n = 0}
+        a.fun(3); // {m = 3, n = 0}
+        // o的值：undefined,0,0,0
+
+        var b = fun(0).fun(1).fun(2).fun(3);
+        // o的值：undefined,1,2,3
+
+        var c = fun(0).fun(1); // {m = 1, n = 0} --> {n:1, o:0}
+        c.fun(2); // {m = 2, n = 1} --> {n:2, o:1}
+        c.fun(3); // {m = 3, n = 1} --> {n:3, o:1}
+        // o的值：undefined,0,1,1
+
+        // 区别：
+        // a:.fun都是只用了第一个方法的返回值
+        // b:.fun都是用的是上一个方法的返回值
+        // c:.fun都是只用了第二次方法的返回值
+    </script>
+</body>
+
+</html>

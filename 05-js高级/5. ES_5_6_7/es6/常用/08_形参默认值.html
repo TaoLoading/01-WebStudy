@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>08_形参默认值</title>
+	</head>
+	<body>
+		<!--
+    * 形参的默认值----当不传入参数的时候默认使用形参里的默认值
+    function Point(x = 1,y = 2) {
+    this.x = x;
+    this.y = y;
+    }
+-->
+		<script type="text/javascript">
+			//定义一个点的坐标
+			function Point(x = 0, y = 0) {
+				this.x = x
+				this.y = y
+			}
+			let point = new Point(25, 36)
+			console.log(point)
+			let p = new Point() // 如果不传值则使用默认值，防止出现undefined
+			console.log(p)
+			let point1 = new Point(12, 35)
+			console.log(point1)
+
+			// 使用场景
+			// 形参默认值的类型一般根据需要的实参类型传值，此处为'arr = []'
+			function fun(arr = []) {
+				arr.forEach(function (item, index) {
+					console.log(item, index)
+				})
+			}
+			fun() // 使用形参默认值即使不传值也不会报错
+		</script>
+	</body>
+</html>

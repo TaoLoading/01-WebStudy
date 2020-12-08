@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>点击按钮修改图片路径</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        img {
+            display: block;
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <img id="img" src="img/2.jpg" alt="">
+    <button id="btn">点击换图</button>
+
+    <script>
+        window.onload = function() {
+            var btn = document.getElementById('btn');
+            var imgNode = document.getElementById('img');
+
+            btn.onclick = function() {
+                imgNode.src = 'img/3.jpg';
+            }
+        }
+    </script>
+</body>
+
+</html>

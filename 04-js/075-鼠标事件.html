@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鼠标事件</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: hotpink;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+
+
+
+    <script>
+        // onmousemove（鼠标移动）
+        // onmouseover（鼠标移入/悬浮），onmouseout（鼠标移出）
+        // onmounseenter（鼠标进入），onmouseleave（鼠标离开）；效果类似onmouseover和onmouseout
+        // onclick（单击），onmousedown（鼠标按下），onmouseup（鼠标升起），ondbclick（双击）
+
+        var a = 200;
+        var box = document.querySelector('div');
+        box.onmouseenter = function() {
+            box.style.width = a + 'px';
+            this.style.height = '200px';
+            // 注意类似的属性不是background-color，而是backgroundColor，C要大写
+            this.style.backgroundColor = 'skyblue';
+        };
+
+        box.onmouseleave = function() {
+            box.style.width = '100px';
+            this.style.height = '100px';
+            this.style.backgroundColor = 'hotpink';
+        }
+    </script>
+</body>
+
+</html>

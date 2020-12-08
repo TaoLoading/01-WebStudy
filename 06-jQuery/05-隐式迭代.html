@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>05-隐式迭代</title>
+		<script src="00-jQuery.js"></script>
+	</head>
+	<body>
+		<div>这是div1</div>
+		<div>这是div2</div>
+		<div>这是div3</div>
+
+		<script>
+			// jQuery修改样式：
+			// 1.$('div').css('属性', '值')，当值为数字时可以不加引号
+			// 2.$('div').css('属性')，只写一个则是返回属性值
+			// 3.$('div').css({'属性':'值'})，css()内的参数也可以是对象的形式，此时属性可以不加引号，值为数字时也可以不加引号
+			$('div').css('background', 'skyblue')
+
+			// 隐式迭代
+			// 遍历内部 DOM 元素(伪数组形式存储)的过程就叫做隐式迭代
+			// 简单理解：给匹配到的所有元素进行循环遍历，执行相应的方法，而不用我们再进行循环，简化我们的操作，方便我们调用
+			// 不再需要for循环遍历
+		</script>
+	</body>
+</html>

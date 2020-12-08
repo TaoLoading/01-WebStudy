@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>15-停止动画排队</title>
+		<script src="00-jQuery.js"></script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			li {
+				list-style-type: none;
+			}
+
+			a {
+				text-decoration: none;
+				font-size: 14px;
+			}
+
+			.nav {
+				margin: 100px;
+			}
+
+			.nav > li {
+				position: relative;
+				float: left;
+				width: 80px;
+				height: 41px;
+				text-align: center;
+			}
+
+			.nav li a {
+				display: block;
+				width: 100%;
+				height: 100%;
+				line-height: 41px;
+				color: #333;
+			}
+
+			.nav > li > a:hover {
+				background-color: #eee;
+			}
+
+			.nav ul {
+				display: none;
+				position: absolute;
+				top: 41px;
+				left: 0;
+				width: 100%;
+				border-left: 1px solid #fecc5b;
+				border-right: 1px solid #fecc5b;
+			}
+
+			.nav ul li {
+				border-bottom: 1px solid #fecc5b;
+			}
+
+			.nav ul li a:hover {
+				background-color: #fff5da;
+			}
+		</style>
+	</head>
+	<body>
+		<ul class="nav">
+			<li>
+				<a href="#">微博</a>
+				<ul>
+					<li>
+						<a href="">私信</a>
+					</li>
+					<li>
+						<a href="">评论</a>
+					</li>
+					<li>
+						<a href="">@我</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">微博</a>
+				<ul>
+					<li>
+						<a href="">私信</a>
+					</li>
+					<li>
+						<a href="">评论</a>
+					</li>
+					<li>
+						<a href="">@我</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">微博</a>
+				<ul>
+					<li>
+						<a href="">私信</a>
+					</li>
+					<li>
+						<a href="">评论</a>
+					</li>
+					<li>
+						<a href="">@我</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">微博</a>
+				<ul>
+					<li>
+						<a href="">私信</a>
+					</li>
+					<li>
+						<a href="">评论</a>
+					</li>
+					<li>
+						<a href="">@我</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+
+		<script>
+			// 动画排队
+			// 动画或者效果一旦触发就会执行，如果多次触发，就造成多个动画或者效果排队执行
+
+			$(function () {
+				$('.nav>li').hover(function () {
+					// 停止动画排队  stop()，必须写在动画的前面
+					$(this).children('ul').stop().slideToggle()
+				})
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			@keyframes move {
+				from {
+					background-position: 0 0;
+				}
+				to {
+					background-position: -576px 0;
+				}
+			}
+
+			/* 图层创建条件四：拥有CSS3动画的节点 */
+			#wrap {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate3d(-50%, -50%, 0);
+				width: 48px;
+				height: 48px;
+				background: url(./media/animation.png);
+				animation: move 0.5s infinite steps(12, start);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap"></div>
+	</body>
+</html>

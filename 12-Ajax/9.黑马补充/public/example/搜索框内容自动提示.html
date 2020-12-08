@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>搜索框输入文字自动提示</title>
+	<link rel="stylesheet" href="/assets/bootstrap/dist/css/bootstrap.min.css">
+	<style type="text/css">
+		.container {
+			padding-top: 150px;
+		}
+		.list-group {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="请输入搜索关键字" id="search">
+			<ul class="list-group" id="list-box">
+				
+			</ul>
+		</div>
+	</div>
+	<script type="text/html" id="list">
+		{{each data}}<li class="list-group-item">{{$value}}</li>{{/each}}
+	</script>
+	<script src="/js/ajax.js"></script>
+	<script src="/js/template-web.js"></script>
+	<script>
+		// 获取搜索框
+		var searchInp = document.querySelector('#search');
+		// 获取结果容器
+		var listBox = document.querySelector('#list-box');
+		// 定时器
+		var timer = null;
+		// 当用户在文本框输入的时候
+		searchInp.oninput = function () {
+			// 清除上一次开启的定时器
+			clearTimeout(timer);
+			// 用户搜索关键字
+			var key = this.value;
+			// 如果文本框中的内容为空
+			if (key.trim().length == 0) {
+				// 隐藏下拉提示框
+				listBox.style.display = 'none';
+				// 阻止程序向下运行
+				return;
+			}
+			// 开启新的定时器
+			timer = setTimeout(function () {
+				// 向服务器端发送请求
+				ajax({
+					type: 'get',
+					url: '/searchAutoPrompt',
+					data: {
+						key: key
+					},
+					success: function (data) {
+						// 将数据和HTML进行拼接
+						var html = template('list', {data: data});
+						// 将拼接的结果显示在页面中
+						listBox.innerHTML = html;
+						// 将下拉框显示出来
+						listBox.style.display = 'block';
+					}
+				})
+			}, 800);
+		}
+	</script>
+</body>
+</html>

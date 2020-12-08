@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作用域链</title>
+    <script>
+        var num = 0;
+
+        function f1() {
+            var num = 1; //相对于f2，这就是一个全局变量
+
+            function f2() {
+                var num = 2;
+
+                function f3() {
+                    var num = 3;
+
+                    function f4() {
+                        // var num = 4;
+                        //将其注释掉，则函数运行时会去上一层寻找变量定义，若依然没有则继续向上一层。只有找到，立即停止，依次形成一条链路
+                        //如果直到查到函数外部全局依然没有查到，则报错
+                        console.log(num);
+                    }
+                    f4();
+                }
+                f3();
+            }
+            f2();
+        }
+        f1();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>冒泡排序（从小到大）</title>
+		<script>
+			function bubbleSort() {
+				//外层循环控制轮数
+				for (var i = 0; i < arr.length - 1; i++) {
+					//内存循环控制比较次数，注意找arr.length - 1 - i的规律
+					for (var j = 0; j < arr.length - 1 - i; j++) {
+						if (arr[j] > arr[j + 1]) {
+							var temp = arr[j]
+							arr[j] = arr[j + 1]
+							arr[j + 1] = temp
+						}
+					}
+				}
+			}
+
+			var arr = [123, 1, 53, 66, 78, 9, 100]
+			bubbleSort(arr)
+			console.log(arr)
+
+			//函数传参分为基本数据类型和对象数据类型
+			//基本数据类型传进去后，函数外和函数内控制的不是一个数，所以需要返回值
+			//对象数据类型（包括数组）传进去后，函数外和函数内控制的是一个数据（数组），二者都发生了变化，故不需要返回值，
+			//但受到全局变量和局部变量的影响，故以后书写时最好加上返回值
+		</script>
+	</head>
+
+	<body></body>
+</html>

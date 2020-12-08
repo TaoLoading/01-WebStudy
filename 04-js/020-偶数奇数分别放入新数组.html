@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>偶数奇数分别放入新数组</title>
+    <script>
+        var arr = [1, 2, 3, 4, 5, 6, 7, 8];
+        var even = [];
+
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] % 2 == 0) {
+                console.log('偶数为' + arr[i]);
+            } else {
+                even[even.length] = arr[i];
+            }
+        }
+
+        console.log('奇数数组为' + even);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

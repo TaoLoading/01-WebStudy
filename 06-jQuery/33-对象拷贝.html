@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>33-对象拷贝</title>
+		<script src="00-jQuery.js"></script>
+	</head>
+	<body>
+		<script>
+			$(function () {
+				// 事件拷贝
+				// $.extend([deep], target, obj1,[objN])
+
+				var obj = {
+					name: 'loading',
+					age: 21,
+					msg: {
+						sex: '男',
+					},
+				}
+				var target = {
+					age: 20,
+				}
+
+				$.extend(target, obj)
+				console.log(target) // 会覆盖原数据
+
+				// 浅拷贝
+				target.msg.sex = '超人'
+				console.log(target)
+				console.log(obj) // 原数据也被修改
+
+				// 深拷贝
+				// $.extend(true, target, obj) // 原数据不被修改
+			})
+		</script>
+	</body>
+</html>

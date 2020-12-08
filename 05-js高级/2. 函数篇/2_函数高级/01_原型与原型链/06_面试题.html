@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06_面试题</title>
+</head>
+
+<body>
+
+    <script type="text/javascript">
+        // 试题1
+        var A = function() {
+
+        };
+        A.prototype.n = 1;
+
+        var b = new A(); // 此时A.prototype为 {n.1}
+
+        A.prototype = { // 操作对象内容，导致指针指向发生改变，但此时已不影响b
+            n: 2,
+            m: 3
+        }
+
+        var c = new A();
+        console.log(b.n, b.m, c.n, c.m); // 1 undefined 2 3
+
+
+        // 试题2
+        var F = function() {};
+        Object.prototype.a = function() {
+            console.log('a()')
+        };
+        Function.prototype.b = function() {
+            console.log('b()')
+        };
+        var f = new F();
+        f.a(); // a()
+        // 沿着__proto__找到f的隐式原型对象 == F的显示原型对象 === {constructor}，没有a()，由于原型对象都是Object的实例化对象，故最终找到Object的原型对象
+        // f.b(); // 报错
+        F.a(); // a()
+        F.b(); // b()
+    </script>
+</body>
+
+</html>

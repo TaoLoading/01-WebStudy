@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拖拽模板</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #box {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background-color: skyblue;
+        }
+        /* 禁止系统滚动条 */
+        
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">TaoLoading</div>
+
+
+    <script>
+        var box = document.getElementById('box');
+
+        // 鼠标按下
+        box.onmousedown = function(event) {
+            event = event || window.event;
+
+            // 获取鼠标初始位置
+            var mouseStartX = event.clientX;
+            var mouseStartY = event.clientY;
+
+            // 获取元素初始位置
+            var eleStartX = box.offsetLeft;
+            var eleStartY = box.offsetTop;
+
+            // 由于IE默认行为不存在拖拽，故取消默认行为后，IE文本依能拖拽，故进行全局捕获
+            // 开启全局捕获后，鼠标所有的事件回全部捕获到元素上
+            box.setCapture && box.setCapture();
+
+            document.onmousemove = function(event) { // 将事件添加给document而不是box，利用事件冒泡防止因鼠标移动过快走出box后按下事件依然发生的现象
+                event = event || window.event;
+
+                // 获取鼠标最终位置
+                var mouseEndX = event.clientX;
+                var mouseEndY = event.clientY;
+
+                // 获取鼠标距离差
+                var disX = mouseEndX - mouseStartX;
+                var disY = mouseEndY - mouseStartY;
+
+                // 计算得出元素最终位置
+                var eleEndX = eleStartX + disX;
+                var eleEndY = eleStartY + disY;
+
+                // 将获得的位置传给元素
+                box.style.left = eleEndX + 'px'; // 不要忘记加px
+                box.style.top = eleEndY + 'px';
+            }
+
+            // 鼠标抬起
+            document.onmouseup = function() {
+                document.onmousemove = document.onmouseup = null;
+                // 释放全局捕获
+                // 由于全部事件都会捕获到元素上，所以连点击等操作都会捕获到元素上，导致不能操作，故在要添加释放全局捕获
+                box.releaseCapture && box.releaseCapture();
+            }
+
+            // 浏览器默认行为，导致选中文字时不能拖拽
+            // DOM0事件取消默认行为
+            return false;
+            // DOM2事件取消默认行为
+            // event.preventDefault();
+        }
+    </script>
+</body>
+
+</html>

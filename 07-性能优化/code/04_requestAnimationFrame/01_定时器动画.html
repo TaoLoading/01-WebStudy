@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>定时器动画</title>
+  <style>
+    * {
+      margin:0;
+      padding:0;
+    }
+    #test {
+      width: 200px;
+      height: 200px;
+      background: skyblue;
+    }
+  </style>
+</head>
+<body>
+<div id="test"></div>
+<!--定时器动画-->
+<script type="text/javascript">
+  
+  let test = document.getElementById('test')
+  let index = 0
+  let timeid
+  timeid = setInterval(()=>{
+    index++
+    test.style.transform = `translateX(${index}px)`
+  },16)
+  
+  setTimeout(()=>{
+      clearInterval(timeid)
+  },2000)
+  
+</script>
+</body>
+</html>

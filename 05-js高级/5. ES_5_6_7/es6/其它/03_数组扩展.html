@@ -1,0 +1,58 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>03_数组扩展</title>
+	</head>
+	<body>
+		<button>测试1</button>
+		<br />
+		<button>测试2</button>
+		<br />
+		<button>测试3</button>
+		<br />
+
+		<!--
+    // 给函数自身用 
+    1. Array.from(v) : 将伪数组对象或可遍历对象转换为真数组
+    2. Array.of(v1, v2, v3) : 将一系列值转换成数组
+    // 给函数的实例用，即Array.prototype.(...)
+    3. find(function(value, index, arr){return true}) : 找出第一个满足条件返回true的元素
+    4. findIndex(function(value, index, arr){return true}) : 找出第一个满足条件返回true的元素下标
+-->
+		<script type="text/javascript">
+			//Array.from(v) : 将伪数组对象或可遍历对象转换为真数组
+			let btns = document.getElementsByTagName('button')
+			console.log(btns.length) //3
+			// btns.forEach(function (item, index) {
+			// console.log(item, index) // 报错，伪数组
+			// })
+			Array.from(btns).forEach(function (item, index) {
+				console.log(item, index)
+			})
+
+			// Array.of(v1, v2, v3) : 将一系列值转换成数组
+			let arr = Array.of(1, 'abc', true)
+			console.log(arr)
+			// 简易实现of方法：
+			function of(...values) {
+				let result = []
+				values.forEach((item) => result.push(item))
+				return result
+			}
+			console.log(of(1, 'abc', true))
+
+			// find(function(value, index, arr){return true}) : 找出第一个满足条件返回true的元素
+			let arr1 = [1, 3, 5, 2, 6, 7, 3]
+			let result1 = arr1.find(function (item, index, arr) {
+				return item > 3
+			})
+			console.log(result1) // 5
+
+			// findIndex(function(value, index, arr){return true}) : 找出第一个满足条件返回true的元素下标
+			let result2 = arr1.findIndex(function (item, index, arr) {
+				return item > 3
+			})
+			console.log(result2) // 2
+		</script>
+	</body>
+</html>

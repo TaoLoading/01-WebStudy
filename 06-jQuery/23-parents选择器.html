@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>22-parents选择器</title>
+		<script src="00-jQuery.js"></script>
+	</head>
+	<body>
+		<div class="one">
+			<div class="two">
+				<div class="three">
+					<div class="four">我在最里面</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			$(function () {
+				// 获取指定祖先元素  .parents('选择器')
+				console.log($('.four').parents('.one'))
+				console.log($('.four').parents('.two'))
+			})
+		</script>
+	</body>
+</html>

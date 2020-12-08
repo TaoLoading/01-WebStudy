@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>className和类操作的区别</title>
+		<script src="00-jQuery.js"></script>
+	</head>
+	<body>
+		<div class="one"></div>
+
+		<script>
+			// className，className会覆盖原类名
+			// var one = document.querySelector('div')
+			// one.className = 'two'
+
+			// 类操作，类操作不会覆盖原类名
+			$('one').addClass('two') // 原类名基础上添加.two
+			$('one').removeClass('two') // 添加后的类名基础上移除.two
+		</script>
+	</body>
+</html>

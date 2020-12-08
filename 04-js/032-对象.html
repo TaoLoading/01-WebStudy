@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象</title>
+    <script>
+        //如果存储一个简单的数据（一个数字，一个字符串），直接var a = 10
+        //如果存储一堆的数据，此时我们想到数组，数组就是专门用来存储多个数据用的
+        //如果我们想要执行一段代码，或者让这段代码有功能，此时我们需要函数
+        //如果我想描述一个复杂的事物，比如说一个人，一台电脑（需要用到多个属性或者方法才能描述清楚），此时就要用到对象
+
+        //定义对象三种方式
+        //1.字面量定义
+        var obj1 = {
+            name: '秦始皇',
+            age: 25,
+        };
+        console.log(obj1);
+
+        //2.New Object
+        var obj2 = new Object({
+            name: '秦始皇',
+            age: 25,
+        });
+        console.log(obj2);
+
+        //3.工厂函数模式
+        function creatObject(name, age) {
+            var obj3 = new Object;
+            obj3.name = name;
+            obj3.age = age;
+            return obj3;
+        }
+        console.log(creatObject('秦始皇', 23));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

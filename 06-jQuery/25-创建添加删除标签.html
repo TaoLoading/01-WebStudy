@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>25-创建添加删除标签</title>
+		<script src="00-jQuery.js"></script>
+	</head>
+	<body>
+		<ul>
+			<li>初始li</li>
+		</ul>
+		<div class="test">初始div</div>
+
+		<script>
+			$(function () {
+				// 创建元素  $('<标签></标签>')
+				var $li = $('<li>后加li</li>')
+				var $div = $('<div>后加div</div>')
+
+				// 添加元素
+				// 内部添加  在前添加：ele.prepend('内容')，在后添加：ele.append('内容')
+				// $('ul').prepend($li)
+				$('ul').append($li)
+				// 外部添加  在前添加：ele.before('内容')，在后添加：ele.after('内容')
+				// $('div').before($div)
+				$('div').after($div)
+
+				// 删除元素
+				// 1.ele.remove()  删除匹配的元素
+				// 2.ele.empty()  删除匹配元素的集合中所有的子元素
+				// 3.ele.html('''')  清空匹配元素的内容
+				$('.test').remove()
+				$('ul').empty()
+				$($div).html('')
+			})
+		</script>
+	</body>
+</html>

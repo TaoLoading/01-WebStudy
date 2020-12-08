@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>jQuery_ajax</title>
+	</head>
+	<body>
+		<script type="text/javascript" src="./js/jquery-1.12.4.js"></script>
+		<h1>该页面是测试jQuery_ajax请求</h1>
+		<button id="btn1">点我使用jQuery发送ajax-get请求</button>
+		<button id="btn2">点我使用jQuery发送ajax-post请求</button>
+
+		<script type="text/javascript">
+			let btn1 = $('#btn1')
+			let btn2 = $('#btn2')
+
+			btn1.click(function () {
+				//使用jQuery发送ajax-get请求------完整版写法
+				$.ajax({
+					url: 'http://localhost:3000/ajax_get',
+					method: 'get', //发送请求的方式
+					data: { name: 'kobe', age: 41 }, //发送请求携带的数据
+					//成功的回调
+					success: function (result) {
+						console.log(result)
+					},
+					//失败的回调
+					error: function (err) {
+						console.log(err)
+					},
+				})
+
+				//使用jQuery发送ajax-get请求------简写
+				$.get(
+					'http://localhost:3000/ajax_get',
+					{ name: 'kobe', age: 41 },
+					(data) => {
+						console.log(data)
+					}
+				)
+			})
+
+			btn2.click(function () {
+				//使用jQuery发送ajax-post请求------完整版写法
+				$.ajax({
+					url: 'http://localhost:3000/ajax_post',
+					method: 'post', //发送请求的方式
+					data: { name: 'kobe', age: 41 }, //发送请求携带的数据
+					//成功的回调
+					success: function (result) {
+						console.log(result)
+					},
+					//失败的回调
+					error: function (err) {
+						console.log(err)
+					},
+				})
+
+				//使用jQuery发送ajax-post请求------简写
+				$.post(
+					'http://localhost:3000/ajax_post',
+					{ name: 'kobe', age: 41 },
+					(data) => {
+						console.log(data)
+					}
+				)
+			})
+		</script>
+	</body>
+</html>

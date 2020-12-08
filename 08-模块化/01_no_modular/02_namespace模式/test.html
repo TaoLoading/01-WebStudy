@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>02_namespace模式</title>
+	</head>
+	<body>
+		<script type="text/javascript" src="module1.js"></script>
+		<script type="text/javascript" src="module2.js"></script>
+		<script type="text/javascript">
+			module1.data = [1, 2, 3, 4, 5] // 修改了数据，不安全
+			module1.test = 1 // 修改了数据，不安全
+			module1.test()
+			module2.test()
+		</script>
+	</body>
+</html>

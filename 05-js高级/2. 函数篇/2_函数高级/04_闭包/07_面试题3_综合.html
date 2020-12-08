@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>面试题_综合</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        function Foo() {
+            getName = function() {
+                alert(1);
+            };
+            return this;
+        }
+        Foo.getName = function() {
+            alert(2);
+        };
+        Foo.prototype.getName = function() {
+            alert(3);
+        };
+        var getName = function() {
+            alert(4);
+        };
+
+        function getName() {
+            alert(5);
+        }
+
+        //请写出以下输出结果：
+
+        Foo.getName(); // 2
+
+        getName(); // 4
+        // 变量提升以后，返回为4的函数覆盖了返回为5的函数，故为4
+
+        Foo().getName(); // 1
+        // 意思是Foo()函数自调用，再拿其返回值进行一个getName()属性调用
+        // 返回值是this，指向window，故为window.getName()，故形式上与上题一样
+        // 但在函数自调用时，声明了getName()的值并且没有使用var声明，故此时修改的是全局变量
+        // 故返回的依然是全局的getName()，但此时已经变成了1
+
+        getName(); // 1
+
+        new Foo.getName(); // 2
+        // 找离着new最近的括号来分辨整体，故Foo.getName是一个整体，调用Foo.getName()故为2
+
+        new Foo().getName(); // 3
+        // new Foo()相当于将Foo()实例化，故其相当于Foo()的一个实例对象，故整体就是实例对象.getName()，相当于this.getName()
+        // 通过观察Foo()可以得出实例对象中没有getName()属性(只有getName()没有this.getName())，
+        // 在去其原型对象中找，找到getName()属性，故为3
+
+        new new Foo().getName(); // 3
+        // 先执行第二个new，再执行第一个，故为3
+
+
+        // 附加
+        console.log(1, console.log(2, console.log(3))); // 返回3，2，undefined，1，undefined
+        // 因为括号里的console.log()在执行完它本身后，在执行外层的console.log时，不会再执行一遍括号内的函数，
+        // 而是返回括号内函数的返回值
+        // 而函数默认返回值是undefined，故返回undefined
+    </script>
+</body>
+
+</html>

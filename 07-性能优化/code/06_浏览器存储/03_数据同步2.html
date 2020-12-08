@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>数据同步2</title>
+</head>
+<body>
+<input type="text" id="val">
+<script type="text/javascript">
+
+window.addEventListener('storage',function (event) {
+  console.log(event)
+  let val = document.getElementById('val')
+  val.value = event.newValue
+})
+  
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			canvas {
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				margin: auto;
+				background: gray;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 图层创建条件三：使用<canvas>节点 -->
+		<!-- 但是否创建图层与计算机硬件和浏览器设置有关 -->
+		<canvas width="400" height="400"></canvas>
+	</body>
+	<script type="text/javascript">
+		window.onload = function () {
+			var canvas = document.querySelector('canvas')
+			if (canvas.getContext) {
+				var ctx = canvas.getContext('2d')
+				ctx.fillRect(0, 0, 100, 100)
+				ctx.strokeRect(100, 100, 100, 100)
+			}
+		}
+	</script>
+</html>

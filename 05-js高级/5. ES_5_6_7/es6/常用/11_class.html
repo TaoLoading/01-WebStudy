@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>12_class</title>
+	</head>
+	<body></body>
+	<!--
+    1. 通过class定义类/实现类的继承
+    2. 在类中通过constructor定义构造方法
+    3. 通过new来创建类的实例
+    4. 通过extends来实现类的继承
+    5. 通过super调用父类的构造方法
+    6. 重写从父类中继承的一般方法
+    -->
+	<script type="text/javascript">
+		console.log('---------------- 定义类 -----------------')
+		class Person {
+			// static静态资源修饰符，使用static可以给类对象自身添加属性
+			static num = 123
+			// 类的构造方法
+			constructor(name, age) {
+				this.name = name
+				this.age = age
+			}
+			// 类一般的方法
+			showInfo() {
+				console.log(this.name)
+			}
+
+			// 类的方法会放到原型对象上
+		}
+
+		console.log('---------------- 使用类 -----------------')
+		// 使用类，与构造函数的使用方式相同
+		let person1 = new Person('kobe', 39)
+		console.log(person1, person1.showInfo())
+
+		// 还可以在类对象外直接给类对象添加属性，注意只能类对象用
+		Person.msg = '这是类对象自身属性'
+
+		console.log('---------------- 类的继承 -----------------')
+		// 定义一个子类
+		class Child extends Person {
+			constructor(name, age, sex) {
+				// super做的事：1.调用父类构造方法 2.改变父类构造方法的this指向为子类的实例
+				super(name, age) // 调用父类的构造方法，注意constructor和super里要加上对应的属性名
+				// 当需要父类中没有的属性时，需要手写加入
+				this.sex = sex
+			}
+			// 父类的方法重写
+			// 当父类原型的方法不能满足子类实例的需要时，就在子类中对方法进行重写
+			showInfo() {
+				console.log(this.name, this.age, this.sex)
+			}
+		}
+		let child1 = new Child('lht', '21', '男')
+		console.log(child1)
+
+		child1.showInfo() // 能找到showInfo()方法
+		// 寻找路径：先在child自身(子类的实例)找，找不到去child的原型对象(子类的原型对象)找，找不到再去沿着__proto__到父类的原型找
+		// 其他对象同样能沿着__proto__找到父类的原型的还有父类的实例
+		// 所以父类的实例和子类的原型扮演的角色一致
+
+		// // 定义一个子类
+		// class StrPerson extends Person {
+		// 	constructor(name, age, salary) {
+		// 		super(name, age) // 调用父类的构造方法
+		// 		this.salary = salary
+		// 	}
+		// 	showInfo() {
+		// 		// 在子类自身定义方法
+		// 		console.log(this.name, this.age, this.salary)
+		// 	}
+		// }
+		// let str = new StrPerson('weide', 38, 1000000000)
+		// console.log(str)
+		// str.showInfo()
+	</script>
+</html>

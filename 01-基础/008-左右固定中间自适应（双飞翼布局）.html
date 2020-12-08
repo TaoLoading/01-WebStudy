@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>双飞翼布局</title>
+
+    <style>
+        /*
+        双飞翼布局，现在已经很少使用，优点是可兼容到ie6
+     */
+        
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .outer {
+            min-width: 600px;
+            overflow: hidden;
+        }
+        
+        .main {
+            width: 100%;
+            height: 500px;
+            background-color: yellowgreen;
+            float: left;
+        }
+        
+        .left {
+            width: 200px;
+            height: 500px;
+            background-color: yellow;
+            float: left;
+            margin-left: -100%;
+        }
+        
+        .right {
+            width: 200px;
+            height: 500px;
+            background-color: orange;
+            float: left;
+            margin-left: -200px;
+        }
+        
+        .inner {
+            padding: 0 200px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="outer">
+
+        <div class="main">
+            <div class="inner">中间 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias deleniti doloremque dolores enim eum, excepturi exercitationem facere nam, numquam officiis perferendis quaerat rem vel. Ad corporis deserunt iste maxime minima?
+            </div>
+        </div>
+        <div class="left">左边</div>
+        <div class="right">右边</div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>18-jQuery效果(自定义动画)</title>
+		<script src="00-jQuery.js"></script>
+		<style>
+			div {
+				position: absolute;
+				width: 200px;
+				height: 200px;
+				background-color: skyblue;
+			}
+		</style>
+	</head>
+	<body>
+		<button>点击</button>
+		<div></div>
+		<br />
+		<img src="img/自定义动画.png" alt="" title="自定义动画语法" />
+
+		<script>
+			$(function () {
+				$('button').click(function () {
+					// animate(params, [speed], [easing], [fn])
+					$('div').animate(
+						{
+							top: 350,
+							left: 350,
+							opacity: 0.4,
+							width: 50,
+							height: 50,
+						},
+						1000
+					)
+				})
+			})
+		</script>
+	</body>
+</html>

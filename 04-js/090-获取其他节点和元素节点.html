@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获取其他节点和元素节点</title>
+</head>
+
+<body>
+    <div id="box"></div>
+    <ul id="list">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+
+
+    <script>
+        // 第一个子节点        都认识   firstChild
+        // 第一个子元素节点    只有高级浏览器可以使用  firstElementChild
+        // 最后一个节点      都认识   lastChild
+        // 最后一个元素节点  只有高级浏览器可以使用  lastElementChild
+        // 上一个兄弟节点    都认识  previousSibling
+        // 上一个兄弟元素节点  只有高级浏览器可以使用 previousElementSibling
+        // 下一个兄弟节点    都认识 nextSibling
+        // 下一个兄弟元素节点  只有高级浏览器可以使用  nextElementSibling
+
+        var list = document.getElementById('list');
+        console.log(list.firstChild);
+        console.log(list.firstElementChild);
+        console.log(list.lastChild);
+        console.log(list.lastElementChild);
+        console.log(list.previousSibling);
+        console.log(list.previousElementSibling);
+        console.log(list.nextSibling);
+        console.log(list.nextElementSibling);
+
+        // 兼容性封装函数打印第一个字元素
+        function getFirstEle(obj) {
+            if (obj.firstElementChild) {
+                // 高级浏览器
+                return obj.firstElementChild;
+            } else {
+                // 低级浏览器
+                var testNode = obj.firstChild;
+
+                // 循环遍历obj.childNodes
+
+                // 方式一
+                while (testNode && testNode.nodeType != 1) {
+                    testNode = testNode.nextSibling;
+                }
+                return testNode;
+
+                // 方式二(To Do)
+                // for (var i = 0; i < obj.childNodes.length; i++) {
+                //     if (testNode.nodeType == 1) {} else {
+                //         testNode = testNode.nextSibling;
+                //     }
+                //     return testNode;
+                // }
+            }
+        }
+    </script>
+</body>
+
+</html>

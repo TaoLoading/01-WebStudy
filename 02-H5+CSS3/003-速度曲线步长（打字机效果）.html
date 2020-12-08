@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>速度曲线步长（打字机效果）</title>
+    <style>
+        div {
+            overflow: hidden;
+            width: 0;
+            height: 30px;
+            background-color: pink;
+            font-size: 20px;
+            white-space: nowrap;
+            animation: w 4s steps(10) forwards;
+        }
+        
+        @keyframes w {
+            0% {}
+            100% {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div>我在世纪佳缘等你</div>
+</body>
+
+</html>

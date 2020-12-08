@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>遍历元素</title>
+		<script src="00-jQuery.js"></script>
+	</head>
+	<body>
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+
+		<script>
+			// jQuery的隐式迭代是对同一类做同样的操作，做不同的操作时就要用到遍历
+			// 遍历语法：
+			// 语法一：$('element').ecah(function(index, domEle) {})
+			// 语法二：$.each(object, function(index, element) {})，主要用来处理数组和对象
+			// 回调函数中第一个值是索引，第二个值是DOM对象(故用jQuery时需要转化成jQuery对象)
+
+			var arr = ['red', 'blue', 'green']
+			var sum = 0
+			console.log('--------------- 语法一 ---------------')
+			$('div').each(function (index, domEle) {
+				console.log(index)
+				// 使用domEle时需要转化为jQuery对象
+				$(domEle).css('color', arr[index])
+
+				// 求和
+				// 注意拿到的是字符串，要转化成数字型
+				sum += parseFloat($(domEle).text())
+			})
+			console.log(sum)
+
+			console.log('--------------- 语法一 ---------------')
+			$.each($('div'), function (index, ele) {
+				console.log(index)
+				console.log(ele)
+			})
+			// 遍历数组
+			$.each(arr, function (index, ele) {
+				console.log(index)
+				console.log(ele)
+			})
+			// 遍历对象
+			$.each({ name: 'lht', age: 21 }, function (index, ele) {
+				console.log(index) // 返回属性名
+				console.log(ele) // 返回属性值
+			})
+		</script>
+	</body>
+</html>

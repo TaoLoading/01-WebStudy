@@ -1,0 +1,23 @@
+.mine {
+	margin: 50px auto;
+}
+.mine .level {
+	text-align: center;
+	margin-bottom: 10px;
+}
+.mine .level button {
+	padding: 5px 15px;
+	background: #02a4ad;
+	border: none;
+	color: #fff;
+	outline: none;
+	cursor: pointer;
+	border-radius: 3px;
+}
+.level button.active {
+	background: #00abff;
+}
+.mine .level .margin {
+	margin-top: 10px;
+	text-align: center;
+}

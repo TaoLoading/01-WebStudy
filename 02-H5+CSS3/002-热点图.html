@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>热点图</title>
+    <style>
+        body {
+            background-color: #333;
+        }
+        
+        .map {
+            position: relative;
+            width: 747px;
+            height: 617px;
+            background-image: url(img/map.png);
+            margin: 0 auto;
+        }
+        
+        .city {
+            position: absolute;
+            top: 228px;
+            right: 194px;
+        }
+        
+        .spot {
+            width: 8px;
+            height: 8px;
+            background-color: #09f;
+            border-radius: 50%;
+        }
+        
+        .city div[class^="circel"] {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #009dfd;
+            /* 波纹在父盒子水平垂直居中 */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* 波纹放大后由中心向四周发散 */
+            animation: pulse 1s linear infinite;
+        }
+        
+        .city div.circel2 {
+            animation-delay: 0.5s;
+        }
+        
+        @keyframes pulse {
+            0% {}
+            70% {
+                width: 30px;
+                height: 30px;
+                opacity: 1;
+            }
+            100% {
+                width: 60px;
+                height: 60px;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="map">
+        <div class="city">
+            <div class="spot"></div>
+            <div class="circel1"></div>
+            <div class="circel2"></div>
+        </div>
+    </div>
+</body>
+
+</html>

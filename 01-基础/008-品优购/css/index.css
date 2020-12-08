@@ -1,0 +1,243 @@
+.main {
+    margin-top: 10px;
+    width: 980px;
+    height: 455px;
+    margin-left: 220px;
+} 
+.focus {
+    position: relative;
+    width: 720px;
+    height: 455px;
+    font-family: 'icomoon';
+}
+.arrow-l,
+.arrow-r {
+    position: absolute;
+    top: 50%;
+    width: 24px;
+    height: 40px;
+	margin-top: -20px;
+	text-align: center;
+	line-height: 40px;
+	color: #fff;
+    font-size: 18px;
+    background: rgba(0, 0, 0, .3);
+}
+.arrow-r {
+    right: 0;
+}
+.cricle {
+    position: absolute;
+    bottom: 10px;
+    left: 50px;
+}
+.cricle li {
+    float: left;
+    margin: 0 3px;
+    width: 8px;
+    height: 8px;
+    border: 2px solid rgba(255, 255, 255, .3);
+    border-radius: 50%;
+    cursor: pointer;
+}
+.current {
+    background-color: #fff;
+}
+.cricle li:hover {
+    background-color: #fff;
+}
+.newsflash {
+    width: 250px;
+    height: 455px;
+}
+.news {
+    height: 163px;
+    border: 1px solid #ccc;
+}
+.news .news-hd {
+    height: 32px;
+    padding: 0 15px;
+    line-height: 32px;
+    border-bottom: 1px dotted #ccc;
+    font-size: 14px;
+}
+.news-hd a {
+    float: right;
+    font-size: 12px;
+    font-family: 'icomoon';
+}
+.news-bd {
+    padding: 8px 0 0 10px;
+}
+.news-bd li {
+    height: 23px;
+}
+.lifeservice {
+    overflow: hidden;
+    height: 208px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+.lifeservice ul {
+    width: 253px;
+}
+.lifeservice li {
+    float: left;
+    width: 62px;
+    height: 70px;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ddd;
+}
+.lifeservice li a {
+    display: block;
+    overflow: hidden;
+    width: 62px;
+    height: 70px;
+}
+.service_icon {
+    display: block;
+    width: 24px;
+    height: 24px;
+    background: url(../img/icons.png) no-repeat;
+    margin: 10px auto;
+}
+.lifeservice p {
+    text-align: center;
+}
+.service_icon_huafei {
+    background-position: -17px -16px;
+}
+.feiji {
+    position: relative;
+    background-position: -17px -16px;
+}
+.hot {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 12px;
+    height: 15px;
+    background: url(../img/jian.jpg) no-repeat;
+}
+.bargain {
+    height: 75px;
+    margin-top: 5px;
+}
+.recommand {
+    height: 163px;
+    margin-top: 10px;
+}
+.recom-hd {
+    width: 200px;
+    height: 163px;
+    background-color: #5c5251;
+    text-align: center;
+}
+.recom-hd img {
+    margin: 30px 0 10px 0;
+}
+.recom-hd p {
+    font-size: 18px;
+    color: #fff;
+}
+.recom-bd {
+    width: 1000px;
+    height: 163px;
+    background-color: #ebebeb;
+}
+.recom-bd li {
+    float: left;
+    width: 249px;
+    height: 163px;
+}
+.recom-bd img {
+    margin-top: 10px;
+    border-right: 1px solid #ccc;
+}
+.recom-bd .last img {
+    border: none;
+}
+.box-hd {
+    height: 30px;
+    border-bottom: 2px solid #c81623;
+    margin-top: 25px;
+    line-height: 30px;
+}
+.box-hd h3 {
+    float: left;
+    font-size: 18px;
+    color: #c81623;
+}
+.box-hd .tab-list {
+    float: right;
+}
+.tab-list li {
+    float: left;
+}
+.tab-list li a {
+    margin: 0 15px;
+}
+.box-bd {
+    height: 360px;
+}
+.box-bd li {
+    float: left;
+    height: 360px;
+    overflow: hidden;
+}
+.box-bd  img {
+    transition: all 0.2s;;
+}
+.box-bd img:hover {
+    margin-left: 8px;
+}
+.box-bd .w209 {
+    width: 209px;
+	background-color: #f9f9f9;
+}
+.tab-con-list {
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+.tab-con-list li {
+	width: 86px;
+	height: 32px;
+	line-height: 32px;
+	border-bottom: 1px solid #ccc;
+	margin-left: 10px;
+	text-align: center;
+}
+.box-bd .w329 {
+    width: 329px;
+}
+.box-bd .w219 {
+    width: 219px;
+    border-right: 1px solid #ccc;
+}
+.box-bd .w220  {
+    width: 220px;
+    border-right: 1px solid #ccc;
+}
+.tab-con-item {
+    border-bottom: 1px solid #ccc;
+}
+.fixedtool {
+	position: fixed;
+	top: 100px;
+	left: 50%;
+	margin-left: -676px;
+	width: 66px;
+	background-color: #fff;
+}
+.fixedtool li {
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	font-size: 12px;
+	border-bottom: 1px solid #ccc;
+	cursor: pointer;
+}
+.fixedtool .current {
+	background-color: #c81623;
+	color: #fff;
+}

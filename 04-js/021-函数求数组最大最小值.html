@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数求数组最大最小值</title>
+    <script>
+        //函数三要素：功能、参数、返回值
+        function maxAndMin(arr) {
+
+            var max = arr[0];
+            var min = arr[0];
+
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] > max) {
+                    max = arr[i]
+                }
+                if (arr[i] < min) {
+                    min = arr[i];
+                }
+            }
+
+            return [max, min]; //因为要返回多个变量，而return只能返回一个值，故设置数组
+        }
+
+        var arr = [1, 2, 3, 4, 5, 6, 7, 8];
+        result = maxAndMin(arr);
+        console.log('最大值为' + result[0], '最小值为' + result[1]);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

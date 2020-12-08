@@ -1,0 +1,21 @@
+<!-- 头部框架开始 -->
+<div class="header">
+	<div class="w1100">
+		<!-- 网站logo开始 -->
+		<h1 class="logo fl">
+			<a href="default.html"><img src="images/logo.png" alt="黑马程序员"></a>
+		</h1>
+		<!-- 网站logo结束 -->
+		<!-- 网站导航开始 -->
+		<ul class="navigation fr">
+			<li>
+				<a class="active" href="index.html">首页</a>
+			</li>
+			<li>
+				<a href="#">登录</a>
+			</li>
+		</ul>
+		<!-- 网站导航结束 -->
+	</div>
+</div>
+<!-- 头部框架结束 -->

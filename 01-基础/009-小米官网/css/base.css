@@ -1,0 +1,26 @@
+/*base中编写都是一些公共的样式*/
+
+/*清除浮动和高度塌陷*/
+.clearfix::before,
+.clearfix::after{
+    content: '';
+    display: table;
+    clear: both;
+}
+
+body{
+    /*设置字体颜色*/
+    color: rgb(51,51,51);
+    /*设置字体*/
+    font: 14px/1.5 "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+/*    设置一个最小宽度*/
+    min-width: 1226px;
+}
+
+/*指定一个标准容器的大小*/
+.w{
+    /*指定宽度*/
+    width: 1226px;
+/*    水平居中*/
+    margin: 0 auto;
+}

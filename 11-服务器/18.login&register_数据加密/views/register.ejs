@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>注册</title>
+    <style>
+        .err{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<span class="err"><%=errMsg.networkErr%></span>
+<form action="http://localhost:3000/register" method="post">
+  
+  邮箱：<input type="email" name="email" id="email"><span class="err"><%=errMsg.emailErr%></span><br><br>
+  昵称：<input type="text" name="nick_name"><span class="err"><%=errMsg.nickErr%></span><br><br>
+  密码：<input type="password" name="password"><span class="err"><%=errMsg.passwordErr%></span><br><br>
+  重复密码：<input type="password" name="re_password"><span class="err"><%=errMsg.rePasswordErr%></span><br><br>
+  <input type="submit">
+
+</form>
+<script type="text/javascript">
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>22-获取元素</title>
+		<script src="00-jQuery.js"></script>
+	</head>
+	<body>
+		<div>
+			<span>这是一个span</span>
+		</div>
+		<input type="text" value="这是一个输入框" />
+
+		<script>
+			$(function () {
+				// 获取元素内容  .html()
+				console.log($('div').html())
+				// 更改元素内容  .text()
+				$('div').text('123')
+				// 获取与更改表单内容  .val
+				console.log($('input').val())
+				$('input').val('你猜这是啥')
+			})
+		</script>
+	</body>
+</html>

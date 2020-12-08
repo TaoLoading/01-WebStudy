@@ -1,0 +1,274 @@
+/* 初始化 */
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #F3F5F7;
+}
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+/* 声明清除浮动的样式 */
+.clearfix:after {
+    content: "";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    clear: both;
+}
+/* ie6/7专门清除浮动的样式 */
+.clearfix {
+    *zoom: 1;
+}
+/* 定义版心 */
+.center {
+    width: 1200px;
+    margin: auto;
+}
+/* header start */
+.header {
+    height: 42px;
+    margin: 30px auto;
+}
+.header .logo {
+    float: left;
+    margin-right: 60px;
+}
+.nav {
+    float: left;
+}
+.nav li {
+    float: left;
+}
+.nav li a {
+    display: block;
+    height: 40;
+    line-height: 40px;
+    padding: 0 20px;
+    font-size: 18px;
+    color: black;
+}
+.nav li a:hover {
+    border-bottom: 1px solid skyblue;
+}
+.search {
+    float: left;
+    margin-left: 70px;
+}
+.search input {
+    float: left;
+    height: 38px;
+    width: 340px;
+    padding-left: 20px;
+    border: 1px solid skyblue;
+    border-right: none;
+    color: #666;
+}
+.user {
+    float: left;
+    margin-left: 30px;
+    height: 40px;
+}
+.user span {
+    line-height: 40px;
+    font-size: 14px;
+    color: #666;
+}
+/* header end */
+/* banner start */
+.banner {
+    height: 420px;
+    background: url(images/banner.jpg) top center;
+}
+.center .subnav {
+    float: left;
+    width: 150px;
+    height: 420px;
+    padding: 0 20px;
+    background: rgba(0, 0, 0, .3);
+}
+.subnav li {
+    height: 45px;
+    line-height: 45px;
+}
+.subnav li a {
+    color: #fff;
+    font-size: 14px;
+}
+.subnav a span {
+    margin-left: 70px;
+}
+.course {
+    float: right;
+    width: 228px;
+    height: 300px;
+    margin-top: 60px;
+    background-color: #fff;
+}
+.course_hd {
+    height: 48px;
+    background: #9BCEEA;
+    line-height: 48px;
+    text-align: center;
+    color: #fff;
+}
+.course_bd {
+    padding: 0 15px;
+}
+.course_bd ul li {
+    height: 50px;
+    margin-top: 12px;
+    border-bottom: 1px solid #cfcfcf;
+}
+.course_bd li a {
+    font-size: 14px;
+    font-weight: bold;
+    color: #4e4e4e;
+}
+.course_bd li span {
+    font-size: 12px;
+    color: #a5a5a5;
+}
+.course_bd .all {
+    display: block;
+    height: 38px;
+    line-height: 38px;
+    margin-top: 10px;
+    border: 1px solid #00a4ff;
+    text-align: center;
+    color: #00a4ff;
+}
+.course_bd .all:hover {
+    background-color: #00a4ff;
+    color: #fff ;
+}
+/* banner end */
+/* goods start */
+.goods {
+    margin-top: 10px;
+    height: 50px;
+    line-height: 50px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, .3);
+}
+.goods h3 {
+    float: left;
+    padding: 0 30px;
+    text-decoration: none;
+    color: skyblue;
+    font-weight: 700;
+}
+.goods .goods_item {
+    float: left;
+    color: #cfcfcf;
+}
+.goods .goods_item a {
+    margin: 0 30px;
+    text-decoration: none;
+    font-size: 17px;
+    color: #000;
+}
+.goods .interest a {
+    float: right;
+    margin-right: 14px;
+    text-decoration: none;
+    font-size: 17px;
+    color: #00a4ff;
+}
+/* goods end */
+/* box start */
+.box_hd {
+    height: 60px;
+    line-height: 60px;
+}
+.box {
+    margin-top: 15px;
+}
+.box_hd h3 {
+    float: left;
+    font-size: 20px;
+    font-weight: 400;
+}
+.box_hd a {
+    float: right;
+    margin-right: 30px;
+    font-size: 12px;
+    color: #a5a5a5;
+}
+.box_bd {
+    width: 1300px;
+}
+.box_bd ul li {
+    float: left;
+    width: 228px;
+    height: 270px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, .3);
+}
+.box_bd li img {
+    width: 100%;
+}
+.box_bd li h3 {
+    margin: 20px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #050505;
+}
+.box_bd li p {
+    margin: 0 20px;
+    font-size: 12px;
+    color: #999;
+}
+.box_bd li span {
+    color: orange;
+}
+/* box end */
+/* footer start */
+.footer {
+    height: 385px;
+    padding-top: 30px;
+    background-color: #fff;
+}
+.footer .copyright {
+    float: left;
+}
+.footer .copyright p {
+    margin: 20px 0;
+    font-size: 12px;
+    color: #666;
+}
+.copyright .download{
+    display: block;
+    width: 118px;
+    height: 34px;
+    border: 1px solid #00a4ff;
+    text-align: center;
+    line-height: 34px;
+    font-size: 16px;
+    color: #00a4ff;
+}
+.copyright .download:hover {
+    background-color: #00a4ff;
+    color: #fff;
+}
+.footer .links {
+    float: right;
+}
+.links dl {
+    float: left;
+    margin-left: 100px;
+}
+.links dl dt {
+    height: 35px;
+    font-size: 16px;
+    color: #333;
+}
+.links dd a {
+    font-size: 12px;
+    color: #333;
+}
+/* footer end */

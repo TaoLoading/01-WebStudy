@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       const arr = [1,2,3]
+       // 同步执行的回调函数,不会放入回调队列,
+       //只有当回调函数都执行完之后forEach()才执行结束
+       arr.forEach(function(item){
+           console.log('forEach callback',item)
+       })
+    
+       console.log('forEach()之后')
+
+      //异步执行的回调函数,会放入回调队列中,
+      //全局执行完之后再执行setTimeout
+       setTimeout(function(){ 
+           console.log('setTimeout callback')
+       },0)
+       
+       setTimeout(()=>{
+           console.log('love you 3000')
+       })
+       console.log('setTimeout()之后')
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>16-jQuery效果(淡入淡出)</title>
+		<script src="00-jQuery.js"></script>
+		<style>
+			div {
+				width: 100px;
+				height: 200px;
+				background-color: skyblue;
+			}
+		</style>
+	</head>
+	<body>
+		<button>淡入</button>
+		<button>淡出</button>
+		<button>切换</button>
+		<button>修改透明度</button>
+		<div></div>
+		<br />
+		<img
+			src="img/fadeIn.png"
+			alt=""
+			title="淡入效果语法，淡出和切换语法与之相同"
+		/>
+		<img src="img/fadeTo.png" alt="" title="修改不透明度语法" />
+
+		<script>
+			$(function () {
+				// 淡入  fadeIn()
+				$('button')
+					.eq(0)
+					.click(function () {
+						$('div').fadeIn(1000)
+					})
+				// 淡出  fadeOut()
+				$('button')
+					.eq(1)
+					.click(function () {
+						$('div').fadeOut()
+					})
+				// 切换  fadeToggle()
+				$('button')
+					.eq(2)
+					.click(function () {
+						$('div').fadeToggle()
+					})
+
+				// 修改不透明度  fadeIn()：利用渐进方式调整到指定的不透明度
+				// fadeIn([[speed], opacity, [easing], [fn]])
+				$('button')
+					.eq(3)
+					.click(function () {
+						$('div').fadeTo(1000, 0.5)
+					})
+			})
+		</script>
+	</body>
+</html>

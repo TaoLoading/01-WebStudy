@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sort排序面试题</title>
+    <script>
+        // 不传参数将不会按照数值大小排序，按照字符编码的顺序进行排序
+
+        var arr = ['General', 'Tom', 'Bob', 'John', 'Army'];
+        var resArr = arr.sort();
+        console.log(resArr); // 输出["Army", "Bob", "General", "John", "Tom"]
+
+        var arr2 = [30, 10, 111, 35, 1899, 50, 45];
+        var resArr2 = arr2.sort();
+        console.log(resArr2); //输出   [10, 111, 1899, 30, 35, 45, 50]
+
+
+
+        // 传入参数，实现升序，降序；
+
+        var arr3 = [30, 10, 111, 35, 1899, 50, 45];
+        arr3.sort(function(a, b) {
+            return a - b;
+        });
+        console.log(arr3); //输出  [10, 30, 35, 45, 50, 111, 1899]
+
+        var arr4 = [30, 10, 111, 35, 1899, 50, 45];
+        arr4.sort(function(a, b) {
+            return b - a;
+        });
+        console.log(arr4); //输出 [1899, 111, 50, 45, 35, 30, 10]
+
+
+
+        // 根据数组中的对象的某个属性值排序
+
+        var arr5 = [{
+            id: 10
+        }, {
+            id: 5
+        }, {
+            id: 6
+        }, {
+            id: 9
+        }, {
+            id: 2
+        }, {
+            id: 3
+        }];
+        arr5.sort(function(a, b) {
+            return a.id - b.id
+        })
+        console.log(arr5);
+        //输出新的排序
+        //		{id: 2}
+        //		{id: 3}
+        //		{id: 5}
+        //		{id: 6}
+        //		{id: 9}
+        //		{id: 10}
+
+
+
+        // 根据数组中的对象的多个属性值排序， 多条件排序
+
+        var arr6 = [{
+            id: 10,
+            age: 2
+        }, {
+            id: 5,
+            age: 4
+        }, {
+            id: 6,
+            age: 10
+        }, {
+            id: 9,
+            age: 6
+        }, {
+            id: 2,
+            age: 8
+        }, {
+            id: 10,
+            age: 9
+        }];
+        arr6.sort(function(a, b) {
+            if (a.id === b.id) { // 如果id相同，按照age的降序
+                return b.age - a.age
+            } else {
+                return a.id - b.id
+            }
+        })
+        console.log(arr6);
+        // 输出新的排序
+        // {id: 2, age: 8}
+        // {id: 5, age: 4}
+        // {id: 6, age: 10}
+        // {id: 9, age: 6}
+        // {id: 10, age: 9}
+        // {id: 10, age: 2}
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

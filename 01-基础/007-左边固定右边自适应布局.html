@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>左边固定右边自适应布局</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .main {
+            float: left;
+            width: 100%;
+            overflow: hidden;
+            background-color: pink;
+        }
+        
+        .left {
+            float: left;
+            width: 200px;
+            height: 500px;
+            background-color: skyblue;
+            /* 本身宽200px，设置margin-left=-200px后则不占空间，会浮上来 */
+            /* margin-left: -200px; */
+            /* 直接设置margin-left=-100%，使其移动到右边 */
+            margin-left: -100%;
+        }
+        /* 通过设置虽然将左半部分移动到最左边来，但会盖住整体的一部分，故添加inner盒子并设置margin-left腾出空间 */
+        
+        .inner {
+            float: left;
+            height: 500px;
+            margin-left: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 先写右半部分再写左半部分，是因为要通过移动将左半部分移动到上面 -->
+    <div class="main">
+        <div class="inner">这是右边部分</div>
+    </div>
+    <div class="left">这是左边部分</div>
+</body>
+
+</html>

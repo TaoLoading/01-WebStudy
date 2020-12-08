@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>02_JSON对象</title>
+</head>
+
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <!--
+  1. JSON.stringify(obj/arr)
+    * js对象(数组)转换为json对象(数组)
+  2. JSON.parse(json)
+    * json对象(数组)转换为js对象(数组)
+
+
+    JSON数据格式：用于前后端数据交互
+  -->
+    <script type="text/javascript">
+        var obj = {
+            name: 'kobe',
+            age: 39
+        };
+        obj = JSON.stringify(obj);
+        console.log(typeof obj); // string
+        obj = JSON.parse(obj); // object
+        console.log(obj);
+        console.log('123');
+    </script>
+</body>
+
+</html>

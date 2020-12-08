@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>对象的深度克隆</title>
+	</head>
+	<body>
+		<!--
+  1、数据类型：
+    * 数据分为基本的数据类型(String, Number, boolean, Null, Undefined)和对象数据类型
+    - 基本数据类型：
+      特点： 存储的是该对象的实际数据
+    - 对象数据类型：
+      特点： 存储的是该对象在栈中引用，真实的数据存放在堆内存里
+  2、复制数据
+    - 基本数据类型存放的就是实际的数据，可直接复制
+      let number2 = 2;
+      let number1 = number2;
+    - 克隆数据：对象/数组
+      1、区别： 浅拷贝/深度拷贝
+         判断： 拷贝是否产生了新的数据还是拷贝的是数据的引用
+         知识点：对象数据存放的是对象在栈内存的引用，直接复制的是对象的引用
+         let obj = {username: 'kobe'}
+         let obj1 = obj; // obj1 复制了obj在栈内存的引用
+      2、常用的拷贝技术
+        1). arr.concat(): 数组浅拷贝
+        2). arr.slice(): 数组浅拷贝
+        3). JSON.parse(JSON.stringify(arr/obj)): 数组或对象深拷贝, 但不能处理函数数据
+        4). 浅拷贝包含函数数据的对象/数组
+        5). 深拷贝包含函数数据的对象/数组
+-->
+		<script type="text/javascript">
+			console.log(
+				'------------------- 深度克隆引入  ---------------------'
+			)
+			// // obj1保存的是对象的内存地址，故修改obj2会影响obj1
+			// let obj1 = { name: 'timi', age: 21 }
+			// let obj2 = obj1 // 引用传递
+			// obj2.name = 'lht'
+			// console.log(obj1.name) // 返回lht
+
+			// // 变量保存的是具体的值，故修改num2不会影响num1
+			// let num1 = 123
+			// let num2 = num1 // 值传递
+			// num2 = 234
+			// console.log(num1) // 返回123
+
+			console.log(
+				'------------------- 拷贝：深拷贝、浅拷贝  ---------------------'
+			)
+			// console.log(
+			// 	'---------- 判断深拷贝/浅拷贝：看修改拷贝之后的数据会不会影响原数据。影响是浅拷贝，反之是深拷贝  ------------'
+			// )
+			// let obj1 = { name: 'timi', age: 21 }
+			// let obj2 = {}
+			// obj2.name = obj1.name
+			// obj2.age = obj1.age
+			// obj2.name = 'lht'
+			// console.log(obj1) // 返回timi
+
+			// // arr.concat()：数组浅拷贝
+			// // arr.concat()也有合并的作用，在括号内放入需要合并的目标则会与调用的数组进行合并
+			// let arr1 = [1, 2, 3, { name: 'timi' }]
+			// let arr2 = []
+			// arr2 = arr1.concat() // 将arr1拷贝给arr2
+			// arr2[3].name = 'lht'
+			// console.log(arr1, arr2) // 修改arr2后原数组arr1也被修改
+
+			// // arr.slice()：数组浅拷贝
+			// // arr.slice()也有截取的作用
+			// let arr3 = arr1.slice(0)
+			// arr3[3].name = 'lmh'
+			// console.log(arr1, arr3) // 修改arr3后原数组arr1也被修改
+
+			// // JSON.parse(JSON.stringify(arr/obj))：深拷贝。但是不能处理函数的拷贝
+			// // JSON.parse和JSON.stringify：将json数据和原生的js对象/数组相互转换，json数据：json对象、json数组
+			// let obj3 = { name: 'timi', age: 12 }
+			// let obj4 = JSON.parse(JSON.stringify(obj3))
+			// obj4.name = 'lht'
+			// console.log(obj3, obj4) // 原对象不被修改
+
+			// // Object.assign(target, source1, source2)
+			// let obj5 = {
+			// 	name: 'timi',
+			// 	age: '12',
+			// 	sex: { option1: '男', option2: '女' },
+			// }
+			// let obj6 = {}
+			// Object.assign(obj6, obj5)
+			// // 看修改新数据会不会影响原数据，不能只修改第一层的数据，那样等同于修改基本数据类型，要修改内部的引用数据类型
+			// obj6.name = 'lht' // 原数据不变
+			// obj6.sex.option1 = '混合' // 原数据变化
+			// console.log(obj5, obj6)
+
+			console.log(
+				'------------------- 实现深拷贝(深度克隆)：针对对象、数组(值传递不影响原数据) ----------------------'
+			)
+			// 检测数据类型
+			function checkType(target) {
+				return Object.prototype.toString.call(target).slice(8, -1)
+			}
+			// 定义拷贝方法
+			function clone(target) {
+				// 最终加工拷贝完的数据
+				let result
+
+				// 判断拷贝的数据是对象/数组/其他
+				let targetType = checkType(target)
+				// 数组
+				if (targetType === 'Array') {
+					result = []
+				}
+				// 对象
+				else if (targetType === 'Object') {
+					result = {}
+				}
+				// 其他
+				else {
+					return target
+				}
+
+				// 拷贝
+				for (let item in target) {
+					// item对应对象中的key，数组中的Index，故target[item]可以拿到对应的value
+					let value = target[item]
+					// 不判断直接赋值会导致当value是引用数据类型时，改变拷贝后的新数据会影响原数据
+					// result[item] = value
+					// 判断value是否是引用数据类型，并赋值
+					if (checkType(value) === 'Array' || 'Object') {
+						// 当value是引用数据类型时，通过递归进行处理
+						result[item] = clone(value)
+					} else {
+						result[item] = value
+					}
+				}
+				return result
+			}
+
+			let obj1 = { name: 'lht', age: 21, sex: 'man', sex: ['男', '女'] }
+			let obj2 = clone(obj1)
+			obj2.sex[0] = '混合'
+			console.log(obj1, obj2)
+		</script>
+	</body>
+</html>

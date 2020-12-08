@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打印100~200之间的素数</title>
+    <script>
+        //方法一（速度更快，因为break调出节省步骤）
+
+        var flag = true; ////定义标志位，用于循环中的的返回值
+
+        for (var i = 100; i < 201; i++) {
+            var flag = true;
+            for (var j = 2; j < i; j++) {
+                if (i % j == 0) {
+                    flag = false;
+                    break;
+                }
+            }
+
+            if (flag) {
+                console.log(i);
+            }
+
+            flag = true; ////重置标志位
+
+        }
+
+
+
+
+
+        //方法二
+
+        // var num = 0;
+
+        // for (var i = 100; i < 201; i++) {
+        //     for (var j = 1; j <= i; j++) {
+        //         if (i % j == 0) {
+        //             num++;
+        //         }
+        //     }
+
+        //     if (num == 2) {
+        //         console.log(i);
+        //     }
+
+        //     num = 0;
+        // }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

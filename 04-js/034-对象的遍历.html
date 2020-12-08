@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象的遍历</title>
+    <script>
+        var obj = {
+            name: 'car',
+            category: '劳斯莱斯',
+            money: 10000000000,
+            color: 'pink',
+            run: function() {
+                console.log('非常酷');
+            }
+        }
+
+        //遍历数组用for，遍历对象用for in
+        for (var key in obj) {
+            console.log(key, obj[key]);
+            //key：拿到对象里的键；obj[key]:拿到对象里键的值。若写成obj.key则key会被认为obj对象里的一个属性，输出undefined
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

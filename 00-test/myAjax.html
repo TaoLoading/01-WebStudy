@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>封装原生Ajax</title>
+	</head>
+	<body>
+		<button id="btn">点击使用封装的Ajax发送请求</button>
+
+		<script>
+			/* 封装Ajax实现的功能：
+            1.发送get/post请求并返回值
+            2.method不传值默认为为get请求
+            3.不传入成功与失败回调依然能够运行 */
+
+			let btn = document.getElementById('btn')
+			btn.onclick = function () {
+				sendAjax({
+					// url: 'http://localhost:3000/ajax_get',
+					url: 'http://localhost:3000/ajax_post',
+					// method: 'get',
+					method: 'post',
+					data: {
+						name: 'lht',
+						age: 21,
+					},
+					// success: function (result) {
+					// 	console.log(result)
+					// },
+					// err: function (err) {
+					// 	console.log(err)
+					// },
+				})
+			}
+
+			// 标准工程化注释：
+			/**
+			 * @param name1:...
+			 * @param name2:...
+			 * ...
+			 * @param nameN:...
+			 * @return {...}
+			 * @author:...
+			 */
+			function sendAjax(option) {
+				// 获取配置对象的属性
+				let { url, method, data, success, error } = option
+				// 设置method默认值为get
+				method = method ? method : 'get'
+
+				// 实例化XMLHttpRequest对象
+				let xhr = new XMLHttpRequest()
+
+				// 绑定onreadystatechange监听
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState != 4) {
+						return
+					}
+					if (xhr.status > 200 && xhr.status < 299) {
+						if (success) success(xhr.response)
+					} else {
+						if (error) error('请求出错')
+					}
+				}
+
+				// 整理参数
+				let str = ''
+				for (let key in data) {
+					str += `${key}=${data[key]}&`
+				}
+
+				// 根据请求方式设置响应方式
+				if (method.toUpperCase() == 'GET') {
+					xhr.open(method, url + '?' + str)
+					xhr.send()
+				} else {
+					xhr.open(method, url)
+					xhr.setRequestHeader(
+						'Content-Type',
+						'application/x-www-form-urlencoded'
+					)
+					xhr.send(str)
+				}
+				return xhr
+			}
+		</script>
+	</body>
+</html>

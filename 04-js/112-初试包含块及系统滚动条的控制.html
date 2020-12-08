@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初试包含块及系统滚动条的控制</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            width: 500px;
+            height: 500px;
+            margin-left: 100px;
+            /*background-color: red;*/
+            border: 2px solid black;
+            /* overflow: scroll; 单独给html添加滚动条，但最终滚动条添加给了document */
+            /*overflow: hidden;*/
+        }
+        
+        body {
+            width: 300px;
+            height: 300px;
+            margin-left: 50px;
+            border: 2px solid black;
+            overflow: scroll;
+            /* 单独给body添加滚动条，但最终滚动条添加给了document */
+        }
+        
+        #box {
+            /* 只有绝对定位的元素，位置就是相对于初试包含块，而不是html和body */
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        /*
+        html和body这两个元素overflow的scroll属性，控制着系统的滚动条
+        系统的滚动条有两个，一个是body身上的  一个是document身上的。我们平时看到的那个滚动条
+        是document身上的。，如果我们想要控制系统滚动条哪个显示哪个关闭分以下情况：
+
+        1、单独的给body或者html 设置overflow:scroll  滚动条打开的全部都是document的
+
+        2、如果两个元素同时设置overflow属性，body设置的是scroll,html设置是hidden,那么
+        document的滚动条被关闭，body身上的滚动条会打开。相反，body身上被关闭，document身上的被打开。
+
+        3、如果两个元素同时设置overflow:hidden；那么系统的两个滚动条全部被关闭；
+
+        4、如果两个都设置overflow:scroll,那么html会打开document身上的，而body会打开自己身上的滚动条；
+
+        由此我们也引出如何禁止系统的滚动条：
+        
+        html,
+        body {
+            height: 100%; // 这个属性加上只是为了让设置的overflow:hidden；更有说服力，只有内容超出才会被掩藏或者出现滚动条
+            // 如果不设置，那么body和html高度将由内容自动撑开，也就是说body当中的内容永远不会溢出。
+            overflow: hidden;
+        }
+        */
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+</body>
+
+</html>

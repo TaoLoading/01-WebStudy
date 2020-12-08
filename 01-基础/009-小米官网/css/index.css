@@ -1,0 +1,159 @@
+body {
+    height: 3000px;
+}
+
+
+/* 顶部导航栏开始 */
+
+.nav {
+    height: 40px;
+    background-color: #333;
+    vertical-align: top;
+}
+
+.nav-bar {
+    height: 100%;
+    line-height: 40px;
+}
+
+.nav-list {
+    float: left;
+}
+
+.nav-list a,
+.info-list a {
+    float: left;
+    height: 40px;
+    font-size: 12px;
+    color: #b0b0b0;
+    text-decoration: none;
+    vertical-align: top;
+}
+
+.nav-list span {
+    float: left;
+    font-size: 12px;
+    color: #424242;
+    margin: 0 6px;
+}
+
+
+/* 小米商城二维码 */
+
+.nav .download-app {
+    position: relative;
+}
+
+.nav .code {
+    display: none;
+    position: absolute;
+    left: -40px;
+    top: 40px;
+    width: 124px;
+    height: 150px;
+    background-color: #fff;
+    text-align: center;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .3);
+}
+
+.code img {
+    width: 85px;
+    margin: 20px;
+}
+
+.code span {
+    position: absolute;
+    bottom: 2px;
+    left: 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+
+/* 二维码上方箭头 */
+
+.arrow {
+    position: absolute;
+    top: -20px;
+    left: 50px;
+    width: 0;
+    height: 0;
+    border: 10px solid #fff;
+    border-color: transparent transparent #fff transparent;
+}
+
+.nav .download-app:hover .code {
+    display: block;
+}
+
+
+/* 购物车 */
+
+.cart {
+    float: right;
+    position: relative;
+}
+
+.cart a {
+    position: relative;
+    display: block;
+    width: 120px;
+    margin-left: 15px;
+    background-color: #424242;
+    font-size: 12px;
+    color: #b0b0b0;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s;
+    z-index: 1000;
+}
+
+.cart:hover a {
+    background-color: #fff;
+    color: #ff6700;
+}
+
+
+/* 购物车内容栏 */
+
+.cart .cart-info {
+    position: absolute;
+    top: 40px;
+    left: -196px;
+    width: 316px;
+    height: 0;
+    overflow: hidden;
+    z-index: 999;
+    text-decoration: none;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .3);
+    background-color: #fff;
+    transition: all 0.2s;
+}
+
+.cart a:hover .cart-info {
+    display: block;
+    height: 100px;
+}
+
+.cart-info span {
+    line-height: 100px;
+}
+
+.info-list {
+    float: right;
+}
+
+.info-list span {
+    float: left;
+    font-size: 12px;
+    color: #424242;
+    margin: 0 6px;
+}
+
+.nav-list a:hover,
+.info-list a:hover {
+    color: #fff;
+}
+
+
+/* 顶部导航栏结束 */

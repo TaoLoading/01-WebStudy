@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>点击按钮修改选框状态</title>
+</head>
+
+<body>
+    <input type="checkbox" name="" id="check">
+    <button id="btn">修改状态</button>
+
+    <script>
+        window.onload = function() {
+            var check = document.getElementById('check');
+            var btn = document.getElementById('btn');
+
+            //js中操作类似checked = checked的元素属性时，属性值一般使用Boolean代替
+            btn.onclick = function() {
+                check.checked = true;
+            }
+        }
+    </script>
+</body>
+
+</html>

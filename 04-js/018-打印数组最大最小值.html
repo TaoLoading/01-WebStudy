@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打印数组最大最小值</title>
+    <script>
+        var arr = [1, 2, 3, 4, 5];
+        var max = arr[0];
+        var min = arr[0];
+        var sum = 0;
+        var avg = 0;
+
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i]
+            }
+            if (arr[i] < min) {
+                min = arr[i];
+            }
+
+            sum += arr[i];
+        }
+
+        avg = sum / arr.length;
+
+        console.log('最大值为' + max);
+        console.log('最小值为' + min);
+        console.log('平均值为' + avg);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

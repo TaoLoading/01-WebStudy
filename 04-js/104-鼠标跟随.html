@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鼠标跟随</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="img/2.jpg" alt="" />
+
+
+    <script>
+        var imgNode = document.querySelector('img');
+        document.onmousemove = function(event) {
+            event = event || window.event;
+            var left = event.clientX;
+            var top = event.clientY;
+
+            imgNode.style.left = left + 'px';
+            imgNode.style.top = top + 'px';
+        }
+    </script>
+</body>
+
+</html>

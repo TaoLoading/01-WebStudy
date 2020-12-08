@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const p = new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                const time  =Date.now()
+                if(time%2 == 1){
+                    resolve('成功的数据'+time)
+                }else{
+                    reject('失败的数据'+time)
+                }
+            },1000)
+        })    
+
+
+        p.then(
+            c => console.log('成功',c)
+            ,a => console.log('失败',a)
+        )
+    </script>
+</body>
+</html>

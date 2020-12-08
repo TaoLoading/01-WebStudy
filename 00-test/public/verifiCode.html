@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>发送验证码</title>
+	</head>
+	<body>
+		<h1>该页面是测试取消上一次请求</h1>
+		<button id="btn">点击发送验证码</button>
+
+		<script>
+			var btn = document.getElementById('btn')
+			var lastXhr
+
+			btn.onclick = function () {
+				if (lastXhr) {
+					lastXhr.abort()
+				}
+				lastXhr = getCode()
+			}
+
+			// 发送验证码
+			function getCode() {
+				let xhr = new XMLHttpRequest()
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState === 4 && xhr.status === 200) {
+						console.log(xhr.response)
+					}
+				}
+				xhr.open('get', 'http://localhost:3000/get_code')
+				xhr.send()
+
+				return xhr
+			}
+		</script>
+	</body>
+</html>

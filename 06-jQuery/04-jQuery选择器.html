@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>04-jQuery选择器</title>
+		<script src="00-jQuery.js"></script>
+	</head>
+	<body>
+		<div>div</div>
+
+		<ul>
+			<li class="li1">li1</li>
+			<li class="li2">li2</li>
+			<li class="li3">li3</li>
+		</ul>
+
+		<img src="img/基础选择器.png" alt="基础选择器" title="基础选择器" />
+		<img src="img/层级选择器.png" alt="层级选择器" title="层级选择器" />
+		<img src="img/筛选选择器.png" alt="筛选选择器" title="筛选选择器" />
+
+		<script>
+			$(function () {
+				// $("选择器")
+				console.log($('div'))
+				console.log($('ul li'))
+				console.log($('ul li:eq(2)'))
+			})
+		</script>
+	</body>
+</html>

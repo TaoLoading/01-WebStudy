@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>05_腾讯2</title>
+	</head>
+	<body>
+		<script>
+			var name = 'World!'
+			;(function () {
+				// var name
+				if (typeof name === 'undefined') {
+					var name = 'Jack'
+					console.log(name) // Jack
+				} else {
+					console.log(name)
+				}
+			})()
+
+			// 函数内进行预解析，因为var定义的变量没有定义域，故对var name = 'Jack'进行预解析后var name被提升到函数最上面
+			// 则此时typeof name === 'undefined'
+			// 故打印Jack
+		</script>
+	</body>
+</html>

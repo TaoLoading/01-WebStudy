@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正则案例</title>
+</head>
+
+<body>
+    <script>
+        // 给一个字符串，如果里面含有2个到10个连续就打印i love you!
+        var str = 'jsdhasdjoasd13 1 2 4';
+        var patt = /\d{2,10}/;
+        if (patt.test(str)) {
+            console.log('i love you!');
+        }
+
+
+        // 判断手机号码是否合法
+        var str = '15094788553';
+        // 以1开头，第二个数在3~9之间，以9位数结尾
+        var patt = /^1[3-9]\d{9}$/;
+        if (patt.test(str)) {
+            console.log('该手机号合法');
+        } else {
+            console.log('该手机号不合法');
+        }
+
+
+        // 判断邮箱是否合法
+        var str = '1377226380@qq.com';
+        // 以6~20位的单词字符开头，后跟@，后跟qq、126、163、sina其中之一，后跟.，后跟com、cn其中之一结尾
+        var patt = /^\w{6,20}@(qq|126|163|sina)\.(com|cn)$/;
+        if (patt.test(str)) {
+            console.log('该邮箱合法');
+        } else {
+            console.log('该邮箱不合法');
+        }
+
+
+        // 将手机号的中间4位替换位****
+        var str = '15094788553';
+        // 使用str.replace()方法进行替换
+        // 使用str.match()方法进行捕获中间四位数，因为分组会有个捕获效果，捕获的内容会放在str.match返回的函数中，捕获内容此处下标为1
+        var result = str.replace(str.match(/\d{3}(\d{4})\d{4}/)[1], '****');
+        console.log(result);
+
+
+        // 将身份中号的最后4位替换位****
+        var str = '111166666666662222';
+        var result = str.replace(str.match(/\d{14}(\d{4})/)[1], '****');
+        console.log(result);
+
+
+        // 从一篇文章当中匹配所有的电话号码
+        var str = 'sjdfgaskjaskdhas15263548798sdiufhsdf3486lkjsdf22ksuhfs14562358974skdufhsdfhsdf14578965425';
+        // var pat = /^1[3-9]\d{9}$/g; // 返回null
+        var patt = /1[3-9]\d{9}/g; // 不能带*和$，加上这个就是严格匹配，会对整个字符串进行要求
+        var result = str.match(patt);
+        console.log(result);
+
+
+        // 判断网址是否合法
+        var str = 'http://www.baidu.com';
+        var patt = /^(http|https):\/\/w{3}\.\w+\.(com|cn)$/; // 注意输入/时要在前面加上\，及\/
+        if (patt.test(str)) {
+            console.log('该网址合法');
+        } else {
+            console.log('该网址不合法');
+        }
+    </script>
+</body>
+
+</html>

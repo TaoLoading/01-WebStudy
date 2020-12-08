@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS位置</title>
+    <!-- 放在head中时，若没有window.onload，则代码会一行一行依次执行 -->
+    <!-- 对于下述代码，则浏览器会先尝试获取btn对象，但此时还没有定义btn，故代码不会执行完整 -->
+    <!-- 
+        <script type="text/javascript">
+            //页面加载完成
+            window.onload = function() {
+                //获取事件源
+                var btn = document.getElementById('btn');
+                btn.onclick = function() {
+                    alert('加载完成点击了~');
+                }
+            }
+        </script> 
+    -->
+</head>
+
+<body>
+    <header id="header">
+        <h1>
+            <a href="javascript:;"><img src="" alt="" /></a>
+        </h1>
+        <nav class="nav">
+            <ul class="list">
+                <li>首页</li>
+                <li>个人中心</li>
+                <li>关于</li>
+                <li>设置</li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="content">
+        <p>pppppppp1</p>
+        <p>pppppppp2</p>
+        <p>pppppppp3</p>
+    </div>
+
+    <div class="footer">
+        <a href="">百度</a>
+        <a href="">搜狐</a>
+        <a href="">新浪</a>
+    </div>
+
+    <input type="button" id="btn" />
+
+
+    <script type="text/javascript">
+        //页面加载完成
+        window.onload = function() {
+            //获取事件源
+            var btn = document.getElementById('btn');
+            btn.onclick = function() {
+                alert('加载完成点击了~');
+            }
+        }
+    </script>
+</body>
+
+</html>

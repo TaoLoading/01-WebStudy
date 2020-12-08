@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>数据同步1</title>
+</head>
+<body>
+
+<input type="text" id="input">
+<script type="text/javascript">
+    /*
+    * storage事件：
+      当Storage 对象发生变化时，即创建/更新/删除数据项时被触发
+      修改的页面不会触发事件，与它共享的页面会触发事件
+        key 	       :  修改或删除的key值，如果调用clear(),为null
+        newValue    :  新设置的值，如果调用clear(),为null
+        oldValue    :  调用改变前的value值,如果调用clear(),为null
+        url         :  触发该脚本变化的文档的url
+        storageArea :  当前的storage对象
+        
+        需求：修改一个页面的数据，另一个页面能够及时响应，如：电商网站的多个页面之间如何通信
+
+    * */
+    
+    let input = document.getElementById('input')
+    input.onblur = function () {
+      localStorage.setItem('demo',input.value)
+    }
+    
+</script>
+</body>
+</html>

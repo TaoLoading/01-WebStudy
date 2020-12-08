@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>滚轮事件</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #box {
+            width: 200px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+
+
+    <script>
+        // IE/Chrome的事件: mousewheel(dom2的标准模式)
+        // IE/Chrome特有的值event.wheelDelta
+        // 上：120
+        // 下：-120
+
+        // Firefox的事件: DOMMouseScroll(dom2的标准模式)
+        // Firefox特有的值event.detail
+        // 上：-3
+        // 下：3
+
+
+        var box = document.getElementById('box');
+        var flag = true;
+
+        // IE/Chrome
+        document.addEventListener('mousewheel', whellMove);
+        // Firefox
+        document.addEventListener('DOMMouseScroll', whellMove);
+
+        function whellMove(event) {
+            event = event || window.event;
+
+            // 兼容性操作滚轮事件
+            if (event.wheelDelta) {
+                // 获取滑动方向
+                if (event.wheelDelta > 0) {
+                    flag = true;
+                } else {
+                    flag = false;
+                }
+            } else if (event.detail) {
+                // 获取滑动方向
+                if (event.detail > 0) {
+                    flag = true;
+                } else {
+                    flag = false;
+                }
+            }
+
+            if (flag) {
+                // 向上滑动
+                box.style.height = box.offsetHeight - 10 + 'px';
+            } else {
+                // 向下滑动
+                box.style.height = box.offsetHeight + 10 + 'px';
+            }
+        }
+    </script>
+</body>
+
+</html>

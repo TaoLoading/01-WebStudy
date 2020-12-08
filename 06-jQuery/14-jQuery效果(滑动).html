@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>14-jQuery效果(滑动)</title>
+		<script src="00-jQuery.js"></script>
+		<style>
+			div {
+				width: 100px;
+				height: 200px;
+				background-color: skyblue;
+			}
+		</style>
+	</head>
+	<body>
+		<button>上拉滑动</button>
+		<button>下拉滑动</button>
+		<button>滑动切换</button>
+		<div></div>
+		<br />
+		<img
+			src="img/上拉滑动.png"
+			alt=""
+			title="上拉滑动语法，下拉滑动与滑动切换语法与之相同"
+		/>
+		<script>
+			$(function () {
+				// 上拉滑动 slideUp()
+				$('button')
+					.eq(0)
+					.click(function () {
+						$('div').slideUp(500)
+					})
+				// 下拉滑动  slideDown()
+				$('button')
+					.eq(1)
+					.click(function () {
+						$('div').slideDown(500)
+					})
+				// 滑动切换  slideToggle()
+				$('button')
+					.eq(2)
+					.click(function () {
+						$('div').slideToggle(500)
+					})
+			})
+		</script>
+	</body>
+</html>

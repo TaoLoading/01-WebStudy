@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>07_面试题1</title>
+</head>
+
+<body>
+
+    <script type="text/javascript">
+        // 说说它们的输出情况
+
+        //代码片段一
+        var name = "The Window";
+        var object = {
+            name: "My Object",
+            getNameFunc: function() {
+                return function() {
+                    return this.name;
+                };
+            }
+        };
+        console.log(object.getNameFunc()()); // The Window
+        // object.getNameFunc()()等同于：
+        // var result = object.getNameFunc();
+        // result = result();
+        // console.log(result);
+        // 即函数自调用，故this指向为window，故this.name == window.name
+
+        //代码片段二
+        var name2 = "The Window";
+        var object2 = {
+            name2: "My Object",
+            getNameFunc: function() {
+                var that = this; // 缓存this
+                return function() {
+                    return that.name2;
+                };
+            }
+        };
+        console.log(object2.getNameFunc()()); // My Object
+        // 与上题类似，由于最后是that.name2，故关键是在var that = this
+        // 在var that = this中，由于是对象.属性，故此时this指向object2，故that存的是this的值，即object2
+        // 注意，虽然that存的this指向object2，但其所在返回的函数中的this依然指向window
+    </script>
+</body>
+
+</html>

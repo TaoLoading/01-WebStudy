@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>封装原生ajax</title>
+	</head>
+	<body>
+		<button id="btn">点我使用自己封装的ajax</button>
+
+		<script type="text/javascript">
+			let btn = document.getElementById('btn')
+			btn.onclick = function () {
+				// 4次请求连续发送，
+				// 第4次请求要用到第3次请求回来的数据
+				// 第3次请求要用到第2次请求回来的数据
+				// 第2次请求要用到第1次请求回来的数据
+
+				//演示回调地狱
+				sendAjax({
+					url: 'http://localhost:3000/ajax_post',
+					method: 'post',
+					data: { name: 'kobe', age: 18 },
+					success: function (result) {
+						sendAjax({
+							url: 'http://localhost:3000/ajax_post',
+							method: 'post',
+							data: { name: 'kobe', age: result },
+							success: function (result) {
+								sendAjax({
+									url: 'http://localhost:3000/ajax_post',
+									method: 'post',
+									data: { name: 'kobe', age: result },
+									success: function (result) {
+										sendAjax({
+											url:
+												'http://localhost:3000/ajax_post',
+											method: 'post',
+											data: { name: 'kobe', age: result },
+											success: function (result) {
+												console.log(result)
+											},
+											error: function (err) {
+												console.log(err)
+											},
+										})
+									},
+									error: function (err) {
+										console.log(err)
+									},
+								})
+							},
+							error: function (err) {
+								console.log(err)
+							},
+						})
+					},
+					error: function (err) {
+						console.log(err)
+					},
+				})
+
+				//测试自己封装的ajax
+				sendAjax({
+					url: 'http://localhost:3000/ajax_post',
+					method: 'post',
+					data: { name: 'kobe', age: result },
+					success: function (result) {
+						console.log(result)
+					},
+					error: function (err) {
+						console.log(err)
+					},
+				})
+			}
+
+			function sendAjax(option) {
+				//获取配置对象里的属性
+				let { url, method, data, success, error } = option
+				method = method ? method : 'get' //设置method的默认值
+
+				//实例化xhr
+				let xhr = new XMLHttpRequest()
+				//绑定监听
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState !== 4) {
+						return
+					}
+					if (xhr.status >= 200 && xhr.status <= 299) {
+						if (success) success(xhr.response)
+					} else {
+						if (error) error('请求出错')
+					}
+				}
+
+				//整理参数
+				let str = ''
+				for (let key in data) {
+					str += `${key}=${data[key]}&`
+				}
+
+				//根据请求方式决定如何携带参数
+				if (method.toUpperCase() === 'GET') {
+					xhr.open(method, url + '?' + str)
+					xhr.send()
+				} else {
+					xhr.open(method, url)
+					xhr.setRequestHeader(
+						'Content-Type',
+						'application/x-www-form-urlencoded'
+					)
+					xhr.send(str)
+				}
+				return xhr
+			}
+		</script>
+	</body>
+</html>

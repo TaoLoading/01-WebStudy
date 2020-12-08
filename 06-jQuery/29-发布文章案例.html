@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发布文章案例</title>
+    <script src="00-jQuery.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .box {
+            width: 600px;
+            margin: 100px auto;
+            border: 1px solid #000;
+            padding: 20px;
+        }
+
+        textarea {
+            width: 450px;
+            height: 160px;
+            outline: none;
+            resize: none;
+        }
+
+        ul {
+            width: 450px;
+            padding-left: 80px;
+        }
+
+        ul li {
+            line-height: 25px;
+            border-bottom: 1px dashed #cccccc;
+            display: none;
+        }
+
+        input {
+            float: right;
+        }
+
+        ul li a {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id="weibo">
+        <span>微博发布</span>
+        <textarea name="" class="txt" cols="30" rows="10"></textarea>
+        <button class="btn">发布</button>
+        <ul>
+        </ul>
+    </div>
+
+    <script>
+        $(function(){
+            // 点击发布按钮发布内容
+            $('.btn').on('click',function(){
+                var $li = $('<li></li')
+                $li.html($('.txt').val() + '<a href="javascript:;">删除</a>')
+                // 内部前置添加内容
+                $('ul').prepend($li)
+                $li.slideDown()
+                // 清空输入栏
+                $('.txt').val('')
+            })
+
+            // 点击删除按钮删除发布内容
+            $('ul').on('click','a',function(){
+                $(this).parent().remove()
+            })
+        })
+    </script>
+</body>
+
+</html>

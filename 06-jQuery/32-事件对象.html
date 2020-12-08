@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>32-事件对象</title>
+		<script src="00-jQuery.js"></script>
+		<style>
+			div {
+				width: 200px;
+				height: 200px;
+				background-color: skyblue;
+				margin: 100px auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+
+		<script>
+			$(function () {
+				// event，事件对象
+				// 阻止默认行为：event.preventDefault()
+				// 阻止冒泡：event.stopPropagation()
+
+				// 给document添加点击事件
+				$(document).on('click', function () {
+					console.log('点击了document') // 由于事件冒泡，故也会输出
+				})
+				// 给div添加点击事件
+				$('div').on('click', function (event) {
+					console.log('点击了div')
+					// 阻止事件冒泡
+					event.stopPropagation()
+				})
+			})
+		</script>
+	</body>
+</html>

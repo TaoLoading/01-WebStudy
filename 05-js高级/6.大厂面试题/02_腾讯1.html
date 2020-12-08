@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>02_腾讯1</title>
+	</head>
+	<body>
+		<script>
+			var x = 10
+			function fn() {
+				console.log(x)
+			}
+			function show(f) {
+				var x = 20
+				f()
+			}
+			show(fn)
+		</script>
+	</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>03_美团1</title>
+	</head>
+	<body>
+		<script>
+			var fn = function () {
+				console.log(fn)
+			}
+			fn() // 打印function本体
+
+			var obj = {
+				fn2: function () {
+					console.log(fn2) // 报错
+					// 先在函数局部作用域内找fn2，没有，则到上一级作用域中找
+					// 注意上级作用域不是对象，而是全局作用域，因为对象没有作用域
+					// 全局中没有fn2，故报错
+
+					// 如果想输出fn2属性的值，则修改为：
+					// console.log(this.fn2)
+				},
+			}
+			obj.fn2()
+		</script>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打印九九乘法表</title>
+    <script>
+        var str = '';
+        for (var i = 1; i < 10; i++) { // 外层控制行
+            for (var j = 1; j <= i; j++) { // 内层控制列
+                str += j + '*' + i + '=' + i * j + '\t'; //1*1=1
+            }
+            str += '\n';
+        }
+        console.log(str);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

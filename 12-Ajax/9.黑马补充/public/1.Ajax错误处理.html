@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			/* 
+        错误类型：
+
+        1.网络畅通，服务器端能收到请求，服务器端返回的结果不是预期结果
+        例如：客户端发送的请求参数不符合请求要求，服务器端返回非200状态码
+        措施：可以在ajax代码中判断服务器端返回的状态码进行处理，分别进行处理。xhr.status用来获取http状态码
+
+
+        2.网络畅通，服务器端没有接收到哦请求，返回404状态码
+        措施：检查请求地址是否错误
+
+        3.网络畅通，服务器端能接收到请求，返回500状态码
+        措施：服务器端错误
+
+        4.网络中断，请求无法发送到服务器端
+        措施：使用xhr.onerror，在onerror事件处理函数中对错误进行处理
+        */
+		</script>
+	</body>
+</html>

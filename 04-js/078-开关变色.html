@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开关变色</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+
+
+    <script>
+        var box = document.querySelector('div');
+        var flag = true;
+        box.onclick = function() {
+            if (flag) {
+                this.style.backgroundColor = 'green';
+                // flag = false;
+            } else {
+                this.style.backgroundColor = 'red';
+                // flag = true;
+            }
+            flag = !flag;
+        }
+    </script>
+</body>
+
+</html>

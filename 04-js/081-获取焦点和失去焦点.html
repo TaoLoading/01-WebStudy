@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获取焦点和失去焦点</title>
+</head>
+
+<body>
+    <input type="text" value="阿里嘎多">
+
+    <script>
+        var inputNode = document.querySelector('input');
+
+        // 获取焦点
+        inputNode.onfocus = function() {
+            this.value = '玛玛哈哈';
+            this.style.width = '200px';
+            this.style.backgroundColor = 'skyblue';
+        }
+
+        // 失去焦点
+        inputNode.onblur = function() {
+            this.value = '不知火舞';
+            // 随机颜色（RGB）
+            var red = Math.floor(Math.random() * 256);
+            var green = Math.floor(Math.random() * 256);
+            var blue = Math.floor(Math.random() * 256);
+            this.style.backgroundColor = 'rgb(' + red + ', ' + green + ', ' + blue + ')'; // 注意书写方式
+        }
+    </script>
+</body>
+
+</html>

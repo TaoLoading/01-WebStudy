@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>构造函数和this</title>
+    <script>
+        //this
+        //通常情况下任何函数中都会有this这个关键字
+        //this的本质是一个对象，代表着调用这个函数或者方法的对象（执行者）
+        //在函数当中，函数也可以叫做是window对象的方法，this永远代表window（window对象下的方法叫函数，其他对象下的方法叫方法）
+        //在事件当中，回调当中的this代表的是事件对象
+        //在对象的方法中，this代表的是这个对象
+        //在构造函数中，代表的是实例化出来的对象
+
+        //构造函数
+        //声明构造函数
+        function Person(name, age, gender) {
+            //构造函数声明与普通函数一样，只是在命名上习惯使用大驼峰
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+            this.eat = function() {
+                console.log('吃饭');
+            }
+            console.log(this);
+        }
+
+        //构造函数当普通函数调用
+        var result1 = Person('zs', 23, 'male');
+        //当做普通函数调用，由于函数没有返回值，故返回undefined
+        console.log(result1);
+
+        //构造函数的调用
+        var result2 = new Person('zs', 23, 'male');
+        //构造函数的调用，this代表的是实例化出来的对象
+        console.log(result2);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

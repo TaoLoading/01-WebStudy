@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>筛选数组</title>
+    <script>
+        var arr = [2, 0, 6, 1, 77, 0, 52, 0, 25, 7];
+        var newArr = [];
+        //var j = 0;
+
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] >= 10) {
+                //newArr[j] = arr[i];
+                newArr[newArr.length] = arr[i]; //通过newArr.length来代替j
+                //j++;
+            }
+        }
+
+        console.log(newArr);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

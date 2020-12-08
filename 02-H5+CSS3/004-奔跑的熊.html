@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奔跑的熊</title>
+    <style>
+        body {
+            background-color: #ccc;
+        }
+        
+        .bear {
+            position: absolute;
+            bottom: 0px;
+            width: 200px;
+            height: 100px;
+            background-image: url(img/bear.png);
+            /* 添加多个动画用逗号隔开 */
+            animation: run 1s steps(8) infinite, move 3s forwards;
+        }
+        
+        .bg1 {
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            width: 100%;
+            height: 336px;
+            background-image: url(img/bg1.png);
+            animation: bgmove 15s linear infinite;
+        }
+        
+        .bg2 {
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            width: 100%;
+            height: 569px;
+            background-image: url(img/bg2.png);
+            opacity: 0.5;
+            animation: bgmove 20s linear infinite;
+        }
+        /* 熊跑步 */
+        
+        @keyframes run {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: -1600px 0;
+            }
+        }
+        /* 熊跑到山脉中间 */
+        
+        @keyframes move {
+            0% {
+                left: 0;
+            }
+            100% {
+                left: 50%;
+                transform: translate(-50%);
+            }
+        }
+        /* 背景移动 */
+        
+        @keyframes bgmove {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: -3840px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg2"></div>
+    <div class="bg1"></div>
+    <div class="bear"></div>
+</body>
+
+</html>

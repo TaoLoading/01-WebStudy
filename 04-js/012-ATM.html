@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM</title>
+    <script>
+        do {
+            var num = parseFloat(prompt('请输入您所需要的操作：\n1.存钱\n2.取钱\n3.显示余额\n4.退出'));
+            switch (num) {
+                case 1:
+                    var save = parseFloat(prompt('请输入您要存入的金额：'));
+                    break;
+                case 2:
+                    var take = parseFloat(prompt('请输入您要取出的金额：'));
+                    break;
+                case 3:
+                    var sum = save - take;
+                    alert(sum);
+                    break;
+
+                default:
+                    break;
+            }
+        } while (num !== 4);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

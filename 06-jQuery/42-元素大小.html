@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>元素大小</title>
+		<script src="00-jQuery.js"></script>
+		<style>
+			div {
+				width: 200px;
+				height: 200px;
+				background-color: skyblue;
+				padding: 10px;
+				border: 15px solid pink;
+				margin: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+
+		<script>
+			$(function () {
+				// width()/heigth()，获取元素宽高
+				console.log($('div').width())
+				console.log($('div').height())
+				$('div').width(300)
+				$('div').height(300)
+
+				// innerWidth()/innerHeigt()，获取元素宽高(包括padding值)
+				console.log($('div').innerWidth())
+				console.log($('div').innerHeight())
+
+				// outerWidth()/outerHeight()，获取元素宽高(包括padding、border值)
+				console.log($('div').outerWidth())
+				console.log($('div').outerHeight())
+
+				// outerWidth(true)/outerHeight(true)，获取元素宽高(包括margin、padding、border值)
+				console.log($('div').outerWidth(true))
+				console.log($('div').outerHeight(true))
+			})
+		</script>
+	</body>
+</html>

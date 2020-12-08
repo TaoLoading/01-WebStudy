@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<title>用户登录</title>
+		<link
+			rel="stylesheet"
+			href="/admin/lib/bootstrap/css/bootstrap.min.css"
+		/>
+		<link rel="stylesheet" href="/admin/css/base.css" />
+		<!-- 在模板文件中的外链资源的相对路径是相对于浏览器中的请求路径 -->
+		<!-- 而请求路径有时会发生变化，导致找不到外链文件 -->
+		<!-- 将相对路径改为绝对路径，以防止找不到文件的现象发生 -->
+	</head>
+
+	<body>
+		<div class="login-body">
+			<div class="login-container">
+				<h4 class="title">博客登录</h4>
+				<div class="login">
+					<form action="/admin/login" method="post" id="loginForm">
+						<div class="form-group">
+							<label>邮件</label>
+							<input
+								name="email"
+								type="email"
+								class="form-control"
+								placeholder="请输入邮件地址"
+							/>
+						</div>
+						<div class="form-group">
+							<label>密码</label>
+							<input
+								name="password"
+								type="password"
+								class="form-control"
+								placeholder="请输入密码"
+							/>
+						</div>
+						<button type="submit" class="btn btn-primary">
+							登录
+						</button>
+					</form>
+				</div>
+				<div class="tips"></div>
+			</div>
+		</div>
+		<script src="/admin/lib/jquery/dist/jquery.min.js"></script>
+		<script src="/admin/lib/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/admin/js/common.js"></script>
+		<script>
+			$('#loginForm').on('submit', function () {
+				// 获取表单中用户输入的内容
+				var result = serializeToJson($(this))
+				// 用户没有输入邮件地址时
+				if (result.email.trim().length == 0) {
+					alert('请输入邮件地址')
+					return false
+				}
+				// 用户没有输入密码时
+				if (result.password.trim().length == 0) {
+					alert('请输入密码')
+					return false
+				}
+			})
+		</script>
+	</body>
+</html>

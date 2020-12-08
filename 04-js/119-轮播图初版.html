@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图初版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        ul,
+        li {
+            list-style: none;
+        }
+        
+        img {
+            display: block;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        input {
+            outline: none;
+        }
+        /* 禁止系统滚动条 */
+        
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .banner {
+            position: relative;
+            width: 600px;
+            height: 300px;
+            margin: 50px auto;
+            overflow: hidden;
+        }
+        
+        .banner .bannerList {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4200px;
+            height: 300px;
+        }
+        
+        .banner .bannerList li {
+            float: left;
+            width: 600px;
+            height: 300px;
+        }
+        
+        .banner .bannerList li img {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .banner .left,
+        .banner .right {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 80px;
+            font-size: 40px;
+            text-align: center;
+            line-height: 80px;
+            background-color: red;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        
+        .banner .left {
+            left: 0;
+        }
+        
+        .banner .right {
+            right: 0;
+        }
+        
+        .banner .iconList {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 10px;
+        }
+        
+        .banner .iconList li {
+            float: left;
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            border-radius: 50%;
+            background-color: gray;
+        }
+        
+        .banner .iconList li.current {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="banner">
+        <ul class="bannerList">
+            <!-- 无缝操作需要在开头加上最后一张图片，在最后加上第一张图片 -->
+            <li>
+                <img src="img/6.jpg" alt="">
+            </li>
+            <li>
+                <img src="img/2.jpg" alt="">
+            </li>
+            <li>
+                <img src="img/3.jpg" alt="">
+            </li>
+            <li>
+                <img src="img/4.jpg" alt="">
+            </li>
+            <li>
+                <img src="img/5.jpg" alt="">
+            </li>
+            <li>
+                <img src="img/6.jpg" alt="">
+            </li>
+            <li>
+                <img src="img/2.jpg" alt="">
+            </li>
+        </ul>
+
+        <ul class="iconList">
+            <li class="current"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+        <span class="left"> < </span>
+        <span class="right"> > </span>
+
+
+        <script>
+            var box = document.querySelector('.banner');
+            var bannerList = document.querySelector('.banner .bannerList');
+            var left = document.querySelector('.banner .left');
+            var right = document.querySelector('.banner .right');
+            var iconList = document.querySelectorAll('.banner .iconList li');
+
+            // 走完一张图片所用的事件
+            var timeAll = 600;
+            // 每一步走的时间，即定时器里的时间
+            var timeStep = 20;
+
+            // 定义全局变量用于存放定时器
+            var timer = null;
+
+            // 由于在开头加了一张图片，故在开始时要让轮播图显示第二张
+            bannerList.style.left = -600 + 'px';
+
+
+            // 鼠标移入
+            box.onmouseenter = function() {
+                left.style.opacity = 1;
+                right.style.opacity = 1;
+            }
+
+            // 鼠标移出
+            box.onmouseleave = function() {
+                left.style.opacity = 0;
+                right.style.opacity = 0;
+            }
+
+
+            // // 右边按钮添加事件
+            // right.onclick = function() {
+            //     var dis = -600;
+            //     var lastDis = bannerList.offsetLeft + dis;
+            //     // 为实现移动过程的效果，故将每一次移动分解为许多步，让移动过程更加顺滑
+            //     // 每一步走的路程 = 总路程/(总时间/每一步的时间)
+            //     var step = dis / (timeAll / timeStep);
+
+            //     timer = setInterval(function() {
+            //         var left = bannerList.offsetLeft + step;
+            //         // 移动完一张图后清除定时器
+            //         if (left == lastDis) {
+            //             clearInterval(timer);
+            //         }
+            //         bannerList.style.left = left + 'px';
+            //     }, timeStep);
+            // }
+
+            // // 左边按钮添加事件
+            // left.onclick = function() {
+            //     var dis = 600;
+            //     var lastDis = bannerList.offsetLeft + dis;
+            //     // 为实现移动过程的效果，故将每一次移动分解为许多步，让移动过程更加顺滑
+            //     // 每一步走路程 = 总路程/(总时间/每一步的时间)
+            //     var step = dis / (timeAll / timeStep);
+
+            //     timer = setInterval(function() {
+            //         var left = bannerList.offsetLeft + step;
+            //         // 移动完一张图后清除定时器
+            //         if (left == lastDis) {
+            //             clearInterval(timer);
+            //         }
+            //         bannerList.style.left = left + 'px';
+            //     }, timeStep);
+            // }
+
+
+            // 封装函数实现左右移动
+            right.onclick = function() {
+                move(true);
+            }
+
+            left.onclick = function() {
+                move(false);
+            }
+
+            function move(flag) {
+                var dis = 0;
+                if (flag) {
+                    // 每向右点一次移动的距离
+                    dis = -600;
+                } else {
+                    // 每向左点一次移动的距离
+                    dis = 600;
+                }
+
+                // 最终位置
+                var lastDis = bannerList.offsetLeft + dis;
+                // 为实现移动过程的效果，故将每一次移动分解为许多步，让移动过程更加顺滑
+                // 每一步走的路程 = 总路程/(总时间/每一步的时间)
+                var step = dis / (timeAll / timeStep);
+
+                timer = setInterval(function() {
+                    var left = bannerList.offsetLeft + step;
+                    // 移动完一张图后清除定时器
+                    if (left == lastDis) {
+                        clearInterval(timer);
+                        // 无缝逻辑，当到达临界的图片后，瞬移到对应的同个图片的位置，因为清除定时器就是加载到达图片位置后，故无缝切换也是加在清除定时器后
+                        if (left == -3600) {
+                            left = -600;
+                        } else if (left == 0) {
+                            left = -3000;
+                        }
+                    }
+                    bannerList.style.left = left + 'px';
+                }, timeStep);
+
+
+                // 小圆点跟随图片移动变色
+                // 中间五张图片的当前小圆点的下标 = 最终位置/600 - 1
+                var index = Math.abs(lastDis / 600) - 1; // Math.abs()，计算绝对值
+                // 当移动到补充的第一张图片时，下标为-1，此时要联系到五张图片中的最后一张，即下标为4
+                // 通过判断进行移动
+                if (index < 0) {
+                    index = 4;
+                }
+                for (var i = 0; i < iconList.length; i++) {
+                    iconList[i].className = '';
+                }
+                // 当移动到补充的第六张图片时，下标为5，此时要联系到五张图片中的最后一张，即下标为0
+                // 因为一共五种图片，所以取余5即可解决第二到第七张图片小圆点问题，第一张图片下标为-1通过上述判断解决
+                iconList[index % 5].className = 'current';
+
+
+                // // 排他操作实现点击小圆点变色
+                // var iconList = document.querySelectorAll('.banner .iconList li');
+                // for (var i = 0; i < iconList.length; i++) {
+                //     iconList[i].onclick = function() {
+                //         for (var j = 0; j < iconList.length; j++) {
+                //             // 通过控制类名控制属性
+                //             iconList[j].className = '';
+                //         }
+                //         this.className = 'current';
+                //     }
+                // }
+            }
+        </script>
+</body>
+
+</html>

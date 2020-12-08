@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>14_key</title>
+</head>
+<body>
+
+<div id="demo">
+  <div>
+    <button @click="add">add first</button>
+    &nbsp;
+    <button @click="remove">remove first</button>
+    &nbsp;
+    <button @click="sort">sort</button>
+  </div>
+
+  <h2>使用id作为key</h2>
+  <ul>
+    <li v-for="p in persons" :key="p.id">
+      {{p.id}}--{{p.name}}--{{p.age}}--<input/>
+    </li>
+  </ul>
+
+  <h2>使用index作为key</h2>
+  <ul>
+    <li v-for="(p, index) in persons" :key="index">
+      {{p.id}}--{{p.name}}--{{p.age}}--<input/>
+    </li>
+  </ul>
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  new Vue({
+    el: '#demo',
+    data: {
+      persons: [
+        {id: 1, name: 'Tom', age: 13},
+        {id: 2, name: 'Jack', age: 12}
+      ]
+    },
+
+    methods: {
+      add() {
+        this.persons.unshift({id: this.persons.length + 1, name: 'Bob', age: 14})
+      },
+
+      remove() {
+        this.persons.shift()
+      },
+
+      sort() {
+        this.persons.sort((p1, p2) => p1.age - p2.age)
+      }
+    }
+  })
+
+  /*
+   面试题:
+      1). react/vue中的key的作用/内部原理
+      2). 为什么列表的key尽量不要用index
+   1. 虚拟DOM的key的作用?
+      1). 简单的说: key是虚拟DOM对象的标识, 在更新显示时key起着极其重要的作用
+      2). 详细的说: 当列表数组中的数据发生变化生成新的虚拟DOM后, React进行新旧虚拟DOM的diff比较
+          a. key没有变
+              item数据没变, 直接使用原来的真实DOM
+              item数据变了, 对原来的真实DOM进行数据更新
+          b. key变了
+              销毁原来的真实DOM, 根据item数据创建新的真实DOM显示(即使item数据没有变)
+   2. key为index的问题
+      1). 添加/删除/排序 => 产生没有必要的真实DOM更新 ==> 界面效果没问题, 但效率低
+      2). 如果item界面还有输入框 => 产生错误的真实DOM更新 ==> 界面有问题
+      注意: 如果不存在添加/删除/排序操作, 用index没有问题
+   3. 解决:
+      使用item数据的标识数据作为key, 比如id属性值
+   */
+</script>
+</body>
+</html>

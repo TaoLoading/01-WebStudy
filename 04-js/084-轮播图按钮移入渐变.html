@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图按钮移入渐变</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        ul,
+        li {
+            list-style: none;
+        }
+        
+        img {
+            display: block;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        input {
+            outline: none;
+        }
+        /* 禁止系统滚动条 */
+        /* html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        } */
+        
+        .banner {
+            position: relative;
+            width: 600px;
+            height: 300px;
+            margin: 50px auto;
+            overflow: hidden;
+        }
+        
+        .banner .bannerList {
+            width: 3000px;
+            height: 300px;
+        }
+        
+        .banner .bannerList li {
+            float: left;
+            width: 600px;
+            height: 300px;
+        }
+        
+        .banner .bannerList li img {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .banner .left,
+        .banner .right {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 80px;
+            font-size: 40px;
+            text-align: center;
+            line-height: 80px;
+            background-color: red;
+            opacity: 0;
+            transition: opacity 1.5s;
+        }
+        
+        .banner .left {
+            left: 0;
+        }
+        
+        .banner .right {
+            right: 0;
+        }
+        
+        .banner .iconList {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 10px;
+        }
+        
+        .banner .iconList li {
+            float: left;
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            border-radius: 50%;
+            background-color: gray;
+        }
+        
+        .banner .iconList li.current {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="banner">
+        <ul class="bannerList">
+            <li>
+                <img src="img/2.jpg" alt="">
+            </li>
+            <li>
+                <img src="img/3.jpg" alt="">
+            </li>
+            <li>
+                <img src="img/4.jpg" alt="">
+            </li>
+            <li>
+                <img src="img/5.jpg" alt="">
+            </li>
+            <li>
+                <img src="img/6.jpg" alt="">
+            </li>
+        </ul>
+
+        <ul class="iconList">
+            <li class="current"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+        <span class="left"> < </span>
+        <span class="right"> > </span>
+
+
+        <script>
+            var box = document.querySelector('.banner');
+            var left = document.querySelector('.banner .left');
+            var right = document.querySelector('.banner .right');
+
+            // 鼠标移入
+            box.onmouseenter = function() {
+                left.style.opacity = 1;
+                right.style.opacity = 1;
+            }
+
+            // 鼠标移出
+            box.onmouseleave = function() {
+                left.style.opacity = 0;
+                right.style.opacity = 0;
+            }
+
+            // 排他操作实现点击小圆点变色
+            var iconList = document.querySelectorAll('.banner .iconList li');
+            for (var i = 0; i < iconList.length; i++) {
+                iconList[i].onclick = function() {
+                    for (var j = 0; j < iconList.length; j++) {
+                        // 通过控制类名控制属性
+                        iconList[j].className = '';
+                    }
+                    this.className = 'current';
+                }
+            }
+        </script>
+    </div>
+</body>
+
+</html>

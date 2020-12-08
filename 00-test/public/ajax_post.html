@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ajax_post</title>
+	</head>
+	<body>
+		<h1>测试原生js发送ajax中的post请求</h1>
+		<button id="btn">点击发送请求</button>
+		<div id="demo"></div>
+
+		<script>
+			let btn = document.getElementById('btn')
+			btn.onclick = function () {
+				// 实例化XMLHttpRequest对象
+				let xhr = new XMLHttpRequest()
+
+				// 绑定onreadystatechange事件监听
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState === 4 && xhr.status === 200) {
+						console.log(xhr.response)
+						let demo = document.getElementById('demo')
+						demo.innerHTML = xhr.response
+					}
+				}
+
+				// 调用open方法
+				xhr.open('post', 'http://localhost:3000/ajax_post')
+
+				// 特别注意：此处是设置post请求所特有的请求头，若不设置，服务器无法获取参数
+				xhr.setRequestHeader(
+					'Content-Type',
+					'application/x-www-form-urlencoded'
+				)
+
+				// 调用send方法
+				xhr.send('name=kobe&age=18')
+			}
+		</script>
+	</body>
+</html>

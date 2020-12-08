@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>搜索框输入文字自动提示</title>
+		<link
+			rel="stylesheet"
+			href="./assets/bootstrap/dist/css/bootstrap.min.css"
+		/>
+		<style type="text/css">
+			.container {
+				padding-top: 150px;
+			}
+			.list-group {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="form-group">
+				<input
+					type="text"
+					class="form-control"
+					placeholder="请输入搜索关键字"
+					id="search"
+				/>
+				<ul class="list-group" id="list-box"></ul>
+			</div>
+		</div>
+		<script src="./js/ajax.js"></script>
+		<script src="./js/template-web.js"></script>
+		<script type="text/html" id="tpl">
+			<li class="list-group-item">
+			             {{each result}}
+			             <li class="list-group-item">{{$value}}</li>
+			             {{/each}}
+			         </li>
+		</script>
+		<script>
+			// 获取搜索框
+			var searchInp = document.getElementById('search')
+			// 获取提示文字的存放容器
+			var listBox = document.getElementById('list-box')
+			// 存储定时器的变量
+			var timer = null
+			// 当用户在文本框输入内容时触发
+			searchInp.oninput = function () {
+				// 清除上一次开启的定时器
+				clearTimeout(timer)
+				// 获取用户输入的内容
+				var key = this.value
+				// 当输入框中的内容为空时清除提示
+				if (key.trim().length == 0) {
+					listBox.style.display = 'none'
+					// 此时阻止程序向下执行
+					return
+				}
+				// 开启延迟定时器，让请求延迟发送
+				timer = setTimeout(function () {
+					// 向服务器发送请求
+					ajax({
+						type: 'get',
+						url: 'http://localhost:3000/searchAutoPrompt',
+						data: {
+							key: key,
+						},
+						success: function (result) {
+							// 使用模板引擎拼接字符串并显示在页面上
+							var html = template('tpl', { result: result })
+							listBox.innerHTML = html
+							listBox.style.display = 'block'
+						},
+						error: function (result) {
+							console.log(result)
+						},
+					})
+				}, 500)
+			}
+
+			/*
+            定时器的作用：
+            当发生输入事件时开启一个定时器，定时器到达时间后开始向服务器发送请求，以此来减少无效请求的数量。
+            在最开始时执行一次clearTimeout()，以此来清除上一次设置的定时器
+            */
+		</script>
+	</body>
+</html>

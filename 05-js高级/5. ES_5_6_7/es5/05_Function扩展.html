@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>05_Function扩展</title>
+	</head>
+	<body>
+		<!--
+        1. Function.prototype.bind(obj) :
+        * 作用: 将函数内的this绑定为obj, 并将函数返回
+        2. 面试题: 区别bind()与call()和apply()?
+        * 都能指定函数中的this
+        * call()/apply()是立即调用函数
+        * bind()是将函数返回
+        * 传参方式不同
+        -->
+		<script type="text/javascript">
+			var obj = {
+				name: 'lht',
+			}
+			function fun(msg) {
+				console.log(this, msg)
+			}
+
+			// fun.call(obj, 123)
+			// fun.apply(obj,[123])
+			fun.bind(obj, 123)() // bind需要再次调用
+			// 拆解：
+			// var test = fun.bind(obj, 123)
+			// test()
+
+			// 修改定时器中this指向到obj
+			setTimeout(
+				function () {
+					console.log(this)
+				}.bind(obj), // 注意.bind()添加位置
+				1000
+			)
+		</script>
+	</body>
+</html>

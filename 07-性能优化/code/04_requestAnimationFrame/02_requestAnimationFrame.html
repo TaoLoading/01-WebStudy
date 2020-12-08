@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>requestAnimationFrame动画</title>
+  <style>
+    * {
+      margin:0;
+      padding:0;
+    }
+
+    #test {
+      width: 200px;
+      height: 200px;
+      background: green;
+      position: absolute;
+      left: 0;
+      right: 0;
+    }
+  </style>
+</head>
+<body>
+<div id="test">
+
+</div>
+<!--requestAnimationFrame动画.html-->
+<script type="text/javascript">
+
+  let test = document.getElementById('test')
+  let index = 0
+  let id
+  id = requestAnimationFrame(move)
+
+  function move() {
+    index++
+    test.style.transform = `translateX(${index}px)`
+    console.log(1)
+    id = requestAnimationFrame(move)
+  }
+  
+  setTimeout(()=>{
+      cancelAnimationFrame(id)
+  },2000)
+
+</script>
+</body>
+</html>

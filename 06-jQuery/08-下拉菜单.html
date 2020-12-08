@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>08-下拉菜单</title>
+		<script src="00-jQuery.js"></script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			li {
+				list-style-type: none;
+			}
+
+			a {
+				text-decoration: none;
+				font-size: 14px;
+			}
+
+			.nav {
+				margin: 100px;
+			}
+
+			.nav > li {
+				position: relative;
+				float: left;
+				width: 80px;
+				height: 41px;
+				text-align: center;
+			}
+
+			.nav li a {
+				display: block;
+				width: 100%;
+				height: 100%;
+				line-height: 41px;
+				color: #333;
+			}
+
+			.nav > li > a:hover {
+				background-color: #eee;
+			}
+
+			.nav ul {
+				display: none;
+				position: absolute;
+				top: 41px;
+				left: 0;
+				width: 100%;
+				border-left: 1px solid #fecc5b;
+				border-right: 1px solid #fecc5b;
+			}
+
+			.nav ul li {
+				border-bottom: 1px solid #fecc5b;
+			}
+
+			.nav ul li a:hover {
+				background-color: #fff5da;
+			}
+		</style>
+	</head>
+	<body>
+		<ul class="nav">
+			<li>
+				<a href="#">微博</a>
+				<ul>
+					<li>
+						<a href="">私信</a>
+					</li>
+					<li>
+						<a href="">评论</a>
+					</li>
+					<li>
+						<a href="">@我</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">微博</a>
+				<ul>
+					<li>
+						<a href="">私信</a>
+					</li>
+					<li>
+						<a href="">评论</a>
+					</li>
+					<li>
+						<a href="">@我</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">微博</a>
+				<ul>
+					<li>
+						<a href="">私信</a>
+					</li>
+					<li>
+						<a href="">评论</a>
+					</li>
+					<li>
+						<a href="">@我</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">微博</a>
+				<ul>
+					<li>
+						<a href="">私信</a>
+					</li>
+					<li>
+						<a href="">评论</a>
+					</li>
+					<li>
+						<a href="">@我</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+
+		<script>
+			$(function () {
+				// // 鼠标经过
+				// $('.nav>li').mouseover(function () {
+				// 	// $(this).children('ul').show() // show()：显示
+				// 	// 滑动效果
+				// 	$(this).children('ul').slideDown()
+				// })
+				// // 鼠标离开
+				// $('.nav>li').mouseleave(function () {
+				// 	// $(this).children('ul').hide() // show()：显示
+				// 	// 滑动效果
+				// 	$(this).children('ul').slideUp()
+				// })
+
+				// 优化代码
+				// 事件切换hover
+				$('.nav>li').hover(function () {
+					$(this).children('ul').slideToggle()
+				})
+
+				// hover()里面写两个函数则分别对应鼠标经过和鼠标离开
+				// hover(function(){},function(){})
+			})
+		</script>
+	</body>
+</html>

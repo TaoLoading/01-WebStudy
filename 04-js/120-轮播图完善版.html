@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图完善版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        ul,
+        li {
+            list-style: none;
+        }
+        
+        img {
+            display: block;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        input {
+            outline: none;
+        }
+        /* 禁止系统滚动条 */
+        
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .banner {
+            position: relative;
+            width: 600px;
+            height: 300px;
+            margin: 50px auto;
+            overflow: hidden;
+        }
+        
+        .banner .bannerList {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4200px;
+            height: 300px;
+        }
+        
+        .banner .bannerList li {
+            float: left;
+            width: 600px;
+            height: 300px;
+        }
+        
+        .banner .bannerList li img {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .banner .left,
+        .banner .right {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 80px;
+            font-size: 40px;
+            text-align: center;
+            line-height: 80px;
+            background-color: red;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        
+        .banner .left {
+            left: 0;
+        }
+        
+        .banner .right {
+            right: 0;
+        }
+        
+        .banner .iconList {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 10px;
+        }
+        
+        .banner .iconList li {
+            float: left;
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            border-radius: 50%;
+            background-color: gray;
+        }
+        
+        .banner .iconList li.current {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="banner">
+        <ul class="bannerList">
+            <!-- 无缝操作需要在开头加上最后一张图片，在最后加上第一张图片 -->
+            <li>
+                <img src="img/6.jpg" alt="">
+            </li>
+            <li>
+                <img src="img/2.jpg" alt="">
+            </li>
+            <li>
+                <img src="img/3.jpg" alt="">
+            </li>
+            <li>
+                <img src="img/4.jpg" alt="">
+            </li>
+            <li>
+                <img src="img/5.jpg" alt="">
+            </li>
+            <li>
+                <img src="img/6.jpg" alt="">
+            </li>
+            <li>
+                <img src="img/2.jpg" alt="">
+            </li>
+        </ul>
+
+        <ul class="iconList">
+            <li class="current"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+        <span class="left"> &lt; </span>
+        <span class="right"> &gt; </span>
+
+
+        <script>
+            // 相较初版，完善版解决的问题：
+            // 1.解决多次点击跳转按钮后出现空白的bug
+            // 2.实现点击小圆点和跳转图片的功能
+            // 3.添加自动轮播事件
+            // 4.解决自动轮播和鼠标点击不同步的bug（造成这种现象的原因是autoIndex的值和鼠标点击的小圆点下标及转向按钮不一致）
+
+            // ToDo
+            // 将点击小圆点跳转到对应图片功能放到move()中，注意下标问题
+
+
+            var box = document.querySelector('.banner');
+            var bannerList = document.querySelector('.banner .bannerList');
+            var left = document.querySelector('.banner .left');
+            var right = document.querySelector('.banner .right');
+            var iconList = document.querySelectorAll('.banner .iconList li');
+            // 走完一张图片所用的事件
+            var timeAll = 600;
+            // 每一步走的时间，即定时器里的时间
+            var timeStep = 20;
+            // 定义全局变量用于存放定时器
+            var timer = null;
+            // 设置标志位，用于判断图片是否在移动（与解决多次点击后变成空白的bug有关）
+            var isMove = false;
+            // 定义全局变量存放自动轮播定时器
+            var autoTimer = null;
+
+            // 由于在开头加了一张图片，故在开始时要让轮播图显示第二张
+            bannerList.style.left = -600 + 'px';
+
+
+            // 鼠标移入
+            box.onmouseenter = function() {
+                left.style.opacity = 1;
+                right.style.opacity = 1;
+                // 鼠标移入时清除自动轮播定时器
+                clearTimeout(autoTimer);
+            }
+
+            // 鼠标移出
+            box.onmouseleave = function() {
+                left.style.opacity = 0;
+                right.style.opacity = 0;
+                // 鼠标移出时重新开启自动轮播定时器
+                autoRun();
+            }
+
+
+            // // 右边按钮添加事件
+            // right.onclick = function() {
+            //     var dis = -600;
+            //     var lastDis = bannerList.offsetLeft + dis;
+            //     // 为实现移动过程的效果，故将每一次移动分解为许多步，让移动过程更加顺滑
+            //     // 每一步走的路程 = 总路程/(总时间/每一步的时间)
+            //     var step = dis / (timeAll / timeStep);
+
+            //     timer = setInterval(function() {
+            //         var left = bannerList.offsetLeft + step;
+            //         // 移动完一张图后清除定时器
+            //         if (left == lastDis) {
+            //             clearInterval(timer);
+            //         }
+            //         bannerList.style.left = left + 'px';
+            //     }, timeStep);
+            // }
+
+            // // 左边按钮添加事件
+            // left.onclick = function() {
+            //     var dis = 600;
+            //     var lastDis = bannerList.offsetLeft + dis;
+            //     // 为实现移动过程的效果，故将每一次移动分解为许多步，让移动过程更加顺滑
+            //     // 每一步走路程 = 总路程/(总时间/每一步的时间)
+            //     var step = dis / (timeAll / timeStep);
+
+            //     timer = setInterval(function() {
+            //         var left = bannerList.offsetLeft + step;
+            //         // 移动完一张图后清除定时器
+            //         if (left == lastDis) {
+            //             clearInterval(timer);
+            //         }
+            //         bannerList.style.left = left + 'px';
+            //     }, timeStep);
+            // }
+
+
+            right.onclick = function() {
+                move(true);
+            }
+
+            left.onclick = function() {
+                move(false);
+            }
+
+            // 封装函数实现左右移动
+            function move(flag) {
+
+                // 处理多次点击后变成空白的bug
+                // 判断图片是否在移动
+                if (isMove) {
+                    // isMove为真时，说明图片在移动，通过return禁止移动时对图片进行移动操作
+                    return;
+                }
+                isMove = true;
+                // 开启单次定时器来设置isMove的值
+                setTimeout(function() {
+                    isMove = false;
+                    // 图片移动时间为600，当移动完成后通过定时器将isMove的值设置为false，以此来控制图片的移动
+                }, 600);
+
+
+                // 判断传到move()的值进行不同的操作
+                // 如果flag是布尔值，则说明传递flag是为了确定移动的方向
+                if (typeof(flag) == 'boolean') {
+                    if (flag) {
+                        // 每向右点一次移动的距离
+                        var dis = -600;
+                    } else {
+                        // 每向左点一次移动的距离
+                        var dis = 600;
+                    }
+                }
+                // 如果不是布尔值，则说明传递flag是为了计算移动的距离
+                else {
+                    // 移动距离 = 最终位置 - 起始位置
+                    // bannerList.offsetLeft指的是点击前图片的位置，即初始位置
+                    var dis = flag - bannerList.offsetLeft;
+                }
+
+
+                // 获取最终位置
+                var lastDis = bannerList.offsetLeft + dis;
+                // 为实现移动过程的效果，故将每一次移动分解为许多步，让移动过程更加顺滑
+                // 每一步走的路程 = 总路程/(总时间/每一步的时间)
+                var step = dis / (timeAll / timeStep);
+
+                timer = setInterval(function() {
+                    var left = bannerList.offsetLeft + step;
+                    // 移动完一张图后清除定时器
+                    if (left == lastDis) {
+                        clearInterval(timer);
+                        // 无缝逻辑，当到达临界的图片后，瞬移到对应的同个图片的位置，因为清除定时器就是加载到达图片位置后，故无缝切换也是加在清除定时器后
+                        if (left == -3600) {
+                            left = -600;
+                        } else if (left == 0) {
+                            left = -3000;
+                        }
+                    }
+                    bannerList.style.left = left + 'px';
+                }, timeStep);
+
+
+                // 小圆点跟随图片移动变色
+                // 中间五张图片的当前小圆点的下标 = 最终位置/600 - 1
+                var index = Math.abs(lastDis / 600) - 1; // Math.abs()，计算绝对值
+                // 当移动到补充的第一张图片时，下标为-1，此时要联系到五张图片中的最后一张，即下标为4
+                // 通过判断进行移动
+                if (index < 0) {
+                    index = 4;
+                }
+                for (var i = 0; i < iconList.length; i++) {
+                    iconList[i].className = '';
+                }
+                // 当移动到补充的第六张图片时，下标为5，此时要联系到五张图片中的最后一张，即下标为0
+                // 因为一共五种图片，所以取余5即可解决第二到第七张图片小圆点问题，第一张图片下标为-1通过上述判断解决
+                iconList[index % 5].className = 'current';
+
+                // 统一自动轮播和转向按钮移动到图片的下标
+                autoIndex = index % 5 + 1;
+
+
+                // // 排他操作实现点击小圆点变色
+                // var iconList = document.querySelectorAll('.banner .iconList li');
+                // for (var i = 0; i < iconList.length; i++) {
+                //     iconList[i].onclick = function() {
+                //         for (var j = 0; j < iconList.length; j++) {
+                //             // 通过控制类名控制属性
+                //             iconList[j].className = '';
+                //         }
+                //         this.className = 'current';
+                //     }
+                // }
+            }
+
+
+            // 点击小圆点移动到对应图片
+            for (var i = 0; i < iconList.length; i++) {
+                iconList[i].index = i;
+                iconList[i].onclick = function() {
+                    // 相较于最初的位置，最终位置（即移动距离） = （小圆点下标 + 1） * -600
+                    move((this.index + 1) * (-600));
+
+                    // 统一自动轮播和小圆点下标
+                    autoIndex = this.index + 1;
+                }
+            }
+
+
+            // 封装自动轮播函数
+            // 将定时器封装为函数是为了鼠标移出后重新开启定时器
+            var autoIndex = 1; // 注意定义变量要写在外面，不然每次重启定时器autoIndex会变为1
+            function autoRun() {
+                autoTimer = setInterval(function() {
+                    autoIndex++;
+                    move(autoIndex * -600);
+                    // 当轮播到最后一张时，立即跳转回第一张
+                    if (autoIndex == 6) {
+                        autoIndex = 1;
+                    }
+                }, 2000);
+            }
+            autoRun();
+
+
+            // 第一步：结构，结构牢记 
+            // 第二步：css，外面小盒子根据图片的宽度进行设置；内部大盒子宽度是根据图片的个数进行的设置的
+            // 第三步： js行为		
+
+            // 1.点击按钮让图片先动起来（只点击右侧），每次点击要准备走的距离都是一张图片的宽度，这个距离需要用定时器分成多步慢慢走，
+            //   需要求每一步的距离，元素起始位置可以获取到，结束位置可以通过计算得出
+
+            // 2.看什么时候元素停止，当刚好元素走的位置和开启求出来的结束位置一样的实惠，清除定时器
+
+            // 3.左边按钮和右边按钮除移动距离外完全一致，故封装函数move(flag)，函数传参为true就是点右，false就是点左
+
+            // 4.无缝操作：结构需要变化，在li最前面加最后一张，最后面加第一张
+            //   清除定时器时，去判断是否元素走到了最后一张的位置和第一张的位置，如果走到，让元素瞬间跳转到相应的位置
+
+            // 5.小圆点变色：排他，关键点在求出哪一个小圆点变色，就是要拿到小圆点变色的下标，通过元素最终位置去求
+
+            // 6.点击小圆点移动到对应图片，要传递元素准备移动的最终位置，跟点击的小圆点下标相关
+            // move里面参数要根据类型进行判断，如果flag是布尔值，则说明传递flag是为了确定移动的方向，如果不是这说明是传递了移动距离
+
+            // 7.自动轮播，将即将轮播到的图片的下标传递给move()，下标需要判断转到最后一张图是跳转到第一张
+
+            // 8.自动轮播与鼠标行为的同步，鼠标移入清除自动轮播，鼠标移出重启自动轮播   
+
+            // 9.同步自动轮播和鼠标点击：当发生移入和点击事件（点击小圆点和转向按钮）时，要对下标进行更新，仿制因下标不一致而导致的移动顺序错乱
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Document</title>
+	</head>
+	<body>
+		<!--
+            FormData的作用：
+            1.模拟HTML表单，相当于将HTML表单映射成表单对象，自动将表单对象中的数据拼接成请求参数的格式
+            2.异步上传二进制文件
+        -->
+
+		<!-- 创建普通的html表单 -->
+		<form id="form">
+			<input type="text" name="username" />
+			<input type="password" name="password" />
+			<input type="button" id="btn" value="提交" />
+		</form>
+		<script type="text/javascript">
+			// 获取按钮
+			var btn = document.getElementById('btn')
+			// 获取表单
+			var form = document.getElementById('form')
+			// 为按钮添加点击事件
+			btn.onclick = function () {
+				// 将普通的html表单转换为表单对象
+				var formData = new FormData(form)
+				// 创建ajax对象
+				var xhr = new XMLHttpRequest()
+				// 对ajax对象进行配置
+				xhr.open('post', 'http://localhost:3000/formData')
+				// 发送ajax请求
+				xhr.send(formData)
+				// 监听xhr对象下面的onload事件
+				xhr.onload = function () {
+					// 对象http状态码进行判断
+					if (xhr.status == 200) {
+						console.log(xhr.responseText)
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            perspective: 800px;
+        }
+        
+        .box {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 100px auto;
+            transition: all 0.4s;
+            /* 让子元素开启3D立体空间环境 */
+            transform-style: preserve-3d;
+        }
+        
+        .box:hover {
+            transform: rotateX(90deg);
+        }
+        
+        .box div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: pink;
+            font-size: 30px;
+            color: #fff;
+            text-align: center;
+            line-height: 300px;
+        }
+        
+        .box div:first-child {
+            /* 没有让底盒子往后移动，而是让上盒子往前移动，是因为为了保持翻转的中线不变 */
+            transform: translateZ(150px);
+        }
+        
+        .box div:last-child {
+            top: 50%;
+            background-color: skyblue;
+            transform: rotateX(-90deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div>我是</div>
+        <div>李侯涛</div>
+    </div>
+</body>
+
+</html>

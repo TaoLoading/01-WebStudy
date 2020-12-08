@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>05_简化的对象写法</title>
+	</head>
+	<body>
+		<!--
+        简化的对象写法
+        * 省略同名的属性值
+        * 省略方法的function
+        * 例如:
+        let x = 1;
+        let y = 2;
+        let point = {
+            x,
+            y,
+            setX (x) {this.x = x}
+        };
+    -->
+		<script type="text/javascript">
+			let x = 3
+			let y = 5
+
+			console.log('--------------对象的常规书写方式--------------')
+			//    let obj = {
+			//        x : x,
+			//        y : y,
+			//        getPoint : function () {
+			//            return this.x + this.y
+			//        }
+			//    };
+
+			console.log('--------------对象的简写书写方式--------------')
+			let obj = {
+				x, // 同名(key和value一样)的属性可以省略
+				y,
+				getPoint() {
+					// 省略冒号和函数的function
+					return this.x
+				},
+			}
+			console.log(obj, obj.getPoint())
+		</script>
+	</body>
+</html>

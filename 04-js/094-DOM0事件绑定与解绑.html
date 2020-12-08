@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM0事件绑定与解绑</title>
+</head>
+
+<body>
+    <button>绑定事件</button>
+    <button>解绑事件</button>
+
+
+
+    <script>
+        // DOM0和DOM2有自己独立的事件绑定和解绑方式，DOM1和DOM3没有
+        // DOM0事件所有的浏览器都可以使用
+
+
+        var btns = document.querySelectorAll('button');
+
+        // DOM0绑定
+        btns[0].onclick = function() {
+            console.log('i love you!');
+        }
+
+        // DOM0对同一元素添加多种事件，后一事件会覆盖前一事件
+        btns[0].onclick = function() {
+            console.log('i love you too!');
+        }
+
+        // 将函数拆出来单独定义
+        // function fn() {
+        //     console.log('i love you too!');
+        // }
+        // btns[0].onclick = fn; // 注意这里函数不加括号
+
+
+        // DOM0解绑
+        btns[1].onclick = function() {
+            btns[0].onclick = null;
+        }
+
+
+        // DOM0事件解绑本质上就是把事件函数和事件对象的事件属性断开指向
+        // box.onclick = null;
+    </script>
+</body>
+
+</html>

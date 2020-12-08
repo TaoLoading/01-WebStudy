@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导航移入变色</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        ul li {
+            list-style: none;
+        }
+        
+        ul {
+            margin: 0 auto;
+            box-sizing: border-box;
+            width: 200px;
+            height: 302px;
+            border: 1px solid red;
+        }
+        
+        li {
+            box-sizing: border-box;
+            width: 100%;
+            height: 50px;
+            border-bottom: 1px solid skyblue;
+            text-align: center;
+            line-height: 50px;
+        }
+        
+        ul li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <ul>
+            <li>导航栏1</li>
+            <li>导航栏2</li>
+            <li>导航栏3</li>
+            <li>导航栏4</li>
+            <li>导航栏5</li>
+            <li>导航栏6</li>
+        </ul>
+    </div>
+
+
+    <script>
+        var liNodes = document.querySelectorAll('li');
+
+        //通过鼠标移入移出实现
+        // for (var i = 0; i < liNodes.length; i++) {
+        //     liNodes[i].onmouseover = function() {
+        //         this.style.backgroundColor = 'greenyellow';
+        //     }
+
+        //     liNodes[i].onmouseout = function() {
+        //         this.style.backgroundColor = 'transparent';
+        //     };
+        // }
+
+        //通过排他事件实现
+        for (var i = 0; i < liNodes.length; i++) {
+            liNodes[i].onmouseover = function() {
+                for (var j = 0; j < liNodes.length; j++) {
+                    liNodes[j].style.backgroundColor = 'transparent';
+                }
+                this.style.backgroundColor = 'greenyellow';
+            }
+        }
+
+        var list = document.querySelector('ul');
+        list.onmouseout = function() {
+            for (var k = 0; k < liNodes.length; k++) {
+                liNodes[k].style.backgroundColor = 'transparent';
+            }
+        }
+    </script>
+</body>
+
+</html>

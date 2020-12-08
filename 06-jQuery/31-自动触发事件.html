@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>自动触发事件</title>
+		<script src="00-jQuery.js"></script>
+		<style>
+			div {
+				width: 200px;
+				height: 200px;
+				background-color: skyblue;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<input type="text" />
+
+		<script>
+			$(function () {
+				// 定义事件
+				$('div').on('click', function () {
+					console.log('div被点击')
+				})
+				$('input').on('focus', function () {
+					$(this).val('input被聚焦')
+				})
+
+				// trigger()，自动触发事件
+				// 写法一  简写
+				// $('div').click()
+				// 写法二  元素.trigger('事件')
+				// $('div').trigger('click')
+				// 写法二  元素.triggerHandler('事件')
+				$('div').triggerHandler('click')
+
+				// 区别：triggerHandler() 不会触发元素的默认行为，如：
+				$('input').trigger('focus') // 会有竖线闪烁
+				// $('input').triggerHandler('focus') // 没有竖线闪烁
+			})
+		</script>
+	</body>
+</html>

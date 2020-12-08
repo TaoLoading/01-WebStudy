@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOM中的主要对象</title>
+</head>
+
+<body>
+    <button>点击获取网址</button>
+
+    <script type="text/javascript">
+        // location可以让用户获取当前页面地址以及重定向到一个新的页面
+        // window.location.href可以读也可以写，写的时候相当于转向另外一个页面
+
+        // history对象包含浏览器的历史记录，window可以省略。这些历史记录以栈（FIFO）的形式保存。页面前进则入栈，页面返回则出栈
+        // navigator是一个只读对象，它用来描述浏览器本身的信息，包括浏览器的名称、版本、语言、系统平台、用户特性字符串等信息
+        // screen提供了用户显示屏幕的相关属性，比如显示屏幕的宽度、高度，可用宽度、高度
+
+
+        window.onload = function() {
+            var btn = document.querySelector('button');
+            btn.addEventListener('click', function() {
+                console.log(window.location.href);
+                // window.location.href = 'https://www.baidu.com';
+
+                console.log(navigator.appName, navigator.appVersion);
+
+                console.log(screen.width); // 获取屏幕宽度
+                console.log(screen.height); // 获取屏幕高度
+                console.log(screen.availWidth); // 获取屏幕可用宽度
+                console.log(screen.availHeight); // 获取屏幕可用高度
+
+
+                history.back(-1); // 历史记录往前走一页
+                // history.go(-1); // 和上面一样，只是在刷新数据上有区别
+                history.forward(1); // 往后走一页
+            });
+        }
+    </script>
+</body>
+
+</html>

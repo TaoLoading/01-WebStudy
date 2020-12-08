@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>突出显示案例</title>
+		<script src="00-jQuery.js"></script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			ul {
+				list-style: none;
+			}
+
+			body {
+				background: #000;
+			}
+
+			.wrap {
+				margin: 100px auto 0;
+				width: 630px;
+				height: 394px;
+				padding: 10px 0 0 10px;
+				background: #000;
+				overflow: hidden;
+				border: 1px solid #fff;
+			}
+
+			.wrap li {
+				float: left;
+				margin: 0 10px 10px 0;
+			}
+
+			.wrap img {
+				display: block;
+				border: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<ul>
+				<li>
+					<a href="#"><img src="img/突出显示案例/01.jpg" alt="" /></a>
+				</li>
+				<li>
+					<a href="#"><img src="img/突出显示案例/02.jpg" alt="" /></a>
+				</li>
+				<li>
+					<a href="#"><img src="img/突出显示案例/03.jpg" alt="" /></a>
+				</li>
+				<li>
+					<a href="#"><img src="img/突出显示案例/04.jpg" alt="" /></a>
+				</li>
+				<li>
+					<a href="#"><img src="img/突出显示案例/05.jpg" alt="" /></a>
+				</li>
+				<li>
+					<a href="#"><img src="img/突出显示案例/06.jpg" alt="" /></a>
+				</li>
+			</ul>
+		</div>
+
+		<script>
+			$(function () {
+				$('.wrap li').hover(
+					function () {
+						$(this)
+							.stop()
+							.fadeTo(500, 1)
+							.siblings()
+							.stop()
+							.fadeTo(500, 0.5)
+					},
+					function () {
+						$('.wrap li').stop().fadeTo(800, 1)
+					}
+				)
+			})
+		</script>
+	</body>
+</html>

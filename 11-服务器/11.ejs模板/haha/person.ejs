@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>show</title>
+</head>
+<body>
+
+<!--
+       ejs语法：
+            1.<% %>   里面能写任意js代码，但是不会向浏览器输出任何东西。
+            2.<%- %>  能够将后端传递过来对象指定key所对应value渲染的页面，会渲染html标签
+            3.<%= %>  能够将后端传递过来对象指定key所对应value渲染的页面，不会渲染html标签，会把标签当文本输出
+
+-->
+
+<h1>我是一个新的页面</h1>
+<h1>data</h1>
+<!--<div>< %-data% ></div>
+<div>< %=data% ></div>-->
+<%
+    for (var i=0; i<persons.length; i++ ){
+      let item = persons[i] %>
+      <ul>
+          <li class="name">姓名：<%=item.name%></li>
+          <li>年龄：<%=item.age%></li>
+      </ul>
+<%}%>
+
+<h1><%=a%></h1>
+
+
+</body>
+</html>

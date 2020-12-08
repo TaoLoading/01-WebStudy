@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* 属性选择器使用方法 */
+        /* 选择的是：  既是button 又有 disabled 这个属性的元素 */
+        /* 属性选择器的权重是 10 */
+        /* 1.直接写属性 */
+        
+        button[disabled] {
+            cursor: default;
+        }
+        
+        button {
+            cursor: pointer;
+        }
+        /* 2. 属性等于值 */
+        
+        input[type="search"] {
+            color: pink;
+        }
+        /* 3. 以某个值开头的 属性值 */
+        
+        div[class^="icon"] {
+            color: red;
+        }
+        /* 4. 以某个值结尾的 */
+        
+        div[class$="icon"] {
+            color: green;
+        }
+        /* 5. 可以在任意位置的 */
+        
+        div[class*="icon"] {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- disabled 是禁用我们的按钮 -->
+    <button>按钮</button>
+    <button>按钮</button>
+    <button disabled="disabled">按钮</button>
+    <button disabled="disabled">按钮</button>
+
+    <input type="text" name="" id="" value="文本框">
+    <input type="text" name="" id="" value="文本框">
+    <input type="text" name="" id="" value="文本框">
+    <input type="search" name="" id="" value="搜索框">
+    <input type="search" name="" id="" value="搜索框">
+    <input type="search" name="" id="" value="搜索框">
+    <div class="icon1">图标1</div>
+    <div class="icon2">图标2</div>
+    <div class="icon3">图标3</div>
+    <div class="iicon3">图标4</div>
+    <div class="absicon">图标5</div>
+</body>
+
+</html>

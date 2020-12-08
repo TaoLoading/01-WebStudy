@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>DOM对象和jQuery对象.</title>
+		<script src="00-jQuery.js"></script>
+		<style>
+			div {
+				width: 200px;
+				height: 200px;
+				background-color: hotpink;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+
+		<script>
+			// 使用原生JS获取的对象就是DOM对象
+			var divJs = document.querySelector('div') // Div是DOM对象
+			console.dir(divJs)
+
+			// 使用jQuery获取的对象就是jQuery对象
+			// 利用$对DOM对象包装后产生的对象(伪数组形式存储)
+			var divJq = $('div')
+			console.dir(divJq)
+
+			// jQuery对象只能使用jQuery方法，DOM对象只能使用原生JavaScript属性和方法，两者不能直接混用
+			// divJq.style.display = 'none' // 报错
+
+			// DOM对象和jQuery对象可以相互转换，转换后可以使用对方方法
+
+			// 1.DOM对象转换jQuery对象
+			$(divJs)
+			// $(divJs).hide() // 可以隐藏
+
+			// 2.jQuery对象转换为JS对象
+			// 形式一   jQuery对象[index]
+			// divJq[0].style.display = 'none' // 可以隐藏
+			// 形式二   jQuery对象.get(index)
+			divJq.get(0).style.display = 'none' // 可以隐藏
+
+			// 书写规范
+			// 获取变量时，若获取的是jQuery对象，则命名时在前加$，若获取的是DOM对象，则不加
+		</script>
+	</body>
+</html>

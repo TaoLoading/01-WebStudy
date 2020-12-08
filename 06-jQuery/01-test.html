@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="00-jQuery.js"></script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			.container {
+				width: 800px;
+				height: 500px;
+				margin: 300px auto;
+				background-color: skyblue;
+			}
+			.back {
+				display: none;
+				position: fixed;
+				bottom: 30px;
+				right: 30px;
+				width: 50px;
+				height: 50px;
+				background-color: pink;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container"></div>
+		<div class="back">返回顶部</div>
+		<p>我是男神</p>
+
+		<script>
+			$(function () {
+				// 界面滚动事件
+				$(window).scroll(function () {
+					// 获取遮住内容的高
+					var $boxTop = $('.container').offset().top
+					// 按钮的显示与隐藏
+					if ($(window).scrollTop() >= $boxTop) {
+						$('.back').fadeIn()
+					} else {
+						$('.back').fadeOut()
+					}
+
+					// 点击按钮返回顶部
+					$('.back').on('click', function () {
+						$('body,html').stop().animate({
+							scrollTop: 0,
+						})
+					})
+				})
+			})
+		</script>
+	</body>
+</html>

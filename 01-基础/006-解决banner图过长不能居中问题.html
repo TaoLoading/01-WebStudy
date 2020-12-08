@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>解决图片过长不能居中问题</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .box {
+            width: 100%;
+            height: 90px;
+            overflow: hidden;
+        }
+        
+        .img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 90px;
+            /* 先往右移动屏幕的50%，使图片边缘位于屏幕中线处 */
+            left: 50%;
+            /* 再往左移动图片长度的一半，使得图片中心内容位于屏幕中间 */
+            margin-left: -960px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="img-wrapper">
+            <img src="img/longpic.jpg" alt="">
+        </div>
+    </div>
+</body>
+
+</html>

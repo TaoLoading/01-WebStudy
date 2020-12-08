@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>腾讯天气</title>
+		<link
+			rel="stylesheet"
+			href="./assets/bootstrap/dist/css/bootstrap.min.css"
+		/>
+		<style></style>
+	</head>
+	<body>
+		<div class="container">
+			<table
+				class="table table-striped table-hover"
+				align="center"
+				id="box"
+			></table>
+		</div>
+		<script src="./js/jsonp.js"></script>
+		<script src="./js/template-web.js"></script>
+		<script type="text/html" id="tpl">
+			<tr>
+				<th>时间</th>
+				<th>温度</th>
+				<th>天气</th>
+				<th>风向</th>
+				<th>风力</th>
+			</tr>
+			{{each info}}
+			<tr>
+				<td>{{$value.update_time}}</td>
+				<td>{{$value.degree}}</td>
+				<td>{{$value.weather}}</td>
+				<td>{{$value.wind_direction}}</td>
+				<td>{{$value.wind_power}}</td>
+			</tr>
+			{{/each}}
+		</script>
+		<script>
+			jsonp({
+				url: 'https://wis.qq.com/weather/common',
+				data: {
+					source: 'pc',
+					weather_type: 'forecast_1h',
+					// weather_type: 'forecast_1h|forecast_24h',
+					province: '黑龙江省',
+					city: '哈尔滨市',
+				},
+				success: function (data) {
+					var html = template('tpl', { info: data.data.forecast_1h })
+					box.innerHTML = html
+				},
+			})
+		</script>
+	</body>
+</html>

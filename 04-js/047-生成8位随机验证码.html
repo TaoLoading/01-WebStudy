@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生成8位随机验证码</title>
+    <script>
+        function getRandomCode(len) {
+            //1.准备码源
+            var str = 'QWERTYUIOPASDFGHJKLZXCVBNM1234567890qwertyuiopasdfghjklzxcvbnm';
+            //2.验证码存放库
+            var targetStr = '';
+            //3.循环添加字符到存放库
+            for (var i = 0; i < 8; i++) {
+                // 字符串也具有索引，故通过随机字符串索引的方式添加字符
+                targetStr += str[Math.floor(Math.random() * str.length)];
+            }
+            //4.输出验证码
+            return targetStr;
+        }
+
+        console.log(getRandomCode(8));
+        var date = new Date();
+        console.log(date);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

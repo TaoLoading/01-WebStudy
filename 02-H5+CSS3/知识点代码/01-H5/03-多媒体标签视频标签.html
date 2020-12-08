@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        video {
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <video src="media/video.mp4" controls="controls"></video> -->
+    <!-- 谷歌浏览器把自动播放功能给禁用了 有解决方案： 给视频添加静音属性 -->
+    <video muted="muted" loop="loop" poster="media/pig.jpg" controls>
+        <source src="media/video.mp4" type="video/mp4" />
+        <source src="media/video.ogg" type="video/ogg" />
+        您的浏览器太low了，不支持播放此视频
+    </video>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>get</title>
+</head>
+<body>
+    <h1>该页面是测试使用原生js发送ajax的GET请求</h1>
+<!-- <button id="btn"></button>-->
+<script type="text/javascript">
+  let xhr =new XMLHttpRequest();
+
+  xhr.onreadystatechange =function () {
+      if(xhr.readyState === 4&& xhr.status ===200){
+          console.log(xhr.response)
+      }
+  }
+
+  xhr.open('get','http://localhost:3000/ajax?name=kobe&age=18')
+    xhr.send()
+</script>
+</body>
+</html>

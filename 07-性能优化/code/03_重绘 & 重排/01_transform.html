@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#test{
+				/*position: relative;*/
+				transform: translateX(0);
+				width: 100px;
+				height: 100px;
+				background: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="test">
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		var testNode = document.querySelector("#test");
+		  setTimeout(function(){
+      //testNode.style.left="100px";
+			testNode.style.transform="translateX(100px)";
+    },2000);
+	</script>
+</html>

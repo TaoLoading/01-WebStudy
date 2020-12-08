@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获取鼠标位置</title>
+    <style>
+        body {
+            height: 3000px;
+        }
+        
+        #box {
+            width: 300px;
+            height: 300px;
+            background-color: skyblue;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+
+
+    <script>
+        // clientX & clientY拿的是鼠标相对视口的水平距离和垂直距离，相对的是视口的左上角（以视口左上角为原点）（用的多）
+        // pageX & pageY拿的是鼠标相对页面的水平距离和垂直距离，相对的是页面的左上角（以页面左上角为原点） 
+        // offsetX & offsetY拿的是鼠标相对自身元素的水平距离和垂直距离，相对的是自身元素左上角（以自身元素左上角为原点）
+
+
+
+        var box = document.getElementById('box');
+        box.onclick = function(event) {
+            console.log(event);
+        }
+    </script>
+</body>
+
+</html>

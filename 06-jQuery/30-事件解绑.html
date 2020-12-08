@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>事件解绑</title>
+		<script src="00-jQuery.js"></script>
+		<style>
+			div {
+				width: 200px;
+				height: 200px;
+				background-color: skyblue;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div></div>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
+
+		<script>
+			$(function () {
+				// 事件绑定
+				$('div').on({
+					click: function () {
+						console.log('鼠标点击')
+					},
+					mouseover: function () {
+						console.log('鼠标经过')
+					},
+				})
+				// 事件委托
+				$('ul').on('click', 'li', function () {
+					console.log('li被点击')
+				})
+
+				// 事件解绑  .off()
+				$('div').off('cilck')
+				// 解除事件委托
+				$('ul').off('click', 'li')
+			})
+		</script>
+	</body>
+</html>

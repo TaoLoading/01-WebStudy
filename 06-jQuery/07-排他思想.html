@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>07-排他思想</title>
+		<script src="00-jQuery.js"></script>
+	</head>
+	<body>
+		<button>点击</button>
+		<button>点击</button>
+		<button>点击</button>
+		<button>点击</button>
+		<button>点击</button>
+		<button>点击</button>
+
+		<script>
+			// 隐式迭代给所有butto添加点击事件
+			$('button').click(function () {
+				// // 当前button变化背景色
+				// $(this).css('background', 'skyblue') // $(this)是当前元素，this不要加引号
+				// // 其他button去掉背景颜色
+				// $(this).siblings('button').css('background', '')
+
+				// 链式编程
+				$(this)
+					.css('background', 'skyblue')
+					.siblings()
+					.css('background', '')
+			})
+		</script>
+	</body>
+</html>

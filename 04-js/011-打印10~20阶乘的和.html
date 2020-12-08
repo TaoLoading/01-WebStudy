@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打印10~20阶乘的和</title>
+    <script>
+        var ride = 1;
+        var sum = 0;
+
+        for (var i = 10; i < 21; i++) {
+
+            for (var j = 1; j <= i; j++) {
+                ride *= j;
+            }
+
+            sum += ride;
+            ride = 1;
+        }
+
+        console.log(sum);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

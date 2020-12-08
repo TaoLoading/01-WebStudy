@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>子节点和子元素</title>
+</head>
+
+<body>
+    <div id="box">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+
+
+    <script>
+        // 子节点:childNodes (儿子节点):
+        // 高级浏览器: 元素,文本(文本,空格,换行),注释
+        // 低版本浏览器: 元素,文本(不包括空格和换行),注释
+        // 子元素 children(儿子元素):
+        // 高级浏览器:元素
+        // 低版本浏览器:元素,注释
+
+        // 父节点:parentNode:其实就是父元素(标签)，所有浏览器都能使用
+        // 父元素:parentElement:父标签，所有浏览器都能用
+        // 两者拿到的内容一样
+
+        var bxo = document.getElementById('box');
+
+        // 打印子节点
+        console.log(box.childNodes); // 输出NodeList(3) [text, ul, text]
+        // 打印子元素
+        console.log(box.children); // 输出HTMLCollection(1) [ul]
+        // 打印父节点
+        console.log(box.parentNode);
+        // 打印父元素
+        console.log(box.parentElement);
+
+        // 兼容性封装函数打印子元素
+        function getChildEle(obj) {
+
+            // 定义数组存放子节点
+            var arr = [];
+
+            for (var i; i < obj.children.length; i++) {
+                if (obj.children[i].nodeType != 8) { // 注释节点的nodeType值为8
+                    arr.push(obj.children[i]);
+                }
+            }
+
+            return arr;
+        }
+    </script>
+</body>
+
+</html>

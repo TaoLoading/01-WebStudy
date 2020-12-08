@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>03_变量的 解构 赋值</title>
+	</head>
+	<body>
+		<!--
+    1. 理解:
+    * 从对象或数组中提取数据, 并赋值给变量(多个)
+    2. 对象的解构赋值
+    let {n, a} = {n:'tom', a:12}
+    3. 数组的解构赋值
+    let [a,b] = [1, 'atguigu'];
+    4. 用途
+    * 给多个形参赋值
+    -->
+		<script type="text/javascript">
+			let obj = { name: 'kobe', age: 39 }
+			//    let name = obj.name;
+			//    let age = obj.age;
+			//    console.log(name, age);
+
+			console.log('--------------- 对象的解构赋值 ------------------')
+
+			// 对象的解构赋值(根据key索取value)
+			let { name, age } = obj // 解构赋值真正实现：按需索取
+			console.log(name, age)
+			//    let {name, age} = {name : 'kobe', age : 39};
+			//    console.log(name, age);
+
+			console.log('--------------- 数组的解构赋值 ------------------')
+
+			// 数组的解构赋值，不经常用(根据index索取value)
+			let arr = ['abc', 23, true]
+			let [a, b, c, d] = arr
+			console.log(a, b, c, d)
+			console.log('-----------')
+			let [e] = arr
+			console.log(e) // 输出依然是第一个
+			let [, f] = arr
+			console.log(f) // 输出第二个，即想要输出后面的就要通过逗号占位
+
+			console.log('--------------- 解构赋值的应用 ------------------')
+
+			//不用解构赋值
+			function person(p) {
+				console.log(p.name, p.age)
+			}
+			person(obj)
+
+			// 使用形参结构
+			function person1({ name, age }) {
+				console.log(name, age)
+			}
+			person1(obj)
+		</script>
+	</body>
+</html>

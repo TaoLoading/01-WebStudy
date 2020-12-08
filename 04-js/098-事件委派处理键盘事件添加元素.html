@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件委派处理键盘事件添加元素</title>
+    <style>
+        li {
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" placeholder="请输入您的爱好">
+    <ul class="list"></ul>
+
+
+
+    <script>
+        // 冒泡事件的好处是可以进行事件委派（事件委托、事件代理）
+
+        // 事件委派
+        // 什么时候用：出现新添加的东西，并且新添加的东西要和老的拥有同样的行为，此时我们想到事件委派
+        // 怎么用法： 给父元素添加事件，不给元素本身添加，事件发生后通过父元素去找真正发生事件的元素进行处理
+
+
+
+        var inputNode = document.querySelector('input');
+        var ulNode = document.querySelector('.list');
+
+
+        // 通过事件委派实现移入移出变色
+        // 通过事件委派，只需要给父元素添加两个方法，而以往需要给每个子元素都添加方法
+        ulNode.onmouseover = function(event) {
+            // event兼容性处理
+            event = event || window.event;
+            // 通过event.target找到发生事件的子元素；event.target兼容性处理
+            var liNode = event.target || event.srcElement;
+            liNode.style.backgroundColor = 'skyblue';
+        }
+        ulNode.onmouseout = function(event) {
+            // event兼容性处理
+            event = event || window.event;
+            // 通过event.target找到发生事件的子元素；event.target兼容性处理
+            var liNode = event.target || event.srcElement;
+            liNode.style.backgroundColor = 'transparent';
+        }
+
+
+        inputNode.onkeyup = function(event) { // 键盘事件要用onkeyup
+            // 判断是否是回车键
+            if (event.keyCode == 13) {
+                // 获取输入的内容
+                var value = inputNode.value;
+                // 判断输入框里是否为空
+                if (value.trim()) { // trim()，去除两边空格。为真则说明有值
+                    // 添加内容
+                    var liNode = document.createElement('li');
+                    liNode.innerText = value;
+                    ulNode.appendChild(liNode);
+                    // 清除输入框内容
+                    inputNode.value = '';
+                } else {
+                    alert('请输入内容！')
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阅读协议</title>
+</head>
+
+<body>
+    <button disabled='disabled'>阅读协议（5s）</button>
+
+
+    <script>
+        var btn = document.querySelector('button');
+        var num = 5;
+        var timer = null;
+
+        timer = setInterval(function() {
+            num--;
+            btn.innerHTML = '阅读协议（' + num + 's）';
+            if (num == -1) {
+                clearInterval(timer);
+                btn.innerHTML = '继续下一步';
+                btn.disabled = false;
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>

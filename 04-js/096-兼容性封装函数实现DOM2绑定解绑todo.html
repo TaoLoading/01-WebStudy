@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>兼容性封装函数实现DOM2绑定解绑</title>
+</head>
+
+<body>
+    <button id="add">绑定事件</button>
+    <button id="remove">解绑事件</button>
+
+
+    <script>
+        var add = document.getElementById('add');
+        var remove = document.getElementById('remove');
+
+
+        function addEvent(obj, eventType, fn, isBubble) {
+            if (obj.addEventListener) {
+                // 高级
+                obj.addEventListener(eventType, fn, isBubble);
+            } else {
+                // 低级
+                obj.attachEvent('on' + eventType, fn);
+            }
+        }
+
+        function removeEvent(obj, eventType, fn, isBubble) {
+            if (obj.removeEventListener) {
+                // 高级
+                obj.removeEventListener(eventType, fn, isBubble);
+            } else {
+                // 低级
+                obj.detachEvent('on' + eventType, fn);
+            }
+        }
+
+
+        function fn1() {
+            console.log('i love you');
+        }
+
+        addEvent(add, 'click', fn1, false);
+        removeEvent(remove, 'click', fn1, false); // 解绑无效(To Do)，经测试上一篇代码中IE低版本解绑无效
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>函数防抖测试</title>
+</head>
+<body>
+<input type="text" id="user_input">&nbsp;
+<button id="btn">搜索</button>
+<script type="text/javascript">
+  
+  /*
+  * 函数防抖(debounce)：
+  *   概念： 延迟要执行的动作，若在延时的这段时间内，再次触发了，则取消之前开启的动作，重新计时。
+  *   举例： 电脑无操作1分钟之内如果没有操作会进入休眠，当第40秒时鼠标被移动一下，重新计时1分钟。
+  *   实现： 定时器。
+  *   应用：搜索时等用户完整输入内容后再发送查询请求。
+  * */
+  
+  let input = document.getElementById('user_input')
+  let timeid
+  input.onkeyup = function () {
+    if(timeid){
+      clearTimeout(timeid)
+    }
+    timeid = setTimeout(function () {
+      let value = input.value
+      rendRequest(value)
+    },300)
+  }
+  
+  function rendRequest(data) {
+    console.log(`发送了请求，内容是${data}`)
+  }
+  
+  
+</script>
+</body>
+</html>

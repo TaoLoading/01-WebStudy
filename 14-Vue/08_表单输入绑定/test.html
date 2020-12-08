@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>08_表单输入绑定</title>
+</head>
+<body>
+<!--
+1. 使用v-model(双向数据绑定)自动收集数据
+  text/textarea
+  checkbox
+  radio
+  select
+-->
+<div id="demo">
+  <form action="/xxx">
+    <span>用户名: </span>
+    <input type="text"><br>
+
+    <span>密码: </span>
+    <input type="password"><br>
+
+    <span>性别: </span>
+    <input type="radio" id="female">
+    <label for="female">女</label>
+    <input type="radio" id="male">
+    <label for="male">男</label><br>
+
+    <span>爱好: </span>
+    <input type="checkbox" id="basket" >
+    <label for="basket">篮球</label>
+    <input type="checkbox" id="foot">
+    <label for="foot">足球</label>
+    <input type="checkbox" id="pingpang">
+    <label for="pingpang">乒乓</label><br>
+
+    <span>城市: </span>
+    <select>
+      <option value="">未选择</option>
+    </select><br>
+    <span>介绍: </span>
+    <textarea rows="10"></textarea><br><br>
+
+    <input type="submit" value="注册">
+  </form>
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>03_Object扩展</title>
+	</head>
+
+	<body>
+		<!--
+        ES5给Object扩展了好一些静态方法, 常用的2个:
+        1. Object.create(prototype, [descriptors])
+        * 作用: 以指定对象为原型创建新的对象
+        * 为新的对象指定新的属性, 并对属性进行描述
+            value : 指定值
+            writable : 标识当前属性值是否是可修改的, 默认为false
+            configurable: 标识当前属性是否可以被删除 默认为false
+            enumerable： 标识当前属性是否能用for in 枚举 默认为false
+
+        2. Object.defineProperties(object, descriptors)
+        * 作用: 为指定对象定义扩展多个属性
+        * get ：用来获取当前属性值的回调函数
+        * set ：修改当前属性值得触发的回调函数，并且实参即为修改后的值
+        * 存取器属性：setter,getter一个用来监视值，一个用来取值
+        -->
+		<script type="text/javascript">
+			var obj = {
+				name: 'curry',
+				age: 29,
+			}
+			var obj1 = {}
+			obj1 = Object.create(obj, {
+				// 当前扩展属性的配置对象
+				sex: {
+					// 当前属性的修饰属性
+					value: '男',
+					writable: true, // 可以被修改
+					configurable: true, // 可以被删除
+					enumerable: true, // 可以被枚举，不加则在for in枚举时只能枚举出原型的属性
+				},
+			})
+			obj1.sex = '女'
+			console.log(obj1.sex)
+
+			console.log(
+				'------------------------ for in枚举对象和数组 -----------------------------'
+			)
+			// for in 枚举对象
+			for (var i in obj1) {
+				// for in的缺点：for in枚举对象的时候除了能够枚举自身的属性之外，还会枚举原型的属性
+				if (obj1.hasOwnProperty(i)) {
+					// object.hasOwnProperty()判断传入的属性是否为对象自身的属性，通过返回布尔值。以此弥补for in的缺点
+					console.log(i)
+				}
+			}
+
+			// for in也可以遍历数组，但返回的是数组的下标
+			let arr = [1, 2, 3, 4, 5]
+			for (let item in arr) {
+				console.log(item)
+			}
+
+			// Object.defineProperties(object, descriptors)
+			var obj2 = {
+				name: 'timi',
+				age: '21',
+				gender: 'man',
+			}
+
+			Object.defineProperties(obj2, {
+				// 配置对象
+				gender: {
+					// get方法用来获取当前属性值得回调函数，在要获取扩展属性值的时候自动调用
+					get: function () {
+						return 'woman'
+					},
+					// set方法用来监视扩展属性，如果扩展属性一旦被set修改就会自动调用，并且会将修改后的属性值自动作为参数传入set函数内部
+					set: function (msg) {
+						// this.gender = msg // 不能在set内部直接修改扩展属性值，会出现死循环
+						// 因为每次扩展属性被直接修改都会调用set，而set内部又再次修改，故出现死循环
+						// 可以通过第三方变量去间接修改
+						console.log('修改后的值为', msg)
+					},
+				},
+			})
+
+			obj2.gender = '女'
+			console.log(obj2)
+			console.log(obj2.gender)
+
+			// Object.defineProperty(object, property, descriptors)
+			// Object.defineProperty(obj2, 'gender', {
+			// 	gender: {
+			// 		// get方法用来获取当前属性值得回调函数，在要获取扩展属性值的时候自动调用
+			// 		get: function () {
+			// 			return 'woman'
+			// 		},
+			// 		// set方法用来监视扩展属性，如果扩展属性一旦被set修改就会自动调用，并且会将修改后的属性值自动作为参数传入set函数内部
+			// 		set: function (msg) {
+			// 			// this.gender = msg // 不能在set内部直接修改扩展属性值，会出现死循环
+			// 			// 因为每次扩展属性被直接修改都会调用set，而set内部又再次修改，故出现死循环
+			// 			// 可以通过第三方变量去间接修改
+			// 			console.log('修改后的值为', msg)
+			// 		},
+			// 	},
+			// })
+
+			// obj2.gender = '女'
+			// console.log(obj2)
+			// console.log(obj2.gender)
+
+			console.log(
+				'--------------------将obj4中的属性克隆到obj5，并对数据实现双向绑定------------------------'
+			)
+
+			// 将obj4中的属性克隆到obj5，并对数据实现双向绑
+			var obj4 = {
+				name: 'lht',
+				age: '21',
+			}
+			var obj5 = {}
+			// 遍历对象克隆数据
+			for (var item in obj4) {
+				if (obj4.hasOwnProperty(item)) {
+					// obj5[item] = obj2[item] // 只实现了属性克隆，没有实现数据绑定
+					;(function (item) {
+						Object.defineProperties(obj5, {
+							// 配置对象
+							[item]: {
+								get: function () {
+									return obj4[item]
+								},
+								set: function (msg) {
+									obj4[item] = msg
+								},
+							},
+						})
+					})(item)
+				}
+			}
+			console.log(obj5)
+		</script>
+	</body>
+</html>

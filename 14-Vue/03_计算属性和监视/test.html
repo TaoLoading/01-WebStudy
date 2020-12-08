@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>03_计算属性和监视</title>
+</head>
+<body>
+<!--
+1. 计算属性
+  在computed属性对象中定义计算属性的方法
+  在页面中使用{{方法名}}来显示计算的结果
+2. 监视属性:
+  通过通过vm对象的$watch()或watch配置来监视指定的属性
+  当属性变化时, 回调函数自动调用, 在函数内部进行计算
+3. 计算属性高级:
+  通过getter/setter实现对属性数据的显示和监视
+  计算属性存在缓存, 多次读取只执行一次getter计算
+-->
+<div id="demo">
+  姓: <input type="text" placeholder="First Name"><br>
+  名: <input type="text" placeholder="Last Name"><br>
+  姓名1(单向): <input type="text" placeholder="Full Name1"><br>
+  姓名2(单向): <input type="text" placeholder="Full Name2"><br>
+  姓名3(双向): <input type="text" placeholder="Full Name3"><br>
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

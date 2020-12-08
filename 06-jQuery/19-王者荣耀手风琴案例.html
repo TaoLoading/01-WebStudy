@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>19-王者荣耀手风琴案例</title>
+		<script src="00-jQuery.js"></script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			img {
+				display: block;
+			}
+
+			ul {
+				list-style: none;
+			}
+
+			.king {
+				width: 852px;
+				margin: 100px auto;
+				background: url(img/王者荣耀手风琴案例/bg.png) no-repeat;
+				overflow: hidden;
+				padding: 10px;
+			}
+
+			.king ul {
+				overflow: hidden;
+			}
+
+			.king li {
+				position: relative;
+				float: left;
+				width: 69px;
+				height: 69px;
+				margin-right: 10px;
+			}
+
+			.king li.current {
+				width: 224px;
+			}
+
+			.king li.current .big {
+				display: block;
+			}
+
+			.king li.current .small {
+				display: none;
+			}
+
+			.big {
+				width: 224px;
+				display: none;
+			}
+
+			.small {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 69px;
+				height: 69px;
+				border-radius: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="king">
+			<ul>
+				<li class="current">
+					<a href="#">
+						<img
+							src="img/王者荣耀手风琴案例/m1.jpg"
+							alt=""
+							class="small"
+						/>
+						<img
+							src="img/王者荣耀手风琴案例/m.png"
+							alt=""
+							class="big"
+						/>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img
+							src="img/王者荣耀手风琴案例/l1.jpg"
+							alt=""
+							class="small"
+						/>
+						<img
+							src="img/王者荣耀手风琴案例/l.png"
+							alt=""
+							class="big"
+						/>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img
+							src="img/王者荣耀手风琴案例/c1.jpg"
+							alt=""
+							class="small"
+						/>
+						<img
+							src="img/王者荣耀手风琴案例/c.png"
+							alt=""
+							class="big"
+						/>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img
+							src="img/王者荣耀手风琴案例/w1.jpg"
+							alt=""
+							class="small"
+						/>
+						<img
+							src="img/王者荣耀手风琴案例/w.png"
+							alt=""
+							class="big"
+						/>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img
+							src="img/王者荣耀手风琴案例/z1.jpg"
+							alt=""
+							class="small"
+						/>
+						<img
+							src="img/王者荣耀手风琴案例/z.png"
+							alt=""
+							class="big"
+						/>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img
+							src="img/王者荣耀手风琴案例/h1.jpg"
+							alt=""
+							class="small"
+						/>
+						<img
+							src="img/王者荣耀手风琴案例/h.png"
+							alt=""
+							class="big"
+						/>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img
+							src="img/王者荣耀手风琴案例/t1.jpg"
+							alt=""
+							class="small"
+						/>
+						<img
+							src="img/王者荣耀手风琴案例/t.png"
+							alt=""
+							class="big"
+						/>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<script>
+			$(function () {
+				$('.king li').mouseover(function () {
+					// 当前li的宽度调整为224px，大图淡入，小图淡出
+					$(this)
+						.stop()
+						.animate({
+							width: 224,
+						})
+						.find('.small')
+						// 此处还有一次stop()
+						.stop()
+						.fadeOut()
+						.siblings('.big')
+						.stop()
+						.fadeIn()
+
+					// 其他人物的li的宽度调整为69px，大图淡出，小图淡入
+					$(this)
+						.siblings('li')
+						.stop()
+						.animate({
+							width: 69,
+						})
+						.find('.small')
+						// 此处还有一次stop()
+						.stop()
+						.fadeIn()
+						.siblings('.big')
+						.stop()
+						.fadeOut()
+				})
+			})
+		</script>
+	</body>
+</html>

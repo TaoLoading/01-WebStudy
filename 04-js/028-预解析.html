@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>预解析</title>
+    <script>
+        //一、预解析方式（分为变量预解析和函数预解析，函数预解析的优先级高于变量）
+
+        //1.变量预解析
+        console.log(a); //返回undefined
+        var a = 10;
+
+        //相当于：
+        // var a;
+        // console.log(a);
+        // a = 10;
+        //注：变量预解析会将定义变量提升，但预解析只会解析带var的，像a = 10这种则不会进行预解析
+
+        //2.函数预解析
+        //函数其预解析方式分为两种
+        //function f1() = {}的预解析会提升整个函数
+        //var f1 = function(){}的预解析只提升var f1
+
+
+        //二、预解析效果（分为全局内和函数内）
+
+        //1.全局：全局中所有带var的变量及使用字面量定义的函数都会提升到全局的最上方
+        //2.函数：函数中所有带var的变量及使用字面量定义的函数都会提升到函数的最上方
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

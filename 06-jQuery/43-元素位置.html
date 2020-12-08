@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>43-元素位置</title>
+		<script src="00-jQuery.js"></script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			.father {
+				width: 400px;
+				height: 400px;
+				background-color: pink;
+				margin: 100px;
+				overflow: hidden;
+				position: relative;
+			}
+
+			.son {
+				width: 150px;
+				height: 150px;
+				background-color: purple;
+				position: absolute;
+				left: 10px;
+				top: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="father">
+			<div class="son"></div>
+		</div>
+
+		<script>
+			// offset()，设置和获取元素距离document的位置(偏移)，不受父亲盒子影响
+			console.log($('.son').offset())
+			console.log($('.son').offset().top)
+			$('.son').offset({
+				top: 200,
+				left: 200,
+			})
+
+			// position()，获取元素相对于带有定位的父级的位置，如果父级没有定位则以document为准
+			console.log($('.son').position())
+			console.log($('.son').position().top)
+			// 不能设置位置
+			// $('.son').position({
+			// 	top: 200,
+			// 	left: 200,
+			// }) // 无效
+
+			// scorllTop()/scrollLeft()，设置和获取元素被卷去的头部和左侧
+		</script>
+	</body>
+</html>

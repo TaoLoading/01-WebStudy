@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>01_let关键字</title>
+	</head>
+	<body>
+		<button>测试1</button>
+		<br />
+		<button>测试2</button>
+		<br />
+		<button>测试3</button>
+		<br />
+		<!--
+***let
+1. 作用:
+  * 与var类似, 用于声明一个变量
+2. 特点:
+  * 在块作用域内有效
+  * 不能重复声明
+  * 会预处理，有变量提升，但是不能提前使用提升的变量
+3. 应用:
+  * 循环遍历加监听
+  * 使用let取代var是趋势
+
+
+  let变量提升：
+  1.全局变量提升：会临时创建(代码执行到let声明变量时才创建)一个变量对象(script)用来收集全局作用域下的let定义的变量，但是没有赋值。(所以压栈时顺序：global -> script -> local)
+  2.局部变量提升：会将var let定义的变量全部放到当前函数的变量对象中
+  与var变量提升的区别：let提升的变量在未赋值之前不允许被使用
+-->
+		<script type="text/javascript">
+			//console.log(age);// 报错age is not defined
+			let age = 12
+			//let age = 13;不能重复声明
+			console.log(age)
+
+			// 使用let解决之前点击不同btn全部弹出3的bug
+			// 专业术语：循环遍历加监听
+			let btns = document.getElementsByTagName('button')
+			for (let i = 0; i < btns.length; i++) {
+				btns[i].onclick = function () {
+					alert(i)
+				}
+			}
+			// 因为let声明变量有块级作用域，故对于每个btns[i]都会有对应的i
+		</script>
+	</body>
+</html>

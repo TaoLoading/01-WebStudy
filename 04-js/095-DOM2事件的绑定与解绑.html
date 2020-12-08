@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM2事件的绑定与解绑</title>
+</head>
+
+<body>
+    <button>绑定事件</button>
+    <button>解绑事件</button>
+    <button>IE10以下绑定事件</button>
+    <button>IE10以下解绑事件</button>
+
+
+
+    <script>
+        var btns = document.querySelectorAll('button');
+
+        // DOM2绑定
+        // btns[0].addEventListener('click ', function() {
+        //     console.log('i love you!');
+        // }, false); // addEventListener()添加事件监听，有三个参数，第一个是type，注意这里不加on，第二个是执行的操作，第三个是个布尔值，默认是false
+        // false代表冒泡事件流(IE)，true代表捕获事件流(网景)
+
+        // 将函数拆出来单独定义
+        function fn1() {
+            console.log('i love you!');
+        }
+        btns[0].addEventListener('click', fn1, false);
+        // DOM2可以对同一元素添加多种事件，依次执行
+        function fn2() {
+            console.log('i love you too!');
+        }
+        btns[0].addEventListener('click', fn2, false);
+
+
+        // DOM2解绑
+        btns[1].addEventListener('click', function() { // 先对要实现解绑功能的按钮添加事件监听
+            btns[0].removeEventListener('click', fn2, false); // 再在里面按钮移除绑定事件，注意参数要与绑定时完全一致
+        }, false);
+
+
+        // DOM2事件addEventListener()高级浏览器可以使用   
+        // IE10以下的不能使用，IE10以下给出了另外一种绑定方式
+        // IE10以下绑定事件
+        btns[2].attachEvent('onclick', fn1); // 此时由于使用了querySelectorAll故低版本IE会报错，懒得改了
+        // IE10以下解绑事件
+        btns[2].detachEvent('onclick', fn1);
+    </script>
+</body>
+
+</html>

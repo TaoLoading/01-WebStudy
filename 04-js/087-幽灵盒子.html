@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幽灵盒子</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #box {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            margin: 50px auto;
+            background-color: hotpink;
+            text-align: center;
+            line-height: 200px;
+            font-size: 40px;
+            transition: 2s;
+        }
+        
+        #box .top,
+        #box .bottom {
+            position: absolute;
+            width: 0;
+            height: 30px;
+            background-color: deepskyblue;
+            transition: 2s;
+        }
+        
+        #box .bottom {
+            right: 0;
+            bottom: 0;
+        }
+        
+        #box .top {
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        TaoLoading
+        <div class="top"></div>
+        <div class="bottom"></div>
+    </div>
+
+
+    <script>
+        var box = document.getElementById('box');
+        var topBar = document.querySelector('#box .top');
+        var bottomBar = document.querySelector('#box .bottom');
+
+        box.onmouseenter = function() {
+            topBar.style.width = '300px';
+            bottomBar.style.width = '300px';
+            this.style.color = 'hotpink';
+            this.style.backgroundColor = 'greenyellow';
+        }
+
+        box.onmouseleave = function() {
+            topBar.style.width = '0';
+            bottomBar.style.width = '0';
+            this.style.color = 'greenyellow';
+            this.style.backgroundColor = 'hotpink';
+        }
+    </script>
+</body>
+
+</html>

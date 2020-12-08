@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>循环切换图片</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        img {
+            display: block;
+            /*vertical-align: middle;*/
+        }
+        
+        ul,
+        li {
+            list-style: none;
+        }
+        
+        input {
+            outline: none;
+        }
+        
+        #img {
+            width: 500px;
+            height: 400px;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="img/2.jpg" alt="" id="img" />
+
+    <script type="text/javascript">
+        window.onload = function() {
+            // 将所需图片放入数组
+            var imgArr = ['img/2.jpg', 'img/3.jpg', 'img/4.jpg', 'img/5.jpg', 'img/6.jpg', 'img/7.jpg', 'img/8.jpg', 'img/9.jpg', ];
+            // 设置初始下标
+            var num = 0;
+            var imgNode = document.getElementById('img');
+            imgNode.onclick = function() {
+                // 通过下标增加实现数组内的图片切换
+                num++;
+                // 通过取余将下标num控制在0~7之间（注意经常使用通过取余控制下标）
+                imgNode.src = imgArr[num % imgArr.length];
+            }
+        }
+    </script>
+</body>
+
+</html>

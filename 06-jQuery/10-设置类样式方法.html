@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>10-设置类样式方法</title>
+		<script src="00-jQuery.js"></script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			div {
+				width: 200px;
+				height: 200px;
+				background-color: skyblue;
+				margin: 100px auto;
+				transition: all 0.5s;
+			}
+			.current {
+				background-color: pink;
+				transform: rotate(360deg);
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<!-- <div class="current"></div> -->
+
+		<script>
+			$(function () {
+				// // 添加类
+				// $('div').click(function () {
+				// 	$(this).addClass('current')
+				// })
+				// // 移除类
+				// $('div').click(function () {
+				// 	$(this).removeClass('current')
+				// })
+
+				// 切换类
+				$('div').click(function () {
+					$(this).toggleClass('current')
+				})
+			})
+		</script>
+	</body>
+</html>

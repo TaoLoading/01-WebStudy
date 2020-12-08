@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>jQuery的基本使用</title>
+		<script src="00-jQuery.js"></script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			div {
+				width: 200px;
+				height: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<script>
+			// 入口函数一(更简洁)。$是jQuery的别称，是jQuery的顶级对象，类似window
+			$(function () {
+				$('div').hide()
+			})
+
+			// 入口函数二
+			// $(document).ready(function () {
+			// 	$('div').hide()
+			// })
+
+			// 两个入口函数都是等着 DOM 结构渲染完毕即可执行内部代码
+			// 注意：不必等到所有外部资源加载完成
+			// 所以相当于原生 js 中的 DOMContentLoaded
+			// 不同于原生 js 中的 load 事件是等页面文档、外部的 js 文件、css文件、图片加载完毕才执行内部代码
+		</script>
+
+		<div></div>
+
+		<!-- 不加处理放到html代码下面可以正常执行，放到上面不可以 -->
+		<!-- <script>
+			$('div').hide() // 可以隐藏
+		</script> -->
+	</body>
+</html>

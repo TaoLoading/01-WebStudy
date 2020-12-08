@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>20-右下角广告</title>
+		<script src="00-jQuery.js"></script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			.ad {
+				display: none;
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				width: 230px;
+				height: 120px;
+				background-image: url(img/右下角广告/ad.jpg);
+			}
+			span {
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 40px;
+				height: 18px;
+				background-image: url(img/右下角广告/h.jpg);
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="ad">
+			<span></span>
+		</div>
+
+		<script>
+			$(function () {
+				$('.ad').slideDown(1000).slideUp(1000).fadeIn(1000)
+
+				$('.ad span').click(function () {
+					$('.ad').fadeOut(500)
+				})
+			})
+		</script>
+	</body>
+</html>

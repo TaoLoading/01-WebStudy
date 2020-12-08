@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04_作用域_面试题</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        //  问题: 结果输出多少?
+
+        var x = 10;
+
+        function fn() {
+            console.log(x); // 打印10
+        }
+
+        function show(f) {
+            var x = 20;
+            f();
+        }
+        show(fn);
+    </script>
+</body>
+
+</html>

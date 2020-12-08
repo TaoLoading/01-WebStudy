@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>不同数据类型的数值运算及比较</title>
+</head>
+
+<body>
+    <script>
+        // Number和其它数据类型的运算
+
+        // 和String
+        var a = 5;
+        var b = '';
+        // console.log(a + b); // 返回5
+        // console.log(a - b); // 返回5
+        // console.log(a > b); // 返回true
+        // console.log(a < b); // 返回false
+        // console.log(a == b); // 返回false
+
+        // 和Boolean
+        b = true;
+        // console.log(a + b); // 返回6
+        // console.log(a - b); // 返回4
+        // console.log(a > b); // 返回false
+        // console.log(a < b); // 返回false
+        // console.log(a == b); // 返回false
+
+        // 和undefined
+        b = undefined;
+        // console.log(a + b); // 返回NaN
+        // console.log(a - b); // 返回NaN
+        // console.log(a > b); // 返回NaN
+        // console.log(a < b); // 返回NaN
+        // console.log(a == b); // 返回false
+        // console.log(NaN == NaN); // 返回false
+
+        // 和null
+        b = null;
+        // console.log(a + b); // 返回5
+        // console.log(a - b); // 返回5
+        // console.log(a > b); // 返回true
+        // console.log(a < b); // 返回false
+        // console.log(a == b); // 返回false
+
+
+        // 字符串和其它数据类型的运算
+
+        a = 'sdfasf';
+        b = true;
+        a = '123';
+        a = '';
+        // console.log(a + b);
+        // console.log(a - b);
+        // console.log(a > b);
+        // console.log(a < b);
+        // console.log(a == b);
+
+        a = 'sjhdga';
+        a = '123';
+        a = '';
+        b = undefined;
+        // console.log(a + b);
+        // console.log(a - b);
+        // console.log(a > b);
+        // console.log(a < b);
+        // console.log(a == b); // 返回false，空串和undefined不相等
+
+        a = 'sjhdga';
+        a = '123';
+        a = '';
+        b = null;
+        // console.log(a + b);
+        // console.log(a - b);
+        // console.log(a > b);
+        // console.log(a < b);
+        // console.log(a == b); //返回false，特殊情况：空串和null不相等
+
+
+
+
+        // boolean和其它数据类型
+        a = false;
+        b = undefined;
+        // console.log(a + b); // 返回NaN
+        // console.log(a - b); // 返回NaN
+        // console.log(a > b); // 返回false
+        // console.log(a < b); // 返回false
+        // console.log(a == b); // 返回false
+
+        b = null;
+        // console.log(a + b); // 返回0
+        // console.log(a - b); // 返回0
+        // console.log(a > b); // 返回false
+        // console.log(a < b); // 返回false
+        // console.log(a == b); // 返回false，特殊情况：false和null不相等
+
+        //undefined和其它类型
+        a = undefined;
+        b = null;
+        console.log(a + b); // 返回NaN
+        console.log(a - b); // 返回NaN
+        console.log(a > b); // 返回false
+        console.log(a < b); // 返回false
+        console.log(a == b); // 返回true，特殊情况：undefined 和 null 相等
+        console.log(0 == null); // 返回false,特殊情况：0和null不相等
+
+        //特殊情况：
+        // 当遇到null的时候，会有特殊情况发生：
+        // 特殊情况： 空串和null不相等
+        // 特殊情况： false和null不相等
+        // 特殊情况: 0和null不相等
+        // 特殊情况： undefined和null相等
+    </script>
+</body>
+
+</html>

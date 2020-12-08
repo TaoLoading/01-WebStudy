@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>11_过滤器</title>
+</head>
+<body>
+<!--
+1. 理解过滤器
+  功能: 对要显示的数据进行特定格式化后再显示
+  注意: 并没有改变原本的数据, 可是产生新的对应的数据
+2. 编码
+  1). 定义过滤器
+    Vue.filter(filterName, function(value[,arg1,arg2,...]){
+      // 进行一定的数据处理
+      return newValue
+    })
+  2). 使用过滤器
+    <div>{{myData | filterName}}</div>
+    <div>{{myData | filterName(arg)}}</div>
+-->
+<!--需求: 对当前时间进行指定格式显示-->
+<div id="test">
+  <h2>显示格式化的日期时间</h2>
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script>
+
+</script>
+</body>
+</html>

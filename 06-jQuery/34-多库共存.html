@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>34-多库共存</title>
+		<script src="00-jQuery.js"></script>
+	</head>
+	<body>
+		<div>这是一个div</div>
+		<span>这是一个span</span>
+
+		<script>
+			$(function () {
+				// 封装$方法
+				function $(ele) {
+					return document.querySelector(ele)
+				}
+				console.log($('div')) // 可以获取div
+				// $.each() // 报错，此时$已经被我们自己定义，故起作用的不是jQuery中的$('ele')，而是我们自己定义的
+				// 而我们自己定义的$方法中没有each()方法，故报错
+
+				// 解决方案：
+				// 1.将$换成jQuery
+				jQuery.each() // 不报错
+				// 2.jQuery释放$控制权，变量规定新的名称  var xxx = $.noConflict()
+				var casual = jQuery.noConflict() // 由于之前定义了$方法，故此处使用jQuery
+				console.log(casual('span'))
+			})
+		</script>
+	</body>
+</html>

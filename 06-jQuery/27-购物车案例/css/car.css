@@ -1,0 +1,233 @@
+.car-header {
+    padding: 20px 0;
+}
+
+.car-logo img {
+    vertical-align: middle;
+}
+
+.car-logo b {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.cart-filter-bar {
+    font-size: 16px;
+    color: #E2231A;
+    font-weight: 700;
+}
+
+.cart-filter-bar em {
+    padding: 5px;
+    border-bottom: 1px solid #E2231A;
+}
+
+.cart-thead {
+    height: 32px;
+    line-height: 32px;
+    margin: 5px 0 10px;
+    padding: 5px 0;
+    background: #f3f3f3;
+    border: 1px solid #e9e9e9;
+    border-top: 0;
+    position: relative;
+}
+
+.cart-thead>div,
+.cart-item>div {
+    float: left;
+}
+
+.t-checkbox,
+.p-checkbox {
+    height: 18px;
+    line-height: 18px;
+    padding-top: 7px;
+    width: 122px;
+    padding-left: 11px;
+}
+
+.t-goods {
+    width: 400px;
+}
+
+.t-price {
+    width: 120px;
+    padding-right: 40px;
+    text-align: right;
+}
+
+.t-num {
+    width: 150px;
+    text-align: center;
+}
+
+.t-sum {
+    width: 100px;
+    text-align: right;
+}
+
+.t-action {
+    width: 130px;
+    text-align: right;
+}
+
+.cart-item {
+    height: 160px;
+    border-style: solid;
+    border-width: 2px 1px 1px;
+    border-color: #aaa #f1f1f1 #f1f1f1;
+    background: #fff;
+    padding-top: 14px;
+    margin: 15px 0;
+}
+
+.check-cart-item {
+    background: #fff4e8;
+}
+
+.p-checkbox {
+    width: 50px;
+}
+
+.p-goods {
+    margin-top: 8px;
+    width: 565px;
+}
+
+.p-img {
+    float: left;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+.p-msg {
+    float: left;
+    width: 210px;
+    margin: 0 10px;
+}
+
+.p-price {
+    width: 110px;
+}
+
+.quantity-form {
+    width: 80px;
+    height: 22px;
+}
+
+.p-num {
+    width: 170px;
+}
+
+.decrement,
+.increment {
+    float: left;
+    border: 1px solid #cacbcb;
+    height: 18px;
+    line-height: 18px;
+    padding: 1px 0;
+    width: 16px;
+    text-align: center;
+    color: #666;
+    margin: 0;
+    background: #fff;
+    margin-left: -1px;
+}
+
+.itxt {
+    float: left;
+    border: 1px solid #cacbcb;
+    width: 42px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    padding: 1px;
+    margin: 0;
+    margin-left: -1px;
+    font-size: 12px;
+    font-family: verdana;
+    color: #333;
+    -webkit-appearance: none;
+}
+
+.p-sum {
+    font-weight: 700;
+    width: 145px;
+}
+
+
+/* 结算模块 */
+
+.cart-floatbar {
+    height: 50px;
+    border: 1px solid #f0f0f0;
+    background: #fff;
+    position: relative;
+    margin-bottom: 50px;
+    line-height: 50px;
+}
+
+.select-all {
+    float: left;
+    height: 18px;
+    line-height: 18px;
+    padding: 16px 0 16px 9px;
+    white-space: nowrap;
+}
+
+.select-all input {
+    vertical-align: middle;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.operation {
+    float: left;
+    width: 200px;
+    margin-left: 40px;
+}
+
+.clear-all {
+    font-weight: 700;
+    margin: 0 20px;
+}
+
+.toolbar-right {
+    float: right;
+}
+
+.amount-sum {
+    float: left;
+}
+
+.amount-sum em {
+    font-weight: 700;
+    color: #E2231A;
+    padding: 0 3px;
+}
+
+.price-sum {
+    float: left;
+    margin: 0 15px;
+}
+
+.price-sum em {
+    font-size: 16px;
+    color: #E2231A;
+    font-weight: 700;
+}
+
+.btn-area {
+    font-weight: 700;
+    width: 94px;
+    height: 52px;
+    line-height: 52px;
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    font-family: "Microsoft YaHei";
+    background: #e54346;
+    overflow: hidden;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>操作属性</title>
+		<script src="00-jQuery.js"></script>
+	</head>
+	<body>
+		<a href="http://www.baidu.com" title="百度链接">这是一个链接</a>
+		<div index="1">这是一个div</div>
+		<span data-index="2">这是一个span</span>
+
+		<script>
+			$(function () {
+				console.log('--------------- 固有属性 ----------------')
+				// 固有属性
+				// 获取属性  element.prop('属性名')
+				var $href = $('a').prop('href')
+				console.log($href)
+				// 修改属性 element.prop('属性名', '属性值')
+				$('a').prop('href', 'http://www.taoloading.top')
+				var $href2 = $('a').prop('href')
+				console.log($href2)
+
+				console.log('--------------- 自定义属性 ----------------')
+				// 自定义属性
+				// 获取属性  element.attr('属性名')，类似原生JS里getAttribute()
+				var $index = $('div').attr('index')
+				console.log($index)
+				// 修改属性  element.attr('属性名', '属性值')，类似原生JS里setAttribute()
+				$('div').attr('index', '2')
+				var $index2 = $('div').attr('index')
+				console.log($index2)
+
+				console.log('--------------- 数据缓存data() ----------------')
+				// data()方法可以在指定的元素上存取数据，并不会修改 DOM 元素结构。一旦页面刷新，之前存放的数据都将被移除
+				// 附加数据  data('属性名', '属性值')
+				$('span').data('name', 'lht')
+				// 获取数据  data('属性名')
+				console.log($('span').data('name'))
+				// 获取data-
+				// data()获取H5自定义属性时，不用再写属性名里'data-'，并且返回值是数字型
+				console.log($('span').data('index'))
+			})
+		</script>
+	</body>
+</html>

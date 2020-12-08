@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生成日期</title>
+    <script>
+        // var date = new Date();
+        // console.log(date);
+        // console.log(date.getFullYear());
+        // console.log(date.getMonth()); // 输出0~11月，拿到后要＋1
+        // console.log(date.getDate());
+        // console.log(date.getHours());
+        // console.log(date.getMinutes());
+        // console.log(date.getSeconds());
+        // console.log(date.getYear()); // 已经废弃
+        // console.log(date.toLocaleTimeString());
+        // console.log(date.toLocaleDateString());
+        // console.log(date.getTime()); // 1970 年 1 月 1 日之间的毫秒数
+
+        function getTime() {
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = date.getMonth();
+            var day = date.getDate();
+            var hour = date.getHours();
+            var min = date.getMinutes();
+            var sec = date.getSeconds();
+
+            return year + '年' + month + '月' + day + '日  ' + hour + ':' + min + ':' + sec;
+        }
+
+        console.log(getTime());
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
