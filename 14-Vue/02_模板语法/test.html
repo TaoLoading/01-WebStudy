@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>02_模板语法</title>
-</head>
-<body>
-<!--
+	<head>
+		<meta charset="UTF-8" />
+		<title>02_模板语法</title>
+	</head>
+	<body>
+		<!--
 1. 模板的理解:
   动态的html页面
   包含了一些JS语法代码
@@ -29,14 +29,41 @@
     @click='xxx'
 -->
 
-<div id="app">
-  <h2>1. 双大括号表达式</h2>
+		<div id="app">
+			<h2>1. 双大括号表达式 | 插值</h2>
+			<p>{{msg}}</p>
+			<p>{{msg.toUpperCase()}}</p>
 
-  <h2>2. 指令一: 强制数据绑定</h2>
+			<h2>2. 指令一: 强制数据绑定</h2>
+			<!-- 属性值是一个动态值的时候使用 -->
+			<a v-bind:href="url">点击进入百度</a>
+			<a :href="url">简写</a>
 
-  <h2>3. 指令二: 绑定事件监听</h2>
+			<h2>3. 指令二: 绑定事件监听</h2>
+			<button v-on:click="test">点击弹出文本内容</button>
+			<button @click="test">简写</button>
+		</div>
 
-</div>
+		<script src="../js/vue.js"></script>
+		<script>
+			new Vue({
+				el: '#app',
+				data: {
+					msg: 'love you',
+					url: 'http://www.baidu.com',
+				},
+				methods: {
+					test(event) {
+						alert(event.target.innerText)
+					},
+				},
+			})
 
-</body>
+			/* 
+            表达式与语句的区别：
+            1.表达式不是一个完整的结构，需要与其他结构配置才能正常存在，而语句是可以独立存在的
+            2.表达式返回一个数据结构，而语句是做某个特定工作，不会返回一个结果
+            */
+		</script>
+	</body>
 </html>
