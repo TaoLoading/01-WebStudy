@@ -1,8 +1,0 @@
-{
-	"db": {
-		"user": "itcast",
-		"host": "localhost",
-		"port": "27017",
-		"name": "blog"
-	}
-}
