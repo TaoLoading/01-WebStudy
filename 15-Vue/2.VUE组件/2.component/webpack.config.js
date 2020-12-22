@@ -2,6 +2,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 // 指定路径函数(简化操作path路径)
 function resolve(dir) {
@@ -60,7 +61,8 @@ module.exports = {
 
 				// css-loader：将css转移到js文件中
 				// style-loader：将js中的css转移到html中的<style>
-				use: ['style-loader', 'css-loader'], // 多个loader处理顺序是从右到左
+				// vue-style-loader是对style-loader的增强
+				use: ['vue-style-loader', 'css-loader'], // 多个loader处理顺序是从右到左
 			},
 
 			// 处理图片
@@ -79,6 +81,12 @@ module.exports = {
 					name: 'static/img/[name].[hash:7].[ext]',
 				},
 			},
+
+			// 搭建vue环境
+			{
+				test: /\.vue$/,
+				loader: 'vue-loader',
+			},
 		],
 	},
 
@@ -93,6 +101,8 @@ module.exports = {
 		}),
 		// 自动清除dist文件夹中无用的文件
 		new CleanWebpackPlugin(),
+		// 搭建vue环境
+		new VueLoaderPlugin(),
 	],
 
 	// // 开发服务器
