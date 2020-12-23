@@ -35,6 +35,12 @@ module.exports = {
 		rules: [
 			// 内部配置loader
 
+			// 搭建vue环境
+			{
+				test: /\.vue$/,
+				loader: 'vue-loader',
+			},
+
 			// 处理ES6语法(ES6 ==> ES5)
 			{
 				// 指定处理js文件
@@ -43,7 +49,6 @@ module.exports = {
 				//exclude: /(node_modules|bower_components)/,
 				// 指定处理哪些文件夹
 				include: [resolve('src')],
-
 				use: {
 					loader: 'babel-loader',
 					options: {
@@ -58,11 +63,11 @@ module.exports = {
 			// 处理CSS
 			{
 				test: /\.css$/,
-
 				// css-loader：将css转移到js文件中
 				// style-loader：将js中的css转移到html中的<style>
 				// vue-style-loader是对style-loader的增强
-				use: ['vue-style-loader', 'css-loader'], // 多个loader处理顺序是从右到左
+				use: ['style-loader', 'css-loader'], // 多个loader处理顺序是从右到左
+				// use: ['vue-style-loader', 'css-loader'], //
 			},
 
 			// 处理图片
@@ -80,12 +85,6 @@ module.exports = {
 					// .[ext]：保留图片的后缀
 					name: 'static/img/[name].[hash:7].[ext]',
 				},
-			},
-
-			// 搭建vue环境
-			{
-				test: /\.vue$/,
-				loader: 'vue-loader',
 			},
 		],
 	},
@@ -111,4 +110,20 @@ module.exports = {
 	// 	quiet: true, // 不做太多日志输出
 	// },
 	// devtool: 'cheap-module-eval-source-map',
+
+	// 模块引入解析
+	resolve: {
+		extensions: ['.js', '.vue', '.json'], // 指定可以省略的后缀名(若省略了后缀，按从左到右的顺序依次查找)
+		alias: {
+			// 自定义路径别名
+			/* 
+            优点：
+            1.简化模块路径的编写
+            2.加快打包速度
+            */
+			'@': resolve('src'),
+			'@comps': resolve('src/components'),
+			// vue$: 'vue/dist/vue.esm.js',
+		},
+	},
 }
