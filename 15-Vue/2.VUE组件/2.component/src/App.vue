@@ -6,7 +6,8 @@
 		<div class="todo-wrap">
 			<Header :addTodo="addTodo"></Header>
 			<!-- 在标签中写:xxx="xxx"是向该传递xxx以及它的值 -->
-			<List :todos="todos"></List>
+			<!-- List不需要deleteTodo，Item需要，故先传给List再传给Item，逐层传递 -->
+			<List :todos="todos" :deleteTodo="deleteTodo"></List>
 			<Footer></Footer>
 		</div>
 	</div>
@@ -42,6 +43,9 @@ export default {
 		// 定义更新数据的函数时，数据在哪里，就在哪里定义。本示例数据在App，故定义在App中
 		addTodo(todo) {
 			this.todos.unshift(todo)
+		},
+		deleteTodo(index) {
+			this.todos.splice(index, 1)
 		},
 	},
 

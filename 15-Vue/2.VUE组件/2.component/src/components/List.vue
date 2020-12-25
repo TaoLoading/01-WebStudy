@@ -1,6 +1,12 @@
 <template>
 	<ul class="todo-main">
-		<Item v-for="(todo, index) in todos" :key="todo.id" :todo="todo"></Item>
+		<Item
+			v-for="(todo, index) in todos"
+			:key="todo.id"
+			:todo="todo"
+			:deleteTodo="deleteTodo"
+			:index="index"
+		></Item>
 	</ul>
 </template>
 
@@ -10,7 +16,7 @@ import Item from './Item.vue'
 export default {
 	// 声明接收属性props：指定属性名
 	// 接收的属性会自动添加到组件对象上
-	props: ['todos'],
+	props: ['todos', 'deleteTodo'],
 
 	// name: 'List',
 	components: {
