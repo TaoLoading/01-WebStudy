@@ -8,7 +8,11 @@
 			<!-- 在标签中写:xxx="xxx"是向该传递xxx以及它的值 -->
 			<!-- List不需要deleteTodo，Item需要，故先传给List再传给Item，逐层传递 -->
 			<List :todos="todos" :deleteTodo="deleteTodo"></List>
-			<Footer></Footer>
+			<Footer
+				:todos="todos"
+				:checkAllTodos="checkAllTodos"
+				:clearCompleteTodos="clearCompleteTodos"
+			></Footer>
 		</div>
 	</div>
 </template>
@@ -28,24 +32,31 @@ export default {
             2.名称：todos
             3.放在哪个组件？看哪个组件使用。本示例每个组件都需要用到todos，故放在整体的App中
             */
-			todos: [
-				{ id: 1, title: 'A', complete: false },
-				{ id: 2, title: 'B', complete: true },
-				{ id: 3, title: 'C', complete: false },
-			],
+			todos: [],
 		}
 	},
 
 	methods: {
 		// 定义的所有的方法都会成为组件对象的方法
+		// 定义需要操作数据的函数时，数据在哪里，就在哪里定义。本示例数据在App，故定义在App中
 
-		// 更新数据的函数
-		// 定义更新数据的函数时，数据在哪里，就在哪里定义。本示例数据在App，故定义在App中
+		// 增加todo
 		addTodo(todo) {
 			this.todos.unshift(todo)
 		},
+		// 删除todo
 		deleteTodo(index) {
 			this.todos.splice(index, 1)
+		},
+		// 全选/全不选todos
+		checkAllTodos(isCheck) {
+			this.todos.forEach((todo) => (todo.complete = isCheck))
+		},
+		// 清除已完成的todo
+		clearCompleteTodos() {
+			// 使用filter过滤出服务条件的新数组
+			// 因为filter不会改变原数组，故将产生的新数组重新传递给原数组
+			this.todos = this.todos.filter((todo) => !todo.complete)
 		},
 	},
 
@@ -54,6 +65,25 @@ export default {
 		Header,
 		List,
 		Footer,
+	},
+
+	// 监视数据
+	watch: {
+		todos: {
+			// 深度监视
+			deep: true,
+			// 以JSON的形式保存最新的todos到local
+			handler(value) {
+				// value是最新的todos
+
+				localStorage.setItem('todos_key', JSON.stringify(value))
+			},
+		},
+	},
+
+	mounted() {
+		// 加载数据
+		this.todos = JSON.parse(localStorage.getItem('todos_key')) || []
 	},
 }
 </script>

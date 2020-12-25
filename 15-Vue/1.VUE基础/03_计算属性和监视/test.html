@@ -26,7 +26,6 @@
 
 		<script type="text/javascript" src="../js/vue.js"></script>
 		<script type="text/javascript">
-			// Object.defineProperty() 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象
 			const p = {
 				firstName: 'A',
 				lastName: 'B',
@@ -36,6 +35,7 @@
             如果修改firstName/lastName，fullName自动改变为对应的值
             如果修改fullName，firstName/lastName自动改变为对应的值
             */
+			// Object.defineProperty() 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象
 			Object.defineProperty(p, 'fullName', {
 				get() {
 					// get方法当读取属性值的时候自动调用，将函数的返回值作为属性值，其中this是属性所在的对象
