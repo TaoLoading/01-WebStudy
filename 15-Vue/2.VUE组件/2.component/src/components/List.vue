@@ -6,6 +6,7 @@
 			:todo="todo"
 			:deleteTodo="deleteTodo"
 			:index="index"
+			:updateTodo="updateTodo"
 		></Item>
 	</ul>
 </template>
@@ -16,7 +17,7 @@ import Item from './Item.vue'
 export default {
 	// 声明接收属性props：指定属性名
 	// 接收的属性会自动添加到组件对象上
-	props: ['todos', 'deleteTodo'],
+	props: ['todos', 'deleteTodo', 'updateTodo'],
 
 	// name: 'List',
 	components: {

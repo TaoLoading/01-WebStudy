@@ -5,7 +5,7 @@
 		@mouseleave="handleEnter(false)"
 	>
 		<label>
-			<input type="checkbox" v-model="todo.complete" />
+			<input type="checkbox" v-model="isCheck" />
 			<span>{{ todo.title }}</span>
 		</label>
 		<button class="btn btn-danger" v-show="isShow" @click="confirmDelete">
@@ -20,6 +20,7 @@ export default {
 		todo: Object,
 		deleteTodo: Function,
 		index: Number,
+		updateTodo: Function,
 	},
 	data() {
 		return {
@@ -41,6 +42,17 @@ export default {
 			if (confirm('你确定删除吗？')) {
 				this.deleteTodo(this.index)
 			}
+		},
+	},
+	computed: {
+		// 计算选框的状态
+		isCheck: {
+			get() {
+				return this.todo.complete
+			},
+			set(value) {
+				this.updateTodo(this.todo, value)
+			},
 		},
 	},
 }
@@ -79,3 +91,8 @@ li:last-child {
 	border-bottom: none;
 }
 </style>
+
+<!-- 
+    注意：vue中不建议在子组件中更改父组件中的数据
+    因为父组件的子组件可能有多个，在其中一个子组件修改了父组件的数据后会影响其他子组件
+ -->
