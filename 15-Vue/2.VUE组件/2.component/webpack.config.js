@@ -67,7 +67,7 @@ module.exports = {
 				// style-loader：将js中的css转移到html中的<style>
 				// vue-style-loader是对style-loader的增强
 				use: ['style-loader', 'css-loader'], // 多个loader处理顺序是从右到左
-				// use: ['vue-style-loader', 'css-loader'], //
+				// use: ['vue-style-loader', 'css-loader'],
 			},
 
 			// 处理图片
