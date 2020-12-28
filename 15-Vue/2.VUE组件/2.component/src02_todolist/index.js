@@ -10,8 +10,4 @@ Vue.config.productionTip = false
 new Vue({
 	el: '#root',
 	render: (h) => h(App),
-	// 挂在全局事件总线
-	beforeCreate() {
-		Vue.prototype.$globalEventBus = this
-	},
 })

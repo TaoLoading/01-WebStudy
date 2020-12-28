@@ -12,7 +12,12 @@
 <script>
 export default {
 	// 声明接收属性props：指定属性名/属性值的类型/属性的必要性
-	props: {},
+	props: {
+		addTodo: {
+			type: Function,
+			require: true,
+		},
+	},
 	data() {
 		return {
 			title: '',
@@ -28,8 +33,8 @@ export default {
 				complete: false,
 				title,
 			}
-			// 2.通过分发自定义事件添加todo
-			this.$emit('addTodo', todo)
+			// 2.添加todo
+			this.addTodo(todo)
 			// 3.清除输入
 			this.title = ''
 		},
