@@ -11,7 +11,7 @@
 
 <script>
 export default {
-	// 声明接收属性props：指定属性名/属性值的类型/属性的必要性
+	// 声明接收属性props(一共三种写法)：指定属性名/属性值的类型/属性的必要性
 	props: {},
 	data() {
 		return {
