@@ -6,7 +6,9 @@
 		"dev": "webpack-dev-server --mode development"
 	},
 	"dependencies": {
-		"vue": "^2.6.12"
+		"axios": "^0.21.1",
+		"vue": "^2.6.12",
+		"vue-resource": "^1.5.1"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.12.10",
