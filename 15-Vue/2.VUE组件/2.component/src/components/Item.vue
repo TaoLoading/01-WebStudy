@@ -36,7 +36,6 @@ export default {
 		},
 		confirmDelete(index) {
 			if (confirm('你确定删除吗？')) {
-				// 分开自定义事件：向目标组件传递数据
 				this.$globalEventBus.$emit('deleteTodo', this.index)
 			}
 		},

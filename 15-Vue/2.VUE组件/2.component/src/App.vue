@@ -1,15 +1,4 @@
 <template>
-	<!-- 
-        之前实现子组件与父组件中的通信使用的是props，
-        此示例中使用的是自定义事件实现子组件与父组件的通信。
-
-        自定义事件实现通信的步骤：
-        1.绑定事件监听。绑定事件监听有两种方式，需要注意的是不论那种方式，都是在父组件代码中给子组件绑定事件监听
-        2.分发事件。分发事件是放在了子组件代码中
-        注意绑定事件监听和分发事件是同一个组件对象
-
-        本示例最后还实现自定义事件的解绑
-     -->
 	<div class="todo-container">
 		<div class="todo-wrap">
 			<!-- 通过props实现数据子向父通信 -->
@@ -19,11 +8,25 @@
 			<!-- 子向父通信绑定监听方式一： -->
 			<Header @addTodo="addTodo"></Header>
 			<List :todos="todos" :updateTodo="updateTodo"></List>
-			<Footer
-				:todos="todos"
-				:checkAllTodos="checkAllTodos"
-				:clearCompleteTodos="clearCompleteTodos"
-			></Footer>
+			<Footer>
+				<!-- 传递插槽内容 -->
+				<!-- 插槽内容是在父组件中解析好后再传递给子组件 -->
+
+				<input type="checkbox" v-model="isCheckAll" />
+				<span slot="middle">
+					<span>已完成{{ completeSize }}</span> / 全部{{
+						todos.length
+					}}
+				</span>
+				<button
+					slot="right"
+					class="btn btn-danger"
+					v-show="completeSize > 0"
+					@click="confirmClearCompleteTodos"
+				>
+					清除已完成任务
+				</button>
+			</Footer>
 		</div>
 	</div>
 </template>
@@ -57,6 +60,11 @@ export default {
 		updateTodo(todo, isCheck) {
 			todo.complete = isCheck
 		},
+		confirmClearCompleteTodos() {
+			if (confirm('你确定删除已完成任务吗？')) {
+				this.clearCompleteTodos()
+			}
+		},
 	},
 
 	components: {
@@ -73,20 +81,33 @@ export default {
 	},
 
 	mounted() {
-		// 通过$globalEventBus绑定自定义事件监听
 		this.$globalEventBus.$on('deleteTodo', this.deleteTodo)
-
-		// 子向父通信绑定监听方式二
-		// 注意是给<Header>组件对象绑定自定义事件监听，而此时this代表的是App父组件对象，故要使用ref使引用指向子组件
-		// this.$refs.header.$on('addTodo', this.addTodo)
-
 		this.todos = getTodos()
 	},
 
 	beforeDestroy() {
-		// 解绑自定义事件监听
 		this.$refs.header.$off('addTodo')
 		this.$globalEventBus.$off('deleteTodo')
+	},
+	// 由于需要故将原子组件中定义的内容搬到父组件中
+	computed: {
+		completeSize() {
+			return this.todos.reduce(
+				(pre, todo) => pre + (todo.complete ? 1 : 0),
+				0
+			)
+		},
+		isCheckAll: {
+			get() {
+				return (
+					this.todos.length == this.completeSize &&
+					this.completeSize > 0
+				)
+			},
+			set(value) {
+				this.checkAllTodos(value)
+			},
+		},
 	},
 }
 </script>

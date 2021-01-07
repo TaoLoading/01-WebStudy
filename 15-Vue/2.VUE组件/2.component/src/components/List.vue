@@ -11,14 +11,10 @@
 </template>
 
 <script>
-// 引入Item组件
 import Item from './Item.vue'
 export default {
-	// 声明接收属性props：指定属性名
-	// 接收的属性会自动添加到组件对象上
 	props: ['todos', 'updateTodo'],
 
-	// name: 'List',
 	components: {
 		Item,
 	},

@@ -18,12 +18,6 @@
 
 <script>
 export default {
-	/*
-    模板数据的来源：
-    1.data：自身可变数据
-    2.props：从外部接收的可变数据
-    3.computed：根据已有的data或props数据进行计算产生的数据
-    */
 	props: {
 		todos: Array,
 		checkAllTodos: Function,
@@ -31,7 +25,6 @@ export default {
 	},
 	computed: {
 		completeSize() {
-			// reduce()：根据数组中的元素进行统计处理
 			return this.todos.reduce(
 				(pre, todo) => pre + (todo.complete ? 1 : 0),
 				0
@@ -45,9 +38,6 @@ export default {
 				)
 			},
 			set(value) {
-				// 操作checkbox时调用
-				// 对todos进行全选/全不选
-				// value代表当前勾选的状态
 				this.checkAllTodos(value)
 			},
 		},

@@ -19,16 +19,13 @@ export default {
 	},
 	methods: {
 		add() {
-			// 1.根据输入创建一个todo
 			const title = this.title.trim()
 			const todo = {
 				id: Date.now(),
 				complete: false,
 				title,
 			}
-			// 2.通过分发自定义事件添加todo
 			this.$emit('addTodo', todo)
-			// 3.清除输入
 			this.title = ''
 		},
 	},
