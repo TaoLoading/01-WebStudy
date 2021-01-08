@@ -7,6 +7,7 @@
 	},
 	"dependencies": {
 		"axios": "^0.21.1",
+		"express": "^4.17.1",
 		"vue": "^2.6.12",
 		"vue-resource": "^1.5.1"
 	},
