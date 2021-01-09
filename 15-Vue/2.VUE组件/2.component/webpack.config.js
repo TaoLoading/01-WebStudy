@@ -12,7 +12,7 @@ function resolve(dir) {
 
 module.exports = {
 	// 模式(也可在package文件中的"script"中直接指定)
-	mode: 'development',
+	// mode: 'development',
 
 	// 入口(值可以是字符串或对象)
 	entry: './src/index.js',
@@ -105,10 +105,24 @@ module.exports = {
 	],
 
 	// // 开发服务器
-	// devServer: {
-	// 	open: true, // 自动打开浏览器
-	// 	quiet: true, // 不做太多日志输出
-	// },
+	devServer: {
+		// 自动打开浏览器
+		open: true,
+		// 不做太多日志输出
+		quiet: true,
+		// 配置代理
+		proxy: {
+			// 匹配以/api开头的请求
+			'/api': {
+				// 转发的目标地址
+				target: 'http://localhost:4000',
+				// 在转发请求前去除路径中的/api
+				pathRewrite: { '^/api': '' },
+				// 支持协议名的跨域
+				changeOrigin: true,
+			},
+		},
+	},
 	// devtool: 'cheap-module-eval-source-map',
 
 	// 模块引入解析
