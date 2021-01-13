@@ -1,3 +1,5 @@
+// 引入@babel/polyfill
+import '@babel/polyfill'
 // 引入Vue
 import Vue from 'vue'
 // 引入App

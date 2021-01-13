@@ -84,3 +84,8 @@
 		    }
     
 -------------------------------- 分隔 --------------------------------
+
+(1)使用await和async报错：
+    A.原因：ES6新语法包括两个方面，一是新语法(如const、let)，二是新API(如Map、Promise)，而@babel/preset-env只能编译新语法，不能处理新API，故报错
+    B.解决方法：使用@babel/polyfill来提供新API的实现
+    C.原理：@babel/polyfill内有两个包，分别是core-js和regenerator-runtime，core-js：提供ES5/ES6/ES7的新API实现；regenerator-runtime：提供ES8的await和async
