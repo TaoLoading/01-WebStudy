@@ -11,7 +11,8 @@
 		"express": "^4.17.1",
 		"install": "^0.13.0",
 		"vue": "^2.6.12",
-		"vue-resource": "^1.5.1"
+		"vue-resource": "^1.5.1",
+		"vue-router": "^3.4.9"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.12.10",

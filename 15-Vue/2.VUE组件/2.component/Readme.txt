@@ -82,6 +82,25 @@
 			    },
                 changeOrigin: true
 		    }
+
+3.Vue Router
+    A.概念：Vue Router是Vue.js官方提供的路由管理器，用于构建单页应用
+    B.过程：在在路由文件内引入'vue-router'并声明使用 => 在路由文件内使用new VueRouter()创建路由器 => 在VueRouter()内配置路由 => 在根js文件内注册路由器 => 在页面内使用路由组件标签
+    C.配置路由：
+        {
+            path: '/路由名',
+            component: 路由名
+        }
+    D.注册路由器：
+        import router from './router'
+	    new Vue({
+		    router
+	    })
+    E.组件标签：
+         <router-link>: 用来生成路由链接(可不写)，<router-link to="/xxx">Go to XXX</router-link>
+         <router-view>: 用来显示当前路由组件界面(必须写)，<router-view></router-view>
+
+
     
 -------------------------------- 分隔 --------------------------------
 
