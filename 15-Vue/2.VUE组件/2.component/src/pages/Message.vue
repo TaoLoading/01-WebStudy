@@ -2,9 +2,17 @@
 	<div>
 		<ul>
 			<li v-for="m in messages" :key="m.id">
-				<router-link to="path">{{ m.title }}</router-link>
+				<!-- 链接到对应的文章 -->
+				<!-- 由于是动态的，故应加上冒号，里面是一个字符串 -->
+				<!-- 拼接字符串写法一 -->
+				<router-link :to="`/home/message/detail/${m.id}`">{{
+					m.title
+				}}</router-link>
+				<!-- 拼接字符串写法二 -->
+				<!-- <router-link :to="'/home/message/detail/' + m.id">{{ m.title }}</router-link> -->
 			</li>
 		</ul>
+		<router-view></router-view>
 	</div>
 </template>
 <script>

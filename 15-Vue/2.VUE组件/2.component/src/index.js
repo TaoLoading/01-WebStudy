@@ -7,5 +7,6 @@ new Vue({
 	el: '#root',
 	render: (h) => h(App),
 	// 注册路由器
+	// 所有的组件都会有一个$route参数，代表当前路由对象
 	router,
 })

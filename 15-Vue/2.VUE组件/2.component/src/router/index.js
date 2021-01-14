@@ -8,6 +8,7 @@ import About from '../pages/About.vue'
 import Home from '../pages/Home.vue'
 import News from '../pages/News.vue'
 import Message from '../pages/Message.vue'
+import MessageDetail from '../pages/MessageDetail.vue'
 
 // 声明使用vue插件
 Vue.use(VueRouter)
@@ -36,6 +37,12 @@ export default new VueRouter({
 					// 路径写法二，不加'/'，则会自动在当前父路径下查找改路径
 					path: 'message',
 					component: Message,
+					children: [
+						{
+							path: '/home/message/detail/:mid', // 由于最后一个是文章的代号，是动态的，故应该是一个可变参数，采用':xxx'的形式
+							component: MessageDetail,
+						},
+					],
 				},
 				// 默认跳转路由
 				{
