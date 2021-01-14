@@ -99,6 +99,25 @@
     E.组件标签：
          <router-link>: 用来生成路由链接(可不写)，<router-link to="/xxx">Go to XXX</router-link>
          <router-view>: 用来显示当前路由组件界面(必须写)，<router-view></router-view>
+    F.嵌套路由：
+    children: [
+				{
+					// 路径写法一，写出详细路径
+					path: '/home/news',
+					component: News,
+				},
+				{
+					// 路径写法二，不加'/'，则会自动在当前父路径下查找改路径
+					path: 'message',
+					component: Message,
+				},
+				// 默认跳转路由
+				{
+					// 路径写法三，什么都不写，则会自动跳转到当前父路径
+					path: '',
+					redirect: '/home/news',
+				},
+			],
 
 
     
