@@ -22,8 +22,11 @@
 			<div class="col-xs-6">
 				<div class="panel">
 					<div class="panel-body">
-						<!-- 在此处显示当前路由组件 -->
-						<router-view></router-view>
+						<!-- keep-alive指定保留缓存的组件，默认是保留所有，配合include和exclude使用。常用语优化程序(减少访问请求) -->
+						<keep-alive include="Home">
+							<!-- 在此处显示当前路由组件 -->
+							<router-view></router-view>
+						</keep-alive>
 					</div>
 				</div>
 			</div>

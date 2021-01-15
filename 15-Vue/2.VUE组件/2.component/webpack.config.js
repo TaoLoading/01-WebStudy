@@ -28,6 +28,8 @@ module.exports = {
 		path: resolve('dist'),
 		// 指定打包生产文件的名字
 		filename: '[name]bundle.js', // [name]是个占位符，对应entry中的'main'，同理'main'也可换成其他
+		// 生成的引用路径左边都加一个'/'
+		publicPath: '/',
 	},
 
 	// 模块加载器(值是对象)
@@ -106,6 +108,8 @@ module.exports = {
 
 	// // 开发服务器
 	devServer: {
+		// 端口号
+		port: 8080,
 		// 自动打开浏览器
 		open: true,
 		// 不做太多日志输出
@@ -122,6 +126,8 @@ module.exports = {
 				changeOrigin: true,
 			},
 		},
+		// 请求404时返回index页面
+		historyApiFallback: true,
 	},
 	// devtool: 'cheap-module-eval-source-map',
 

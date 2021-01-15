@@ -1,9 +1,12 @@
 <template>
 	<div>
 		About
+		<input type="text" />
 	</div>
 </template>
 <script>
-export default {}
+export default {
+	name: 'About',
+}
 </script>
 <style></style>

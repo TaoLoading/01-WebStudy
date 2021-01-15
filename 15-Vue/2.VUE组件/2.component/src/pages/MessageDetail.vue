@@ -1,8 +1,10 @@
 <template>
 	<ul>
-		<!-- ID值通过vue调试工具得出 -->
-		<li>ID: {{ $route.params.mid }}</li>
-		<li>Title: {{ detail.title }}</li>
+		<!-- <li>ID: {{ $route.params.mid }}</li> -->
+		<!-- <li>Title: {{ detail.title }}</li> -->
+		<!-- 由于使用了props映射params和query参数，故可直接读取 -->
+		<li>ID: {{ mid }}</li>
+		<li>Title: {{ title }}</li>
 		<li>Content: {{ detail.content }}</li>
 	</ul>
 </template>
@@ -14,6 +16,9 @@ const allDetails = [
 	{ id: 3, title: 'message003', content: 'message content003' },
 ]
 export default {
+	// 接收传递来的参数
+	props: ['mid', 'title'],
+
 	data() {
 		return {
 			detail: {},
