@@ -57,7 +57,18 @@ module.exports = {
 						// 使用预设包配置常用的babel插件
 						presets: ['@babel/preset-env'],
 						// 配置预设包不包含的babel插件
-						plugins: [],
+						plugins: [
+							[
+								// 配置babel-plugin-component(与minti-ui相关)
+								'babel-plugin-component',
+								{
+									// 针对mint-ui来实现按需引入打包
+									libraryName: 'mint-ui',
+									// 自动打包组件对应的样式
+									style: true,
+								},
+							],
+						],
 					},
 				},
 			},

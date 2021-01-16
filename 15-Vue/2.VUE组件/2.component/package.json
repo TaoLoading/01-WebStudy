@@ -8,8 +8,10 @@
 	"dependencies": {
 		"@babel/polyfill": "^7.12.1",
 		"axios": "^0.21.1",
+		"babel-plugin-component": "^1.1.1",
 		"express": "^4.17.1",
 		"install": "^0.13.0",
+		"mint-ui": "^2.2.13",
 		"vue": "^2.6.12",
 		"vue-resource": "^1.5.1",
 		"vue-router": "^3.4.9"
