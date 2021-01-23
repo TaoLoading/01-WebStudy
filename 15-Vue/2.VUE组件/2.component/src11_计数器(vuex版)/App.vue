@@ -1,11 +1,9 @@
 <template>
 	<div>
-		<!-- <p>
+		<p>
 			clicked {{ $store.state.count }} times, count is
 			{{ $store.getters.evenOrOdd }}
-        </p> -->
-		<!-- 简化通过computed代码 -->
-		<p>clicked {{ count }} times, count is{{ evenOrOdd }}</p>
+		</p>
 		<button @click="increment">+</button>
 		<button @click="decrement">-</button>
 		<button @click="incrementIfOdd">increment if odd</button>
@@ -14,14 +12,6 @@
 </template>
 <script>
 export default {
-	computed: {
-		count() {
-			return this.$store.state.count
-		},
-		evenOrOdd() {
-			return this.$store.getters.evenOrOdd
-		},
-	},
 	methods: {
 		increment() {
 			// 触发mutations调用，直接更新状态数据
