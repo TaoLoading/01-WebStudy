@@ -4883,6 +4883,11 @@ vue@^2.6.12:
   resolved "https://registry.npm.taobao.org/vue/download/vue-2.6.12.tgz?cache=0&sync_timestamp=1606946160685&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvue%2Fdownload%2Fvue-2.6.12.tgz#f5ebd4fa6bd2869403e29a896aed4904456c9123"
   integrity sha1-9evU+mvShpQD4pqJau1JBEVskSM=
 
+vuex@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.npm.taobao.org/vuex/download/vuex-3.6.0.tgz?cache=0&sync_timestamp=1606318256705&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvuex%2Fdownload%2Fvuex-3.6.0.tgz#95efa56a58f7607c135b053350833a09e01aa813"
+  integrity sha1-le+lalj3YHwTWwUzUIM6CeAaqBM=
+
 watchpack@^2.0.0:
   version "2.1.0"
   resolved "https://registry.npm.taobao.org/watchpack/download/watchpack-2.1.0.tgz?cache=0&sync_timestamp=1607687453840&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fwatchpack%2Fdownload%2Fwatchpack-2.1.0.tgz#e63194736bf3aa22026f7b191cd57907b0f9f696"

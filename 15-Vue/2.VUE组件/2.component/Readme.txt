@@ -122,22 +122,22 @@
 		    }
 
 3.Vue Router
-    A.概念：Vue Router是Vue.js官方提供的路由管理器，用于构建单页应用
-    B.过程：在在路由文件内引入'vue-router'并声明使用 => 在路由文件内使用new VueRouter()创建路由器 => 在VueRouter()内配置路由 => 在根js文件内注册路由器 => 在页面内使用路由组件标签
-    C.配置路由：
+    (1).概念：Vue Router是Vue.js官方提供的路由管理器，用于构建单页应用
+    (2).过程：在在路由文件内引入'vue-router'并声明使用 => 在路由文件内使用new VueRouter()创建路由器 => 在VueRouter()内配置路由 => 在根js文件内注册路由器 => 在页面内使用路由组件标签
+    (3).配置路由：
         {
             path: '/路由名',
             component: 路由名
         }
-    D.注册路由器：
+    (4).注册路由器：
         import router from './router'
 	    new Vue({
 		    router
 	    })
-    E.组件标签：
+    (5).组件标签：
          <router-link>: 用来生成路由链接(可不写)，<router-link to="/xxx">Go to XXX</router-link>
          <router-view>: 用来显示当前路由组件界面(必须写)，<router-view></router-view>
-    F.嵌套路由：
+    (6).嵌套路由：
     children: [
 				{
 					// 路径写法一，写出详细路径
@@ -156,6 +156,23 @@
 					redirect: '/home/news',
 				},
 			],
+
+4.Vuex
+    (1) 概念：Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。
+        简单的说，vuex就是对vue应用中多个组件的共享状态进行集中式的管理(读/写)。
+    (2) 核心API
+        A.state：相当于data
+        B.getters：包含n个基于state数据getter计算属性的方法的对象
+        C.mutations：包含n个用于直接更新状态数据的方法的对象
+        D.actions：包含n个用于间接更新状态数据的方法的对象
+        E.modules：将store对象分割为多个module，每个module都包含自己的state、mutations、actions、getters，防止store对象过于臃肿
+    (3) 区分actions(dispatch)和mutations(commit)的使用
+        A.actions(dispatch)：除改变数据外还有其他操作(如逻辑判断的等)以及异步代码
+        B.mutations(commit)：仅改变数据
+    (4) 使用
+        A.在入口文件中配置store。store是组件与vuex通信的一个桥梁对象，配置后所有组件都可以通过$store来访问store对象
+        B.在store文件夹内的js文件引入vue和vuex，并对各个API进行配置后暴露出去
+        C.在vue文件内编写页面以及操作逻辑
 
 
     
