@@ -6,7 +6,7 @@ import vuex from 'vuex'
 
 Vue.use(vuex)
 
-// 相当于data
+// 包含n个可变状态数据属性的对象，相当于data
 const state = {
 	// 初始化状态数据
 	count: 1,

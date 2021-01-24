@@ -171,7 +171,7 @@
         B.mutations(commit)：仅改变数据
     (4) 使用
         A.在入口文件中配置store。store是组件与vuex通信的一个桥梁对象，配置后所有组件都可以通过$store来访问store对象
-        B.在store文件夹内的js文件引入vue和vuex，并对各个API进行配置后暴露出去
+        B.在store的js文件引入vue和vuex，并对各个API进行配置后暴露出去
         C.在vue文件内编写页面以及操作逻辑
 
 
