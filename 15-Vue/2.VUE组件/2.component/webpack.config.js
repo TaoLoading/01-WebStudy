@@ -36,8 +36,9 @@ module.exports = {
 	module: {
 		rules: [
 			// 内部配置loader
+			// 多个loader执行顺序是从下往上，从右往左
 
-			// 搭建vue环境
+			// 处理vue文件
 			{
 				test: /\.vue$/,
 				loader: 'vue-loader',
@@ -54,7 +55,7 @@ module.exports = {
 				use: {
 					loader: 'babel-loader',
 					options: {
-						// 使用预设包配置常用的babel插件
+						// 使用预设包配置常用的babel插件(预设包是包含了多个解析ES6语法的plugin包，但此预设包只能解析部分ES6语法，其他语法使用入口文件引入polyfill来解析)
 						presets: ['@babel/preset-env'],
 						// 配置预设包不包含的babel插件
 						plugins: [
@@ -79,7 +80,7 @@ module.exports = {
 				// css-loader：将css转移到js文件中
 				// style-loader：将js中的css转移到html中的<style>
 				// vue-style-loader是对style-loader的增强
-				use: ['style-loader', 'css-loader'], // 多个loader处理顺序是从右到左
+				use: ['style-loader', 'css-loader'],
 				// use: ['vue-style-loader', 'css-loader'],
 			},
 
@@ -106,7 +107,7 @@ module.exports = {
 	plugins: [
 		// 配置插件实例对象
 
-		// 自动引入html
+		// 自动引入打包生成的js和css到html
 		new HtmlWebpackPlugin({
 			// 指定以哪个文件为模板打包
 			template: 'index.html',
@@ -125,7 +126,7 @@ module.exports = {
 		open: true,
 		// 不做太多日志输出
 		quiet: true,
-		// 配置代理
+		// 配置代理(解决404页面)
 		proxy: {
 			// 匹配以/api开头的请求
 			'/api': {
@@ -140,13 +141,16 @@ module.exports = {
 		// 请求404时返回index页面
 		historyApiFallback: true,
 	},
-	// devtool: 'cheap-module-eval-source-map',
+
+	// 开启source-map(方便寻找错误)
+	devtool: 'cheap-module-eval-source-map',
 
 	// 模块引入解析
 	resolve: {
-		extensions: ['.js', '.vue', '.json'], // 指定可以省略的后缀名(若省略了后缀，按从左到右的顺序依次查找)
+		// 指定可以省略的后缀名(若省略了后缀，按从左到右的顺序依次查找)
+		extensions: ['.js', '.vue', '.json'],
+		// 自定义路径别名
 		alias: {
-			// 自定义路径别名
 			/* 
             优点：
             1.简化模块路径的编写
