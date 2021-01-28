@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>02_数据代理</title>
+	</head>
+	<body>
+		<!--
+        1. vue数据代理: data对象的所有属性的操作(读/写)由vm对象来代理操作
+        2. 好处: 通过vm对象就可以方便的操作data中的数据
+        3. 实现:
+            1). 通过Object.defineProperty(vm, key, {})给vm添加与data对象的属性对应的属性
+            2). 所有添加的属性都包含get/set方法
+            3). 在get/set方法中去操作data中对应的属性
+        -->
+	</body>
+</html>
