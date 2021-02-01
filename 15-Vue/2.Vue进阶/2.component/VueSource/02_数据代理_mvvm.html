@@ -18,5 +18,19 @@
 		<script src="./js/mvvm.js"></script>
 		<script src="./js/observer.js"></script>
 		<script src="./js/watcher.js"></script>
+		<script>
+			const vm = new MVVM({
+				el: '#test',
+				data: {
+					name: 'tim',
+				},
+			})
+
+			console.log(vm)
+			console.log(vm.name) // 代理读操作
+
+			vm.name = 'Jack' // 代理写操作
+			console.log(vm._data.name)
+		</script>
 	</body>
 </html>

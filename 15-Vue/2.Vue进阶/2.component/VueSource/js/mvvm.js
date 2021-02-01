@@ -32,12 +32,12 @@ MVVM.prototype = {
 		Object.defineProperty(me, key, {
 			configurable: false,
 			enumerable: true,
-			// 当vm.name读取数据时自动调用
+			// 当vm.属性读取数据时自动调用
 			get: function proxyGetter() {
 				// 读取并返回data中对应的属性值
 				return me._data[key]
 			},
-			// 当vm.name=value设置数据时自动调用
+			// 当vm.属性=value设置数据时自动调用
 			set: function proxySetter(newVal) {
 				// 将最新的值保存到data对应的属性上
 				me._data[key] = newVal
