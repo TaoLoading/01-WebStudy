@@ -44,7 +44,7 @@ Compile.prototype = {
 
 			// 4-1. 如果是元素节点
 			if (me.isElementNode(node)) {
-				// 编译元素节点中的指定属性
+				// 编译元素节点中的指令属性
 				me.compile(node)
 				// 4-2. 如果是插值格式的文本节点
 			} else if (me.isTextNode(node) && reg.test(text)) {
@@ -59,22 +59,29 @@ Compile.prototype = {
 	},
 
 	compile: function(node) {
+		// 1. 得到所有的属性节点
 		var nodeAttrs = node.attributes,
 			me = this
-
-		;[].slice.call(nodeAttrs).forEach(function(attr) {
+		// 2. 遍历所有属性
+		Array.prototype.slice.call(nodeAttrs).forEach(function(attr) {
+			// 3. 得到属性名(v-on:click)
 			var attrName = attr.name
+			// 4. 判断是否是指令属性
 			if (me.isDirective(attrName)) {
+				// 5. 得到属性值(show)
 				var exp = attr.value
+				// 6. 得到指令名(click)
 				var dir = attrName.substring(2)
-				// 事件指令
+				// 7. 判断是否是事件指令
 				if (me.isEventDirective(dir)) {
+					// 7-1. 处理事件指令
 					compileUtil.eventHandler(node, me.$vm, exp, dir)
-					// 普通指令
+					// 7-2. 处理普通指令
 				} else {
 					compileUtil[dir] && compileUtil[dir](node, me.$vm, exp)
 				}
 
+				// 8. 移除指令属性
 				node.removeAttribute(attrName)
 			}
 		})
@@ -151,10 +158,18 @@ var compileUtil = {
 
 	// 事件处理
 	eventHandler: function(node, vm, exp, dir) {
+		// 得到事件名/类型
 		var eventType = dir.split(':')[1],
+			// 根据表达式去methods中取得对应的事件处理函数
 			fn = vm.$options.methods && vm.$options.methods[exp]
 
 		if (eventType && fn) {
+			// 给元素节点绑定指定事件名和回调函数的DOM事件监听，并指定this是vm
+			/* 
+            为什么指定this是vm？
+            因为绑定的回调函数不是methods中定义的函数，而是通过bind()返回的新函数。先调用新函数，新函数中this指向调用该函数的节点，
+            内部再自动调用原来的函数，原函数中this为vm。通过指定this的指向为vm，确保调用函数时this不变
+            */
 			node.addEventListener(eventType, fn.bind(vm), false)
 		}
 	},
