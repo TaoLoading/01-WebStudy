@@ -14,7 +14,7 @@ function Compile(el, vm) {
 }
 
 Compile.prototype = {
-	node2Fragment: function(el) {
+	node2Fragment: function (el) {
 		var fragment = document.createDocumentFragment(),
 			child
 
@@ -26,17 +26,17 @@ Compile.prototype = {
 		return fragment
 	},
 
-	init: function() {
+	init: function () {
 		// 编译fragment对象中所有的子节点
 		this.compileElement(this.$fragment)
 	},
 
-	compileElement: function(el) {
+	compileElement: function (el) {
 		// 1. 得到最外层的所有子节点
 		var childNodes = el.childNodes,
 			me = this
 		// 2. 遍历所有子节点
-		;[].slice.call(childNodes).forEach(function(node) {
+		;[].slice.call(childNodes).forEach(function (node) {
 			// 3. 得到文本节点的内容
 			var text = node.textContent
 			// 用于匹配插值的正则对象
@@ -58,12 +58,12 @@ Compile.prototype = {
 		})
 	},
 
-	compile: function(node) {
+	compile: function (node) {
 		// 1. 得到所有的属性节点
 		var nodeAttrs = node.attributes,
 			me = this
 		// 2. 遍历所有属性
-		Array.prototype.slice.call(nodeAttrs).forEach(function(attr) {
+		Array.prototype.slice.call(nodeAttrs).forEach(function (attr) {
 			// 3. 得到属性名(v-on:click)
 			var attrName = attr.name
 			// 4. 判断是否是指令属性
@@ -87,24 +87,24 @@ Compile.prototype = {
 		})
 	},
 
-	compileText: function(node, exp) {
+	compileText: function (node, exp) {
 		// 工具对象编译文本节点
 		compileUtil.text(node, this.$vm, exp)
 	},
 
-	isDirective: function(attr) {
+	isDirective: function (attr) {
 		return attr.indexOf('v-') == 0
 	},
 
-	isEventDirective: function(dir) {
+	isEventDirective: function (dir) {
 		return dir.indexOf('on') === 0
 	},
 
-	isElementNode: function(node) {
+	isElementNode: function (node) {
 		return node.nodeType == 1
 	},
 
-	isTextNode: function(node) {
+	isTextNode: function (node) {
 		return node.nodeType == 3
 	},
 }
@@ -112,52 +112,60 @@ Compile.prototype = {
 // 包含多个用于编译指令/对象的工具方法的对象
 var compileUtil = {
 	// 编译插值/v-text
-	text: function(node, vm, exp) {
+	text: function (node, vm, exp) {
 		this.bind(node, vm, exp, 'text')
 	},
 
 	// 编译v-html
-	html: function(node, vm, exp) {
+	html: function (node, vm, exp) {
 		this.bind(node, vm, exp, 'html')
 	},
 
 	// 编译v-model
-	model: function(node, vm, exp) {
+	model: function (node, vm, exp) {
+		// 1. 实现初始化显示
+		// 2. 创建watcher对象用于更新显示
 		this.bind(node, vm, exp, 'model')
 
 		var me = this,
+			// 得到表达式对应的值
 			val = this._getVMVal(vm, exp)
-		node.addEventListener('input', function(e) {
+		// 给input绑定事件监听
+		node.addEventListener('input', function (e) {
+			// 得到最新输入的值
 			var newValue = e.target.value
 			if (val === newValue) {
 				return
 			}
 
+			// 将最新输入的值保存到表达式对应的data中的属性上，紧接着引起数据绑定代码运行
 			me._setVMVal(vm, exp, newValue)
 			val = newValue
 		})
 	},
 
 	// 编译v-class，功能类似v-bind:class
-	class: function(node, vm, exp) {
+	class: function (node, vm, exp) {
 		this.bind(node, vm, exp, 'class')
 	},
 
 	// 真正进行编译的方法(exp是表达式，dir是指令)
-	bind: function(node, vm, exp, dir) {
+	bind: function (node, vm, exp, dir) {
 		// 1. 根据指令名得到对应更新节点的函数
 		var updaterFn = updater[dir + 'Updater']
 
 		// 2. 执行更新函数第一次更新节点 ==> 初始化显示
 		updaterFn && updaterFn(node, this._getVMVal(vm, exp))
 
-		new Watcher(vm, exp, function(value, oldValue) {
+		// 为当前节点创建一个对应的watcher，并指定用于更新节点的回调函数
+		new Watcher(vm, exp, function (value, oldValue) {
+			// 更新对应的节点
 			updaterFn && updaterFn(node, value, oldValue)
 		})
 	},
 
 	// 事件处理
-	eventHandler: function(node, vm, exp, dir) {
+	eventHandler: function (node, vm, exp, dir) {
 		// 得到事件名/类型
 		var eventType = dir.split(':')[1],
 			// 根据表达式去methods中取得对应的事件处理函数
@@ -174,19 +182,19 @@ var compileUtil = {
 		}
 	},
 
-	_getVMVal: function(vm, exp) {
+	_getVMVal: function (vm, exp) {
 		var val = vm._data
 		exp = exp.split('.')
-		exp.forEach(function(k) {
+		exp.forEach(function (k) {
 			val = val[k]
 		})
 		return val
 	},
 
-	_setVMVal: function(vm, exp, value) {
+	_setVMVal: function (vm, exp, value) {
 		var val = vm._data
 		exp = exp.split('.')
-		exp.forEach(function(k, i) {
+		exp.forEach(function (k, i) {
 			// 非最后一个key，更新val的值
 			if (i < exp.length - 1) {
 				val = val[k]
@@ -200,17 +208,17 @@ var compileUtil = {
 // 包含n个用于更新节点方法的对象
 var updater = {
 	// 更新节点的textContent
-	textUpdater: function(node, value) {
+	textUpdater: function (node, value) {
 		node.textContent = typeof value == 'undefined' ? '' : value
 	},
 
 	// 更新节点的innerHTML
-	htmlUpdater: function(node, value) {
+	htmlUpdater: function (node, value) {
 		node.innerHTML = typeof value == 'undefined' ? '' : value
 	},
 
 	// 更新节点的className
-	classUpdater: function(node, value, oldValue) {
+	classUpdater: function (node, value, oldValue) {
 		var className = node.className
 		className = className.replace(oldValue, '').replace(/\s$/, '')
 
@@ -220,7 +228,7 @@ var updater = {
 	},
 
 	// 更新节点的value
-	modelUpdater: function(node, value, oldValue) {
+	modelUpdater: function (node, value, oldValue) {
 		node.value = typeof value == 'undefined' ? '' : value
 	},
 }

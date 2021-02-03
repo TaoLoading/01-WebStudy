@@ -11,11 +11,12 @@ function MVVM(options) {
 	var me = this
 
 	// 遍历data的每个属性
-	Object.keys(data).forEach(function(key) {
+	Object.keys(data).forEach(function (key) {
 		// 实现指定属性的数据代理
 		me._proxy(key)
 	})
 
+	// 对data中所有层次属性实现劫持/监视
 	observe(data, this)
 
 	// 创建用于编译模板的对象
@@ -23,11 +24,11 @@ function MVVM(options) {
 }
 
 MVVM.prototype = {
-	$watch: function(key, cb, options) {
+	$watch: function (key, cb, options) {
 		new Watcher(this, key, cb)
 	},
 
-	_proxy: function(key) {
+	_proxy: function (key) {
 		var me = this
 		// 给vm定义指定属性名的属性
 		Object.defineProperty(me, key, {

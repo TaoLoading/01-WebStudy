@@ -10,6 +10,12 @@
         -->
 	</head>
 	<body>
+		<!-- 
+            new Watcher时：
+            每个模板语法和一般指令都有一个对应的watcher(每调用一次bind就会创建一个对应的watcher)
+            每个watcher都有一个对应的节点(节点通过闭包得以保存，是将来需要更新的节点)
+            每个watcher都有一个用于更新节点的回调函数
+         -->
 		<div id="test">
 			<p>{{name}}</p>
 			<p v-text="name"></p>
