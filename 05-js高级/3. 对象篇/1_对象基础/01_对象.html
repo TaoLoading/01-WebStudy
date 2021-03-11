@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>03_对象</title>
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <title>03_对象</title>
-</head>
-
-<body>
-    <!--
+	<body>
+		<!--
 1. 什么是对象?
   * 代表现实中的某个事物, 是该事物在编程中的抽象
   * 多个数据的集合体(封装体)
@@ -30,25 +29,24 @@
 
       对象中多有的key都是字符串
 -->
-    <script type="text/javascript">
-        // 创建对象
-        var p = {
-            name: 'Tom',
-            age: 12,
-            setName: function(name) {
-                this.name = name
-            },
-            setAge: function(age) {
-                this.age = age
-            }
-        }
+		<script type="text/javascript">
+			// 创建对象
+			var p = {
+				name: 'Tom',
+				age: 12,
+				setName: function (name) {
+					this.name = name
+				},
+				setAge: function (age) {
+					this.age = age
+				},
+			}
 
-        // 访问对象内部数据
-        console.log(p.name, p['age'])
-        p.setName('Jack')
-        p['age'](23)
-        console.log(p['name'], p.age)
-    </script>
-</body>
-
+			// 访问对象内部数据
+			console.log(p.name, p['age'])
+			p.setName('Jack')
+			p['age'](23)
+			console.log(p['name'], p.age)
+		</script>
+	</body>
 </html>

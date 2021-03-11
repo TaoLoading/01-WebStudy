@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			function sort(arr) {
+				for (var i = 0; i < arr.length - 1; i++) {
+					for (var j = 0; j < arr.length - i - 1; j++) {
+						if (arr[j] > arr[j + 1]) {
+							var temp = arr[j]
+							arr[j + 1] = arr[j]
+							arr[j] = temp
+						}
+					}
+				}
+			}
+
+			var arr = [2, 6, 4, 1, 9, 5]
+			sort(arr)
+			console.log(arr)
+		</script>
+	</body>
+</html>
