@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>02_准备_回调函数的分类</title>
+</head>
+<body>
+  <script>
+    /* 
+    1). 同步回调: 
+      理解: 立即执行, 完全执行完了才结束, 不会放入回调队列中
+      例子: 数组遍历相关的回调函数 / Promise的excutor函数
+    2). 异步回调: 
+      理解: 不会立即执行, 会放入回调队列中将来执行
+      例子: 定时器回调 / ajax回调 / Promise的成功|失败的回调
+    */
+
+    const arr = [1, 2, 3]
+    arr.forEach(item => { // 同步执行的回调函数, 不会放入回调队列, 只有当回调函数都执行完后forEach()才执行结束
+      console.log('forEach callback()', item)
+    })
+    console.log('forEach()之后')
+
+    setTimeout(() => { // 异步执行的回调函数, 会放入回调队列中后面才执行, 在回调执行前setTimeout()执行结束
+      console.log('setTimeout callback()')
+    }, 0)
+    console.log('setTimeout()之后')
+
+  </script>
+</body>
+</html>

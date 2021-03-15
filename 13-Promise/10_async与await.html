@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10_async与await</title>
+</head>
+<body>
+<script>
+  /* 
+  目标: 进一步掌握asyn/await的语法和使用
+    mdn文档:
+      https: //developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function
+      https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/await
+    1. async 函数
+      函数的返回值为promise对象
+      promise对象的结果由async函数执行的返回值决定
+   
+    2. await 表达式
+      await右侧的表达式一般为promise对象, 但也可以是其它的值
+      如果表达式是promise对象, await返回的是promise成功的值
+      如果表达式是其它值, 直接将此值作为await的返回值
+    
+    3. 注意:
+      await必须写在async函数中, 但async函数中可以没有await
+      如果await的promise失败了, 就会抛出异常, 需要通过try...catch来捕获处理
+    为什么用async和await
+      简化promise对象的使用, 不用再通过then指定回调函数取结果数据
+      回调地狱的终极解决方案
+  */
+
+  // async函数的返回值为promise对象
+  async function fn1() {
+    // return 1
+    // throw 2
+    // return Promise.reject(3)
+    return Promise.resolve(4)
+  }
+
+  // const result = fn1()
+  // console.log(result)
+
+  function fn3() {
+    // return 3
+    // return Promise.resolve(5)
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(6)
+      }, 2000);
+    })
+  }
+
+  // async函数会立即执行结束返回一个pending状态的promise对象
+  async function fn2() {
+    // await后面的代码会放入then()的成功回调中执行的
+    const result = await fn3()
+    console.log(result)
+  }
+  // fn2()
+  // console.log('fn2()之后')
+
+  // 与async + await的效果是一样的
+  function fn4() {
+    return fn3().then(result => {
+      console.log(result)
+    })
+  }
+  // fn4()
+  // console.log('fn4()之后')
+
+  async function fn5() {
+    throw 6
+  }
+
+  async function fn6() {
+    try { // 使用try...catch来处理await后的promise的失败
+      const result = await fn5()
+      console.log('fn6 result=', result)
+    } catch (error) {
+      console.log('error', error)
+    }
+  }
+
+  fn6()
+
+</script>
+</body>
+</html>

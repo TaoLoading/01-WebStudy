@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>01_准备_函数对象与实例对象</title>
+</head>
+<body>
+
+  <script>
+    /* 
+    1. 函数对象与实例对象
+      函数对象: 将函数作为对象使用时, 简称为函数对象
+      实例对象: new 函数产生的对象, 简称为对象
+    */
+    function Fn() { // Fn是函数
+    }
+    const fn = new Fn() // Fn是构造函数  new返回的是实例对象
+    console.log(Fn.prototype) // Fn是函数对象
+    console.log(Fn.call({}))  // Fn是函数对象
+
+    $('#test') // $是函数
+    $.ajax()   // $是函数对象
+
+    /* 
+    总结
+      点的左边: 对象
+      ()的左边: 函数
+
+      a()[0]()()
+     */
+   
+  </script>
+</body>
+</html>

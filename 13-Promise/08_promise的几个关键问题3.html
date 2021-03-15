@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>08_promise的几个关键问题3</title>
+</head>
+<body>
+  <script>
+    /* 
+    4.	promise.then()返回的新promise的结果状态由什么决定?
+      (1)简单表达: 由then()指定的回调函数执行的结果决定
+      (2)详细表达:
+          ①如果抛出异常, 新promise变为rejected, reason为抛出的异常
+          ②如果返回的是非promise的任意值, 新promise变为resolved, value为返回的值
+          ③如果返回的是另一个新promise, 此promise的结果就会成为新promise的结果 
+    */
+    new Promise((resolve, reject) => {
+      // resolve(1)
+      reject(2)
+    }).then(
+      value => {
+        console.log('onResolved1()', value)
+        // throw 4
+        // return 3
+        // return Promise.resolve(5)
+        return Promise.reject(5)
+      },
+      reason => {
+        console.log('onRejected1()', reason)
+        // throw 4
+        // return 3
+        // return Promise.resolve(5)
+        return Promise.reject(5)
+      }
+    ).then(
+      value => console.log('onResolved2()', value),
+      reason => console.log('onRejected2()', reason),
+    )
+
+  </script>
+</body>
+</html>

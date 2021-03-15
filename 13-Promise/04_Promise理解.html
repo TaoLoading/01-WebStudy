@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>04_Promise理解</title>
+</head>
+<body>
+  <!-- 
+  Promise是什么?
+  1.抽象表达: 
+      1) Promise是一门新的技术(ES6规范)
+      2) Promise是JS中进行异步编程的新解决方案(旧的是谁?)
+  2.具体表达:
+      1) 从语法上来说: Promise是一个构造函数
+      2) 从功能上来说: promise对象用来封装一个异步操作并可以获取其成功/失败的结果值
+  -->
+
+  <script>
+    var promise1 = new Promise(function(resolve, reject) { // excutor/ 执行器函数, 同步回调函数
+      // 开始时promise的状态为pending 未确定的/初始的
+      // 启动异步任务
+      setTimeout(function() {
+        // 成功了
+        resolve('foo'); // promise对象的状态变为resolved/成功, 同时指定成功的value
+      }, 1000);
+      console.log('excutor()')
+    });
+    console.log('new Promise()之后')
+
+    setTimeout(() => {
+      promise1.then(function(value) { // 异步执行的成功的回调函数
+        console.log(value);
+        // expected output: "foo"
+      });
+    }, 2000);
+
+    console.log(promise1);
+
+  </script> 
+
+<!-- 
+  <script>
+    /* 使用Promise封装异步ajax请求 */
+    function myAsyncFunction(url) {
+      return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+        xhr.onload = () => resolve(JSON.parse(xhr.responseText));  // 成功的回调
+        xhr.onerror = () => reject(xhr.statusText); // 出错的回调
+        xhr.send();
+      });
+    };
+
+    // myAsyncFunction('https://api.apiopen.top/getJoke?page=1&count=2&type=video')
+    myAsyncFunction('https://api.apiopen.top/getJoke2?page=1&count=2&type=video')
+      .then(
+        value => {
+          console.log('成功了', value)
+        },
+        reason => {
+          console.log('失败了', reason)
+        }
+      )
+    
+  </script> -->
+</body>
+</html>

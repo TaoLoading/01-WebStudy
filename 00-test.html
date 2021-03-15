@@ -5,10 +5,20 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
+		<style>
+			div {
+				width: 0;
+				height: 0;
+				border-top: 10px solid red;
+				border-left: 10px solid transparent;
+				border-right: 10px solid transparent;
+			}
+		</style>
 	</head>
 	<body>
 		<script>
-			function sort(arr) {
+			// 冒泡排序
+			/* function sort(arr) {
 				for (var i = 0; i < arr.length - 1; i++) {
 					for (var j = 0; j < arr.length - i - 1; j++) {
 						if (arr[j] > arr[j + 1]) {
@@ -22,7 +32,18 @@
 
 			var arr = [2, 6, 4, 1, 9, 5]
 			sort(arr)
-			console.log(arr)
+			console.log(arr) */
+
+			// 手写bind
+			Function.prototype.bind = function (obj, arg) {
+				var arg = Array.prototype.slice.call(arguments, 1)
+				var context = this
+				return function (newArg) {
+					arg = arg.concat(Array.prototype.slice.call(newArg))
+				}
+			}
 		</script>
+
+		<div></div>
 	</body>
 </html>
