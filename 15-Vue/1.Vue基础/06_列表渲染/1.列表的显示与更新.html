@@ -20,9 +20,7 @@
 				<li v-for="(item, index) in persons" :key="item.id">
 					{{item.id}}---{{item.name}}---{{item.age}} ---
 					<button @click="deleteP(index)">删除</button> ---
-					<button
-						@click="updateP(index,{id:Date.now(),name:'cl',age:22})"
-					>
+					<button @click="updateP(index,{id:Date.now(),name:'cl',age:22})">
 						更新
 					</button>
 				</li>

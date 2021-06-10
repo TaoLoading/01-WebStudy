@@ -21,12 +21,7 @@
 				<input type="password" v-model="user.password" /><br />
 
 				<span>性别: </span>
-				<input
-					type="radio"
-					id="female"
-					v-model="user.sex"
-					value="female"
-				/>
+				<input type="radio" id="female" v-model="user.sex" value="female" />
 				<label for="female">女</label>
 				<input type="radio" id="male" v-model="user.sex" value="male" />
 				<label for="male">男</label><br />
@@ -56,11 +51,7 @@
 
 				<span>城市: </span>
 				<select v-model="user.cityId">
-					<option
-						v-for="city in allCities"
-						:key="city.id"
-						:value="city.id"
-					>
+					<option v-for="city in allCities" :key="city.id" :value="city.id">
 						{{city.name}}
 					</option>
 				</select>

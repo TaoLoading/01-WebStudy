@@ -170,9 +170,16 @@
         A.actions(dispatch)：除改变数据外还有其他操作(如逻辑判断的等)以及异步代码
         B.mutations(commit)：仅改变数据
     (4) 使用
-        A.在入口文件中配置store。store是组件与vuex通信的一个桥梁对象，配置后所有组件都可以通过$store来访问store对象
-        B.在store的js文件引入vue和vuex，并对各个API进行配置后暴露出去
-        C.在vue文件内编写页面以及操作逻辑
+        A.配置store。store是组件与vuex通信的一个桥梁对象
+          export default new Vue.Store(){
+            state,
+	          mutations,
+	          actions,
+	          getters,
+          }
+        B.在入口文件中引入并配置store。配置后所有组件都可以通过$store来访问store对象
+        C.分别配置state、actions、mutations、getters
+        D.在vue文件内编写页面以及操作逻辑。当直接操作数据时调用commit()，当间接操作数据时调用dispatch()
 
 
     

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>手写实现call_apply_bind</title>
+	</head>
+	<body>
+		<script>
+			Function.prototype.bind = function (obj, ...args) {
+				return function (...args2) {}
+			}
+
+			/* function fn(a, b) {
+				console.log(a, b, this)
+			}
+
+			fn(1, 2)
+			const obj = { m: 0 }
+			fn.call(obj, 1, 2) */
+		</script>
+	</body>
+</html>

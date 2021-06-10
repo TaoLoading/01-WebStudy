@@ -118,7 +118,7 @@ module.exports = {
 		new VueLoaderPlugin(),
 	],
 
-	// // 开发服务器
+	// 开发服务器
 	devServer: {
 		// 端口号
 		port: 8080,

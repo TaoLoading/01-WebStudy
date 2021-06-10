@@ -67,11 +67,7 @@
 				},
 				// beforeUpdate()和Updated()之间进行界面更新
 				Updated() {
-					console.log(
-						'Updated()',
-						this.isShow,
-						this.$refs.content.innerText
-					) // Updated()阶段看到的是新界面
+					console.log('Updated()', this.isShow, this.$refs.content.innerText) // Updated()阶段看到的是新界面
 				},
 
 				beforeDestroy() {

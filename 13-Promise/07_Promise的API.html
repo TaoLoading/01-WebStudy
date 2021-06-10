@@ -66,8 +66,8 @@
     p2.then(value => console.log('p2 value', value))
     p3.catch(reason => console.log('p3 value', reason))
 
-    // const p4 = Promise.all([p1, p2, p3])
-    // const p4 = Promise.all([p1, p2])
+    // const p4 = Promise.all([p1, p2, p3]) // 有一个错误则错误，返回错误的值
+    // const p4 = Promise.all([p1, p2]) // 全部正确则正确，按数组顺序返回正确的值
     // p4.then(
     //     values => console.log('p4 all onResolved()', values), // 数据的顺序与promise数组顺序一致
     //     reason => console.log('p4 all onRejected()', reason),

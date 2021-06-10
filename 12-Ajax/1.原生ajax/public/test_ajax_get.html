@@ -71,8 +71,7 @@
 				//3.调用open方法---------用什么方法发？给谁发？带着什么过去？
 				xhr.open(
 					'get',
-					'http://localhost:3000/ajax_get?name=kobe&age=18&t=' +
-						Date.now()
+					'http://localhost:3000/ajax_get?name=kobe&age=18&t=' + Date.now()
 				) // 加上t=+Date.now()，使得每次请求的url都不一样，从而达到欺骗IE浏览器防止其假请求的现象。
 				// 因为服务区端没有对t=+Date.now()进行使用，故加上之后也不会影响服务器
 
