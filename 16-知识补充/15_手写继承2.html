@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>手写继承</title>
+</head>
+
+<body>
+  <!--
+  手写继承:
+      实现方式: 寄生组合式
+      说明: 其它方式的继承会在一次实例中调用两次父类的构造函数或有其它缺点
+  -->
+  <script>
+    function Person(name, age) {
+      console.log('Person()')
+      this.name = name
+      this.age = age
+    }
+    Person.prototype.sayName = function () {
+      console.log('我的名字叫: ', this.name)
+    }
+
+    function Student(name, age, price) {
+      // this.name = name
+      // this.age = age
+      // 借用父类型的构造函数
+      Person.call(this, name, age) // 相当于: this.Person(name, age)
+      this.price = price
+    }
+
+    /* 
+    创建一个指定原型对象的任意类型的实例
+    */
+    function create(proto) {
+      function Fn() { }
+      // 将Person的原型对象指定为Fn的原型对象
+      Fn.prototype = proto
+      return new Fn()
+    }
+
+    // 让Student原型对象是Person的实例
+    // Student.prototype = new Person()
+    Student.prototype = create(Person.prototype)
+    // 让新的原型的constructor指向子类型Student
+    Student.prototype.constructor = Student
+    // 给新的原型对象添加方法
+    Student.prototype.sayPrice = function () {
+      console.log('我的身价是每月: ', this.price)
+    }
+
+    const s = new Student('tom', 23, 12000)
+    console.log(s.name, s.age, s.price)
+    s.sayPrice()
+    s.sayName()
+    console.log(s.constructor, s)
+
+    /* 
+    问题1: student的原型对象包含几个必要的属性
+    问题2: Student构造函数多执行了1次
+    */
+
+    /* 
+    寄生组合式继承: 寄生 + prototype + call
+    1. 构造函数中用call借用父类型构造函数, 得到父类型的属性
+    2. 指定新的原型对象, 得到父类型原型对象上的方法
+    3. 寄生处理: 去除原型对象上多余的属性
+    */
+
+  </script>
+</body>
+
+</html>

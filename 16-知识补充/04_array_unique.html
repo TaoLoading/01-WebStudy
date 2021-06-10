@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>数组去重</title>
+</head>
+
+<body>
+  <!-- 
+    1). 理解: 
+        创建一个不重复的数组副本, 只有首次出现的元素才会被保留
+        如: uniq([2, 3, 2, 7, 6, 7]) ==> [2, 3, 7, 6]
+    2). 实现:
+        方法1: 利用forEach()和indexOf()
+               说明: 本质是双重遍历, 效率差些
+        方法2: 利用forEach() + 对象容器
+               说明: 只需一重遍历, 效率高些
+        方法3: 利用ES6语法: from + Set 或者 ... + Set
+               说明: 编码简洁
+  -->
+  <script src="../dist/190719-utils.min.js"></script>
+  <script>
+    console.log(aUtils.unique1([2, 3, 2, 7, 6, 7]))
+    console.log(aUtils.unique2([2, 3, 2, 7, 6, 7]))
+    console.log(aUtils.unique3([2, 3, 2, 7, 6, 7]))
+  </script>
+</body>
+
+</html>

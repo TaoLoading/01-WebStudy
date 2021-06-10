@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    /* 
+    1. 理解
+        多个有序数元素的列表
+        每个元素都有一个唯一的数值标号, 且从0开始依次递增
+        在内存中数据是保存在一块连续的内存中的
+    2. 相关API操作
+        静态方法
+        更新的方法
+        遍历相关的声明式方法
+        其它方法
+    */
+
+    /* 
+    更新的方法
+        push()
+        pop()
+        unshift()
+        shift()
+        sort()
+        reverse()
+        splice()
+    */
+    
+    /* 
+    需求:
+        1. 在数组的最后添加6
+        2. 在数组的最后一次添加8和9
+        3. 在数组的最后添加包含8和9的数组
+        4. 删除数组的最后一个元素
+        5. 在数组的最前面添加2
+        6. 在数组的最前面一次添加4和3(注: 3在前, 4在后)
+        7. 删除数组的第一个元素
+        8. 对数组进行按数值降序排列
+        9. 对数组进行倒序排列
+        10. 删除第3个元素
+        11. 将第3个元素替换为10(不能直接赋值)
+        12. 将11插入为数组的第3个元素
+    */
+
+    const arr = [3, 1, 14, 9, 7, 6]
+    arr.push(6)
+    arr.push(8, 9)
+    arr.push([8, 9])
+    console.log(arr.pop())
+    arr.unshift(2)
+    arr.unshift(3, 4)
+    console.log(arr.shift())
+    console.log(arr.sort((item1, item2) => item2 - item1))  // 原数组排序了
+    arr.splice(2, 1)
+    arr.splice(2, 1, 10)
+    arr.splice(2, 0, 11)
+    
+    console.log(arr)
+  </script>
+</body>
+</html>

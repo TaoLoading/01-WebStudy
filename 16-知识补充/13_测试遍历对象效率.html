@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>测试各种遍历对象的效率</title>
+</head>
+<body>
+  <script>
+    /* 
+    测试: for...in / keys & forEach
+    耗时: 差不多
+    */
+    const obj = new Object();
+    for (let i = 0; i < 100000; i++) {
+      obj[i] = 1
+    }
+
+    // for..in
+    console.time()
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        // const element = obj[key];
+      }
+    }
+    console.timeEnd()
+
+
+    // keys() + forEach
+    console.time()
+    Object.keys(obj).forEach(key => {
+      // let element32 = obj[key]
+    })
+    console.timeEnd()
+
+  </script>
+</body>
+</html>

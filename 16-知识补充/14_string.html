@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>字符串处理的系列方法</title>
+</head>
+<body>
+  <!-- 
+    1. 字符串倒序: reverseString(str)  生成一个倒序的字符串
+    2. 字符串是否是回文: palindrome(str) 如果给定的字符串是回文，则返回 true ；否则返回 false
+    3. 截取字符串: truncate(str, num) 如果字符串的长度超过了num, 截取前面num长度部分, 并以...结束
+  -->
+  <script src="../dist/190719-utils.js"></script>
+  <script>
+    console.log(aUtils.reverseString('abcd')) // dcba
+    console.log(aUtils.palindrome('abcb'), aUtils.palindrome('abcba')) // false true
+    console.log(aUtils.truncate('boomerang', 7)) // boomera...
+  </script>
+</body>
+</html>

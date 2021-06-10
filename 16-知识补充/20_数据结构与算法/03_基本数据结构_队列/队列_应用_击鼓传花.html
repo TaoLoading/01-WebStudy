@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>队列_应用</title>
+</head>
+<body>
+  <script src="../../../node_modules/atguigu-utils/dist/atguigu-utils.js"></script>
+  <script src="../../../dist/190719-utils.js"></script>
+  <script>
+    /* 
+    利用自定义队列实现击鼓传花游戏函数
+    */
+    function passGame(names, number) {
+      // 创建一个空的queue
+      const queue = new aUtils.Queue()
+      // 将数组中所有元素(name和index)依次放入queue
+      names.forEach((name, index) => {
+        queue.enqueue({name, index})
+      });
+
+      // 只队列的size大于1
+      while(queue.size()>1) {
+        // 将队列的前number-1元素依次转移到队列的最后
+        for (let index = 0; index < number-1; index++) {
+          queue.enqueue(queue.dequeue())
+        }
+        // 删除队头的元素
+        queue.dequeue()
+      }
+      // 最后剩下的那个就是目标
+      const {name, index} = queue.front() 
+      alert(`胜利的人是${name}, 他是第${index + 1}个人`)
+    }
+
+    // 测试
+    var names = ['A','B','C','D','E']
+    passGame(names, 4)
+  </script>
+</body>
+</html>

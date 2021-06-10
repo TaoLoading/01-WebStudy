@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>双向链表_测试</title>
+</head>
+<body>
+  <script src="../../../dist/atguigu-utils.js"></script>
+  <script>
+    // 1.创建双向链表对象
+    var list = new DoublyLinkedList()
+
+    // 2.追加元素
+    list.append("abc")
+    list.append("cba")
+    list.append("nba")
+    list.append("mba")
+
+    // 3.获取所有的遍历结果
+    console.log(list.forwardString()) // abc,cba,nba,mba
+    console.log(list.reverseString()) //
+    console.log(list) // abc,cba,nba,mba
+
+    // 4.insert方法测试
+    list.insert(0, "100")
+    list.insert(2, "200")
+    list.insert(6, "300")
+    console.log(list) // 100,abc,200,cba,nba,mba,300
+
+    // 5.removeAt方法测试
+    console.log(list.removeAt(0)) // 100
+    console.log(list.removeAt(1)) // 200
+    console.log(list.removeAt(4)) // 300
+    console.log(list) // abc,cba,nba,mba
+
+    // 6.indexOf方法测试
+    console.log(list.indexOf("abc")) // 0
+    console.log(list.indexOf("cba")) // 1
+    console.log(list.indexOf("nba")) // 2
+    console.log(list.indexOf("mba")) // 3
+
+    // 7.remove方法测试
+    console.log(list.remove("abc")) // abc
+    console.log(list) // cba,nba,mba
+
+    // 8.测试最后四个方法
+    console.log(list.getHead())
+    console.log(list.getTail())
+    console.log(list.isEmpty())
+    console.log(list.size())
+  </script>
+</body>
+</html>

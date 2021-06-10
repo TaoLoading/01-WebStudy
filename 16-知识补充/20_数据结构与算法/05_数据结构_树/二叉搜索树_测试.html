@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>二叉搜索树_测试</title>
+</head>
+<body>
+  <script src="../../../dist/atguigu-utils.js"></script>
+  <script>
+    var tree = new aUtils.BinarySearchTree()
+        //     23
+        //    /  \
+        //   16   45 
+        //  / \  / \
+        // 3 22 37  99
+
+    // 插入
+    tree.insert(23)
+    tree.insert(45)
+    tree.insert(16)
+    tree.insert(37)
+    tree.insert(3)
+    tree.insert(99)
+    tree.insert(22)
+
+    // 遍历
+    tree.inOrder(tree.root)// 3 16 22 23 37 45 99
+    tree.preOrder(tree.root)// 23 16 3 22 45 37 99
+    tree.postOrder(tree.root)// 3 22 16 37 99 45 23
+
+    // 根结点
+    console.log(tree.root.show())//23
+    // 获取最小最大值
+    console.log(tree.getmin())//3
+    console.log(tree.getSmallest(tree.root).show())//3
+    console.log(tree.getmax())//99
+    console.log(tree.getBigest(tree.root).show())//99
+    // 查找结点
+    console.log(tree.find(16).left.show())//3
+
+    // 删除结点
+    tree.remove(16)
+    tree.inOrder(tree.root)// 3 22 23 37 45 99
+  </script>
+</body>
+</html>
