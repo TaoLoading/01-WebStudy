@@ -9,7 +9,7 @@
 <body>
 
 <script>
-  /* 
+  /*
   目标: 进一步理解JS中的错误(Error)和错误处理
     mdn文档: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Error
 
@@ -31,17 +31,17 @@
   // ReferenceError: 引用的变量不存在
   // console.log(a) // ReferenceError: a is not defined
   // console.log('出错之后')
- 
+
   // TypeError: 数据类型不正确的错误
   // let b = null
-  let b = {}
+  const b = {};
   // console.log(b.xxx) // TypeError: Cannot read property 'xxx' of null
   // b.xxx() // TypeError: b.xxx is not a function
   // b()
 
   // RangeError: 数据值不在其所允许的范围内
   function fn() { // 无限的递归
-    fn()
+  	fn();
   } // RangeError: Maximum call stack size exceeded
   // fn()
 
@@ -51,39 +51,33 @@
   // let d = 3
   // console.log(d.xxx)  // new Number(d).xxx
 
-
   /* 2. 错误的处理 */
 
   /* 捕获error */
   try {
-    const e = {}
-    e()
+  	const e = {};
+  	e();
   } catch (error) {
-    console.log(error.message)
-    console.log(error.stack)
+  	console.log(error.message);
+  	console.log(error.stack);
   }
 
-  console.log('--------')
-
+  console.log("--------");
 
   /* 抛出error */
   function doThing() { // 当前时间如果为奇数就能正常干活, 否则不能干
-    const time = Date.now()
-    if (time %2== 1) {
-      console.log('当前时间为奇数, 可以正常工作....' + time)
-    } else {// 不能干活, 得告诉调用者
-      throw new Error('当前时间为偶数, 干不了 ' + time)  // 抛出错误
-    }
+  	const time = Date.now();
+  	if (time % 2 == 1) {
+  		console.log("当前时间为奇数, 可以正常工作...." + time);
+  	} else { // 不能干活, 得告诉调用者
+  		throw new Error("当前时间为偶数, 干不了 " + time); // 抛出错误
+  	}
   }
 
   try { // 捕获错误
-    doThing()
+  	doThing();
   } catch (error) {
-    alert(error.message)
-  }
-  
-
-
-</script>
+  	alert(error.message);
+  }</script>
 </body>
 </html>

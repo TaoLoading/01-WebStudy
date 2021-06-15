@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>函数节流与防抖</title>
 </head>
+
 <body>
 
   <button id="throttle">测试函数节流</button>
   <button id="debounce">测试函数防抖</button>
-  
+
   <!-- 
     1. 事件频繁触发可能造成的问题?
         1). 一些浏览器事件:window.onresize、window.mousemove等，触发的频率非常高，会造成浏览器性能问题
@@ -43,16 +45,16 @@
   <script>
     /* 处理点击事件的回调函数 */
     function handleClick(event) { // 处理事件的回调
-      console.log('处理点击事件', this, event)
+      console.log("处理点击事件", this, event)
     }
 
-    document.getElementById('throttle').onclick = handleClick
+    document.getElementById("throttle").onclick = handleClick
     // document.getElementById('throttle').onclick = _.throttle(handleClick, 2000, { 'trailing': false })
     // document.getElementById('debounce').onclick = _.debounce(handleClick, 2000)
-    document.getElementById('throttle').onclick = aUtils.throttle(handleClick, 2000)
-    document.getElementById('debounce').onclick = aUtils.debounce(handleClick, 2000)
-
+    document.getElementById("throttle").onclick = aUtils.throttle(handleClick, 2000)
+    document.getElementById("debounce").onclick = aUtils.debounce(handleClick, 2000)
   </script>
 
 </body>
+
 </html>
