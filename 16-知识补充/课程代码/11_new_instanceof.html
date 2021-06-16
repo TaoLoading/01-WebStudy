@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>自定义new与instanceof工具函数</title>
 </head>
+
 <body>
   <script>
-    /* 
+    /*
     1. 自定义new工具函数
         语法: newInstance(Fn, ...args)
         功能: 创建Fn构造函数的实例对象
@@ -18,7 +20,7 @@
         实现: Type的原型对象是否是obj的原型链上的某个对象, 如果是返回tru, 否则返回false
     */
   </script>
-  <script src="../dist/190719-utils.js"></script>
+  <script src="../课程代码//utils/dist/atguigu-utils.js"></script>
   <script>
     function Person(name, age) {
       this.name = name
@@ -46,4 +48,5 @@
     console.log(p instanceof Function) // false
   </script>
 </body>
+
 </html>

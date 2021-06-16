@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>合并多个对象</title>
 </head>
+
 <body>
   <!-- 
     语法: object mergeObject(...objs)
@@ -16,7 +18,7 @@
     合并后: 
         { a: [ { x: 2 }, { y: 4 }, { z: 3 } ], b: [ 1, 2, 3 ], c: 'foo' }
   -->
-  <script src="../dist/190719-utils.js"></script>
+  <script src="../课程代码//utils/dist/atguigu-utils.js"></script>
   <script>
     const object = {
       a: [{ x: 2 }, { y: 4 }],
@@ -27,8 +29,9 @@
       b: [2, 3],
       c: 'foo'
     }
-    console.log(aUtils.mergeObject(object, other)) 
+    console.log(aUtils.mergeObject(object, other))
     // { a: [ { x: 2 }, { y: 4 }, { z: 3 } ], b: [ 1, 2, 3 ], c: 'foo' }
   </script>
 </body>
+
 </html>
