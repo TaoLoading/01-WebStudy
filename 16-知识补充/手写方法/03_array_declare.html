@@ -10,6 +10,117 @@
 
 <body>
   <script>
+    // map()
+    Array.prototype.map = function (callback) {
+      // 1.创建一个新数组
+      const arr = []
+      // 2.遍历当前数组中的每个元素
+      for (let index = 0; index < this.length; index++) {
+        const element = this[index]
+        // 3.调用callback对元素进行处理，拿到处理后的值
+        const result = callback(element, index)
+        // 4.将处理后的值放入新数组中
+        arr.push(result)
+      }
+      return arr
+    }
+
+    // reduce()
+    Array.prototype.reduce = function (callback, initValue) {
+      // 1.初始化
+      let total = initValue
+      // 2.遍历当前数组中的每个元素
+      for (let index = 0; index < this.length; index++) {
+        const element = this[index]
+        // 3.调用callback对元素进行处理，拿到处理后的值
+        total = callback(total, element, index)
+      }
+      // 4.将处理后的值放入新数组中
+      return total
+    }
+
+    // filter()
+    Array.prototype.filter = function (callback) {
+      // 1.创建一个新数组
+      const arr = []
+      // 2.遍历当前数组中的每个元素
+      for (let index = 0; index < this.length; index++) {
+        const element = this[index]
+        // 3.调用callback对元素进行处理，得到一个布尔值
+        const result = callback(element, index)
+        // 4.将为true的值放入新数组中
+        if (result) {
+          arr.push(element)
+        }
+      }
+      return arr
+    }
+
+    // find()
+    Array.prototype.find = function (callback) {
+      // 1.遍历当前数组中的每个元素
+      for (let index = 0; index < this.length; index++) {
+        const element = this[index]
+        // 2.调用callback对元素进行处理，得到一个布尔值
+        const result = callback(element, index)
+        // 3.如果为true则证明查到所需元素并返回元素值
+        if (result) {
+          return element
+        }
+      }
+      // 4.如果没查到则返回undefined
+      return undefined
+    }
+
+    // findIndex()
+    Array.prototype.findIndex = function (callback) {
+      // 1.遍历当前数组中的每个元素
+      for (let index = 0; index < this.length; index++) {
+        const element = this[index]
+        // 2.调用callback对元素进行处理，得到一个布尔值
+        const result = callback(element, index)
+        // 3.如果为true则证明查到所需元素并返回元素下标
+        if (result) {
+          return index
+        }
+      }
+      // 4.如果没查到则返回-1
+      return -1
+    }
+
+    // every()
+    Array.prototype.every = function (callback) {
+      // 1.遍历当前数组中的每个元素
+      for (let index = 0; index < this.length; index++) {
+        const element = this[index];
+        // 2.调用callback对元素进行处理，得到一个布尔值
+        const result = callback(element, index)
+        // 3.如果为false则证明不成立并返回false(因为都为true才返回true，有一个不成立则返回false)
+        if (!result) {
+          return false
+        }
+      }
+      // 4.如果都成立则返回true
+      return true
+    }
+
+    // some()
+    Array.prototype.some = function (callback) {
+      // 1.遍历当前数组中的每个元素
+      for (let index = 0; index < this.length; index++) {
+        const element = this[index];
+        // 2.调用callback对元素进行处理，得到一个布尔值
+        const result = callback(element, index)
+        // 3.如果为true则证明不成立并返回true(因为都为false才返回false，有一个成立则返回true)
+        if (result) {
+          return true
+        }
+      }
+      // 4.如果都不成立则返回false
+      return false
+    }
+  </script>
+  <script>
     /* 
     自定义实现一组数组声明式方法
       1). map()
