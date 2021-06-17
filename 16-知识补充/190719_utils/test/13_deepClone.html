@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>深度克隆/深复制/深拷贝</title>
+</head>
+<body>
+  <script src="https://cdn.bootcss.com/lodash.js/4.17.15/lodash.min.js"></script>
+  <!-- 
+  实现深拷贝
+      1). 大众乞丐版
+          问题1: 函数属性会丢失
+          问题2: 循环引用会出错
+      2). 面试基础版本
+          解决问题1: 函数属性还没丢失
+      3). 面试加强版本
+          解决问题2: 循环引用正常
+      4). 面试加强版本2(优化遍历性能)
+          数组: while | for | forEach() 优于 for-in | keys()&forEach() 
+          对象: for-in 与 keys()&forEach() 差不多
+  -->
+  <script src="../dist/190719-utils.js"></script>
+  <script>
+    const obj1 = { 
+        a: 1,
+        b: [ 'e', 'f', 'g'],
+        c: { h: { i: 2 } },
+        d: function (){}  // 存在函数
+     }
+     // 存在循环引用
+     obj1.b.push(obj1.c) // 将c添加到b中
+     obj1.c.j = obj1.b
+     
+    //  const obj1Clone = aUtils.deepClone1(obj1)
+    //  const obj1Clone = aUtils.deepClone2(obj1)
+    //  const obj1Clone = aUtils.deepClone3(obj1)
+     const obj1Clone = aUtils.deepClone4(obj1)
+     console.log(obj1Clone, obj1Clone.b===obj1.b, obj1Clone.c===obj1.c)
+     console.log(obj1Clone.d===obj1.d) // true
+  </script>
+</body>
+</html>

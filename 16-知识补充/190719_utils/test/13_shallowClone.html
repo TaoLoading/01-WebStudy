@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>浅克隆/浅复制/浅拷贝</title>
+</head>
+<body>
+  <!-- 
+    实现浅拷贝
+        方法一: 利用ES6语法
+        方法二: 利用ES5语法: for...in
+  -->
+  <script src="../dist/190719-utils.js"></script>
+  <script>
+    const obj1 = { x: 'abc', y: {m: 1} }  // {x: 'abc', y: }
+    const obj2 = aUtils.clone1(obj1)
+    // const obj2 = aUtils.clone2(obj1)
+    console.log(obj2, obj1===obj2, obj1.y===obj2.y)   // false true
+
+    const arr1 = ['abc', {m: 1}]
+    const arr2 = aUtils.clone1(arr1)
+    // const arr2 = aUtils.clone2(arr1)
+    console.log(arr2, arr1===arr2, arr1[1]===arr2[1]) // false true  
+  </script>
+</body>
+</html>

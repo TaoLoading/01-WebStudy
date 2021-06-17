@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>数组声明式方法</title>
+</head>
+<body>
+  <script src="../dist/190719-utils.js"></script>
+  <script>
+    /* 
+    自定义实现一组数组声明式方法
+      1). map()
+      2). reduce()
+      3). filter()
+      4). find()
+      5). findIndex()
+      6). every()
+      7). some()
+    */
+    /* 
+    需求:
+    1. 产生一个每个元素都比原来大10的新数组
+    2. 得到所有奇数的和
+    3. 得到值大于8且下标是偶数位的元素组成的数组
+    4. 找出一个值大于8且下标是偶数位的元素
+    5. 找出一个值大于8且下标是偶数位的元素的下标
+    6. 判断下标为偶数的元素是否都为奇数
+    7. 判断是否有下标为偶数的元素值为奇数
+    */
+
+    const arr = [1, 3, 6, 9, 15, 19, 16]
+
+    // 1. 产生一个每个元素都比原来大10的新数组
+    console.log(aUtils.map(arr, (item, index) => item + 10))
+
+    // 2. 得到所有奇数的和
+    console.log(aUtils.reduce(arr, (preTotal, item, index) => preTotal + (item %2 === 1 ? item : 0), 0))
+
+    // 3. 得到值大于8且下标是偶数位的元素组成的数组
+    console.log(aUtils.filter(arr, (item, index) => index%2===0 && item>8))
+
+    // 4. 找出一个值大于8且下标是偶数位的元素
+    console.log(aUtils.find(arr, (item, index) => index%2===0 && item>8))
+    // 5. 找出一个值大于8且下标是偶数位的元素的下标
+    console.log(aUtils.findIndex(arr, (item, index) => index%2===0 && item>8))
+    // 6. 判断下标为偶数的元素是否都为奇数
+    console.log(aUtils.every(arr, (item, index) => index%2===1 || (index%2===0 && item%2===1)))
+    // 7. 判断是否有下标为偶数的元素值为奇数
+    console.log(aUtils.some(arr, (item, index) => index%2===1 || (index%2===0 && item%2===1)))
+
+  </script>
+
+  <script>
+    
+  </script>
+</body>
+</html>
