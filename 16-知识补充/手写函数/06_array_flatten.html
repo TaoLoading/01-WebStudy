@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数组扁平化</title>
+</head>
+
+<body>
+  <script>
+    /*
+    flatten()
+    功能：取出嵌套数组(多维)中的所有元素放到一个新数组(一维)中
+    */
+    Array.prototype.flatten = function (arr) {
+      return arr.reduce((pre, item) => {
+        pre.push(!Array.isArray(item) ? item : flatten(item))
+        return pre
+      }, [])
+    }
+  </script>
+</body>
+
+</html>
