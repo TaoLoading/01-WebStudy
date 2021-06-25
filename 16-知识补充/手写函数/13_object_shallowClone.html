@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>浅拷贝</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * 浅拷贝
+     * 定义：创建一个新对象，并对源对象进行拷贝。当源对象中的元素是基本数据类型时，则拷贝是基本类型的值，当源对象中的元素是引用数据类型时，则拷贝的内存地址。
+     *       这就导致无论是拷贝出新对象还是源对象，其中任何一个对象发生改变都会影响到另一个对象。
+      */
+
+    Object.prototype.shallowClone1 = function (target) {
+      if (target instanceof Array) {
+        // 拷贝目标为数组
+        return [...target]
+      } else if (target !== null && typeof target === 'object') {
+        // 拷贝目标为对象且不为null
+        return { ...target }
+      } else {
+        // 拷贝目标为其他
+        return target
+      }
+    }
+
+    Object.prototype.shallowClone2 = function (target) {
+      if (target instanceof Array || (target !== null && typeof target === 'object')) {
+        const cloneTarget = target instanceof Array ? [] : {}
+        for (const key in target) {
+          if (target.hasOwnProperty(key)) {
+            cloneTarget[key] = target[key]
+          }
+        }
+        return cloneTarget
+      } else {
+        return target
+      }
+    }
+
+    const obj1 = { a: 1, b: ['1', '2', '3'], c: { x: { y: 2 } }, d: function () { } }
+    obj2 = obj1.shallowClone2(obj1)
+    console.log(obj2, obj2 === obj1, obj2.a === obj1.a, obj2.b === obj1.b, obj2.c === obj1.c, obj2.d === obj1.d)
+  </script>
+</body>
+
+</html>
