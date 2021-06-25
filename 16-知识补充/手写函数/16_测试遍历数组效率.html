@@ -18,7 +18,7 @@
       arr.push(1)
     }
 
-    // for..in
+    // for..in(会查找原型链,所以慢)
     console.time()
     for (const key in arr) {
       let element = arr[key];
@@ -39,7 +39,7 @@
     })
     console.timeEnd()
 
-    // keys() + forEach
+    // keys() + forEach(遍历两次,所以慢
     console.time()
     Object.keys(arr).forEach(index => {
       let element32 = arr[index]
