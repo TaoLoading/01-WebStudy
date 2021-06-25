@@ -51,16 +51,17 @@
      * 缓存容器的结构：Map，key: target，value: cloneTarget
       */
     Object.prototype.deepClone3 = function (target, map = new Map()) {
+      // 1.如果是数组或对象，则进行下一步拷贝操作，其他则直接返回值
       if (target instanceof Array || (target !== null && typeof target === 'object')) {
-        // 判断是否进行已经进行了拷贝
+        // 2.判断是否进行已经进行了拷贝，如果已经拷贝则直接返回值
         let cloneTarget = map.get(target)
         if (cloneTarget) {
-          // 如果存在，直接返回
           return cloneTarget
         }
-        // 如果不存在，则创建拷贝对象并保存到map容器
+        // 3.如果不存在，则创建拷贝对象，并将要拷贝的值保存到map容器
         cloneTarget = target instanceof Array ? [] : {}
         map.set(target, cloneTarget)
+        // 4.遍历源对象进行拷贝
         for (const key in target) {
           if (target.hasOwnProperty(key)) {
             // 通过对属性值进行递归拷贝，实现深拷贝
@@ -73,9 +74,51 @@
       }
     }
 
+    /**
+     * 方法三优化版：map容器 + 递归
+     * 思路：优化数组遍历效率。因为forEach()遍历效率更高
+      */
+    Object.prototype.deepClone33 = function (target, map = new Map()) {
+      // 1.如果是数组或对象，则进行下一步拷贝操作，其他则直接返回值
+      if (target instanceof Array || (target !== null && typeof target === 'object')) {
+        // 2.判断是否进行已经进行了拷贝，如果已经拷贝则直接返回值
+        let cloneTarget = map.get(target)
+        if (cloneTarget) {
+          return cloneTarget
+        }
+        // 3.如果不存在，则根据值类型分别创建拷贝对象
+        if (target instanceof Array) {
+          cloneTarget = []
+          // 4.将要拷贝的值保存到map容器
+          map.set(target, cloneTarget)
+          // 5.如果值类型是数组则遍历源数组进行拷贝
+          target.forEach((item, index) => {
+            // 通过对属性值进行递归拷贝，实现深拷贝
+            cloneTarget[index] = deepClone33(item, map)
+          })
+        } else {
+          cloneTarget = {}
+          // 4.将要拷贝的值保存到map容器
+          map.set(target, cloneTarget)
+          // 5.如果值类型是对象则遍历源对象进行拷贝
+          for (const key in target) {
+            if (target.hasOwnProperty(key)) {
+              // 通过对属性值进行递归拷贝，实现深拷贝
+              cloneTarget[key] = deepClone33(target[key], map)
+            }
+          }
+        }
+
+        return cloneTarget
+      } else {
+        return target
+      }
+    }
+
+
 
     const obj1 = { a: 1, b: ['1', '2', '3'], c: { x: { y: 2 } }, d: function () { } }
-    obj2 = obj1.deepClone3(obj1)
+    obj2 = obj1.deepClone33(obj1)
     console.log(obj2, obj2 === obj1, obj2.a === obj1.a, obj2.b === obj1.b, obj2.c === obj1.c, obj2.d === obj1.d)
     /* obj1.b.push(obj1.c)
     obj1.c.z = obj1.b */
