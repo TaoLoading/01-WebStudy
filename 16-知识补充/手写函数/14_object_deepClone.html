@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>深克隆</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * 深拷贝
+     * 定义：创建一个新对象，并对源对象进行完全拷贝。无论源对象中的元素是基本数据类型还是引用数据类型，拷贝的都是他们的值。
+     *       比如当元素是引用数据类型时，会在堆内存中开辟一个新空间存放拷贝后的对象。
+     *       这就导致新对象和源对象之间不会相互影响。
+      */
+
+    /**
+     * 方法一：JSON转化
+     * 缺点：1.函数属性丢失   2.抛弃对象的constructor，将对象的构造函数变为Object，存在循环引用时出错
+      */
+    Object.prototype.deepClone1 = function (target) {
+      return JSON.parse(JSON.stringify(target))
+    }
+
+    /**
+     * 方法二：浅拷贝 + 递归
+     * 缺点：1.存在循环引用时出错
+      */
+    Object.prototype.deepClone2 = function (target) {
+      if (target instanceof Array || (target !== null && typeof target === 'object')) {
+        // 创建拷贝对象
+        const cloneTarget = target instanceof Array ? [] : {}
+        for (const key in target) {
+          if (target.hasOwnProperty(key)) {
+            // 通过对属性值进行递归拷贝，实现深拷贝
+            cloneTarget[key] = deepClone2(target[key])
+          }
+        }
+        return cloneTarget
+      } else {
+        return target
+      }
+    }
+
+    /**
+     * 方法三：map容器 + 递归
+     * 思路：对同一个对象/数组只拷贝一次。如果已经拷贝，则直接返回；如果没有拷贝，则保存到拷贝对象中
+     * 缓存容器的结构：Map，key: target，value: cloneTarget
+      */
+    Object.prototype.deepClone3 = function (target, map = new Map()) {
+      if (target instanceof Array || (target !== null && typeof target === 'object')) {
+        // 判断是否进行已经进行了拷贝
+        let cloneTarget = map.get(target)
+        if (cloneTarget) {
+          // 如果存在，直接返回
+          return cloneTarget
+        }
+        // 如果不存在，则创建拷贝对象并保存到map容器
+        cloneTarget = target instanceof Array ? [] : {}
+        map.set(target, cloneTarget)
+        for (const key in target) {
+          if (target.hasOwnProperty(key)) {
+            // 通过对属性值进行递归拷贝，实现深拷贝
+            cloneTarget[key] = deepClone3(target[key], map)
+          }
+        }
+        return cloneTarget
+      } else {
+        return target
+      }
+    }
+
+
+    const obj1 = { a: 1, b: ['1', '2', '3'], c: { x: { y: 2 } }, d: function () { } }
+    obj2 = obj1.deepClone3(obj1)
+    console.log(obj2, obj2 === obj1, obj2.a === obj1.a, obj2.b === obj1.b, obj2.c === obj1.c, obj2.d === obj1.d)
+    /* obj1.b.push(obj1.c)
+    obj1.c.z = obj1.b */
+  </script>
+</body>
+
+</html>
