@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>链表_测试</title>
+</head>
+<body>
+  <script src="../../../dist/atguigu-utils.js"></script>
+  <script>
+    // 测试链表
+    // 1.创建链表
+    var list = new aUtils.LinkedList()
+
+    // 2.追加元素
+    list.append(15)
+    list.append(10)
+    list.append(20)
+
+    // 3.打印链表的结果
+    // console.log(list) // 15,10,20
+
+    // 4.测试insert方法
+    list.insert(0, 100)
+    list.insert(4, 200)
+    list.insert(2, 300)
+    // console.log(list) // 100,15,300,10,20,200
+
+    // 5.测试removeAt方法
+    list.removeAt(0)
+    list.removeAt(1)
+    list.removeAt(3)
+    // console.log(list)
+
+    // 6.测试indexOf方法
+    // console.log(list.indexOf(15))
+    // console.log(list.indexOf(10))
+    // console.log(list.indexOf(20))
+    // console.log(list.indexOf(100))
+
+    // 7.测试remove方法
+    list.remove(15)
+    // console.log(list)
+
+    // 8.测试其他方法
+    console.log(list.isEmpty())
+    console.log(list.size())
+    console.log(list.getFirst())
+  </script>
+</body>
+</html>

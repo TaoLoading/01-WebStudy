@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>栈_应用_十进制转二进制</title>
+</head>
+<body>
+  <script src="../../../dist/atguigu-utils.js"></script>
+  <script>
+    /* 
+    使用Stack封装一个功能函数: 十进制(decimal)转二进制(binary)
+    */
+    function dec2bin(decNumer) {
+      // 创建一个空栈
+      const stack = new aUtils.Stack()
+
+      // 将得到的所有二进制位压栈
+      while (decNumer > 0) {
+        let remainder = decNumer % 2
+        stack.push(remainder)
+        decNumer = Math.floor(decNumer / 2)
+      }
+
+      // 取出栈中所有元素组拼成二进制数
+      let binayriStrng = ""
+      while (!stack.isEmpty()) {
+        binayriStrng += stack.pop()
+      }
+      
+      return binayriStrng
+    }
+
+    // 测试
+    console.log(dec2bin(10))
+    console.log(dec2bin(233))
+
+  </script>
+</body>
+</html>

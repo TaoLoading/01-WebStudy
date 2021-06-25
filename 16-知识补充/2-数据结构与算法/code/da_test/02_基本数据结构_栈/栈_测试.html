@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>栈_测试</title>
+</head>
+<body>
+  <script src="../../../dist/atguigu-utils.js"></script>
+  <script>
+    const stack = new aUtils.Stack()
+    
+    stack.push(6)
+    stack.push(5)
+    stack.pop()   
+    stack.push(4)
+    stack.pop()   
+    stack.push(3)
+    console.log(stack.peek(), stack.size(), stack.isEmpty())
+    
+    const stack2 = new aUtils.Stack()
+    stack2.push('a')
+    stack2.push('b')
+    stack2.pop()
+    console.log(stack2.peek(), stack2.size(), stack2.isEmpty())
+  </script>
+</body>
+</html>

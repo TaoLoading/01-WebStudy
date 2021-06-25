@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>队列_应用</title>
+</head>
+<body>
+  <script src="../../../dist/atguigu-utils.js"></script>
+  <script>
+    /* 
+    利用自定义队列实现击鼓传花游戏函数
+    */
+    function passGame(names, num) {
+      const queue = new aUtils.Queue()
+      names.forEach((name, index) => {
+        queue.enqueue({name, index})
+      })
+      while(queue.size()>1) {
+        // 将队列的前num-1个依次转移到队列后面去
+        for (let index = 0; index < num-1; index++) {
+          queue.enqueue(queue.dequeue())
+        }
+        // 移除列头元素(也就是数到num的人)
+        queue.dequeue()
+      }
+      // 队列现在只剩下一个元素, 也就是最后剩下的人
+      const {name, index} = queue.front()
+      alert(`最后剩下${name}, 第${index+1}个`)
+    }
+
+    // 测试
+    var names = ['A','B','C','D','E']
+    passGame(names, 4)
+  </script>
+</body>
+</html>
