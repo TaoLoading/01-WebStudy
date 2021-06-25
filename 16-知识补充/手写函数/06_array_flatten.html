@@ -13,13 +13,17 @@
     /*
     flatten()
     功能：取出嵌套数组(多维)中的所有元素放到一个新数组(一维)中
+    手写思路：当数组中有元素是数组时，就使用concat()进行数组的扁平化，直至所有元素都不是数组，完成扁平化
     */
     Array.prototype.flatten = function (arr) {
-      return arr.reduce((pre, item) => {
-        pre.push(!Array.isArray(item) ? item : flatten(item))
-        return pre
-      }, [])
+      while (arr.some(item => Array.isArray(item))) {
+        arr = [].concat(...arr)
+      }
+      return arr
     }
+
+    let arr = [1, [2, [3, 4, [5, 6]]]]
+    console.log(arr.flatten(arr))
   </script>
 </body>
 
