@@ -10,7 +10,7 @@
 
 <body>
   <script>
-    // map()
+    // 1.map()
     Array.prototype.map = function (callback) {
       // 1.创建一个新数组
       const arr = []
@@ -25,7 +25,7 @@
       return arr
     }
 
-    // reduce()
+    // 2.reduce()
     Array.prototype.reduce = function (callback, initValue) {
       // 1.初始化
       let total = initValue
@@ -39,7 +39,7 @@
       return total
     }
 
-    // filter()
+    // 3.filter()
     Array.prototype.filter = function (callback) {
       // 1.创建一个新数组
       const arr = []
@@ -56,7 +56,7 @@
       return arr
     }
 
-    // find()
+    // 4.find()
     Array.prototype.find = function (callback) {
       // 1.遍历当前数组中的每个元素
       for (let index = 0; index < this.length; index++) {
@@ -72,7 +72,7 @@
       return undefined
     }
 
-    // findIndex()
+    // 5.findIndex()
     Array.prototype.findIndex = function (callback) {
       // 1.遍历当前数组中的每个元素
       for (let index = 0; index < this.length; index++) {
@@ -88,7 +88,7 @@
       return -1
     }
 
-    // every()
+    // 6.every()
     Array.prototype.every = function (callback) {
       // 1.遍历当前数组中的每个元素
       for (let index = 0; index < this.length; index++) {
@@ -104,7 +104,7 @@
       return true
     }
 
-    // some()
+    // 7.some()
     Array.prototype.some = function (callback) {
       // 1.遍历当前数组中的每个元素
       for (let index = 0; index < this.length; index++) {
