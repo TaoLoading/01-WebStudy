@@ -24,9 +24,9 @@
       */
     // 用来返回节流函数的工具函数
     function throttle(callback, delay) {
-      // 1.初始化上次函数执行的时间
+      // 1.初始化第一次函数执行的时间
       let lastTime = 0
-      // 实现功能的节流函数
+      // 真正实现功能的节流函数
       return function (event) {
         // 2.获取当前点击操作的时间
         const nowTime = Date.now()
