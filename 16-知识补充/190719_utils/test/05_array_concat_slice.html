@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>数组合并与切片</title>
+</head>
+<body>
+
+  <script src="../node_modules/atguigu-utils/dist/atguigu-utils.js"></script>
+  <script src="../dist/190719-utils.js"></script>
+  <script>
+    /* 
+      1. concat()
+        语法: var newArray = concat(oldArr, value1[, value2[, ...[, valueN]]]) 
+        功能: 将n个数组或值与当前数组合并生成一个新数组
+      2. slice()
+        语法: var newArray = slice(oldArr, [begin[, end]])
+        功能: 返回一个由 begin 和 end 决定的原数组的浅拷贝, 原始数组不会被改变
+    */
+    console.log(aUtils.concat([1, 2], [3, 4], 6))  // [1, 2, 3, 4, 6]
+
+    console.log(aUtils.slice([1, 3, 5, 7, 9]))  // [1, 3, 5, 7, 9]
+    console.log(aUtils.slice([1, 3, 5, 7, 9], 1, 3)) // [3, 5]
+    console.log(aUtils.slice([1, 3, 5, 7, 9], 1, 10)) // [3, 5, 7, 9]
+  </script>
+</body>
+</html>

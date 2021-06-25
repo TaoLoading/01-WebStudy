@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>数组取真与数组分块</title>
+</head>
+<body>
+  <!-- 
+    1). compact(array): 返回数组中所有真值元素组成的新数组
+    2). chunk(array, size): 将数组拆分成多个 size 长度的区块，每个区块组成小数组,整体组成一个二维数组
+  -->
+  <script src="../dist/190719-utils.js"></script>
+  <script>
+    console.log(aUtils.compact([0, 1, false, true, '', 'abc'])) // [1, true, 'abc']
+    console.log(aUtils.chunk([1, 2, 3, 4, 5, 6, 7], 3)) // [[1,2,3], [4,5,6],[7]]
+    console.log(aUtils.chunk([1, 2, 3, 4, 5, 6, 7]))// [[1],[2],[3],[4],[5],[6],[7]]
+    console.log(aUtils.chunk([1, 2, 3, 4, 5, 6, 7], 8))// [[1, 2, 3, 4, 5, 6, 7]]
+    console.log(aUtils.chunk2([1, 2, 3, 4, 5, 6, 7], 8))// [[1, 2, 3, 4, 5, 6, 7]]
+  </script>
+</body>
+</html>

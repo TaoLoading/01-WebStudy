@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>优先级队列_测试</title>
+</head>
+<body>
+  <script src="../../../node_modules/atguigu-utils/dist/atguigu-utils.js"></script>
+  <script src="../../../dist/190719-utils.js"></script>
+  <script>
+    // 创建优先级队列对象
+    var pQueue = new aUtils.PriorityQueue()
+
+    // 添加元素
+    pQueue.enqueue("abc", 10)
+    pQueue.enqueue("cba", 5)
+    pQueue.enqueue("nba", 12)
+    pQueue.enqueue("mba", 3)
+
+    // 遍历所有的元素
+    var size = pQueue.size()
+    for (var i = 0; i < size; i++) {
+        var item = pQueue.dequeue()
+        console.log(item.data, item.priority)
+    }
+  </script>
+</body>
+</html>

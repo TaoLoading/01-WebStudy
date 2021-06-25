@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>栈_应用_十进制转二进制</title>
+</head>
+<body>
+  <script src="../../../dist/190719-utils.js"></script>
+  <script>
+    /* 
+    使用Stack封装一个功能函数: 十进制(decimal)转二进制(binary)
+    */
+    function dec2bin (decNum) {
+      // 创建一个用于保存二进制位的stack
+      const stack = new aUtils.Stack()
+      
+      // 对decNum不断除2取余, 并保存stack中
+      while(decNum>0) {
+        const remainder = decNum % 2
+        stack.push(remainder)
+        decNum = Math.floor(decNum / 2) 
+      }
+     
+      // 依次取出stack中所有元素, 并拼接成字符串
+      let result = ''
+      while(!stack.isEmpty()) {
+        result += stack.pop()
+      }
+
+      return result
+    }
+    
+
+    // 测试
+    console.log(dec2bin(10)) // 1010
+    console.log(dec2bin(233))
+
+  </script>
+</body>
+</html>

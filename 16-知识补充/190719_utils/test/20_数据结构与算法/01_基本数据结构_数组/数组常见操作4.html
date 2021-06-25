@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    /* 
+    1. 理解
+        多个有序数元素的列表
+        每个元素都有一个唯一的数值标号, 且从0开始依次递增
+        在内存中数据是保存在一块连续的内存中的
+    2. 相关API操作
+        静态方法
+        更新的方法
+        遍历相关的声明式方法
+        其它方法
+    */
+
+    /*
+    其它
+        length
+        join()
+        concat()
+        indexOf()
+        lastIndexOf()
+    */
+    /* 
+    需求
+        1). 输出数组中元素的个数
+        2). 将数组中的所有元素用-连接成串
+        3). 与包含1,2,3的数组合并, 并与4合并
+        4). 得到1在数组中的第一个下标和最后一个下标
+    */
+
+    const arr = [3, 1, 14, 9, 7, 6, 1, 4]
+    console.log(arr.length);
+    // arr[10] = 12;
+    // console.log(arr.length);
+
+    console.log(arr.join('-'))
+    console.log('abc'.split('').reverse().join(''))
+
+    console.log(arr.concat([1, 2, 3], 4))
+
+    console.log(arr.indexOf(1), arr.lastIndexOf(1), arr.indexOf(10))
+
+  </script>
+</body>
+</html>

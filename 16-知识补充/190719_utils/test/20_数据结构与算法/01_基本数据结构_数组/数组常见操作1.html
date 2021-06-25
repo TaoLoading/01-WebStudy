@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    /* 
+    1. 理解
+        多个有序数元素的列表
+        每个元素都有一个唯一的数值标号, 且从0开始依次递增
+        在内存中数据是保存在一块连续的内存中的
+    2. 相关API操作
+        静态方法
+        更新的方法
+        遍历相关的声明式方法
+        其它方法
+    */
+
+    /* 
+    静态方法
+        from(): 从一个类似数组或可迭代对象创建一个新的，浅拷贝的数组实例
+        of(): 创建一个具有可变数量参数的新数组实例
+        isArray()
+    */
+    
+    //  from(): 从一个类似数组或可迭代对象创建一个新的，浅拷贝的数组实例
+    function f() {
+      return Array.from(arguments);
+    }
+    console.log(f(1, 2, 3));
+    const set = new Set(['foo', 'bar', 'baz', 'foo']);
+    console.log(Array.from(set));
+
+    // of(): 创建一个具有可变数量参数的新数组实例
+    console.log(Array.of(3)); // [3]
+    console.log(Array.of(1, 2, 3)); // [1, 2, 3]
+
+    // isArray()
+    console.log(Array.isArray([1, 2, 3]), Array.isArray({foo: 123}));
+
+  </script>
+</body>
+</html>

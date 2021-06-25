@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>手写Promise</title>
+</head>
+<body>
+
+<script src="../dist/190719-utils.js"></script>
+<script>
+  const { Promise } = aUtils
+  new Promise((resolve, reject) => {
+    // resolve(1)
+    // setTimeout(() => {
+      reject(2)
+    // }, 1000);
+  })
+  .then(value => {
+    console.log('onResolve()1')
+  })
+  .then(
+    value => {console.log('onResolved()2', value)},
+    reason => {
+      console.log('onRejected2()', reason)
+      // return 3
+      // throw 4
+      // return new Promise((resolve, reject) =>resolve(5))
+      return new Promise((resolve, reject) =>reject(6))
+    }
+  ).then(
+    value => {console.log('onResolved3()', value)},
+    reason => {
+      console.log('onRejected3()', reason)
+      // throw reason
+    }
+  ).catch(reason => {
+    console.log('onRejected4()', reason)
+  }).then(
+    value => {console.log('onResolved5()', value)},
+    reason => {
+      console.log('onRejected5()', reason)
+    }
+  )
+</script>
+  
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>函数节流与防抖</title>
+</head>
+<body>
+
+  <button id="throttle">测试函数节流</button>
+  <button id="debounce">测试函数防抖</button>
+  
+  <!-- 
+    1. 事件频繁触发可能造成的问题?
+        1). 一些浏览器事件:window.onresize、window.mousemove等，触发的频率非常高，会造成浏览器性能问题
+        2). 如果向后台发送请求，频繁触发，对服务器造成不必要的压力
+    
+    2. 如何限制事件处理函数频繁调用
+        1). 函数节流
+        2). 函数防抖
+
+    3. 函数节流(throttle)
+        1). 理解: 
+            在函数需要频繁触发时: 函数执行一次后，只有大于设定的执行周期后才会执行第二次
+            适合多次事件按时间做平均分配触发
+        2). 场景：
+            窗口调整（resize）
+            页面滚动（scroll）
+            DOM 元素的拖拽功能实现（mousemove）
+            抢购疯狂点击（click）
+            
+    4. 函数防抖(debounce)
+        1). 理解:
+            在函数需要频繁触发时: 在规定时间内，只让最后一次生效，前面的不生效。
+            适合多次事件一次响应的情况
+        2). 场景：
+            输入框实时搜索联想（keyup/input）
+  -->
+
+  <script src="https://cdn.bootcss.com/lodash.js/4.17.15/lodash.js"></script>
+  <script src="../dist/190719-utils.js"></script>
+  <script>
+    /* 处理点击事件的回调函数 */
+    function handleClick(event) { // 处理事件的回调
+      console.log('处理点击事件', this, event)
+    }
+
+    document.getElementById('throttle').onclick = handleClick
+    // document.getElementById('throttle').onclick = _.throttle(handleClick, 2000, { 'trailing': false })
+    // document.getElementById('debounce').onclick = _.debounce(handleClick, 2000)
+    document.getElementById('throttle').onclick = aUtils.throttle(handleClick, 2000)
+    document.getElementById('debounce').onclick = aUtils.debounce(handleClick, 2000)
+
+  </script>
+
+</body>
+</html>

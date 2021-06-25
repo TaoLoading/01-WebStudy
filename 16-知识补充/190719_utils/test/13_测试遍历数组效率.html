@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>测试各种遍历数组的效率</title>
+</head>
+<body>
+  <script>
+    /* 
+    测试: for...in / for / forEach / keys&forEach / while / for...of
+      耗时: keys&forEach | for...in | for..of >>> for | forEach | while
+    */
+    const arr = new Array();
+    for (let i = 0; i < 100000; i++) {
+      arr.push(1)
+    }
+
+    // for..in  // 会查找原型链
+    console.time()
+    for (const key in arr) {
+      let element = arr[key];
+    }
+    console.timeEnd()
+
+    //for
+    console.time()
+    for (let index = 0; index < arr.length; index++) {
+      let element2 = arr[index];
+    }
+    console.timeEnd()
+
+    // forEach
+    console.time()
+    arr.forEach(item => {
+      let element3 = item;
+    })
+    console.timeEnd()
+
+    // keys() + forEach  多产生了一个数组
+    console.time()
+    Object.keys(arr).forEach(index => {
+      let element32 = arr[index]
+    })
+    console.timeEnd()
+
+
+
+    // while
+    console.time()
+    const length = arr.length
+    let index = 0
+    while(index++ < length) {
+      let element4 = arr[index]
+    }
+    console.timeEnd()
+
+    // for..of  // 会查找原型链
+    console.time()
+    for (const value of arr) {
+      
+    }
+    console.timeEnd()
+
+  </script>
+</body>
+</html>
