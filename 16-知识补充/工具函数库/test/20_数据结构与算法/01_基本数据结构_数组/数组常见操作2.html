@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
+
 <body>
-  
+
   <script>
     /* 
     1. 理解
@@ -31,7 +33,7 @@
         reverse()
         splice()
     */
-    
+
     /* 
     需求:
         1. 在数组的最后添加6
@@ -56,12 +58,13 @@
     arr.unshift(2)
     arr.unshift(3, 4)
     console.log(arr.shift())
-    console.log(arr.sort((item1, item2) => item2 - item1))  // 原数组排序了
+    console.log(arr.sort((item1, item2) => item2 - item1))  // 原数改变
     arr.splice(2, 1)
     arr.splice(2, 1, 10)
     arr.splice(2, 0, 11)
-    
+
     console.log(arr)
   </script>
 </body>
+
 </html>

@@ -7,12 +7,12 @@
     查看元素的个数: size()
     判断队列是否为空: isEmpty()
 */
-function Queue() {
+function Queue () {
 
   // 用于保存元素数据的数组
   const arr = []
 
-  
+
   // 入队列: enqueue()
   this.enqueue = function (element) {
     arr.push(element)
@@ -33,7 +33,7 @@ function Queue() {
   }
   // 判断队列是否为空: isEmpty()
   this.isEmpty = function () {
-    return arr.length===0
+    return arr.length === 0
   }
 }
 
