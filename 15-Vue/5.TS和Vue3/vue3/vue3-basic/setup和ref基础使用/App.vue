@@ -1,6 +1,5 @@
 <template>
-  <h2>{{count}}</h2>
-  <button @click="updateCount()">更新数据</button>
+  <div></div>
 </template>
 
 <script lang="ts">
