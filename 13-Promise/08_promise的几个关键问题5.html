@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>08_promise的几个关键问题5</title>
 </head>
+
 <body>
   <script>
     /* 
@@ -37,11 +39,12 @@
     //   value => console.log('onResolved4()', value),
     //   reason => console.log('onRejected2()', reason)
     // )
-    
-    new Promise((resolve,reject)=>{
-        reject(3)
-    }).then(reason=> console.log('onResolved()',reason),value=>console.log('onEejected',value))
-   .then(reason=> console.log('onResolved()',reason),value=>console.log('onEejected',value))
+
+    new Promise((resolve, reject) => {
+      reject(3)
+    }).then(reason => console.log('onResolved()', reason), value => console.log('onEejected', value))
+      .then(reason => console.log('onResolved()', reason), value => console.log('onEejected', value))
   </script>
 </body>
+
 </html>

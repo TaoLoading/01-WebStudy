@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>08_promise的几个关键问题3</title>
 </head>
+
 <body>
   <script>
     /* 
@@ -21,10 +23,10 @@
       reject(2)
     }).then(
       value => {
-        console.log('onResolved1()', value)
-        // throw 4
-        // return 3
-        // return Promise.resolve(5)
+        console.log('onResolved1()', value) // 不加return，成功，值为undefined
+        // throw 4 // 失败，值为4
+        // return 3 // 成功，值为3
+        // return Promise.resolve(5) // 失败，值为5
         return Promise.reject(5)
       },
       reason => {
@@ -38,7 +40,8 @@
       value => console.log('onResolved2()', value),
       reason => console.log('onRejected2()', reason),
     )
-
+        // 若第一个Promise失败则会影响第一个.then，但不会影响第二个.then
   </script>
 </body>
+
 </html>

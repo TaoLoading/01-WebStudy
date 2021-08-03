@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>08_promise的几个关键问题2</title>
 </head>
+
 <body>
   <!-- 
     3.改变promise状态和指定回调函数谁先谁后?
@@ -20,16 +22,23 @@
 
   <script>
     /* 先改变状态, 后指定回调函数 */
-    new Promise((resolve, reject) => { // 同步回调
-      console.log('excutor()')
-      resolve(1)  // pending ==> resolved  value为1
-      console.log('resolve()改变状态后')
-    }).then( // 先指定回调函数, 内部选将回调函数保存起来
-      value => { // 成功/失败的回调函数是异步执行的, 需要放入队列将来执行
-        console.log('onResolved()', value)
+    new Promise((resolve, resject) => {
+      console.log('excutor()') // 第一输出
+      setTimeout(() => {
+        resolve(2)
+        console.log('resolve()改变状态之后') // 第三输出
+      }, 1000)
+    }).then(
+      value => {
+        console.log('onResolved()', value) // 第二输出
       }
     )
-    console.log('new Promise()之后')
+
+    /**
+     * 通过输出顺序可知，Promise内部发生了同步回调，故发生第一输出。
+     * 第二输出和第三输出证明成功或失败的回调函数是异步执行的, 需要先放入队列后执行
+     */
   </script>
 </body>
+
 </html>

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>08_promise的几个关键问题2</title>
 </head>
+
 <body>
   <!-- 
     3.改变promise状态和指定回调函数谁先谁后?
@@ -29,7 +31,7 @@
         // reject()
       }, 1000)
     })
-    
+
     setTimeout(() => {
       p.then( // 先指定回调函数, 内部选将回调函数保存起来
         value => { // 成功/失败的回调函数是异步执行的, 需要放入队列将来执行
@@ -40,4 +42,5 @@
     console.log('new Promise()之后')
   </script>
 </body>
+
 </html>
