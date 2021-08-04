@@ -1,38 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>12_Promise相关面试题3</title>
 </head>
+
 <body>
 
-    <script>
-      // 3 7 4 1 2 5
-      /* 
-      宏: []
-      微: []
-      */
-      const first = () => (new Promise((resolve, reject) => {
-        console.log(3)
-        let p = new Promise((resolve, reject) => {
-          console.log(7)
-          setTimeout(() => {
-            console.log(5)
-            resolve(6)
-          }, 0)
-          resolve(1)
-        })
-        resolve(2)
-        p.then((arg) => {
-          console.log(arg)
-        })
-    
-      }))
-    
-      first().then((arg) => {
-        console.log(arg)
-      })
-      console.log(4)
-    </script>
+  <script>
+    const first = () => (new Promise((resolve, reject) => {
+      console.log(3)
+      let p = new Promise((resolve, reject) => {
+        console.log(7)
+        setTimeout(() => {
+          console.log(5)
+          resolve(6)
+        }, 0)
+        resolve(1)
+      })
+      resolve(2)
+      p.then((arg) => {
+        console.log(arg)
+      })
+
+    }))
+
+    first().then((arg) => {
+      console.log(arg)
+    })
+    console.log(4)
+
+    /*
+    执行流程：执行first()生成promise → 3立即执行 → 7立即执行 → 5所在的回调函数放到宏队列中(包括6) → 1放到微队列中(1是p的resolve()) → 2放到微队列中(2是外层promise的resolve())
+              → 4立即执行
+    故结果为3,7,4,1,2,5
+    6未执行是因为其所在的回调函数在5的时候放到了宏队列中，下一步1放到微队列中，故1先执行并将p的状态改为resolved，当轮到6执行时由于p的状态已经不是pending故无法执行
+    */
+  </script>
 </body>
+
 </html>

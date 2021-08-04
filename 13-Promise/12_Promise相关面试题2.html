@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>12_Promise相关面试题2</title>
 </head>
+
 <body>
 
-    <script>
-      setTimeout(() => {
-        console.log(1)
-      }, 0)
-      new Promise((resolve) => {
-        console.log(2)
-        resolve()
-      }).then(() => {
-        console.log(3)
-      }).then(() => {
-        console.log(4)
-      })
-      console.log(5)
+  <script>
+    setTimeout(() => {
+      console.log(1)
+    }, 0)
+    new Promise((resolve) => {
+      console.log(2)
+      resolve()
+    }).then(() => {
+      console.log(3)
+    }).then(() => {
+      console.log(4)
+    })
+    console.log(5)
 
-    // 2 5 3 4 1
-
-    /* 
-    宏: []
-    微: []
+    /*
+    执行流程：
+    1放到宏队列中 → 2立即执行 → 3放到未队列中 → 由于3还未执行则4为pending状态不放到队列中 → 5立即执行
+    故结果为：2,5,3,4,1
     */
-    </script>
+  </script>
 </body>
+
 </html>

@@ -1,44 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>12_Promise相关面试题4</title>
 </head>
+
 <body>
+  <script>
+    /*
+    1 7 2 3 8 4 6 5 0
+    宏: []
+    微: []
+    */
+    setTimeout(() => {
+      console.log("0")
+    }, 0)
+    new Promise((resolve, reject) => {
+      console.log("1")
+      resolve()
+    }).then(() => {
+      console.log("2")
+      new Promise((resolve, reject) => {
+        console.log("3")
+        resolve()
+      }).then(() => {
+        console.log("4")
+      }).then(() => {
+        console.log("5")
+      })
+    }).then(() => {
+      console.log("6")
+    })
 
-    <script>
-      /*
-      1 7 2 3 8 4 6 5 0
-      宏: []
-      微: []
-      */
-      setTimeout(() => {
-        console.log("0")
-      }, 0)
-      new Promise((resolve,reject)=>{
-        console.log("1")
-        resolve()
-      }).then(()=>{        
-        console.log("2")
-        new Promise((resolve,reject)=>{
-          console.log("3")
-          resolve()
-        }).then(()=>{      
-          console.log("4")
-        }).then(()=>{       
-          console.log("5")
-        })
-      }).then(()=>{  
-        console.log("6")
-      })
-    
-      new Promise((resolve,reject)=>{
-        console.log("7")
-        resolve()
-      }).then(()=>{         
-        console.log("8")
-      })
-    </script>
+    new Promise((resolve, reject) => {
+      console.log("7")
+      resolve()
+    }).then(() => {
+      console.log("8")
+    })
 
+    /*
+    执行流程：0放到宏队列 → 1立即执行 → 由于resolve()故进入.then()，2放到微队列中 → 由于2只是放到微队列中还未执行，故以下都未执行先行跳过
+              → 7立即执行 → 8放入微队列中 → 执行2,，并继续向下执行 → 3立即执行 → 4放入微队列 → 由于4只是放到微队列中还未执行，故以下都未执行先行跳过
+              → 6放入微队列中 → 执行8 → 执行4 → 执行5
+    故结果为1,7,2,3,8,4,6,5,0
+    */
+  </script>
 </body>
+
 </html>

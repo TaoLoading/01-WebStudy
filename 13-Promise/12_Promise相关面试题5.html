@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>12_Promise相关面试题5</title>
 </head>
+
 <body>
 
   <script>
     async function async1() {
       console.log('async1 start')
-      await async2()  // async2().then(() => {})
+      await async2()  // async2().then(() => {})，故async2不会放入微队列中，而是将其后的"console.log('async1 end')"放入微队列中
       console.log('async1 end')
     }
 
@@ -24,7 +26,7 @@
     }, 0)
 
     async1()
-    
+
     new Promise(function (resolve) {
       console.log('promise1')
       resolve()
@@ -38,8 +40,8 @@
       微: []
       */
 
-    /* 
-    输出: 
+    /*
+    输出:
       script start
       async1 start
       async2
@@ -52,4 +54,5 @@
   </script>
 
 </body>
+
 </html>
