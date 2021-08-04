@@ -24,6 +24,10 @@
 14.当promise状态为rejected同10/11/12/13，只有异步调用onRejected()
 15.当promise状态为pending时，去掉8.④，在调用函数时(注意非异步)外层包裹函数后同10/11/12/13
 16.合并共有函数简化代码
+17.当.then()中只指定了成功或失败的其中一种，恰巧传入的是未指定的一种，此时就为undefined，则需要对
+   onResolved()和onRejected()进行判断，当未指定时则向下传递
+--- 一下是对.catch()进行完善 ---
+18..catch()本质上是.then()的语法糖，同时只存在onRejected()，故返回一个.then()并将onResolved()指定为空即可
 */
 (function (window) {
 
