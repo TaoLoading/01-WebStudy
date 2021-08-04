@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>axios基本使用测试</title>
+</head>
+<body>
+  <button onclick="testGet()">发送GET请求</button><br>
+  <button onclick="testPost()">发送POST请求</button><br>
+  <button onclick="testPut()">发送PUT请求</button><br>
+  <button onclick="testDelete()">发送Delete请求</button><br>
+
+
+  <script src="https://cdn.bootcss.com/axios/0.19.0/axios.js"></script>
+  <script>
+
+    /* 1. GET请求: 从服务器端获取数据*/
+    function testGet() {
+      axios({
+        url: 'http://localhost:3000/posts',
+        // url: 'http://localhost:3000/posts2',
+        method: 'GET',
+        params: {
+          id: 1,
+          xxx: 'abc'
+        }
+      }).then(
+        response => {
+          console.log(response.data, response.status, response.statusText)
+        },
+        error => {
+          alert(error.message)
+        }
+      )
+    }
+
+    /* 2. POST请求: 服务器端保存数据*/
+    function testPost() {
+      axios({
+        url: 'http://localhost:3000/posts',
+        method: 'POST',
+        data: {
+          "title": "json-server---", 
+          "author": "typicode---"
+        }
+      }).then(
+        response => {
+          console.log(response.data)
+        },
+        error => {
+          alert(error.message)
+        }
+      )
+    }
+
+    /* 3. PUT请求: 服务器端更新数据*/
+    function testPut() {
+      axios({
+        url: 'http://localhost:3000/posts/1',
+        method: 'put',
+        data: {
+          "title": "json-server+++", 
+          "author": "typicode+++"
+        }
+      }).then(
+        response => {
+          console.log(response.data)
+        },
+        error => {
+          alert(error.message)
+        }
+      )
+    }
+
+    /* 2. DELETE请求: 服务器端删除数据*/
+    function testDelete() {
+      axios({
+        url: 'http://localhost:3000/posts/6',
+        method: 'delete'
+      }).then(
+        response => {
+          console.log(response.data)
+        },
+        error => {
+          alert(error.message)
+        }
+      )
+    }
+  </script>
+</body>
+</html>

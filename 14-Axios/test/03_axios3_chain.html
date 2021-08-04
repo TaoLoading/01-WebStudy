@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>axios的处理链流程</title>
+</head>
+<body>
+  
+  <script src="https://cdn.bootcss.com/axios/0.19.0/axios.js"></script>
+  <script>
+    /* 
+    requestInterceptors: [{fulfilled1(){}, rejected1(){}}, {fulfilled2(){}, rejected2(){}}]
+    responseInterceptors: [{fulfilled11(){}, rejected11(){}}, {fulfilled22(){}, rejected22(){}}]
+    chain: [
+      fulfilled2, rejected2, fulfilled1, rejected1, 
+      dispatchReqeust, undefined, 
+      fulfilled11, rejected11, fulfilled22, rejected22
+    
+    ]
+    promise链回调: config 
+                  => (fulfilled2, rejected2) => (fulfilled1, rejected1)   // 请求拦截器处理
+                  => (dispatchReqeust, undefined) // 发请求
+                  => (fulfilled11, rejected11) => (fulfilled22, rejected22) // 响应拦截器处理
+                  => (onResolved, onRejected) // axios发请求回调处理
+    */
+
+    // 添加请求拦截器(回调函数)
+    axios.interceptors.request.use(
+      config => {
+        console.log('request interceptor1 onResolved()')
+        return config
+      },
+      error => {
+        console.log('request interceptor1 onRejected()')
+        return Promise.reject(error);
+      }
+    )
+    axios.interceptors.request.use(
+      config => {
+        console.log('request interceptor2 onResolved()')
+        return config
+      },
+      error => {
+        console.log('request interceptor2 onRejected()')
+        return Promise.reject(error);
+      }
+    )
+    // 添加响应拦截器
+    axios.interceptors.response.use(
+      response => {
+        console.log('response interceptor1 onResolved()')
+        return response
+      },
+      function (error) {
+        console.log('response interceptor1 onRejected()')
+        return Promise.reject(error);
+      }
+    )
+    axios.interceptors.response.use(
+      response => {
+        console.log('response interceptor2 onResolved()')
+        return response
+      },
+      function (error) {
+        console.log('response interceptor2 onRejected()')
+        return Promise.reject(error);
+      }
+    )
+
+    axios.get('http://localhost:3000/posts')
+      .then(response => {
+        console.log('data', response.data)
+      })
+      .catch(error => {
+        console.log('error', error.message)
+      })
+
+    /* axios.get('http://localhost:/posts2')
+      .then(response => {
+        console.log('data', response.data)
+      })
+      .catch(error => {
+        console.log('error', error.message)
+      }) 
+    */
+  </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>取消请求</title>
+</head>
+<body>
+  <button onclick="getProducts1()">获取商品列表1</button><br>
+  <button onclick="getProducts2()">获取商品列表2</button><br>
+  <button onclick="cancelReq()">取消请求</button><br>
+
+  <script src="https://cdn.bootcss.com/axios/0.19.0/axios.js"></script>
+  <script>
+
+    // 添加请求拦截器
+    axios.interceptors.request.use((config) => {
+      // 在准备发请求前, 取消未完成的请求
+      if (typeof cancel==='function') {
+          cancel('取消请求')
+      }
+      // 添加一个cancelToken的配置
+      config.cancelToken = new axios.CancelToken((c) => { // c是用于取消当前请求的函数
+        // 保存取消函数, 用于之后可能需要取消当前请求
+        cancel = c
+      })
+
+      return config
+    })
+
+    // 添加响应拦截器
+    axios.interceptors.response.use(
+      response => {
+        cancel = null
+        return response
+      },
+      error => {
+        if (axios.isCancel(error)) {// 取消请求的错误
+          // cancel = null
+          console.log('请求取消的错误', error.message) // 做相应处理
+          // 中断promise链接
+          return new Promise(() => {})
+        } else { // 请求出错了
+          cancel = null
+          // 将错误向下传递
+          // throw error
+          return Promise.reject(error)
+        }
+      }
+    )
+
+
+    let cancel  // 用于保存取消请求的函数
+    function getProducts1() {
+      axios({
+        url: 'http://localhost:4000/products1',
+      }).then(
+        response => {
+          console.log('请求1成功了', response.data)
+        },
+        error => {// 只用处理请求失败的情况, 取消请求的错误的不用
+          console.log('请求1失败了', error.message)          
+        }
+      )
+    }
+
+    function getProducts2() {
+
+      axios({
+        url: 'http://localhost:4000/products2',
+      }).then(
+        response => {
+          console.log('请求2成功了', response.data)
+        },
+        error => {
+          console.log('请求2失败了', error.message)
+        }
+      )
+    }
+
+    function cancelReq() {
+      // alert('取消请求')
+      // 执行取消请求的函数
+      if (typeof cancel === 'function') {
+        cancel('强制取消请求')
+      } else {
+        console.log('没有可取消的请求')
+      }
+    }
+  </script>
+</body>
+</html>

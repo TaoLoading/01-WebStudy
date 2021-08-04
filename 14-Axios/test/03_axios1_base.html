@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>axios基本使用</title>
+</head>
+<body>
+  
+    <div>
+      <button onclick="testGet()">GET请求</button>
+      <button onclick="testPost()">POST请求</button>
+      <button onclick="testPut()">PUT请求</button>
+      <button onclick="testDelete()">DELETE请求</button>
+    </div>
+  
+    <script src="https://cdn.bootcss.com/axios/0.19.0/axios.js"></script>
+    <script>
+      // 指定默认配置
+      axios.defaults.baseURL = 'http://localhost:3000'
+
+      /* 1. GET请求: 从服务器端获取数据*/
+      function testGet() {
+        // axios.get('/posts?id=1')
+        axios({
+          url: '/posts',
+          params: {
+            id: 1
+          }
+        })
+          .then(response => {
+            console.log('/posts get', response.data)
+          })
+      }
+  
+      /* 2. POST请求: 向服务器端添加新数据*/
+      function testPost() {
+        // axios.post('/posts', {"title": "json-server3", "author": "typicode3"})
+        axios({
+          url: '/posts',
+          method: 'post',
+          data: {"title": "json-server4", "author": "typicode4"}
+        })
+          .then(response => {
+            console.log('/posts post', response.data)
+          })
+      }
+  
+      /* 3. PUT请求: 更新服务器端已经数据 */
+      function testPut() {
+        // axios.put('http://localhost:3000/posts/4', {"title": "json-server...", "author": "typicode..."})
+        axios({
+          url: '/posts/4',
+          method: 'put',
+          data: {"title": "json-server5", "author": "typicode5"}
+        })
+          .then(response => {
+            console.log('/posts put', response.data)
+          })
+      }
+  
+      /* 4. DELETE请求: 删除服务器端数据 */
+      function testDelete() {
+        // axios.delete('http://localhost:3000/posts/4')
+        axios({
+          url: '/posts/5',
+          method: 'delete'
+        })
+          .then(response => {
+            console.log('/posts delete', response.data)
+          })
+      }
+  
+    </script>
+</body>
+</html>
