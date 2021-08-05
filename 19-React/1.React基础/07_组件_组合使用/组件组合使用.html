@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>组件组合使用</title>
+</head>
+<body>
+
+  <div id="example"></div>
+
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/prop-types.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  
+  <script type="text/babel">
+    
+    //1.创建组件
+    
+    //定义App组件
+    class App extends React.Component{
+      //初始化状态
+      state =  {
+        todos:['吃饭','睡觉','打程老师']
+      }
+      
+      /*
+      * 状态（数据）在哪个组件中，更新状态（数据）的方法就一定在哪个组件中
+      * */
+      addTodos = (data)=>{
+        //1.获取原状态中的数据
+        let {todos} = this.state
+        //2.追加新数据
+        todos.unshift(data)
+        //3.更新状态
+        this.setState({todos})
+      }
+      
+      render(){
+        let {todos} = this.state
+        return (
+          <div>
+            <h2>Simple TODO List</h2>
+            <Add count={todos.length} addTodos={this.addTodos} />
+            <Show todos={todos}/>
+          </div>
+        )
+      }
+    }
+    
+    //定义Add组件
+    class Add extends React.Component{
+
+      //限制接收参数的类型以及必要性
+      static propTypes = {
+        count:PropTypes.number.isRequired,
+        addTodos:PropTypes.func.isRequired
+      }
+
+      //自定义一个响应添加的方法
+      add = ()=>{
+        //1.获取用户输入
+        let {userInput} = this.refs
+        let data = userInput.value
+        //2.验证输入的合法性
+        if(!data){
+          return
+        }
+        let {addTodos} = this.props
+        //3.维护到状态中
+        addTodos(data)
+        //4.清空输入
+        userInput.value = ''
+        
+      }
+      
+      render(){
+        let {count} = this.props
+        return (
+          <div>
+            <input type="text" ref="userInput"/>&nbsp;
+            <button onClick={this.add}>Add # {count}</button>
+          </div>
+        )
+      }
+    }
+
+    //定义Show组件
+    class Show extends React.Component{
+
+      componentWillReceiveProps(){
+        console.log('--componentWillReceiveProps--')
+      }
+      
+      //限制接收参数的类型以及必要性
+      static propTypes = {
+        todos:PropTypes.array.isRequired
+      }
+      
+      render(){
+        let {todos} = this.props
+        return (
+          <ul>
+            {todos.map((item,index)=> { return <li key={index}>{item}</li>}) }
+          </ul>
+        )
+      }
+    }
+    
+    //渲染组件标签
+    ReactDOM.render(<App/>,document.getElementById('example'))
+    
+  </script>
+</body>
+</html>

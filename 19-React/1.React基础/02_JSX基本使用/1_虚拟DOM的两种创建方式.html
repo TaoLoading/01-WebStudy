@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>虚拟DOM的两种创建方式</title>
+</head>
+<body>
+  <div id="demo"></div>
+  <div id="test1"></div>
+  <div id="test2"></div>
+
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  
+  <!--使用原生js创建虚拟DOM-->
+  <script type="text/javascript">
+    let myID = 'atguigu'
+    let myData = 'hello,world'
+    
+    //1.创建虚拟DOM对象
+    let vDOM = React.createElement('h2',{id:myID},React.createElement('span',{},myData))
+    let trueDOM = document.getElementById('demo')
+    debugger;
+    
+    //2.渲染虚拟DOM到页面
+    ReactDOM.render(vDOM,document.getElementById('test1'))
+  </script>
+  
+  <!--使用jsx语法创建虚拟DOM-->
+  <script type="text/babel">
+    //1.创建虚拟DOM
+    let vDOM2 = <h2 id={myID.toUpperCase()}><span>{myData.toUpperCase()}</span></h2>
+    
+    //2.渲染虚拟DOM到页面
+    ReactDOM.render(vDOM2,document.getElementById('test2'))
+
+  
+  </script>
+
+  <!--
+      虚拟DOM：较轻，就是一个js的对象。
+      真实DOM：较重，实实在在页面中显示的DOM
+  -->
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>props</title>
+</head>
+<body>
+
+<div id="example1"></div>
+<div id="example2"></div>
+
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<script type="text/javascript" src="../js/prop-types.js"></script>
+
+<script type="text/babel">
+
+  /*
+   需求: 自定义用来显示一个人员信息的组件，包含：姓名、年龄、性别三个信息
+      1). 姓名须为字符串类型，且是必要信息
+      2). 性别必须为字符串类型，且是必要信息
+      3). 年龄必须为数字类型，默认为18
+  */
+  
+  //1.定义组件
+  //使用ES6类定义组件
+  class Person extends React.Component{
+
+    /*
+    * 备注：
+    * 类里面的方法一旦加上static关键字，该方法只能有类本身调用，类的实例对象不能使用。
+    * */
+    //限制接收参数的类型以及必要性
+    static propTypes = {
+      name:PropTypes.string.isRequired,
+      sex:PropTypes.string.isRequired,
+      age:PropTypes.number
+    }
+    
+    //设置参数的默认值
+    static defaultProps = {
+      age:18
+    }
+    
+    //重写父类的render方法
+    render(){
+      let {name,age,sex} = this.props
+      return (
+        <ul>
+          <li>姓名：{name}</li>
+          <li>性别：{age+1}</li>
+          <li>年龄：{sex}</li>
+          <hr/>
+        </ul>
+      )
+    }
+  }
+  
+  //2.工厂函数创建组件
+  /*function Person(prop) {
+    return (
+      <ul>
+        <li>姓名：{prop.name}</li>
+        <li>性别：{prop.age}</li>
+        <li>年龄：{prop.sex}</li>
+        <hr/>
+      </ul>
+    )
+  }*/
+  
+  let p1 = {
+    name:'张三',
+    age:19,
+    sex:'男'
+  }
+
+  let p2 = {
+    name:'李四',
+    age:21,
+    sex:'女'
+  }
+  
+  //2.渲染组件标签
+  ReactDOM.render(<Person name={p1.name} sex={p1.sex}/>,document.getElementById('example1'))
+  ReactDOM.render(<Person {...p2}/>,document.getElementById('example2'))
+  
+
+</script>
+
+
+</body>
+</html>
+

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>10_key</title>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+
+<script type="text/babel">
+
+  /*
+   面试题:
+      1). react/vue中的key的作用/内部原理
+      2). 为什么列表的key尽量不要用index?
+      
+   1. 虚拟DOM的key的作用?
+      1). 简单的说: key是虚拟DOM对象的标识, 在更新显示时key起着极其重要的作用
+      2). 详细的说: 当列表数组中的数据发生变化生成新的虚拟DOM后, React进行新旧虚拟DOM的diff比较
+          a. key没有变
+              对应item数据没变, 直接使用原来的真实DOM
+              对应item数据变了, 对原来的真实DOM进行数据更新
+          b. key变了
+              --原key变化：销毁原来的真实DOM, 根据item数据创建新的虚拟DOM，随后渲染真实DOM到页面(即使item数据没有变)
+              --新key产生：根据item数据创建新的虚拟DOM，随后渲染真实DOM到页面
+              
+   2. key为index的问题
+      1). 添加/删除/排序 => 产生没有必要的真实DOM更新 ==> 界面效果没问题, 但效率低
+      2). 如果item界面还有输入框 => 产生错误的真实DOM更新 ==> 界面有问题
+      注意: 如果不存在添加/删除/排序操作,仅用于渲染列表用于展示，使用index作为key没有问题。
+      
+   3. 解决:
+      使用item数据的标识数据作为key, 比如id属性值
+   */
+  
+  /*
+  * “慢动作回放”:
+  *
+  * 一、使用id作为key：
+  *
+  *   原始数据：
+  *       {id: 1, name: '小张', age: 13},
+          {id: 2, name: '小李', age: 12}
+          
+  *   原始数据对应的虚拟DOM：
+  *       <li key=1>1--小张--13--<input type="text"/></li>
+  *       <li key=2>2--小李--12--<input type="text"/></li>
+  *
+  *   更新之后的数据：
+  *       {id: 3, name: '小王', age: 14},
+  *       {id: 1, name: '小张', age: 13},
+          {id: 2, name: '小李', age: 12}
+          
+      更新数据之后新的虚拟DOM：
+          <li key=3>3--小王--14--<input type="text"/></li>
+          <li key=1>1--小张--13--<input type="text"/></li>
+  *       <li key=2>2--小李--12--<input type="text"/></li>
+  *
+  *二、使用index作为key：
+  *
+  * 原始数据：
+  *       {id: 1, name: '小张', age: 13},
+          {id: 2, name: '小李', age: 12}
+          
+  *   原始数据对应的虚拟DOM：
+  *       <li key=0>1--小张--13--<input type="text"/></li>
+  *       <li key=1>2--小李--12--<input type="text"/></li>
+  *
+  *   更新之后的数据：
+  *       {id: 3, name: '小王', age: 14},
+  *       {id: 1, name: '小张', age: 13},
+          {id: 2, name: '小李', age: 12}
+          
+      更新数据之后新的虚拟DOM：
+          <li key=0>3--小王--14--<input type="text"/></li>
+          <li key=1>1--小张--13--<input type="text"/></li>
+  *       <li key=2>2--小李--12--<input type="text"/></li>
+  *
+  *
+  *
+  *
+  *
+  * */
+
+  class PersonList extends React.Component {
+
+    state = {
+      persons: [
+        {id: 1, name: '小张', age: 13},
+        {id: 2, name: '小李', age: 12}
+      ]
+    }
+
+    add = () => {
+      const {persons} = this.state
+      persons.unshift({id: persons.length + 1, name: '小王', age: 14})
+      this.setState({persons})
+    }
+
+    remove = () => {
+      const {persons} = this.state
+      persons.shift()
+      this.setState({persons})
+    }
+
+    sort = () => {
+      const {persons} = this.state
+      persons.sort((p1, p2) => {
+        return p1.age - p2.age
+      })
+      this.setState({persons})
+    }
+  
+    render() {
+      const persons = this.state.persons
+      return (
+        <div>
+          <div>
+            <button onClick={this.add}>添加一个【小王】</button>
+            &nbsp;
+            <button onClick={this.remove}>移除第一个</button>
+            &nbsp;
+            <button onClick={this.sort}>排序</button>
+            &nbsp;
+          </div>
+          <br/>
+          <br/>
+          
+          <h2>使用id作为key</h2>
+          <ul>
+            {
+              persons.map((item) => {return <li key={item.id}>{item.id}--{item.name}--{item.age}--<input type="text"/></li>})
+            }
+          </ul>
+          <br/>
+          <br/>
+          <h2>使用index作为key</h2>
+          <ul>
+            {
+              persons.map((item, index) => {return <li key={index}>{item.id}--{item.name}--{item.age}--<input type="text"/></li>})
+            }
+          </ul>
+        </div>
+      )
+    }
+  }
+
+  ReactDOM.render(
+    <PersonList/>,
+    document.getElementById('root')
+  )
+</script>
+</body>
+</html>

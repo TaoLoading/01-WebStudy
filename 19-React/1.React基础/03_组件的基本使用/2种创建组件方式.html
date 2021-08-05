@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>2种创建组件方式</title>
+</head>
+<body>
+
+  <div id="example1"></div>
+  <div id="example2"></div>
+
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+
+  <script type="text/babel">
+    //1.定义一个组件
+    
+    //方式1: 工厂函数定义组件(简单组件/无状态)
+    function MyComponent() {
+      //console.log(this)
+      return <h2>工厂函数组件(简单组件/无状态)</h2>
+    }
+    
+    //方式2:  ES6类定义组件(复杂组件/有状态)
+    class MyComponent2 extends React.Component {
+      //重写父类的render
+      render(){
+        console.log(this)
+        return <h2>ES6类组件(复杂组件/有状态)</h2>
+      }
+    }
+    
+    /*
+    * 备注说明：我们常说的【组件对象】，实质上指的是：组件的实例对象。
+    * */
+    
+    //2.渲染组件标签
+    /*如下代码：当渲染组件标签的时候，会触发react底层自动调用定义组件的工厂函数
+    经过babel的编译，开启了严格模式，禁止工厂函数里的this指向window*/
+    ReactDOM.render(<MyComponent/>,document.getElementById('example1'))
+
+    /*如下代码：当渲染组件标签的时候，会触发react底层创建一个组件类的实例对象，随后
+      使用该实例对象调用了，其身上的render方法*/
+    ReactDOM.render(<MyComponent2/>,document.getElementById('example2'))
+    
+    
+  
+  </script>
+</body>
+</html>

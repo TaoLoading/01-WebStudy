@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>10_ComponentLife</title>
+</head>
+<body>
+<div id="example"></div>
+
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<script type="text/babel">
+  /*
+  需求: 自定义组件
+    1. 让指定的文本做显示/隐藏的动画
+    2. 切换时间为2S
+    3. 点击按钮从界面中移除组件界面（当前组件在页面上消失）
+   */
+  /*
+    1.初始化
+        触发条件：ReactDOM.render(<MyComponent/>)
+        --constructor()
+        --componentWillMount()
+        --render():提供虚拟DOM，可能会调用多次。
+        --componentDidMount()：启动定时器、发送Ajax请求、只执行一次。
+    2.更新
+        触发条件：this.setState({})
+        componentWillUdate()
+        render()
+        componentDidUpdate()
+    3.卸载:
+        触发条件：ReactDOM.unmountComponentAtNode()
+        componentWillUnmount()：收尾工作，例如：清除定时器，只执行一次。
+  */
+  
+  class Life extends React.Component{
+    constructor(props){
+      console.log('--constructor--')
+      super(props)
+      this.state = {opacity:1}
+    }
+
+    componentWillMount(){
+      console.log('--componentwillMount--')
+    }
+    
+    death = ()=>{
+      ReactDOM.unmountComponentAtNode(document.getElementById('example'))
+      //clearInterval(this.timeID)
+    }
+    
+    componentWillUnmount(){
+      console.log('--componentWillUnmount--')
+      clearInterval(this.timeID)
+    }
+
+    componentWillUpdate(){
+      console.log('--componentwillUdate--')
+    }
+
+    componentDidUpdate(){
+      console.log('--componentDidUpdate--')
+    }
+    
+    render(){
+      console.log('--render--')
+      let {opacity} = this.state
+      return (
+        <div>
+          <h2 style={{opacity}}>react学不会怎么办？</h2>
+          <button onClick={this.death}>不活了</button>
+        </div>
+      )
+    }
+    
+    
+    componentDidMount(){
+      console.log('--componentDidMount--')
+      this.timeID = setInterval(()=>{
+        let {opacity} = this.state
+        opacity -= 0.1
+        if(opacity <= 0){
+          opacity = 1
+        }
+        this.setState({opacity})
+      },200)
+    }
+  }
+  
+  
+  
+  ReactDOM.render(<Life/>,document.getElementById('example'))
+</script>
+</body>
+</html>

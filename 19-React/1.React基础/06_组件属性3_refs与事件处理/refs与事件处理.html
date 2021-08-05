@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>refs与事件处理</title>
+</head>
+<body>
+<br>
+  <div id="example"></div>
+
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+
+  <script type="text/babel">
+    /*
+    需求: 自定义组件, 功能说明如下:
+      1. 点击按钮, 提示第一个输入框中的值
+      2. 当第2个输入框失去焦点时, 提示这个输入框中的值
+   */
+    
+    //1.定义组件
+    class UserInput extends React.Component{
+      
+      //响应点击的方法
+      handlerClick = ()=>{
+        //通过ref获取DOM
+        let {input1} =  this.refs
+        alert(input1.value)
+      }
+
+      //响应失去焦点的方法
+      handlerBlur = (event)=>{
+        console.log(event.target.value);
+      }
+      
+      //重写父类的render
+      render(){
+        return (
+          <div>
+            <input type="text" ref="input1"/>&nbsp;
+            <button onClick={this.handlerClick}>弹出数据</button>&nbsp;
+            <input type="text" placeholder="失去焦点弹出数据" onBlur={this.handlerBlur}/>&nbsp;
+          </div>
+        )
+      }
+    }
+    
+    //2.渲染组件标签
+    ReactDOM.render(<UserInput/>,document.getElementById('example'))
+
+  </script>
+</body>
+</html>

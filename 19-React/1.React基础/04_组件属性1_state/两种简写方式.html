@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>state</title>
+</head>
+<body>
+
+<div id="example"></div>
+<div id="example2"></div>
+
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+
+<script type="text/babel">
+  /*
+  需求: 自定义组件, 功能如下：
+    1. 显示h2标题, 初始文本为: 佩奇是一头猪
+    2. 点击标题更新为: 佩奇不是猪
+  */
+
+  //1.定义组件
+  class Pig extends React.Component{
+    //初始化状态
+    state = {isPig:true}
+    
+    //自定义一个响应点击的函数
+    handlerClick = ()=> {
+      let isPig = !this.state.isPig
+      //如下代码属于直接更改状态，不会被react所认可，不会被react“监听”到
+      //this.state.isPig = isPig //不可以直接修改状态数据
+      //要更新状态，必须使用this.setState()
+      this.setState({isPig})
+    }
+
+    //重写父类的render
+    render(){
+      let {isPig} = this.state
+      //如下代码，在指定点击事件的时候，不要加()
+      return <h2 onClick={this.handlerClick}>{isPig?'佩奇是一头可爱的猪':'佩奇不是猪'}</h2>
+    }
+
+  }
+
+  //2.渲染组件标签
+  ReactDOM.render(<Pig/>,document.getElementById('example'))
+  ReactDOM.render(<Pig/>,document.getElementById('example2'))
+
+
+
+</script>
+</body>
+</html>
+

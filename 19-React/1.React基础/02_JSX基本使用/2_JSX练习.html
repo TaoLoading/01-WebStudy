@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>JSX练习</title>
+</head>
+<body>
+  <h2>前端技术栈</h2>
+  <div id="example1"></div>
+  
+  <!--
+      注意区分：【js语句】 与 【js表达式】:
+        1.表达式：一个表达式会产生一个值,它可以放在任何需要一个值的地方
+          举例：a
+               3 + b
+               demo("a", "b")
+               arr.map()
+               .....
+        2.语句：语句可以理解成一个行为.循环语句、if语句，都是典型的语句
+          举例：
+               function foo() {}-----属于表达式
+               if(){}
+               for(){}
+               ......
+  -->
+
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+
+  <script type="text/babel">
+    //定义一个数组，存放数据，存放的是纯数据。
+    let jsArr = ['A','B','C','D']
+    //let jsArr2 = [<li>A</li>,<li>B</li>,<li>C</li>,<li>D</li>]
+
+    //1.创建虚拟DOM
+    let vDOM = (
+      <ul>
+        {jsArr.map((item,index)=> <li key={index}>{item}</li>)}
+      </ul>
+    )
+    
+    //2.渲染虚拟DOM到页面
+    ReactDOM.render(vDOM,document.getElementById('example1'))
+  </script>
+</body>
+</html>

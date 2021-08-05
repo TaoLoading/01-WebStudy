@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  class Person {
+    constructor(name,age){
+      this.name = name
+      this.age = age
+    }
+    
+    static sing(){
+      console.log('哼哼哈嘿',this)
+    }
+    
+    speak(){
+      console.log(this.name)
+      this.sing()
+    }
+  }
+  
+  let p = new Person('kobe',18)
+  //Person.drive()
+  
+/*  class Student extends Person{
+    constructor(name,age,grade){
+      super(name,age)
+      this.grade = grade
+    }
+    study(){
+      console.log('学习很开心')
+    }
+  }
+  
+  let s = new Student('kobe',18,3)*/
+
+/*function Person(name,age) {
+  this.name = name
+  this.age = age
+  
+  console.log(this)
+  
+  this.demo = function () {
+    console.log('demo')
+  }
+}
+let p = new Person('wade',18)
+  */
+  
+</script>
+
+<form action="http://akshdkjash.com">
+  <input type="text">
+  <input type="submit">
+</form>
+
+</body>
+</html>
