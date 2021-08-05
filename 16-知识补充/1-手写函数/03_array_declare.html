@@ -10,7 +10,7 @@
 
 <body>
   <script>
-    // 1.map()
+    // 1.map()：创建一个新数组，其结果是该数组中的每个元素是调用一次提供的函数后的返回值
     Array.prototype.map = function (callback) {
       // 1.创建一个新数组
       const arr = []
@@ -25,7 +25,7 @@
       return arr
     }
 
-    // 2.reduce()
+    // 2.reduce()：对数组中的每个元素执行一个由您提供的reducer函数(升序执行)，将其结果汇总为单个返回
     Array.prototype.reduce = function (callback, initValue) {
       // 1.初始化
       let total = initValue
@@ -39,7 +39,7 @@
       return total
     }
 
-    // 3.filter()
+    // 3.filter()：创建一个新数组, 其包含通过所提供函数实现的测试的所有元素
     Array.prototype.filter = function (callback) {
       // 1.创建一个新数组
       const arr = []
@@ -56,7 +56,7 @@
       return arr
     }
 
-    // 4.find()
+    // 4.find()：返回数组中满足提供的测试函数的第一个元素的值，否则返回undefined
     Array.prototype.find = function (callback) {
       // 1.遍历当前数组中的每个元素
       for (let index = 0; index < this.length; index++) {
@@ -72,7 +72,7 @@
       return undefined
     }
 
-    // 5.findIndex()
+    // 5.findIndex()：返回数组中满足提供的测试函数的第一个元素的索引，若没有找到对应元素则返回-1
     Array.prototype.findIndex = function (callback) {
       // 1.遍历当前数组中的每个元素
       for (let index = 0; index < this.length; index++) {
@@ -88,7 +88,7 @@
       return -1
     }
 
-    // 6.every()
+    // 6.every()：测试一个数组内的所有元素是否都能通过某个指定函数的测试，返回一个布尔值
     Array.prototype.every = function (callback) {
       // 1.遍历当前数组中的每个元素
       for (let index = 0; index < this.length; index++) {
@@ -104,7 +104,7 @@
       return true
     }
 
-    // 7.some()
+    // 7.some()：测试数组中是不是至少有1个元素通过了被提供的函数测试，返回一个布尔值
     Array.prototype.some = function (callback) {
       // 1.遍历当前数组中的每个元素
       for (let index = 0; index < this.length; index++) {
@@ -148,7 +148,7 @@
     console.log(arr.map((item, index) => item + 10))
 
     // 2.得到所有奇数的和
-    console.log(arr.reduce((total, item, idnex) => total + (item % 2 == 1 ? item : 0), 0))
+    console.log(arr.reduce((total, item, index) => total + (item % 2 == 1 ? item : 0), 0))
 
     // 3.得到值大于8且下标是偶数位的元素组成的数组
     console.log(arr.filter((item, index) => index % 2 == 0 && item > 8))
