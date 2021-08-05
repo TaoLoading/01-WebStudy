@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>JSX练习</title>
 </head>
+
 <body>
   <h2>前端技术栈</h2>
   <div id="example1"></div>
-  
+
   <!--
       注意区分：【js语句】 与 【js表达式】:
         1.表达式：一个表达式会产生一个值,它可以放在任何需要一个值的地方
@@ -29,19 +31,20 @@
   <script type="text/javascript" src="../js/babel.min.js"></script>
 
   <script type="text/babel">
-    //定义一个数组，存放数据，存放的是纯数据。
-    let jsArr = ['A','B','C','D']
-    //let jsArr2 = [<li>A</li>,<li>B</li>,<li>C</li>,<li>D</li>]
+    // 定义一个数组，存放数据，存放的是纯数据。
+    let jsArr = ['A', 'B', 'C', 'D']
+    // let jsArr2 = [<li>A</li>,<li>B</li>,<li>C</li>,<li>D</li>]
 
-    //1.创建虚拟DOM
+    // 1.创建虚拟DOM
     let vDOM = (
       <ul>
-        {jsArr.map((item,index)=> <li key={index}>{item}</li>)}
+        {jsArr.map((item, index) => <li key={index}>{item}</li>)}
       </ul>
     )
-    
-    //2.渲染虚拟DOM到页面
-    ReactDOM.render(vDOM,document.getElementById('example1'))
+
+    // 2.渲染虚拟DOM到页面
+    ReactDOM.render(vDOM, document.getElementById('example1'))
   </script>
 </body>
+
 </html>
