@@ -7,9 +7,7 @@
 </head>
 
 <body>
-  <h2>前端技术栈</h2>
   <div id="example1"></div>
-
   <!--
       注意区分：【js语句】 与 【js表达式】:
         1.表达式：一个表达式会产生一个值,它可以放在任何需要一个值的地方
@@ -32,14 +30,21 @@
 
   <script type="text/babel">
     // 定义一个数组，存放数据，存放的是纯数据。
-    let jsArr = ['A', 'B', 'C', 'D']
-    // let jsArr2 = [<li>A</li>,<li>B</li>,<li>C</li>,<li>D</li>]
+    let arr = ['A', 'B', 'C', 'D']
+    // let arr2 = [<li>A</li>,<li>B</li>,<li>C</li>,<li>D</li>]
 
     // 1.创建虚拟DOM
     let vDOM = (
-      <ul>
-        {jsArr.map((item, index) => <li key={index}>{item}</li>)}
-      </ul>
+      <div>
+        <h2>前端框架</h2>
+        { /* 将数组中的数据进行加工 */}
+        {
+          /* 暂时使用index作为key，但这种方式会出现某些问题 */
+          arr.map((item, index) => {
+            return <li key={index}>{item}</li>
+          })
+        }
+      </div>
     )
 
     // 2.渲染虚拟DOM到页面
