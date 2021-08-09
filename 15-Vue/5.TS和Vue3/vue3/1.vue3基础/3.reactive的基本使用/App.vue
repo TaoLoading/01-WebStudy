@@ -16,7 +16,7 @@ export default defineComponent({
       age: 22,
     };
     // reactive定义多个数据的响应式
-    // 返回一个Proxy的代理对象，此处代理对象即user，被代理的目标对象就是obj
+    // 返回一个Proxy的代理对象，其中target属性指向的对象即此处的user为被代理的对象，被代理的目标对象就是obj
     // 内部基于 ES6 的 Proxy 实现，通过代理对象操作源对象内部数据都是响应式的
     const user = reactive(obj);
     const updateUser = () => {

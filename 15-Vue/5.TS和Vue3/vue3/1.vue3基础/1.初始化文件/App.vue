@@ -8,6 +8,7 @@
 <script lang="ts">
 // defineComponent函数，目的是定义一个组件
 import { defineComponent } from "vue";
+// 引入子级组件
 import HelloWorld from "./components/HelloWorld.vue";
 // 向外暴露定义好的组件，内部传入配置对象
 export default defineComponent({
