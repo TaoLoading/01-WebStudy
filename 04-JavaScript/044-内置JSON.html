@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>内置JSON</title>
+		<script>
+			// json对象是js当中的一个内置对象，里面封装了对json格式数据的操作方法
+			// json是一种数据格式，是前后端目前数据交互的主要格式
+			// json通常情况下说的是字符串也叫json串
+			// 在前端中json串的格式就是对象或者对象的数组，只不过要把这些数据转化成字符串形式
+			var dataTest = {
+				name: '赵丽颖',
+				age: 32,
+			}
+
+			var dataTestArr = [
+				{
+					name: '赵丽颖',
+					age: 32,
+				},
+				{
+					name: '杨幂',
+					age: 33,
+				},
+				{
+					name: '热巴',
+					age: 28,
+				},
+			]
+
+			// JSON.stringify 把对象json化(字符串化)
+			var dataStr = JSON.stringify(dataTest)
+			console.log(dataStr)
+			var dataStr = JSON.stringify(dataTestArr)
+			console.log(dataStr)
+
+			// JSON.parse 解析json化的对象
+			var data = JSON.parse(dataStr)
+			console.log(data)
+		</script>
+	</head>
+
+	<body></body>
+</html>

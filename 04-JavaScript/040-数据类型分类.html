@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据类型分类</title>
+    <script>
+        var a = 10;
+        var b = a;
+        b = 20;
+        console.log(a); // 输出10
+
+        var c = [1, 2];
+        var d = c;
+        d[0] = 10;
+        console.log(c); // 输出[10,2]
+
+        // 当变量的值类型为基本数据类型时，赋值赋的就是本身的值，所以改变也只是改变值
+        // 当变量的值类型为对象数据类型时，赋值赋的是值的内存地址，由于其他变量也对应这个地址，故改变的一个变量会操作所有的变量
+    </script>
+</head>
+
+<body>
+    <img src="040-数据类型分类.png" alt="数据类型分类" width="1200px">
+</body>
+
+</html>

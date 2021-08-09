@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onresize</title>
+</head>
+
+<body>
+    <script>
+        window.onload = function() {
+            window.onresize = function() { // 浏览器窗口大小改变时执行onresize
+                console.log('浏览器窗口大小改变了');
+            }
+        }
+    </script>
+</body>
+
+</html>

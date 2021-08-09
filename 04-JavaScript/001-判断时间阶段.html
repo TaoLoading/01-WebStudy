@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>判断时间阶段</title>
+    <script>
+        var time = parseInt(prompt('现在几点了？'));
+        if (6 <= time && time <= 12) {
+            alert('上午好');
+        } else if (13 <= time && time <= 18) {
+            alert('下午好');
+        } else if (19 <= time && time <= 23) {
+            alert('晚上好');
+        } else {
+            alert('现在是休息时间');
+        }
+        console.log(typeof time);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

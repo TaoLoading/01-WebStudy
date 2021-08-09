@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>innerText和textContent</title>
+</head>
+
+<body>
+    <p style="visibility: hidden;">隐藏</p>
+    <p>1</p>
+    <p>2</p>
+
+    <script>
+        var pList = document.querySelectorAll('p');
+        console.log(pList[0].innerText); // 输出空白
+        console.log(pList[0].textContent); // 输出“隐藏”
+
+        // textContent可以获取隐藏元素的文本，包含换行和空白
+        // innerText不可以获取隐藏元素的文本，并且不包含换行和空格
+    </script>
+</body>
+
+</html>

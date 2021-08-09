@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>排他操作</title>
+		<style>
+			p {
+				background-color: hotpink;
+			}
+		</style>
+	</head>
+
+	<body>
+		<p>1</p>
+		<p>2</p>
+		<p>3</p>
+		<p>4</p>
+
+		<script>
+			// 排他操作很重要
+			// 第一步让所有的对象都成为一种样式，第二步让当前发生事件的对象独自成为一种样式
+
+			// 点击一个p，这个p变成“爽”，其他变成“哈哈”
+			window.onload = function () {
+				var pList = document.querySelectorAll('p')
+
+				// 第一种
+				for (var i = 0; i < pList.length; i++) {
+					//如果不进行点击，那在程序运行时只是给每个pList[i]添加了一个函数，当点击时才执行函数
+					pList[i].onclick = function () {
+						for (var j = 0; j < pList.length; j++) {
+							pList[j].innerHTML = '哈哈'
+						}
+
+						// pList[i].innerHTML = '爽'; // 不能执行，因为此时i=4，pList[i]就是undefined
+						this.innerHTML = '爽'
+					}
+				}
+
+				// 第二种
+				for (var i = 0; i < pList.length; i++) {
+					// 存放下标
+					pList[i].index = i
+					pList[i].onclick = function () {
+						for (var j = 0; j < pList.length; j++) {
+							pList[j].innerHTML = '哈哈'
+						}
+
+						pList[this.index].innerHTML = '爽'
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

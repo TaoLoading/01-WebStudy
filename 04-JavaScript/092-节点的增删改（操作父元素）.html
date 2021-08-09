@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节点的增删改（操作父元素）</title>
+</head>
+
+<body>
+    <ul class="list">
+        <li>阿珂</li>
+        <li>李白</li>
+        <li>韩信</li>
+    </ul>
+
+
+    <script>
+        // 插入节点: insertBefore(新节点,参照节点);
+        // 替换节点: replaceChild(新节点,被替换的节点);
+        // 删除节点: removeChild(被删除的节点);
+        // 追加节点：appendChild(被追加的节点)；
+        // 节点.remove（pc端 ie不支持） 
+
+
+
+
+        // 增（在某个元素之上增加元素）
+
+        // var ulNode = document.querySelector('.list');
+        // // 拿到在其之上增加元素的那个元素
+        // var liRef = document.querySelector('.list li:last-child');
+        // // 创建新的li
+        // var liNode = document.createElement('li');
+        // // 给新的li添加内容
+        // liNode.innerText = '夏侯惇';
+        // // 添加内容
+        // ulNode.insertBefore(liNode, liRef);
+
+
+
+        // 改
+        // var ulNode = document.querySelector('.list');
+        // // 拿到要更改的元素
+        // var liRef = document.querySelector('.list li:last-child');
+        // var liNode = document.createElement('li');
+        // liNode.innerText = '夏侯惇';
+        // // 更改内容
+        // ulNode.replaceChild(liNode, liRef);
+
+
+
+        // 删
+        var ulNode = document.querySelector('.list');
+        // 拿到要删除的元素
+        var liNode = document.querySelector('.list li:nth-child(2)');
+        // 删除内容
+        ulNode.removeChild(liNode);
+        // liNode.remove(); //IE不支持
+    </script>
+</body>
+
+</html>

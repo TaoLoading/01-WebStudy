@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>apply和call方法</title>
+		<script>
+			function PetCat(name, age, gender) {
+				this.name = name
+				this.age = age
+				this.gender = gender
+				this.run = function () {
+					console.log('跑得飞快')
+				}
+			}
+
+			var cat1 = new PetCat('tom', 2, 'male')
+			var cat2 = new PetCat('jerry', 3, 'male')
+
+			// 声明一个相加的函数，此时cat1和cat2都没有求和的方法
+			function add(a, b) {
+				return a + b
+			}
+			// window.add(10, 20); 正常情况下的相加运算
+
+			// apply和call方法可以改变函数的执行对象
+			// 把add的执行对象从window换成cat1，使cat1有求和的方法
+			var result = add.apply(cat1, [10, 20])
+			// apply用法一共有两个参数，第一个参数代表改变后函数的执行者（一般为对象）；第二个参数代表函数所需要的数，注意这里是数组的形式
+			console.log(result)
+
+			var result = add.call(cat1, 10, 20)
+			// call用法同样有两个参数，但call第二个参数不是数组是分开写的形式。这里注意与apply区分
+			console.log(result)
+		</script>
+	</head>
+
+	<body></body>
+</html>

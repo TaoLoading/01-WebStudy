@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>包装对象</title>
+    <script>
+        var a = 10;
+        console.log(a.toString());
+
+        //a.toString a显然是一个对象，才会有方法调用，但是a我们定义的时候是一个基本数据类型，它是没有方法的
+        //但是js当中基本数据类型操作的时候会有这么一个规定：
+        //当调用数字、字符串、布尔值的方法的时候，会首先把这个值临时包装成对象（相当于a = new Str(10)），
+        //然后进行调用包装对象的方法，调用完成之后，临时的包装对象会立即清除
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

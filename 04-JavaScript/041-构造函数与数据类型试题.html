@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>构造函数与数据类型试题</title>
+    <script>
+        //定义一个构造函数
+        function Person(name, age, salary) {
+            this.name = name;
+            this.age = age;
+            this.salary = salary;
+        }
+
+        //定义一个普通函数
+        function f1(person) {
+            person.name = "ls"; // 修改了p和person的同一个原型对象，故最后输出为ls
+            person = new Person("aa", 18, 10); // 修改完之后，将person从原本指向ls，改成了指向aa，故不影响p里ls的输出
+        }
+
+        var p;
+
+        p = new Person("zs", 18, 1000); // 实例化一个对象
+        console.log(p.name); //输出zs
+        f1(p); // 将p传参到f1里的person，因为p里面是原型对象的地址，所以将原型对象的地址给了person（对象数据类型赋值的是地址）
+        console.log(p.name);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

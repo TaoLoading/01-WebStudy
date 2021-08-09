@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二级菜单</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        ul,
+        li {
+            list-style: none;
+        }
+        
+        img {
+            display: block;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        input {
+            outline: none;
+        }
+        /* 禁止系统滚动条 */
+        /* html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        } */
+        
+        .navList {
+            position: relative;
+            width: 200px;
+            height: 150px;
+            background-color: hotpink;
+        }
+        
+        .navList>li {
+            width: 200px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            box-sizing: border-box;
+            border-bottom: 1px solid purple;
+        }
+        
+        .navList>li:first-child {
+            border-top: 1px solid purple;
+        }
+        
+        .navList>li .navIn {
+            position: absolute;
+            left: 200px;
+            top: 0;
+            width: 400px;
+            height: 300px;
+            background-color: skyblue;
+            display: none;
+        }
+        
+        .navList>li .navIn li {
+            width: 400px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="navList">
+        <li>
+            <a href="javascript:;">第一</a>
+            <ul class="navIn">
+                <li>1-1</li>
+                <li>1-2</li>
+                <li>1-3</li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;">第二</a>
+            <ul class="navIn">
+                <li>2-1</li>
+                <li>2-2</li>
+                <li>2-3</li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;">第三</a>
+            <ul class="navIn">
+                <li>3-1</li>
+                <li>3-2</li>
+                <li>3-3</li>
+            </ul>
+        </li>
+    </ul>
+
+
+    <script>
+        var liList = document.querySelectorAll('.navList>li');
+        var liInList = document.querySelectorAll('.navList>li .navIn');
+
+        for (var i = 0; i < liList.length; i++) {
+            // 获取移入第一级菜单的下标
+            // 第一级菜单为liList，第二级菜单为liInList，移入第几个第一级菜单那第几个第二级菜单就显示，故所操作第一级菜单和第二级菜单下标一致
+            // 不容易获取操作的第二级菜单，故采用获取第一级菜单的方式控制第二级菜单
+            liList[i].index = i;
+
+            // 鼠标移入
+            liList[i].onmouseenter = function() {
+                for (var j = 0; j < liInList.length; j++) {
+                    liInList[j].style.display = 'none';
+                }
+                liInList[this.index].style.display = 'block';
+            }
+
+            // 鼠标移出
+            liList[i].onmouseleave = function() {
+                liInList[this.index].style.display = 'none';
+            }
+        }
+    </script>
+</body>
+
+</html>

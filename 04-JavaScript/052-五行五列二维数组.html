@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>五行五列二维数组</title>
+    <script>
+        //1.定义一个5行数组
+        var arr = [
+            [],
+            [],
+            [],
+            [],
+            []
+        ];
+
+        //2.循环添加数字
+        for (var i = 0; i < 5; i++) {
+            for (var j = 0; j < 5; j++) {
+                //推导过程
+                // arr[0][0] = 1;
+                // arr[0][1] = 2;
+                // arr[0][2] = 3;
+                // arr[0][3] = 4;
+                // arr[0][4] = 5;
+
+                // arr[1][0] = 6;
+                // arr[1][1] = 7;
+                // arr[1][2] = 8;
+                // arr[1][3] = 9;
+                // arr[1][4] = 10;
+                arr[i][j] = i * 5 + j + 1;
+            }
+        }
+
+        console.log(arr);
+
+        //打印数组左下方三角形
+        for (var x = 0; x < 5; x++) {
+            for (var y = 0; y <= x; y++) {
+                document.write(arr[x][y] + '&nbsp'); //console没有格式
+            }
+            document.write('<br>');
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

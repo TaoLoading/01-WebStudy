@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>风车</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        button {
+            outline: none;
+        }
+        
+        ul li {
+            list-style: none;
+        }
+        
+        #box {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 50px auto;
+            animation: move 3s linear infinite;
+        }
+        
+        @keyframes move {
+            from {
+                transform: rotate(0);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        #box button {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: pink;
+            border: none;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        #box .list {
+            overflow: hidden;
+        }
+        
+        #box .list li {
+            float: left;
+            width: 150px;
+            height: 150px;
+            background-color: skyblue;
+        }
+        
+        #box .list li:nth-child(1),
+        #box .list li:nth-child(4) {
+            border-radius: 0 150px 0 150px;
+        }
+        
+        #box .list li:nth-child(2),
+        #box .list li:nth-child(3) {
+            border-radius: 150px 0 150px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <ul class="list">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+        <button></button>
+    </div>
+
+
+
+    <script>
+        var btn = document.querySelector('button');
+        var box = document.getElementById('box');
+        var flag = true;
+
+        btn.onclick = function() {
+            if (flag == true) {
+                box.style.animationPlayState = 'paused';
+            } else {
+                box.style.animationPlayState = 'running';
+            }
+            flag = !flag;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象的增删改查</title>
+    <script>
+        var obj = {}; //相当于new Object实例对象
+
+        //一、增
+        obj.name = '秦始皇';
+        obj["age"] = 13; //和obj.age完全等价，注意[]里面要加引号，这是在往对象中添加名或键
+        obj["gender"] = 'male';
+        //obj[status] = 'emperor'; 若不加引号则[]内的东西会被当做变量处理，若没有定义这个变量则会报错
+        //不加引号会被当变量处理，故需要先定义变量
+        var temp1 = 'status';
+        obj[temp1] = 'emperor';
+
+        //二、改
+        obj.name = '溥仪';
+        obj["age"] = 3;
+        var temp2 = 'status';
+        obj[temp2] = 'king';
+
+        console.log(obj);
+
+        //三、查
+        console.log(obj.name); //读取obj中name键的值
+        console.log(obj["age"]);
+        console.log(obj[temp1]);
+        console.log(obj.birthday); //未定义，输出undefined
+
+        //四、删
+        delete obj.name;
+        delete obj["age"];
+        console.log(obj);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

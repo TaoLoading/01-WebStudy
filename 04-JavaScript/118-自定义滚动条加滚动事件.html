@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义滚动条加滚动事件</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        ul,
+        li {
+            list-style: none;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        img {
+            display: block;
+        }
+        
+        input {
+            outline: none;
+        }
+        
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        #wrap {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        #wrap .content {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        #wrap .scrollBar {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 40px;
+            height: 100%;
+            border-left: 1px solid grey;
+            border-right: 1px solid grey;
+        }
+        
+        #wrap .scrollBar .scrollIn {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translate(-50%);
+            width: 35px;
+            height: 50px;
+            background-color: deepskyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 布局：在body中设置一个盒子模拟body区域（一般命名为wrap），禁止系统滚动条后，设置一个挖槽，在里面放一个滑块，以此自定义滚动条 -->
+    <div id="wrap">
+        <div class="content">
+        </div>
+        <div class="scrollBar">
+            <div class="scrollIn"></div>
+        </div>
+    </div>
+
+
+    <script>
+        var content = document.querySelector('#wrap .content');
+        var scrollIn = document.querySelector('#wrap .scrollBar .scrollIn');
+
+        // 模拟内容
+        for (var i = 0; i < 200; i++) {
+            content.innerHTML += i + '<br>';
+        }
+
+        // 滚动条比例公式
+        // 滚动条的高度 / 屏幕的高度 = 屏幕的高度 / 内容的高度 = 滚动条的移动距离 / 内容的滚动距离
+        // 按照公式求滚动条高度
+        var scale = document.documentElement.clientHeight / content.offsetHeight;
+        scrollIn.style.height = scale * document.documentElement.clientHeight + 'px';
+
+        // 拖拽滚动条
+        scrollIn.onmousedown = function(event) {
+            event = event || window.event;
+
+            // 获取鼠标初始位置
+            var mouseStartY = event.clientY;
+
+            // 获取元素初始位置
+            var eleStartY = scrollIn.offsetTop;
+
+            // 由于IE默认行为不存在拖拽，故取消默认行为后，IE文本依能拖拽，故进行全局捕获
+            // 开启全局捕获后，鼠标所有的事件回全部捕获到元素上
+            scrollIn.setCapture && scrollIn.setCapture();
+
+            document.onmousemove = function(event) { // 将事件添加给document而不是scrollIn，利用事件冒泡防止因鼠标移动过快走出scrollIn后按下事件依然发生的现象
+                event = event || window.event;
+
+                // 获取鼠标最终位置
+                var mouseEndY = event.clientY;
+
+                // 获取鼠标距离差
+                var disY = mouseEndY - mouseStartY;
+
+                // 计算得出元素最终位置
+                var eleEndY = eleStartY + disY;
+
+                if (eleEndY < 0) {
+                    eleEndY = 0;
+                } else if (eleEndY > document.documentElement.clientHeight - scrollIn.offsetHeight) {
+                    eleEndY = document.documentElement.clientHeight - scrollIn.offsetHeight;
+                }
+
+                // 将获得的位置传给元素
+                scrollIn.style.top = eleEndY + 'px';
+
+                // 内容跟随滑块移动
+                var contentDisY = -eleEndY / scale;
+                content.style.top = contentDisY + 'px';
+            }
+
+            // 鼠标抬起
+            document.onmouseup = function() {
+                document.onmousemove = document.onmouseup = null;
+                // 释放全局捕获
+                // 由于全部事件都会捕获到元素上，所以连点击等操作都会捕获到元素上，导致不能操作，故在要添加释放全局捕获
+                scrollIn.releaseCapture && scrollIn.releaseCapture();
+            }
+
+            // 浏览器默认行为，导致选中文字时不能拖拽
+            // DOM0事件取消默认行为
+            return false;
+            // DOM2事件取消默认行为
+            // event.preventDefault();
+        }
+
+
+        // 给滑块添加滚动事件
+        var flag = true;
+        var step = 0;
+
+        // IE/Chrome
+        document.addEventListener('mousewheel', whellMove);
+        // Firefox
+        document.addEventListener('DOMMouseScroll', whellMove);
+
+        function whellMove(event) {
+            event = event || window.event;
+
+            // 兼容性操作滚轮事件
+            if (event.wheelDelta) {
+                // 获取滑动方向
+                if (event.wheelDelta > 0) {
+                    flag = true;
+                    step = -10;
+                } else {
+                    flag = false;
+                    step = 10;
+                }
+            } else if (event.detail) {
+                // 获取滑动方向
+                if (event.detail > 0) {
+                    flag = true;
+                    step = -10;
+                } else {
+                    flag = false;
+                    step = 10;
+                }
+            }
+
+            // 声明变量来存放滑块最终位置
+            var scrollInLast = scrollIn.offsetTop + step;
+
+            // 判断边界
+            if (scrollInLast < 0) {
+                scrollInLast = 0;
+            } else if (scrollInLast > document.documentElement.clientHeight - scrollIn.offsetHeight) {
+                scrollInLast = document.documentElement.clientHeight - scrollIn.offsetHeight;
+            }
+
+            // 给滑块位置赋值
+            scrollIn.style.top = scrollInLast + 'px';
+
+            // 内容跟随滑块移动
+            var contentDisY = -scrollInLast / scale;
+            content.style.top = contentDisY + 'px';
+
+            // 方式一
+            // 将判断边界和给滑块赋值直接写在上文
+
+
+            // 方式二
+            // 单独一个if来判断边界和给滑块赋值
+            // if (flag) {
+            //     // 向上滑动
+            //     scrollIn.style.top = scrollIn.offsetTop - 10 + 'px';
+            //     // 判断上边界(To Do)
+            // } else {
+            //     // 向下滑动
+            //     scrollIn.style.top = scrollIn.offsetTop + 10 + 'px';
+            //     // 判断下边界(To Do)
+            // }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节点</title>
+</head>
+
+<body>
+    <div id="box">
+        <!-- 此处是注释 -->
+        <p>文本</p>
+        <p>文本</p>
+    </div>
+
+
+    <script>
+        var box = document.getElementById('box');
+
+        // 打印box的子节点（子节点代表的是直接的子节点，子节点的子节点不算）
+        console.log(box.childNodes); // 输出NodeList(7) [text, comment, text, p, text, p, text]，即空白、注释、空白、P、空白、P、空白
+
+        // 打印box子节点的nodeName/nodeType（以数字形式输出，每种类型子节点都对应一个数）/nodeValue
+        for (var i = 0; i < box.childNodes.length; i++) {
+            var eleNode = box.childNodes[i];
+            console.log(eleNode.nodeName, eleNode.nodeType, eleNode.nodeValue);
+
+            // 只打印元素节点
+            if (eleNode.nodeType == 1) { // 元素节点nodeType值为1
+                console.log(eleNode);
+            }
+        }
+
+        // 打印html的子节点
+        var htmlNode = document.documentElement; // html的获取方式
+        console.log(htmlNode.childNodes); // 输出NodeList(3) [head, text, body]，html节点不包含开头和结尾的两个文本节点
+
+        // 打印body的子节点
+        var bodyNode = document.body; // bode的获取方式
+        console.log(bodyNode.childNodes);
+    </script>
+</body>
+
+</html>

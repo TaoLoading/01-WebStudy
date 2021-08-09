@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>翻牌操作</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #box {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 50px auto;
+            /* 给父元素开启3D空间 */
+            transform-style: preserve-3d;
+            transition: 1s;
+        }
+        
+        #box .frount {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 300px;
+            height: 300px;
+            background-color: hotpink;
+        }
+        
+        #box .back {
+            width: 300px;
+            height: 300px;
+            background-color: lightblue;
+            /* 由于翻转会一起带动字体翻转，
+            为使字正常呈现故先对反面进行一次翻转 */
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div class="frount">这是正面</div>
+        <div class="back">这是反面</div>
+    </div>
+
+
+    <script>
+        var box = document.getElementById('box');
+
+        box.onmouseenter = function() {
+            this.style.transform = 'rotateY(180deg)';
+        }
+
+        box.onmouseleave = function() {
+            this.style.transform = 'rotateY(0deg)';
+        }
+    </script>
+</body>
+
+</html>

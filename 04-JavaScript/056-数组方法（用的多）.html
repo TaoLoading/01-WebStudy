@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>数组方法（用的多）</title>
+		<script>
+			var arr = [2, 13, 3, 44, 5]
+			// console.log(arr.concat(4,5,6,7));
+			console.log(arr.concat([4, 5, 6, 7])) // 返回一个新数组，新数组是原数组后面拼接你的参数
+			// 这个参数可以是一个或者多个，甚至可以是一个数组，放数组时将数组拆解后放进新数组里
+			console.log(arr) // 原数组不改变
+
+			console.log(arr.length) // 求数组长度
+
+			console.log(arr.join('*')) // 以传递的参数为连接标志，将数组转化为字符串，参数括号内为空默认是以逗号连接，和字符串的split是一个逆运算
+			// console.log('1,2,3'.split(','));
+			console.log(arr) // 原数组不改变
+
+			console.log(arr.reverse()) // 返回经过翻转的数组，没有参数
+			console.log(arr) // 原数组改变（注意区分）
+
+			console.log(arr.slice(1, 4)) // 抽取数组，传递参数起始位置和结束位置但是不包含结束位置
+			console.log(arr) // 原数组不改变
+
+			console.log(arr.sort()) // 如果不传参，会按照unicode码进行比较排序，先比第一个进行排序，第一个相同再比较后面的
+			console.log(arr) // 原数组改变（注意区分）
+			// 如果传参数，需要传递一个回调函数
+			console.log(
+				arr.sort(function (a, b) {
+					return a - b
+				})
+			)
+			// 按照从小到大排序(第一个参数-第二个参数返回值)
+			// 按照从大到小排序(第二个参数-第一个参数返回值)
+
+			// ************重要
+
+			console.log(arr.push(1)) // 在原数组的末尾添加元素，返回添加后数组的长度
+			console.log(arr) // 原数组改变（注意区分）
+			// push参数，可以是一个或者多个，也可以是一个或者多数组，如果是数组原数组就会成为二维数组
+
+			console.log(arr.pop()) // 就是从原数组的末尾删除一个元素，返回删除的元素
+			console.log(arr) // 原数组改变（注意区分）
+
+			console.log(arr.unshift(1, 2)) // 在原数组的头部添加元素，返回添加后数组的长度
+			console.log(arr) // 原数组改变（注意区分）
+			// unshift参数，可以是一个或者多个，也可以是一个或者多数组，如果是数组原数组就会成为二维数组
+
+			console.log(arr.shift()) // 就是从原数组的头部删除一个元素，返回删除的元素
+			console.log(arr) // 原数组改变（注意区分）
+
+			// ***************重中之重
+
+			var arr = [1, 2, 3, 4, 5]
+			// splice  数组的这个方法 是一个万能的方法，可以增、可以删、可以改，都会引起数组改变（注意区分）
+			// 这个方法本意是在数组的中间位置进行删除操作
+
+			// splice删除
+			console.log(arr.splice(1, 3)) // 返回删除的元素组成的新数组，注意返回的是删除元素
+			// 第一个参数是插入起始位置，第二个参数是删除的个数
+			console.log(arr) // 原数组改变（注意区分）
+
+			// splice增加
+			console.log(arr.splice(1, 0, 'zly', 'ym')) // 增加返回空数组
+			// 第一个参数是插入起始位置，第二个参数是删除的个数（增加写0），第三个参数及后是增加的元素
+			console.log(arr) // 原数组改变（注意区分）
+
+			// splice更改
+			console.log(arr.splice(1, 2, 'rb', 'ty')) // 返回删除的元素组成的新数组
+			// 第一个参数是插入起始位置，第二个参数是删除的个数（更改要写具体个数），第三个参数及后是增加的元素
+			console.log(arr) // 原数组改变（注意区分）
+
+			console.log(arr.toString()) // 把数组转化为字符串，其实就是数组内的内容
+			console.log(arr.toLocaleString())
+			console.log(arr) // 原数组不改变
+
+			var arr = [1, 1, 2, 3, 1]
+
+			console.log(arr.indexOf(1, 2)) // 从前往后找返回第一次找到的位置，第二个参数可以执行从哪开始找
+			console.log(arr.lastIndexOf(1)) // 从后往前找返回第一次找到的位置，第二个参数可以执行从哪开始找
+
+			console.log(
+				arr.forEach(function (item, index) {
+					console.log(item, index)
+				})
+			) // forEach是遍历数组的另外一个手段，需要传递一个回调函数参数
+			//console.log(arr.forEach()); // 这个方法返回undefined；也就是没有return
+
+			console.log(
+				arr.map(function (item, index) {
+					return item * 2
+				})
+			) // 这个方法是遍历数组返回一个新的数组，返回加工之后的值
+			console.log(arr) // 原数组不改变
+
+			console.log(
+				arr.filter(function (item, index) {
+					return item >= 2
+				})
+			) // 遍历过滤出一个新的子数组， 返回条件为true的值
+			console.log(arr) // 原数组不改变
+
+			// ES6的新加方法
+
+			var arr1 = '12345'
+			console.log(Array.from(arr1)) // 将伪数组对象或可遍历对象转换为真数组
+			console.log(arr1) // 原数组不改变
+
+			console.log(Array.of(1, 2)) //将一系列值转换成数组
+
+			arr = [1, 2, 18, 9, 11]
+
+			console.log(
+				arr.find(function (item, index) {
+					// 找出第一个满足条件返回true的元素
+					return item > 10
+				})
+			)
+
+			console.log(
+				arr.findIndex(function (item, index) {
+					// 找出第一个满足条件返回true的元素下标
+					return item > 10
+				})
+			)
+		</script>
+	</head>
+
+	<body>
+		<img src="056-ES5数组方法.png" alt="" width="1200px" />
+	</body>
+</html>

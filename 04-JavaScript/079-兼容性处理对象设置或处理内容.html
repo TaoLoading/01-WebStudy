@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>兼容性处理对象设置或读取内容</title>
+</head>
+
+<body>
+    <!-- 
+        浏览器最终分为两个阵营： 高级浏览器和IE低版本浏览器，IE8是分水岭
+        innerText什么浏览器都认识
+        textContent只有高级浏览器认识，IE低版本不认识
+    -->
+
+    <p>哈哈</p>
+
+    <button class="set">修改内容</button>
+    <button class="get">读取内容</button>
+
+    <script>
+        // 获取元素
+        var pp = document.querySelector('p');
+        var set = document.querySelector('.set');
+        var get = document.querySelector('.get');
+
+        // 按钮设置功能
+        set.onclick = function() {
+            setOrGetContent(pp, '嘿嘿');
+        }
+        get.onclick = function() {
+            console.log(setOrGetContent(pp));
+        }
+
+        // 封装函数实现对一个对象值的设置和读取并考虑兼容性
+        function setOrGetContent(obj, content) {
+            if (arguments.length == 2) {
+                // 设置值
+
+                if (obj.textContent) {
+                    // 高级浏览器
+                    obj.textContent = content;
+                } else {
+                    // IE低版本浏览器
+                    obj.innerText = content;
+                }
+
+                // 只设置故不需要return
+            } else {
+                // 读取值
+
+                // 存放读取内容
+                var result = '';
+                if (obj.textContent) {
+                    // 高级浏览器
+                    result = obj.textContent;
+                } else {
+                    // IE低版本浏览器
+                    result = obj.innerText;
+                }
+
+                // 读取值需要return
+                return result;
+            }
+        }
+    </script>
+</body>
+
+</html>

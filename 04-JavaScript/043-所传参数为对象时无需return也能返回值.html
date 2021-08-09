@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>所传参数为对象时无需return也能接收到值</title>
+    <script>
+        function f1(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                arr[i] += 2
+
+            }
+            console.log(arr);
+
+        }
+
+        var arr;
+        arr = [1, 2];
+        f1(arr);
+        //所传参数为基本数据类型时，传的是值
+        //而所传参数为对象时，传的是内存地址并非值。由前一节可知，在栈中对象存的是地址，堆中存的是具体的对象，如上arr中存的是数列的地址并非数列
+        //所以函数里接收的也是内存地址，故函数环节和全局环境都是在操作堆中的具体对象
+        //故即使不return返回值，也可以接收到值
+        //联系之前的冒泡排序，所以不返回值也可正常运行
+        console.log(arr);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

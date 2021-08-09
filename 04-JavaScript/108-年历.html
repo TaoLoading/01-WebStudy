@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>年历</title>
+</head>
+
+<body>
+    <span></span>
+
+
+
+    <script>
+        var spanNode = document.querySelector('span');
+
+        function getTime() {
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = date.getMonth();
+            var day = date.getDate();
+            var hour = date.getHours();
+            var min = date.getMinutes();
+            var sec = date.getSeconds();
+
+            return year + '年' + month + '月' + day + '日  ' + hour + ':' + min + ':' + sec;
+        }
+
+        setInterval(function() {
+            var str = getTime();
+            spanNode.innerHTML = '现在是' + str;
+        }, 1000);
+    </script>
+</body>
+
+</html>

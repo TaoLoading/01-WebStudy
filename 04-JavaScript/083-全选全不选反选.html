@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全选全不选反选</title>
+</head>
+
+<body>
+    <input type="checkbox">阿珂
+    <input type="checkbox">猴子
+    <input type="checkbox">韩信
+    <input type="checkbox">李白
+    <input type="checkbox">诸葛
+    <input type="checkbox">夏侯
+
+    <button>全选</button>
+    <button>全不选</button>
+    <button>反选</button>
+
+    <script>
+        var btns = document.querySelectorAll('button');
+        var inputs = document.querySelectorAll('input');
+
+        // 全选
+        btns[0].onclick = function() {
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].checked = true;
+            }
+        }
+
+        // 全不选
+        btns[1].onclick = function() {
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].checked = false;
+            }
+        }
+
+        // 反选
+        btns[2].onclick = function() {
+            for (var i = 0; i < inputs.length; i++) {
+                // 通过感叹号实现效果置换
+                inputs[i].checked = !inputs[i].checked;
+            }
+        }
+    </script>
+</body>
+
+</html>

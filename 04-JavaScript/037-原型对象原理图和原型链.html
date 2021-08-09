@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原型对象原理图</title>
+    <script>
+        //任何函数对象在定义时都会伴随着一个原型对象的出现，原型对象默认是Object的实例对象
+        function PetCat(name, age, gender) {
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+        }
+
+        var cat1 = new PetCat('tom', 2, 'male');
+        var cat2 = new PetCat('jerry', 3, 'male');
+
+        console.dir(PetCat); //dir详细的展开函数
+        console.log(cat1);
+
+        //构造函数中有一个prototype（原型对象）存着原型对象的地址，指向原型对象；原型对象中会有一个constructor（构造器）存着构造函数的地址，指向构造函数
+        //构造函数的实例化对象由于不是函数对象，不存在prototype，但会有一个__proto__（隐式原型对象）指向原型对象的地址
+
+        PetCat.prototype.run = function() {
+            //写在函数对象中时，每个实例函数都会占用一次，写到原型对象中，可达到资源共享节省空间的效果
+            console.log('跑的飞快');
+        }
+        cat1.run(); //虽然cat1中并没有run()方法，但依然能够输出。这是因为首先回去cat1中找，当找不到run()时，会到原型对象去找，能找到故可以输出
+        cat2.run(); //实例化对象的原型对象都是构造函数的原型对象
+
+        //原型链：
+        //对象在调用方法或属性时，首先会从自己对象的空间去找，找到就直接用；找不到就去自己的隐式原型对象空间去找（自己的构造函数的原型对象），找到就用；
+        //找不到就去自己原型对象的原型对象空间去找（自己的构造函数的原型对象的构造函数的原型函数），找到就用；
+        //找不到就依次往上推，直到找到Object的原型对象为止，找不到就报错
+    </script>
+</head>
+
+<body>
+    <img src="037-原型对象原理图.png" alt="原型对象原理图" width="1200px">
+</body>
+
+</html>

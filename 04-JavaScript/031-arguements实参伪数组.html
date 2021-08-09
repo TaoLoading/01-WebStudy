@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arguements实参伪数组</title>
+    <script>
+        //在每个函数当中，都会有一个实参的伪数组，它专门用来存储函数调用传过来的实参
+        //即使函数定义当中没有形参，arguments也会存储传进来的实参。因此在js当中可以这么说，形参可有可无
+        //通常情况下我们可以根据这个arguments伪数组的长度去让一个函数表现出不同的功能，函数定义当中肯定是一个if else判断
+
+        var a = 10;
+        var b = 11;
+        var c = 13;
+        var d = 14;
+
+        function addOrSubtract(a, b, c) {
+            if (arguments.length == 2) {
+                return a - b;
+            } else if (arguments.length == 3) {
+                return a + b + c;
+            } else {
+                return '超过三个数';
+            }
+        }
+
+        console.log(addOrSubtract(a, b));
+        console.log(addOrSubtract(a, b, c));
+        console.log(addOrSubtract(a, b, c, d));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

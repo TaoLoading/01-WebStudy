@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打印字符串中出现最多次元素的次数和索引</title>
+    <script>
+        var str = '1213411231142';
+        // 由于要存放元素和次数，故选择对象或数组，但数组涉及到二维数组较为麻烦，故选择对象
+        // 对象里的形式：{元素：次数; arr:[下标构成的数组]}
+        var obj = {};
+
+        // 输出元素出现次数和下标，构成对象
+        for (var i = 0; i < str.length; i++) {
+            var charS = str[i];
+            // 如果对象里存在这个元素，则次数加1；如果不存在，则构造一个该元素键并等于1
+            if (obj[charS]) {
+                obj[charS]++;
+            } else {
+                obj[charS] = 1;
+            }
+            // 三目运算实现，更简便：
+            // obj[charS] ? obj[charS]++ : obj[charS] = 1;
+
+            // 如果对象里存在这个元素数组，则直接将其下标放入数组内；如果不存在，则构造一个该下标数组并等于它的下标
+            if (obj[charS + 'arr']) { //设计数组名字
+                obj[charS + 'arr'].push(i);
+            } else {
+                obj[charS + 'arr'] = [i];
+            }
+            // 三目运算
+            // obj[charS + 'arr'] ? obj[charS + 'arr'].push(i) : obj[charS + 'arr'] = [i];
+        }
+
+        var max = 0;
+
+        // 遍历对象输出出现最多的元素和次数
+        for (var key in obj) {
+            if (typeof obj[key] == 'number') { // 对象的键中有数也有数组，只提取键为数的元素
+                if (obj[key] > max) {
+                    // 获取出现最多次的元素
+                    var temp = key;
+                    // 获取出现最多次元素的次数
+                    max = obj[key];
+                }
+            }
+        }
+
+        console.log(obj);
+        console.log('出现最多次的是' + temp + '，' + '次数是' + max);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

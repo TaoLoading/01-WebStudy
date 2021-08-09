@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>innerHTML和innerText和textContent</title>
+		<style>
+			p {
+				background-color: hotpink;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- 
+    设置内容时：   
+            如果内容当中包含标签字符串，innerHTML会有标签的特性，也就是说标签会在页面上生效
+            如果内容当中包含标签字符串，innerText会把标签原样展示在页面上，不会让标签生效
+                    
+    读取内容时：
+            如果标签内部还有其它标签，innerHTML会把标签内部带着其它的标签全部输出
+	          如果标签内部还有其它标签，innerText只会输出所有标签里面的内容或者文本，不会输出标签
+            如果标签内部没有其它标签，他们两个一致；都是读取文本内容，innerHTML会带空白和换行 
+    -->
+		<p class="pp">1</p>
+		<p class="pp">2</p>
+		<p class="pp">3</p>
+		<p class="pp">4</p>
+
+		<div id="love">i love you!me too!</div>
+
+		<script type="text/javascript">
+			window.onload = function () {
+				var pList = document.getElementsByTagName('p')
+				for (var i = 0; i < pList.length; i++) {
+					pList[i].onclick = function () {
+						for (var j = 0; j < pList.length; j++) {
+							pList[j].innerHTML = '<h2>哈哈</h2>'
+							pList[j].innerText = '<h2>嘿嘿</h2>'
+							// pList[j].textContent = '呵呵';
+						}
+					}
+				}
+
+				var love = document.getElementById('love')
+
+				console.log(love.innerHTML)
+				console.log(love.innerText)
+			}
+		</script>
+	</body>
+</html>

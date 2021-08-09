@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通过修改类名修改p的背景颜色</title>
+    <style>
+        p {
+            width: 300px;
+            height: 300px;
+            background-color: hotpink;
+        }
+        
+        p.sb {
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="pp">0719666</p>
+    <input type="button" id="btn" />
+
+    <script type="text/javascript">
+        window.onload = function() {
+            var btn = document.getElementById('btn');
+            var p = document.getElementById('pp');
+            btn.onclick = function() {
+                //p.class是不合法的，因为class是JS的保留字，所以不能占用
+                //因此只要以后操作class属性全部使用className
+                p.className = 'sb';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

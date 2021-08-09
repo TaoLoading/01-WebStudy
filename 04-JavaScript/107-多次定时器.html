@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多次定时器</title>
+</head>
+
+<body>
+    <button>清除定时器</button>
+
+
+
+    <script>
+        var btn = document.querySelector('button');
+        var timer = null;
+
+        // 多次定时器
+        timer = setInterval(function() {
+            console.log('i love you!');
+        }, 2000);
+
+        // 清除多次定时器
+        btn.onclick = function() {
+            clearInterval(timer);
+        }
+    </script>
+</body>
+
+</html>

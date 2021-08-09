@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>键盘事件添加元素</title>
+    <style>
+        li {
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" placeholder="请输入您的爱好">
+    <ul class="list"></ul>
+
+
+
+    <script>
+        var inputNode = document.querySelector('input');
+        var ulNode = document.querySelector('.list');
+
+        inputNode.onkeyup = function(event) { // 键盘事件要用onkeyup
+            // 判断是否是回车键
+            if (event.keyCode == 13) {
+                // 获取输入的内容
+                var value = inputNode.value;
+                // 判断输入框里是否为空
+                if (value.trim()) { // trim()，去除两边空格。为真则说明有值
+                    // 添加内容
+                    var liNode = document.createElement('li');
+                    liNode.innerText = value;
+                    ulNode.appendChild(liNode);
+                    // 清除输入框内容
+                    inputNode.value = '';
+
+                    // 移入移出变色
+                    liNode.onmouseenter = function() {
+                        this.style.backgroundColor = 'lightblue';
+                    }
+                    liNode.onmouseleave = function() {
+                        this.style.backgroundColor = 'transparent';
+                    }
+                } else {
+                    alert('请输入内容！')
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

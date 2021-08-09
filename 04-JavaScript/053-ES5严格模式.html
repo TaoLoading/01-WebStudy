@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES5严格模式</title>
+    <script>
+        // "use strict"
+
+        // 1."use strict" 针对脚本（针对所有）写在脚本的第一行，只针对函数写在函数的体的第一行
+        // 2.变量声明必须写var，不写var报错
+        // 3.禁止this指向window，如果构造函数忘记写new那么this不会影响全局
+        // 4.禁止随意删除变量
+        // 5.函数不能有重复的参数；
+
+        //声明变量必须写var
+        a = 10;
+        console.log(a); // 普通模式下能够输出10；严格模式下报错
+
+        //禁止this指向window
+        function add(a, b) {
+            console.log(this); // 普通模式下this指向window；严格模式下输出undefined
+            return a + b;
+        }
+        add(10, 20);
+
+        //禁止随意删除变量
+        var b = 10;
+        delete b;
+        console.log(b); // 普通模式下啥也不干；严格模式下报语法错误
+
+        //函数不能有重复参数
+        var b = 0;
+
+        function test(a, a, c) {
+            return a + b + c;
+        }
+        console.log(test(10, 20, 30)); // 普通模式下先传10到a，再传20到a覆盖之前的10，最终输出50；严格模式下报错
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

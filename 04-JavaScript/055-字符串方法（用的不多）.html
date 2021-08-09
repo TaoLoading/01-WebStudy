@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字符串方法（用的不多）</title>
+    <script>
+        // ES5字符串方法返回的都是一个新串，不会影响原来的字符串
+        // 所有的方法一定要搞定三要素： 功能  参数  返回值
+
+        var str = '1asydg123ASD asdh asd12A';
+
+        console.log(str.charAt(8)); // 参数是下标，返回所在下标的字符（重要程度*****）
+
+        console.log(str.charCodeAt(0)); // 参数是下标，返回字符的unicode码（重要程度*）
+
+        console.log(str.concat('haha')); // 返回拼接后的字符串（重要程度**）
+
+        console.log(String.fromCharCode(49)); // 根据unicode码返回字符串 
+
+        console.log(str.indexOf('12', 22)); // 从前往后查返回子串在字符串中第一次查到的位置（重要程度*****）
+        // 第二个参数允许你指定从哪开始查；如果查到返回位置，没有查到返回-1
+
+        console.log(str.lastIndexOf('12', 20)); // 从后往前查返回子串在字符串中第一次查到的位置（重要程度*****）
+        // 第二个参数允许你指定从哪开始查；如果查到返回位置，没有查到返回-1
+        console.log(str.length); // 返回字符串的长度（重要程度*****）
+
+        console.log(str.localeCompare('1asydg123ASD asdh asd12A')); //返回0、1或者-1
+        // 1代表字符串比传进来的串大；-1代表小；0代表相等；若第一个字符就大或小则后面的不再比较（重要程度*）
+
+
+        console.log(str.match(/12/g)); // 正则匹配寻找子串，返回包含字串的数组（ToDo）（重要程度*）
+
+        console.log(str.replace(/12/g, '**')); // 正则匹配寻找子串，然后替换
+
+        console.log(str.search('12')); // 正则匹配寻找子串，返回子串位置（重要程度*）
+
+
+
+        console.log(str.slice(6, -2)); // 抽取子串，传递参数起始位置和结束位置但是不包含结束位置（重要程度*）
+        // 参数可以是负数，即从后往前数，由-1开始
+
+        console.log(str.substr(6, 3)); // 抽取子穿，传递的参数是起始位置和子串长度
+
+        console.log(str.substring(6, 2)); // 这个方法和slice很像，但是参数不能是负数
+
+        console.log(str.split('12')); // 以传递的参数为分割标志，将字符串转化为数组，传递的参数在数组当中不复存在（重要程度******）
+
+
+
+        console.log(str.toLocaleUpperCase());
+
+        console.log(str.toLocaleLowerCase());
+
+        console.log(str.toUpperCase());
+
+        console.log(str.toLowerCase()); // 把字符串转大小写，上面的两个是转本地（本区域），后面两个是通用的
+
+
+
+        console.log(str.toString()); // 转化字符串，但这是字符串的方法所以本身就是字符串
+
+        console.log(str.valueOf()); // 返回字符串的值，但字符串的值就是字符串本身
+
+
+
+        // ES6新增的字符串方法
+        console.log(str.includes('WW')); // 判断字串是否在字符串当中，返回true和false
+
+        console.log(str.startsWith('2asy')); // 判断字符串是不是以子串开头，返回true和false
+
+        console.log(str.endsWith('sd13A')); // 判断字符串是不是以子串结尾的，返回true和false
+
+        console.log(str.repeat(2)); // 返回重复次数后的字符串，参数一般是0和正数，负数会报错，0返回空白；NaN、null、undefined都会被转化为0
+    </script>
+</head>
+
+<body>
+    <img src="055-ES5字符串方法.png" alt="ES5字符串方法">
+</body>
+
+</html>

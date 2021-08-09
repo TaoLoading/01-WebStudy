@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>键盘事件</title>
+</head>
+
+<body>
+    <input type="text" id="in">
+
+    <script>
+        var inputNode = document.getElementById('in');
+
+        inputNode.onkeydown = function(event) { // 键盘事件方法里要写形参
+            if (event.keyCode == 13) {
+                console.log('按下了回车键');
+            } else {
+                console.log('按下了其他键');
+            }
+        }
+    </script>
+</body>
+
+</html>

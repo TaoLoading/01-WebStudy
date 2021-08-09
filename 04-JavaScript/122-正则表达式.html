@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正则表达式</title>
+</head>
+
+<body>
+    <script>
+        var str = '01234567899sadhgq01234567899wuiabcsadbiwd01234567899_#$%^123213';
+
+        // 正则对象方法
+
+        // Reg.test() 
+        // test() 方法用于检测一个字符串是否匹配某个模式，如果字符串中含有匹配的文本，则返回 true，否则返回 false。
+        // 判断字符串当中是否含有数字
+        var patt = /9/;
+        // 判断字符串当中是否含有abcd
+        patt = /abcd/;
+        // 判断字符串是否是一个11位的数字
+        patt = /^\d{11}$/; // 判断是否是以11个数字开头并且以11个数字结尾，用于判断整个串
+        // console.log(patt.test(str));
+
+        // Reg.exec()
+        // exec() 方法用于检索字符串中的正则表达式的匹配
+        // 该函数返回一个数组，其中存放匹配的结果。如果未找到匹配，则返回值为 null。
+        // 注意：此方法每次只会返回一个结果，如果要找到所有的，需要循环去调用必须全局匹配修饰（加g）
+        // 找到字符串当中符合正则的子串
+        patt = /\w+/g;
+        // 找到字符串当中所有符合正则的子串
+        // 只能返回一个结果
+        // console.log(patt.exec(str));
+        // 返回多个结果
+        // var result = patt.exec(str);
+        // console.log(result);
+        // while (result != null) {
+        //     result = patt.exec(str);
+        //     if (result) {
+        //         console.log(result);
+        //     }
+        // }
+
+
+        // 字符串的方法
+
+        // str.match()：在字符串中搜索符合规则的内容，类似exec()
+        // 搜索成功就返回内容，格式为数组，失败就返回null
+        // 如果不加g，那么返回第一次符合的结果，加g返回所有结果的数组
+        // 找一个是详细进行展示  找多个只是在一个数组展示找到的内容子串
+        // console.log(str.match(patt));
+
+        // str.search()：在字符串搜索符合正则的内容，类似test()
+        // 搜索到就返回出现的位置（从0开始，如果匹配的不只是一个字母，那只会返回第一个字母的位置），如果搜索失败就返回-1，只能返回第一次
+        // console.log(str.search(patt));
+
+        // str.replace():查找符合正则的字符串，替换成对应的字符串，返回替换后的内容
+        // 这个方法相当于做了两件事：先查找匹配，然后再用新的串把匹配到的串替换掉
+        // console.log(str.replace(patt, 'lht'));
+    </script>
+</body>
+
+</html>

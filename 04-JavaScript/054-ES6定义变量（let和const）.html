@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6定义变量（let和const）</title>
+    <script>
+        // es6都是处于严格模式下的，无需定义"use strict"
+
+        // let特点
+        // 块级作用域声明变量      
+        // let定义的变量不会进行预解析
+        // let定义的变量不允许重复定义
+
+        if (true) {
+            let a = 10;
+            let a = 5; // let定义的变量不允许重复定义，故报错
+            console.log(a);
+        }
+        console.log(a); // let定义的变量只能在块级作用域中起作用，故报错
+
+        console.log(b); // let定义的变量不会进行预解析，故let不能像var一样进行提升，故报错
+        let b = 10;
+
+        // const特点
+        // 块级作用域声明变量
+        // const定义的变量值不能修改，而且必须初始化
+        if (true) {
+            const c; // const定义的变量必须进行初始化，故报错
+            c = 10;
+            c = 15; // const定义的变量值不能修改，故报错
+            console.log(c);
+        }
+        console.log(c); //const定义的变量只能在块级作用域中起作用，故报错
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

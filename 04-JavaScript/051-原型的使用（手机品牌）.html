@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原型的使用（手机品牌）</title>
+    <script>
+        function Phone(model, price, cpu) {
+            this.model = model;
+            this.price = price;
+            this.cpu = cpu;
+        }
+
+        Phone.prototype.brand = function() {
+            console.log('华为手机');
+        }
+
+        var mate30 = new Huawei('mate30pro', 5000, 990);
+        var mate40 = new Huawei('mate40pro', 6000, 9000);
+
+        mate30.brand();
+        console.log(mate30);
+        mate40.brand();
+        console.log(mate40);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

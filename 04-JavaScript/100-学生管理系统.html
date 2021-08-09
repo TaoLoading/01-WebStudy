@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生管理系统</title>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>性别</th>
+            <th>操作</th>
+        </tr>
+        <tr>
+            <td>玛卡巴卡</td>
+            <td>18</td>
+            <td>女</td>
+            <td>
+                <a href="javascript:;">删除</a>
+            </td>
+        </tr>
+        <tr>
+            <td>依古比古</td>
+            <td>18</td>
+            <td>男</td>
+            <td>
+                <a href="javascript:;">删除</a>
+            </td>
+        </tr>
+        <tr>
+            <td>呜哩哇啦</td>
+            <td>18</td>
+            <td>男</td>
+            <td>
+                <a href="javascript:;">删除</a>
+            </td>
+        </tr>
+    </table>
+
+    <input type="text" placeholder="请输入姓名" />
+    <br />
+    <input type="text" placeholder="请输入性别" />
+    <br />
+    <input type="text" placeholder="请输入年龄" />
+    <br />
+    <input type="button" name="" id="btn" value="添加" />
+
+
+
+    <script>
+        // 获取元素
+        var btn = document.getElementById('btn');
+        var inputNodes = document.querySelectorAll('input');
+        var tBodyNode = document.querySelector('table tbody');
+
+
+        // 添加内容
+        btn.addEventListener('click', function() {
+            var name = inputNodes[0].value;
+            var gender = inputNodes[1].value;
+            var age = inputNodes[2].value;
+
+            // 判断输入内容是否为空
+            if (name.trim() && gender.trim() && age.trim()) {
+                // 使用第三种创建节点
+                var trNode = document.createElement('tr');
+                // name
+                var tdName = document.createElement('td');
+                tdName.innerHTML = name;
+                trNode.appendChild(tdName);
+                // gender
+                var tdGender = document.createElement('td');
+                tdGender.innerHTML = gender;
+                trNode.appendChild(tdGender);
+                // age
+                var tdAge = document.createElement('td');
+                tdAge.innerHTML = age;
+                trNode.appendChild(tdAge);
+                // 删除
+                var tDelete = document.createElement('td');
+                tDelete.innerHTML = '<a href="javascript:;">删除</a>';
+                trNode.appendChild(tDelete);
+                // 追加创建的内容
+                tBodyNode.appendChild(trNode);
+            } else {
+                alert('您输入的信息不正确！');
+            }
+
+            // 输入完成后归零
+            inputNodes[0].value = '';
+            inputNodes[1].value = '';
+            inputNodes[2].value = '';
+        });
+
+
+
+        // 删除内容（事件委派）
+        tBodyNode.addEventListener('click', function(event) {
+            event = event || window.event;
+            var aNode = event.target || event.srcElement;
+            // 确保aNode拿到的是a标签
+            if (aNode.nodeName == 'A') { // nodeName拿到的是大写字母
+                var trNode = aNode.parentElement.parentElement;
+                tBodyNode.removeChild(trNode);
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导航跟随</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            height: 3000px;
+        }
+        
+        .header {
+            width: 100%;
+            height: 60px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header"></div>
+
+
+
+    <script>
+        var header = document.querySelector('.header');
+
+        window.onscroll = function() {
+            var scrollT = document.documentElement.scrollTop || document.body.scrollTop;
+
+            if (scrollT >= 600) {
+                header.style.position = 'fixed';
+                header.scrollTop = 0;
+            }
+        }
+    </script>
+</body>
+
+</html>

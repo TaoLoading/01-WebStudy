@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>点击小图显示对应大图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        img {
+            display: block;
+            /*vertical-align: middle;*/
+        }
+        
+        ul,
+        li {
+            list-style: none;
+        }
+        
+        input {
+            outline: none;
+        }
+        
+        #bigImg {
+            width: 400px;
+            height: 300px;
+            margin: 50px auto 0;
+        }
+        
+        #bigImg img {
+            width: 100%;
+            height: 100%;
+        }
+        
+        #list {
+            width: 400px;
+            height: 300px;
+            margin: 0 auto;
+        }
+        
+        #list li {
+            float: left;
+            width: 200px;
+            height: 150px;
+        }
+        
+        #list img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="big">
+        <img src="img/2.jpg" id="bigImg">
+    </div>
+    <div id="list">
+        <ul>
+            <li>
+                <img src="img/2.jpg" alt="" id="oneImg">
+            </li>
+            <li>
+                <img src="img/3.jpg" alt="" id="twoImg">
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        window.onload = function() {
+            var ImgNode = document.getElementById('bigImg');
+            var oneImg = document.getElementById('oneImg');
+            var twoImg = document.getElementById('twoImg');
+
+            oneImg.onclick = function() {
+                // 事件中，this代表事件源；函数中，this代表window
+                ImgNode.src = this.src;
+            }
+
+            twoImg.onclick = function() {
+                // 事件中，this代表事件源
+                ImgNode.src = this.src;
+            }
+        }
+    </script>
+</body>
+
+</html>

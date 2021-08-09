@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>两对移入移出的区别</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			#box {
+				width: 500px;
+				height: 500px;
+				background-color: skyblue;
+			}
+
+			#box1 {
+				width: 300px;
+				height: 300px;
+				background-color: pink;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box">
+			<div id="box1"></div>
+		</div>
+
+		<script type="text/javascript">
+			// 两对移入移出在事件委派上会有区别
+			// enter和leave：
+			// 如果是一个父子元素模型，对父元素添加移入和移出，当鼠标移入父元素里面的子元素的时候，事件并没有移出然后再移入，也就是说事件元素没有切换
+			// over和out：
+			// 如果是一个父子元素模型，对父元素添加移入和移出，当鼠标移入父元素里面的子元素的时候，事件会移出然后再移入，也就是说事件元素会有切换；事件委派的时候，必须使用这一对
+
+			// 当只对父盒子进行移入移出操作时，两对移入移出没有区别
+
+			var box = document.getElementById('box')
+			// enter和leave没有移入移出的切换
+			// box.onmouseenter = function() {
+			//     console.log('移入box');
+			// }
+			// box.onmouseleave = function() {
+			//     console.log('移出box');
+			// }
+
+			// over和out会有移入移出的切换
+			box.onmouseover = function () {
+				console.log('移入box')
+			}
+			box.onmouseout = function () {
+				console.log('移出box')
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>构造函数实例化对象</title>
+    <script>
+        function PetCat(name, age, gender) {
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+            this.run = function() {
+                console.log('跑得飞快');
+            }
+        }
+
+        var cat1 = new PetCat('tom', 2, 'male');
+        console.log(cat1.name);
+        console.log(cat1.age);
+        console.log(cat1.gender);
+        cat1.run();
+
+        var cat2 = new PetCat('jerry', 1, 'male');
+        console.log(cat2.name);
+        console.log(cat2.age);
+        console.log(cat2.gender);
+        cat2.run();
+
+
+        //构造函数实例化对象运行过程（To Do）：
+        //1.创建全局环境，压入栈底
+        //2.程序开始扫描代码，收集变量并做预解析
+        //3.在全局环境栈当中为变量、函数名开辟空间，同时在堆当中开辟空间用来存放函数的function
+        //4.把函数在堆当中的地址赋值给PetCat，代表函数名指向函数
+        //5.开始通过new调用构造函数（分4步）
+        //5.1 开辟内存空间——在堆当中开辟一个空内存，把空内存的地址赋值给调用构造函数的cat1
+        //5.2 this指向该内存——更改this指向到开辟的新空间（原本this指向window），此时this代表的就是对象cat1
+        //5.3 执行函数——执行函数体，往空间里写入键值
+        //5.4 生成对象实例——形成完整的对象
+    </script>
+</head>
+
+<body>
+    <img src="036-实例化对象原理图.png" alt="" width="1300px">
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>数组去重</title>
+		<script>
+			// 思路：
+			// 建立一个新数组，分别拿给定数组中的数与新数组中的每个数进行比较，如果相等则继续循环给定数组中的下一个数，如果不相等则放入新数组
+			function killRepeat(arr) {
+				var newArr = []
+				newArr[0] = arr[0]
+				var flag = true
+
+				// 遍历给定的数组
+				for (var i = 0; i < arr.length; i++) {
+					// 遍历新数组
+					for (var j = 0; j < newArr.length; j++) {
+						if (newArr[j] == arr[i]) {
+							flag = false
+							break
+						}
+					}
+					if (flag) {
+						newArr[newArr.length] = arr[i]
+					}
+					flag = true
+				}
+
+				return newArr
+			}
+
+			var arr = [1, 23, 23, 4, 5, 6, 7, 7, 9]
+			console.log(killRepeat(arr))
+		</script>
+	</head>
+
+	<body></body>
+</html>

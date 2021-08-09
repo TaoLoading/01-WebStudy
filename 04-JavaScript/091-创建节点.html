@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建节点</title>
+</head>
+
+<body>
+    <button>点击添加</button>
+
+
+    <script>
+        // 方式一 document.write()，基本不用
+        // 只能在页面加载的过程中使用，如果当页面加载完后再使用会将其它的DOM覆盖掉
+
+
+        // 方式二 innerHTML
+        // 也会覆盖掉其他的DOM
+        // 点击按钮实现添加内容
+        // window.onload = function() {
+        //     var movies = ['第一个', '第二个', '第三个'];
+        //     var btn = document.querySelector('button');
+        //     btn.onclick = function() {
+        //         var str = '<ul>';
+        //         for (var i = 0; i < movies.length; i++) {
+        //             str += '<li>' + movies[i] + '</li>';
+        //         }
+        //         str += '</ul>';
+        //         document.body.innerHTML += str; // 通过+=实现不覆盖
+        //         // document.write(str); // +=无效
+        //     }
+        // }
+
+
+        // 方式三 Document.createElement('想要创建的元素名');   元素对象.appendChild(被追加的元素对象);
+        window.onload = function() {
+            var movies = ['第一个', '第二个', '第三个'];
+            var btn = document.querySelector('button');
+
+            btn.onclick = function() {
+                // 创建一对ul标签
+                var ulNode = document.createElement('ul');
+                for (var i = 0; i < movies.length; i++) {
+                    // 在ul内添加一个li标签
+                    var liNode = document.createElement('li');
+                    // 更改li标签里的内容
+                    liNode.innerText = movies[i];
+                    // 追加一个li标签
+                    ulNode.appendChild(liNode);
+                }
+                // 追加ulNode全部内容
+                document.body.appendChild(ulNode);
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>预解析题目</title>
+    <script>
+        //1.输出结果：整个函数内容、“我是变量”
+        alert(a);
+        var a = '我是变量';
+
+        function a() {
+            alert('我是函数')
+        }
+        alert(a);
+        //分析：首先是预解析，将var a和function a(){}整个函数进行提升，在这个过程中，由于变量名和函数名重复，导致折叠，折叠后a为函数。故第一个弹出函数体
+        //接着进行第二步，对于变量a由于预解析只提升了var a，故预解析之后a = '我是变量'被留在了两个alter(a)之间，故第二个弹出“我是变量”
+
+        //2.输出结果：整个函数内容、NaN、“我是变量”
+        alert(a);
+        a++;
+        alert(a); //对函数进行a++,故输出NaN
+        var a = '我是变量';
+
+        function a() {
+            alert('我是函数')
+        }
+        alert(a);
+
+        //3.输出结果：undefined 0 undefined 1 0
+        alert(a);
+        var a = 0;
+        alert(a);
+
+        function fn() {
+            alert(a);
+            var a = 1;
+            alert(a);
+        }
+        fn();
+        alert(a);
+        //注意：一是在函数内部也会进行预解析，二是由于函数内只是局部变量，故不会影响最后输出a为0
+
+        //4.输出结果为：undefined 0 0 1 1
+        alert(a);
+        var a = 0;
+        alert(a);
+
+        function fn() {
+            alert(a);
+            a = 1;
+            alert(a);
+        }
+        fn()
+        alert(a);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

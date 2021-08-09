@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机数点名</title>
+    <script>
+        function getRandom(min, max) {
+            //推导过程
+            //25    103     Math.floor(Math.random()) * 79 + 25
+            //1     79      Math.floor(Math.random()) * 79 + 1
+            return Math.floor(Math.random() * (max - min + 1)) + min; // 通用公式
+        }
+
+        var result = getRandom(1, 79); //随机范围为1~79
+        console.log(result);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

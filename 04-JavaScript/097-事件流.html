@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件流</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .laoda {
+            width: 500px;
+            height: 500px;
+            background-color: skyblue;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            top: 0;
+            right: 0;
+            margin: auto;
+        }
+        
+        .laoda .laoer {
+            width: 300px;
+            height: 300px;
+            background-color: pink;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            top: 0;
+            right: 0;
+            margin: auto;
+        }
+        
+        .laoda .laoer .laosan {
+            width: 100px;
+            height: 100px;
+            background-color: greenyellow;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            top: 0;
+            right: 0;
+            margin: auto;
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="laoda">
+        <div class="laoer">
+            <div class="laosan">我是老三</div>
+        </div>
+    </div>
+
+
+
+    <script>
+        // 捕获事件流（网景），先执行外面再执行里面，最终很少用
+        // 冒泡事件流（IE），先执行里面再执行外面，最终我们所用的事件传播都是冒泡事件流
+        // 标准事件流，目前用到的都是标准事件流，包含三个阶段：捕获、获取元素、冒泡，这三个阶段可以自己选择，但通常使用默认即冒泡事件流
+
+        // DOM0事件全部属于冒泡事件流
+
+
+        var laoda = document.querySelector('.laoda');
+        var laoer = document.querySelector('.laoda .laoer');
+        var laosan = document.querySelector('.laoda .laoer .laosan');
+
+        laoda.addEventListener('click', function() {
+            console.log('我是老大');
+        }, false);
+
+        laoer.addEventListener('click', function() {
+            console.log('我是老二');
+        }, false); // true是捕获，false是冒泡
+
+        laosan.addEventListener('click', function(event) {
+            // event事件对象的兼容处理
+            event = event || window.event; // IE低版本将event封装成对象放到了window下
+            console.log('我是老三');
+            //阻止冒泡
+            event.stopPropagation();
+        }, false);
+    </script>
+</body>
+
+</html>

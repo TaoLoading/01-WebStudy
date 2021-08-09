@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元素大小和位置</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #box {
+            position: relative;
+            margin-left: 100px;
+            width: 500px;
+            height: 500px;
+            border: 10px solid blue;
+            background-color: red;
+        }
+        
+        #box #box1 {
+            position: absolute;
+            left: 50px;
+            top: 50px;
+            width: 300px;
+            height: 300px;
+            /*margin-left: 50px;*/
+            /*padding: 10px;*/
+            overflow: scroll;
+            border: 10px solid deepskyblue;
+            background-color: green;
+        }
+        
+        #box #box1 #box2 {
+            width: 500px;
+            height: 500px;
+            /*padding: 10px;*/
+            border: 10px solid purple;
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="box">
+        <div id="box1">
+            <div id="box2"></div>
+        </div>
+    </div>
+
+
+    <button>点击获取滚动的距离</button>
+
+    <script type="text/javascript">
+        var box = document.getElementById('box');
+        var box1 = document.getElementById('box1');
+
+        // console.log(box1.style.width); // obj.style.width只能操作行内样式
+
+        // 求宽，高同理
+        console.log(box1.offsetWidth); // 拿的是盒子   内容 + padding + border的大小；
+        console.log(box1.clientWidth); // 拿的是盒子   内容 + padding的大小；
+        console.log(box1.scrollWidth); // 当内容比盒子小的时候，拿的是盒子的clientWidth
+        //                             // 当内容比盒子大的时候，拿的是内容的offsetWidth + 盒子的一侧内边距					
+        // 以后我们拿元素的宽和高，先看元素有没有边框。如果没有边框，那么clientWidth和offsetWidth是一样的
+        // 如果有边框，需要边框就用offsetWidth，不需要就用clientWidth，scrollWidth几乎不用
+
+
+        // 求视口的宽高
+        console.log(document.documentElement.clientWidth);
+        console.log(document.documentElement.clientHeight);
+
+
+        // 拿到盒子的边框大小
+        console.log(box1.clientLeft);
+        console.log(box1.clientTop);
+
+        // 拿到盒子的水平偏移量和垂直偏移量，其实就是拿的这个元素设置的定位left值和top值
+        // 相对的是离它最近的定位祖先元素的原点（左上角）
+        // 通常我们依赖偏倚量去读取元素的位置（只要是用到offsetLeft或者offsetTop就一定和定位相关）
+        console.log(box1.offsetLeft);
+        console.log(box1.offsetTop);
+
+
+        //设置元素的定位位置还是要靠style.left去设置
+
+
+        var btn = document.querySelector('button');
+
+        btn.onclick = function() {
+            console.log(box1.scrollLeft = 60);
+            console.log(box1.scrollTop = 100);
+        }
+
+        // Offset系列，只读
+        // Client系列，只读
+        // Scroll系列：width、height只读，top、left可写
+    </script>
+</body>
+
+</html>

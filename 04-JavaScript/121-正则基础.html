@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正则基础</title>
+</head>
+
+<body>
+    <script>
+        var str = 'asdhuwgdhabdkj1sadhuawhfd';
+        // 正则表达式是描述字符模式的对象
+        // 正则表达式用于对字符串模式匹配及检索替换，是对字符串执行模式匹配的强大工具
+        // 简单点：正则表达式是一种字符串匹配规则
+
+
+        // 正则的创建方式
+
+        // 字面量创建
+        // 语法：var patt = /pattern/modifiers;
+        var patt = /\d/;
+        var result = patt.test(str); //test，使用正则对象规则去目标字符串中检测是否存在符合规则的字符串，返回布尔值
+        console.log(result);
+
+        // 构造函数创建
+        // 语法：var patt = new RegExp(pattern, modifiers);
+        // pattern（ 模式） 描述了表达式的模式。采用构造函数创建正则时pattern要写成字符串的形式，即加双引号；并且需要常规的字符转义规则（ 在前面加反斜杠\）
+        // modifiers(修饰符) 用于指定全局匹配、 区分大小写的匹配和多行匹配
+        var patt = new RegExp("\\d"); // 注意是两个反斜杠，两个反斜杠是因为在所有语言中"\"都不是一个字符，它是转义的意思，配合其他字符构成特殊字符实现功能
+        console.log("\\"); // 打印一个斜杠要在前添加一个斜杠
+        var result = patt.test(str);
+        console.log(result);
+
+
+        // 正则表达式规则
+
+        // 修饰符
+        // 修饰符用于执行区分大小写和全局匹配:
+        // i:忽略大小写
+        // g: 执行全局匹配（查找所有字符串，不加g即在找到第一个匹配后停止）
+        // m:执行多行匹配
+
+        var str = '123gasd';
+        // 方括号
+        // 方括号用于查找某个范围内的字符：
+        // [abc]    查找abc任意一个
+        var patt = /[abc]/;
+        var result = patt.test(str);
+        console.log(result);
+        // [^abc]   查找不是abc的任意一个
+        // [0-9]    查找任意一个数字，等价于\d
+        // [a-z]    查找任意一个小写字母
+        // [A-Z]   查找任意一个大写字母
+
+        // 元字符（前5个用的多）
+        // .   匹配任意字符不包含\n（换行和结束符），即只要目标字符串里有合法的字符无论是什么都能匹配到
+        // \d  任意数字  等价于[0-9]
+        // \D  任意非数字  等价于[^0-9]
+        // \w  任意单词字符，即匹配数字、字母、下划线  [a-z A-Z 0-9 _]
+        var str = '_';
+        var patt = /\w/;
+        var result = patt.test(str);
+        console.log(result);
+        // \W  任意非单词字符 [^a-z ^A-Z ^0-9 ^_]
+        // \s   任意空白字符
+        // \S   任意非空白字符
+        // \b   单词边界
+        // \B   非单词边界
+        // \n   换行符
+        // \f   换页符
+        // \r   回车符
+        // \t   制表符
+        // \v   垂直制表符
+
+        // 以上都是一个字符
+
+        // 量词
+        // +   1个或者多个数量限定符   \d+
+        var str = '123s13213';
+        var patt = /\d+/;
+        var result = patt.test(str);
+        console.log(result);
+        // *   0个或者多个数量限定符    \d*
+        // ？  0个或者1个数量限定符     \d?
+        // {n}  n个数量限定符（用的多）  \d{2}
+        // {m,n} m到n个数量限定符       \d{2,4}
+        // {m,} 至少m个数量限定符       \d{2,}
+        // ^   开头
+        // $   结尾                     ^\d{11}$，代表以11个数字开头，以11个数字结尾
+
+
+        // 分组
+        // ()分组后的反向引用，会有捕获效果
+        // | 
+
+        // 贪婪和非贪婪（返回多个还是一个）
+        // 量词后面的？代表非贪婪
+
+
+        // 正则、字符串相关方法
+    </script>
+</body>
+
+</html>

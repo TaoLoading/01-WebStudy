@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修改属性的两种方式</title>
+</head>
+
+<body>
+    <img src="img/2.jpg" alt="" id="img" aa="bb" width="300px">
+    <button id="btn">修改属性</button>
+
+    <script>
+        window.onload = function() {
+            var btn = document.getElementById('btn');
+            var imgNode = document.getElementById('img');
+
+            btn.onclick = function() {
+                // imgNode.aa = 'cc'; // 没有修改，因为.语法只能修改元素天生具有的属性，而不能修改自定义属性
+                // console.log(imgNode.aa); // undefined
+
+                imgNode.setAttribute('aa', 'cc'); // 修改属性的值
+                console.log(imgNode.getAttribute('aa')); // 获取属性的值
+            }
+        }
+    </script>
+</body>
+
+</html>

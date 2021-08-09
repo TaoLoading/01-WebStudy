@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>从数组头尾中删除数</title>
+    <script>
+        var arr = [1, 2, 3, 4, 5];
+
+        //从数组尾部删除数
+        arr.length--;
+
+        //从数组头部删除数
+        for (var i = 1; i < arr.length; i++) {
+            arr[i - 1] = arr[i];
+        }
+        arr.length--;
+
+        //从数组中间删除数
+        for (var i = 3; i < arr.length; i++) {
+            arr[i - 1] = arr[i];
+        }
+        arr.length--;
+
+        console.log(arr);
+        console.log(arr.length);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

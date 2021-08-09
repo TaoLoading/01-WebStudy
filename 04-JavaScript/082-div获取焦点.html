@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>div获取焦点</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- div获取焦点时，要在标签内添加tabindex属性，并赋予一个整数 -->
+    <div tabindex="100">123</div>
+
+    <script>
+        var divNode = document.querySelector('div');
+
+        divNode.onfocus = function() {
+            this.style.backgroundColor = 'greenyellow';
+        }
+
+        divNode.onblur = function() {
+            this.style.backgroundColor = 'skyblue';
+        }
+    </script>
+</body>
+
+</html>

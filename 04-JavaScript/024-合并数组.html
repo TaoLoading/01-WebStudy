@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>合并数组</title>
+    <script>
+        function mergeArr(arr1, arr2) {
+            for (var i = 0; i < arr2.length; i++) {
+                arr1[arr1.length] = arr2[i];
+            }
+
+            return arr1;
+        }
+
+        var arr1 = [1, 2, 3, 4, 5];
+        var arr2 = [6, 7, 8, 9, 10];
+        console.log(mergeArr(arr1, arr2));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
