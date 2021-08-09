@@ -1,48 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<title>原生js_ajax_POST</title>
-	</head>
-	<body>
-		<h1>该页面是测试使用原生js发送ajax的post请求</h1>
-		<button id="btn">点我使用原生js发送ajax的post请求</button>
-		<div id="demo"></div>
 
-		<script type="text/javascript">
-			/*
-			 * post请求：
-			 * 1.参数放在请求体里
-			 * 2.以请求体形式携带
-			 * 3.参数是urlencoded形式或JSON形式
-			 */
+<head>
+  <meta charset="UTF-8" />
+  <title>原生js_ajax_POST</title>
+</head>
 
-			let btn = document.getElementById('btn')
-			btn.onclick = function () {
-				//1.实例化一个XMLHttpRequest对象
-				let xhr = new XMLHttpRequest()
+<body>
+  <h1>该页面是测试使用原生js发送ajax的post请求</h1>
+  <button id="btn">点我使用原生js发送ajax的post请求</button>
+  <div id="demo"></div>
 
-				//2.绑定一个名为onreadystatechange事件监听
-				xhr.onreadystatechange = function () {
-					if (xhr.readyState === 4 && xhr.status === 200) {
-						console.log(xhr.response)
-						let demo = document.getElementById('demo')
-						demo.innerHTML = xhr.response
-					}
-				}
+  <script type="text/javascript">
+    /*
+     * post请求：
+     * 1.参数放在请求体里
+     * 2.以请求体形式携带
+     * 3.参数是urlencoded形式或JSON形式
+     */
 
-				//3.调用open方法---------用什么方法发？给谁发？带着什么过去？
-				xhr.open('post', 'http://localhost:3000/ajax_post')
+    let btn = document.getElementById('btn')
+    btn.onclick = function () {
+      //1.实例化一个XMLHttpRequest对象
+      let xhr = new XMLHttpRequest()
 
-				//特别注意：此处是设置post请求所特有的请求头，放在open之后，若不设置，服务器无法获取参数
-				xhr.setRequestHeader(
-					'Content-Type',
-					'application/x-www-form-urlencoded'
-				)
+      //2.绑定一个名为onreadystatechange事件监听
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          console.log(xhr.response)
+          let demo = document.getElementById('demo')
+          demo.innerHTML = xhr.response
+        }
+      }
 
-				//4.调用send方法---------发送请求
-				xhr.send('name=kobe&age=18')
-			}
-		</script>
-	</body>
+      //3.调用open方法---------用什么方法发？给谁发？带着什么过去？
+      xhr.open('post', 'http://localhost:3000/ajax_post')
+
+      //特别注意：此处是设置post请求所特有的请求头，放在open之后，若不设置，服务器无法获取参数
+      xhr.setRequestHeader(
+        'Content-Type',
+        'application/x-www-form-urlencoded'
+      )
+
+      //4.调用send方法---------发送请求
+      xhr.send('name=kobe&age=18')
+    }
+  </script>
+</body>
+
 </html>

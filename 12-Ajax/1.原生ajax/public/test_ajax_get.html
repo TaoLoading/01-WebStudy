@@ -1,83 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<title>原生js_ajax_GET</title>
-	</head>
-	<body>
-		<h1>该页面是测试使用原生js发送ajax的GET请求</h1>
-		<button id="btn">点我使用原生js发送ajax的get请求</button>
-		<div id="demo"></div>
 
-		<script type="text/javascript">
-			/*
-			 * get请求：
-			 * 1.参数放在请求地址里
-			 * 2.以查询字符串形式携带
-			 * 3.参数是urlencoded形式
-			 */
+<head>
+  <meta charset="UTF-8" />
+  <title>原生js_ajax_GET</title>
+</head>
 
-			let btn = document.getElementById('btn')
-			btn.onclick = function () {
-				//使用原生js发送ajax_get
-				/*
-				 * 1.实例化一个XMLHttpRequest对象,名为：xhr---------找来一个帮你发请求的人。
-				 * 2.绑定一个名为onreadystatechange事件监听------和发请求的人约定好--成功了做什么，失败了做什么。
-				 * 3.调用open方法---------用什么方法发？给谁发？带着什么过去？
-				 * 4.调用send方法---------发送请求
-				 * */
+<body>
+  <h1>该页面是测试使用原生js发送ajax的GET请求</h1>
+  <button id="btn">点我使用原生js发送ajax的get请求</button>
+  <div id="demo"></div>
 
-				//1.实例化一个XMLHttpRequest对象
-				let xhr = new XMLHttpRequest()
+  <script type="text/javascript">
+    /*
+     * get请求：
+     * 1.参数放在请求地址里
+     * 2.以查询字符串形式携带
+     * 3.参数是urlencoded形式
+     */
 
-				//2.绑定一个名为onreadystatechange事件监听
-				xhr.onreadystatechange = function () {
-					//xhr对象本身有5种状态：xhr“诞生”的那一刻就是0状态
-					/*
-					 * 0:xhr对象在实例化出来的那一刻，就已经是0状态，代表着xhr是初始化状态。
-					 * 1:send方法还没有被调用，即：请求没有发出去，此时依然可以修改请求头。
-					 * 2:send方法被调用了，即：请求已经发出去了，此时已经不可以再修改请求头。
-					 * 3:已经回来一部分数据了，如果是比较小的数据，会在此阶段一次性接收完毕,较大数据，有待于进一步接收。
-					 * 4:数据完美的回来了。
-					 * */
+    let btn = document.getElementById('btn')
+    btn.onclick = function () {
+      //使用原生js发送ajax_get
+      /*
+       * 1.实例化一个XMLHttpRequest对象,名为：xhr---------找来一个帮你发请求的人。
+       * 2.绑定一个名为onreadystatechange事件监听------和发请求的人约定好--成功了做什么，失败了做什么。
+       * 3.调用open方法---------用什么方法发？给谁发？带着什么过去？
+       * 4.调用send方法---------发送请求
+       * */
 
-					//我们几乎不会在0状态里做任何事。即：如下判断0状态，永远进不去。
-					/*if(xhr.readyState === 0){
-        console.log('我是一个刚出生的娃娃')
-      }*/
-					//1:send方法还没有被调用，即：请求没有发出去，此时依然可以修改请求头。
-					/*if(xhr.readyState === 1){
-        console.log('我是1状态')
-        xhr.setRequestHeader('demo','123')
-      }*/
-					//2:send方法被调用了，即：请求已经发出去了，此时已经不可以再修改请求头。
-					/*if(xhr.readyState === 2){
-        console.log('我是2状态')
-        xhr.setRequestHeader('demo','123')
-      }*/
-					//3.已经回来一部分数据了，如果是比较小的数据，会在此阶段一次性接收完毕,较大数据，有待于进一步接收。
-					/*if(xhr.readyState === 3){
-        console.log(xhr.response)
-      }*/
-					//4:数据完美的回来了。
-					if (xhr.readyState === 4 && xhr.status === 200) {
-						//如果进入此判断，意味着：请求成功了，且数据已经回来了
-						console.log(xhr.response)
-						let demo = document.getElementById('demo')
-						demo.innerHTML = xhr.response
-					}
-				}
+      //1.实例化一个XMLHttpRequest对象
+      let xhr = new XMLHttpRequest()
 
-				//3.调用open方法---------用什么方法发？给谁发？带着什么过去？
-				xhr.open(
-					'get',
-					'http://localhost:3000/ajax_get?name=kobe&age=18&t=' + Date.now()
-				) // 加上t=+Date.now()，使得每次请求的url都不一样，从而达到欺骗IE浏览器防止其假请求的现象。
-				// 因为服务区端没有对t=+Date.now()进行使用，故加上之后也不会影响服务器
+      //2.绑定一个名为onreadystatechange事件监听
+      xhr.onreadystatechange = function () {
+        //xhr对象本身有5种状态：xhr“诞生”的那一刻就是0状态
+        /*
+         * 0:xhr对象在实例化出来的那一刻，就已经是0状态，代表着xhr是初始化状态。
+         * 1:send方法还没有被调用，即：请求没有发出去，此时依然可以修改请求头。
+         * 2:send方法被调用了，即：请求已经发出去了，此时已经不可以再修改请求头。
+         * 3:已经回来一部分数据了，如果是比较小的数据，会在此阶段一次性接收完毕,较大数据，有待于进一步接收。
+         * 4:数据完美的回来了。
+         * */
 
-				//4.调用send方法---------发送请求
-				xhr.send()
-			}
-		</script>
-	</body>
+        //我们几乎不会在0状态里做任何事。即：如下判断0状态，永远进不去。
+        /*if(xhr.readyState === 0){
+      console.log('我是一个刚出生的娃娃')
+    }*/
+        //1:send方法还没有被调用，即：请求没有发出去，此时依然可以修改请求头。
+        /*if(xhr.readyState === 1){
+      console.log('我是1状态')
+      xhr.setRequestHeader('demo','123')
+    }*/
+        //2:send方法被调用了，即：请求已经发出去了，此时已经不可以再修改请求头。
+        /*if(xhr.readyState === 2){
+      console.log('我是2状态')
+      xhr.setRequestHeader('demo','123')
+    }*/
+        //3.已经回来一部分数据了，如果是比较小的数据，会在此阶段一次性接收完毕,较大数据，有待于进一步接收。
+        /*if(xhr.readyState === 3){
+      console.log(xhr.response)
+    }*/
+        //4:数据完美的回来了。
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          //如果进入此判断，意味着：请求成功了，且数据已经回来了
+          console.log(xhr.response)
+          let demo = document.getElementById('demo')
+          demo.innerHTML = xhr.response
+        }
+      }
+
+      //3.调用open方法---------用什么方法发？给谁发？带着什么过去？
+      xhr.open(
+        'get',
+        'http://localhost:3000/ajax_get?name=kobe&age=18&t=' + Date.now()
+      ) // 加上t=+Date.now()，使得每次请求的url都不一样，从而达到欺骗IE浏览器防止其假请求的现象。
+      // 因为服务区端没有对t=+Date.now()进行使用，故加上之后也不会影响服务器
+
+      //4.调用send方法---------发送请求
+      xhr.send()
+    }
+  </script>
+</body>
+
 </html>
