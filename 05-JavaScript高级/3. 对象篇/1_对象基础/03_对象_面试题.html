@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>03_对象3_面试题</title>
+</head>
+
+<body>
+
+    <script type="text/javascript">
+        var a = {}
+        var obj1 = {
+            n: 2
+        }
+        var obj2 = {
+            m: 3
+        };
+        a[obj1] = 4;
+        a[obj2] = 5;
+        console.log(a[obj1]); // 输出多少5
+
+        // 因为对象中的key都是字符串，但此时obj1和obj2都是对象，故在a[obj]的过程中会对obj进行toString()，将其转化为字符串
+        // 无论是obj1还是obj2，进行toString()后都会变成'[object Object]'，也就是对象a里面的key都会变成[object Object]
+        // 故5覆盖4，最终返回5
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+.content {
+	position: relative;
+	width: 640px;
+	height: 640px;
+	margin: 5px auto;
+}
+
+/* button */
+.content .btn {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.1);
+	z-index: 2;
+}
+.content .btn button {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 50px;
+	height: 50px;
+	margin-top: -25px;
+	margin-left: -25px;
+	line-height: 50px;
+	/* border: none; */
+	border-radius: 10px;
+	cursor: pointer;
+	outline: none;
+}
+.content .startBtn button {
+	background-color: pink;
+}
+.content .pauseBtn {
+	display: none;
+}
+.content .pauseBtn button {
+	background-color: skyblue;
+}
+
+/* snakeWrap */
+.content #snakeWrap {
+	position: relative;
+	width: 600px;
+	height: 600px;
+	background: #225675;
+	border: 20px solid #7dd9ff;
+}
+/* 大小通过js赋值 */
+.content #snakeWrap div {
+	/* width: 20px;
+	height: 20px; */
+	border-radius: 10px;
+}
+.content #snakeWrap .snakeHead {
+	background: greenyellow;
+}
+.content #snakeWrap .snakeBody {
+	background: yellow;
+}
+.content #snakeWrap .food {
+	background: red;
+}

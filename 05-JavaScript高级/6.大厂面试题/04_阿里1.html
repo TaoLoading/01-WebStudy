@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>04_阿里1</title>
+	</head>
+	<body>
+		<script>
+			console.log('------------------- 预热 ---------------------')
+
+			// 预热一
+			var a = 2
+			function fn() {
+				// var a
+				// console.log(a);
+				// a = 3
+
+				console.log(a) // undefined
+				var a = 3
+			}
+			fn()
+
+			function fn2() {
+				console.log(a) // 2
+				a = 3
+			}
+			fn2()
+
+			// 预热二
+			// 同名的函数和变量预解析完，一定是function
+			function b() {}
+			var b
+			console.log(typeof b) // function
+
+			console.log('------------------- 正题 ---------------------')
+
+			var c = 1
+			function c(c) {
+				console.log(c)
+				var c = 3
+			}
+			console.log(c) // 1
+			c(2) // 报错
+			// 预解析之后c为function，执行完c = 1后c为1，故c(2)报错
+		</script>
+	</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>07_数组去重</title>
+	</head>
+	<body>
+		<script>
+			let arr = [1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 4, 1, 5, 6, 8]
+
+			console.log(
+				'--------------------- ES5数组去重：逐个对比 ------------------------'
+			)
+
+			function killRepeat(arr) {
+				var newArr = []
+				newArr[0] = arr[0]
+				var flag = true
+
+				// 遍历给定的数组
+				for (var i = 0; i < arr.length; i++) {
+					// 遍历新数组
+					for (var j = 0; j < newArr.length; j++) {
+						if (newArr[j] == arr[i]) {
+							flag = false
+							break
+						}
+					}
+					if (flag) {
+						newArr[newArr.length] = arr[i]
+					}
+					flag = true
+				}
+
+				return newArr
+			}
+
+			console.log(killRepeat1(arr))
+
+			console.log(
+				'--------------------- ES5数组去重：indexof ------------------------'
+			)
+			function killRepeat1(arr) {
+				let result = []
+				let i = 0
+				arr.forEach(function (item, index) {
+					// result.indexOf(item) == -1则说明result中没有出现过该item
+					if (result.indexOf(item) == -1) {
+						result.push(item)
+					}
+				})
+				return result
+			}
+
+			console.log(killRepeat1(arr))
+
+			console.log(
+				'--------------------- ES6数组去重：set容器 ------------------------'
+			)
+			function killRepeat2(arr) {
+				// set容器自动去重，但它不是数组
+				let set = new Set(arr)
+				let result2 = []
+				// 遍历set容器中的元素逐个放入数组中
+				for (let item of set) {
+					result2.push(item)
+				}
+				return result2
+			}
+
+			console.log(killRepeat2(arr))
+
+			console.log(
+				'--------------------- ES6数组去重：set容器(代码优化) ------------------------'
+			)
+			let killRepeat3 = (arr) => [...new Set(arr)]
+			console.log(killRepeat3(arr))
+		</script>
+	</body>
+</html>

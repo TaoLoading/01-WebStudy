@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>基本数据类型 VS 引用数据类型</title>
+</head>
+
+<body>
+
+    <!--
+  重点： js数据类型分为： 基本数据类型和复合数据类型(引用数据类型，对象)
+  1. 基本数据类型：
+    - 定义： string， number， boolean，null， undefined
+    - 特征： 基本数据类型数据赋值给某一个变量之后值本身就不会再发生改变
+  2. 引用数据类型:
+    - 定义： object， array， function
+    - 特征：引用数据类型的值可以通过其赋值的变量修改
+  3. 判断数据类型： typeof
+    问题： typeof返回值有几种？？？
+    答案： String，Number，Boolean，Undefined，Function，Object
+    特殊： null和array的返回值也为Object
+  4. 面试题： 如何用原生js判断Array/Function/Object
+    答案： 使用instanceOf
+
+-->
+
+    <script type="text/javascript">
+        // 基本数据类型的特点：一旦定义了值不会发生改变
+        var a = 123;
+        a = 234;
+        a = 'abc'; // 所以123数据本身没变，只是a不再指向123，而是指向234
+
+
+        var b = {
+            name: 'kobe'
+        };
+        b.name = 'wade'; // 操作对象属性不会导致变量的指针指向发生改变，修改的是对象本身的数据
+        b = {
+            name: 'lht'
+        }; // 操作对象本身会导致变量的指针指向发生改变
+        console.log(b);
+
+        // 在堆内存中开辟了两块内存
+        var c = {};
+        var d = {};
+
+
+        var arr = [1, 2];
+        var obj = {
+            name: 'kobe'
+        };
+
+        console.log(typeof(null)); // 返回值Object
+        console.log(typeof(arr)); // 返回值Object
+        console.log(typeof(arr));
+
+
+        // instanceof
+        // instanceof用来判断A是否是B的实例，语法：A instanceof B，返回布尔值
+        console.log(arr instanceof Array); // true
+        console.log(obj instanceof Array); // false
+        console.log(arr instanceof Function); // false
+        console.log(obj instanceof Object); // true
+    </script>
+</body>
+
+</html>

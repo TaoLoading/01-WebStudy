@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>03_相关问题</title>
+</head>
+
+<body>
+    <!--
+问题: 什么时候必须使用['属性名']的方式?
+  * 属性名不是合法的标识名
+  * 属性名不确定
+-->
+    <script type="text/javascript">
+        // 创建对象
+        var p = {}
+
+        /*情形一: 属性名不是合法的标识名*/
+        /*需求: 添加一个属性: content-type: text/json */
+        //  p.content-type = 'text/json' //不正确
+        p['content-type'] = 'text/json';
+
+        /*情形二: 属性名不确定*/
+        var prop = 'xxx';
+        var value = 123;
+        // p.prop = value  //不正确
+        p[prop] = value;
+        console.log(p['content-type'], p[prop]);
+    </script>
+</body>
+
+</html>

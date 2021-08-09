@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>01_百度01</title>
+	</head>
+	<body>
+		<script>
+			console.log('------------------- 预热 ---------------------')
+
+			// 预热一
+			var obj = { n: 1 }
+			var obj2 = obj
+			obj2.n = 2
+			console.log(obj.n)
+
+			// 预热二
+			function fn1(a) {
+				a.n = 3
+			}
+			fn1(obj)
+			console.log(obj.n)
+
+			// 预热三
+			function fn2(a) {
+				a = { n: 4 }
+			}
+			fn2(obj)
+			console.log(obj.n)
+
+			console.log('------------------- 正题 ---------------------')
+
+			var a = { n: 1 }
+			var b = a
+			a.x = a = { n: 2 } // 注意：操作对象属性的优先级高于给对象本身赋值
+			// 故相等于先 a.x ={ n:2 }，再 a = { n:2 }
+			// 此时：
+			// a = { n:2 }，b = { n:1, x:{ n:2 } }
+
+			console.log(a.n, b.n) // 2  1
+			console.log(a.x, b.x) // undefined { n:2 }
+		</script>
+	</body>
+</html>

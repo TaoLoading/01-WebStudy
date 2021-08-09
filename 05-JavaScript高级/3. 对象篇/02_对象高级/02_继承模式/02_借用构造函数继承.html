@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>02_借用构造函数继承</title>
+</head>
+
+<body>
+    <!--
+方式2: 借用构造函数继承(假的)
+1. 套路:
+  1. 定义父类型构造函数
+  2. 定义子类型构造函数
+  3. 在子类型构造函数中调用父类型构造
+2. 关键:
+  1. 在子类型构造函数中通用super()调用父类型构造函数
+-->
+    <script type="text/javascript">
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        function Student(name, age, price) {
+            // Person(name, age); // 此时属于函数自调用，this指向是window，故name和age属性添加给了window
+            Person.call(this, name, age); // 构造函数中this的指向是实例对象
+            this.price = price;
+        }
+
+        var s = new Student('Tom', 20, 12000);
+        console.log(s.name, s.age, s.price);
+    </script>
+</body>
+
+</html>

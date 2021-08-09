@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>11_阿里4</title>
+	</head>
+	<body>
+		<script>
+			function Person() {
+				getAge = function () {
+					console.log(10)
+				}
+				return this
+			}
+
+			Person.getAge = function () {
+				console.log(20)
+			}
+
+			Person.prototype.getAge = function () {
+				console.log(30)
+			}
+
+			var getAge = function () {
+				console.log(40)
+			}
+
+			function getAge() {
+				console.log(50)
+			}
+
+			Person.getAge() // 20
+
+			getAge() // 40
+			// 变量提升后分别是function(40)和function(50)
+			// 执行函数时先遇到getAge() = function(40)，故打印40
+
+			Person().getAge() // 10
+			// 这条语句的意思是：Person()自调用的结果再.getAge()，而Person()自调用的结果为window，故就是window.getAge()
+			// 注意：在执行Person()函数时，由于函数内的getAge()没有用var声明，故此处getAge()是全局变量，而此时getAge()打印内容已经被修改为10
+			// 故打印10
+
+			getAge() // 10
+			// 相当于window.getAge()，与上一个一致
+
+			// 使用new操作符时，找离它最近的括号，以此确定函数整体
+			new Person.getAge() // 20
+			// 此处函数整体为Person.getAge，故找到Person.getAge()打印20
+			new Person().getAge() // 30
+			// 此处函数整体为Person，故就是new一个构造函数，即生成实例，故此执行语句是在实例中找getAge()
+			// 同理寻找路线：自身找 ---> 构造函数找 ---> 原型对象找(找到)
+			// 故打印30
+		</script>
+	</body>
+</html>

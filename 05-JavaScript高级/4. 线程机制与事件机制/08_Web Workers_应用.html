@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>08_Web Workers_应用</title>
+</head>
+
+<body>
+
+    <input type="text" id="number" value="30">
+    <button id="btn1">主线程计算fibonacci值</button>
+    <button id="btn2">分线程计算fibonacci值</button>
+    <!--
+计算得到fibonacci数列中第n个数的值
+在主线程计算: 当位数较大时, 会阻塞主线程, 导致界面卡死
+在分线程计算: 不会阻塞主线程
+-->
+    <script type="text/javascript">
+        var num = 1;
+
+        function fun() {
+            // 使用递归的时候一定要有结束条件
+            if (num == 5) {
+                return;
+            }
+            num++;
+            console.log('fun();');
+            fun();
+        }
+
+        fun();
+
+        // 使用递归实现斐波那契数列
+        // F(1)=1，F(2)=1, F(n)=F(n-1)+F(n-2)（n>=3，n∈N*）
+        function feibonaqi(n) {
+            return n >= 3 ? feibonaqi(n - 1) + feibonaqi(n - 2) : 1;
+        }
+
+
+        // console.log(feibonaqi(4));
+        // console.log(feibonaqi(5));
+        // console.log(feibonaqi(1));
+        // console.log(feibonaqi(2));
+        // console.log(feibonaqi(3));
+
+
+        var result = 0;
+
+        function feibonaqi2(num) {
+            if (num < 3) {
+                return 1
+            }
+            console.log('------------------');
+
+            var result = feibonaqi2(num - 1) + feibonaqi2(num - 2)
+            return result;
+        }
+
+
+        console.log(feibonaqi2(4));
+    </script>
+</body>
+
+</html>

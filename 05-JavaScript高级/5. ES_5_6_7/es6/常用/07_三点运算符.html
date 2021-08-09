@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>07_3点运算符</title>
+	</head>
+	<body>
+		<!--
+        * 用途
+        1. rest(可变)参数
+            * 用来取代arguments 但比arguments灵活,只能是最后部分形参参数
+        function add(...values) {
+            let sum = 0;
+            for(value of values) {
+            sum += value;
+            }
+            return sum;
+        }
+        2. 扩展运算符
+        let arr1 = [1,3,5];
+        let arr2 = [2,...arr1,6];
+        arr2.push(...arr1);
+        -->
+		<script type="text/javascript">
+			console.log('--------------- 用途1：rest可变参数 -----------------')
+			// 不使用三点运算符
+			// arguments伪数组用来收集实参的伪数组
+			// 伪数组：有length属性，可以通过下标获取对应的值，但没有数组的一般方法(如push，filter，map)
+			// function fun1(a, b, c) {
+			// 	console.log(arguments.length) // 3
+			// 	// arguments.forEach(function (item, index) {
+			// 	// console.log(item, index) // 报错，arguments不具备数组的一般方法
+			// 	// })
+			// }
+			// fun1(1, 2, 3)
+
+			// 使用三点运算符
+			// 注意：三点运算符在函数形参的位置只能放在最后
+			function fun2(...values) {
+				console.log(values)
+				values.forEach(function (item, index) {
+					console.log(item, index) // 具备数组的一般方法
+				})
+			}
+			fun2(2, 3, 4)
+
+			console.log('--------------- 用途1：扩展运算符 -----------------')
+			let arr1 = [1, 6]
+			let arr2 = [2, 3, 4, 5]
+			let arr3 = [1, ...arr2, 6]
+			console.log(arr3)
+			// 三点运算符拆包(获取目标数组中的每一项)
+			// 原理：三点运算符会调用iterator接口，如果底层有这个接口，则可以遍历数组
+			console.log(...arr2)
+		</script>
+	</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>03_原型链</title>
+</head>
+
+<body>
+    <img src="原型链分析.png" alt="">
+
+
+    <!--
+1. 原型链(图解)
+  * 访问一个对象的属性时，
+    * 先在自身属性中查找，找到返回
+    * 如果没有, 再沿着__proto__这条链向上查找, 找到返回
+    * 如果最终没找到, 返回undefined
+  * 别名: 隐式原型链
+  * 作用: 查找对象的属性(方法)
+2. 构造函数/原型/实体对象的关系(图解)
+3. 构造函数/原型/实体对象的关系2(图解)
+
+
+    原型对象就是普通的Object实例对象，而实例对象的__proto__ == 构造函数的prototype，
+    因为Object的prototype指向Object的原型对象，故原型对象的__proto__指向Object的运行对象
+-->
+    <script type="text/javascript">
+        function Fn() {
+            this.test1 = function() {
+                console.log('test1()');
+            }
+        }
+        Fn.prototype.test2 = function() {
+            console.log('test2()');
+        }
+        var fn = new Fn();
+
+        fn.test1();
+        fn.test2();
+        console.log(fn.toString()); // 能找到
+        // fn.test3(); // 找不到
+
+        // 因为定义函数方式可以是： var obj = new Object();，所以任意函数都可以看做Object对象的实例化对象
+
+        // 找toString()
+        // 所以如上题，Fn()中找不到toString()方法，沿着Fn.__proto__找到Object对象，在找到Obect.prototype找到toString()
+
+        // 找test3()报错：
+        // 不是单单因为找不到而报错
+        // 在对象中找不到变量不会报错，会返回undefined，而找方法找不到就变成了undefined()，故报错
+        // 故test3中有值，为undefined，而test3()报错
+        // 图解
+    </script>
+</body>
+
+</html>

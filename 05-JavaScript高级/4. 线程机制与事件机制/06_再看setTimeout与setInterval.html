@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>07_再看setInterval与setTimeout</title>
+</head>
+<body>
+<!--
+面试题:
+  1. 使用setInterval()和setTimeout()分别实现每隔100ms输出当前次数, 共输出10次
+  2. 分析比较这2种实现的区别
+分析
+  * setInterval的回调函数将尝试每隔100ms执行一次, 只要回调代码执行的时间不超过100ms就能定时
+  * setTimeout的方式: 如果回调代码执行需要xms, 下次回调的时间就会被延迟xms
+-->
+<script type="text/javascript">
+  var count = 0
+  setInterval(function  () {
+    
+  })
+</script>
+</body>
+</html>

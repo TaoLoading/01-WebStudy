@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<script type="text/javascript">
+    // Object.create(prototype, [descriptors])
+    var obj = {
+      name: 'kobe',
+      showName: function () {
+        console.log(this.name);
+      }
+    }
+
+
+    var obj2 = Object.create(obj, {
+      sex: { // 当前扩展属性的配置对象
+        value: '男',            // 当前属性的修饰属性
+        writable: true,
+        configurable: true,
+        enumerable: true
+      }
+    })
+    console.log(obj2);
+    obj2.sex = '女';
+    console.log(obj2.sex);
+    
+    // for in 用来枚举对象的属性的，在枚举自身属性的同时会把原型对象上的属性也枚举出来
+    for(var item in obj2){
+      // 判断当前属性是否是自身的属性
+      if(obj2.hasOwnProperty(item)){
+        console.log(item);
+      }
+    }
+    // delete obj2.sex;
+    // console.log(obj2.sex);
+
+
+
+    var obj3 = {
+      name: 'kobe',
+      age: 43
+    }
+
+    var obj4 = {};
+    console.log('--------------------------------------------');
+    // Object.defineProperties(object, descriptors)
+    // var sex = '男'
+    // Object.defineProperties(obj4, {
+    //   sex: {
+    //     get: function () {
+    //       console.log('get()');
+    //       console.log('this', this);
+    //       return sex;
+    //     },
+    //     set: function (msg) {// 监视当前扩展属性的
+    //       console.log('set()');
+    //       console.log('修改的最新数据: ', msg);
+    //       // this = 当前的对象
+    //       // 不能再set方法中直接修改扩展属性值，否则会出现死循环
+    //       // this.sex = msg;
+    //       sex = msg;
+    //     }
+    //   }
+    // })
+    // console.log(obj4);
+    // console.log(obj4.sex);
+    // obj4.sex = '女';
+    // console.log(obj4.sex);
+
+    console.log('------------------- Object.defineProperty() ----------------');
+    var obj5 = {};
+    Object.defineProperty(obj5, 'sex', {
+      get: function () {
+        return '男'
+      },
+      set: function (msg) {
+        console.log(msg);
+      }
+    })
+  
+    console.log(obj5.sex);
+    obj5.sex = '女';
+
+
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>03_对象</title>
+	</head>
+
+	<body>
+		<!--
+1. 什么是对象?
+  * 代表现实中的某个事物, 是该事物在编程中的抽象
+  * 多个数据的集合体(封装体)
+  * 用于保存多个数据的容器
+2. 为什么要用对象?
+  * 便于对多个数据进行统一管理
+3. 对象的组成
+  * 属性
+    * 代表现实事物的状态数据
+    * 由属性名和属性值组成
+    * 属性名都是字符串类型, 属性值是任意类型
+  * 方法
+    * 代表现实事物的行为数据
+    * 是特别的属性==>属性值是函数
+4. 如何访问对象内部数据?
+  * .属性名: 编码简单, 但有时不能用
+  * ['属性名']: 编码麻烦, 但通用
+5. 难点： 对象最终保存的属性名一定是字符串，如果设置的时候不是字符串，会调用toString()方法将其转换成字符串
+
+
+      对象中多有的key都是字符串
+-->
+		<script type="text/javascript">
+			// 创建对象
+			var p = {
+				name: 'Tom',
+				age: 12,
+				setName: function (name) {
+					this.name = name
+				},
+				setAge: function (age) {
+					this.age = age
+				},
+			}
+
+			// 访问对象内部数据
+			console.log(p.name, p['age'])
+			p.setName('Jack')
+			p['age'](23)
+			console.log(p['name'], p.age)
+		</script>
+	</body>
+</html>

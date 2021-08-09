@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>06_闭包的缺点及解决</title>
+</head>
+
+<body>
+    <!--
+1. 缺点
+  * 函数执行完后, 函数内的局部变量没有释放, 占用内存时间会变长
+  * 容易造成内存溢出
+2. 解决
+  * 能不用闭包就不用
+  * 及时释放(使内部函数成为垃圾对象)
+-->
+    <script type="text/javascript">
+        function fn1() {
+            var a = 2;
+
+            function fn2() {
+                a++;
+                console.log(a);
+            }
+
+            return fn2;
+        }
+        var f = fn1();
+
+        f(); // 3
+        f(); // 4
+
+        f = null // 释放
+    </script>
+</body>
+
+</html>

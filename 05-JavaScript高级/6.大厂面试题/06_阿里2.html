@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>06_阿里2</title>
+	</head>
+	<body>
+		<script>
+			var a = 6
+			setTimeout(function () {
+				console.log(0)
+				alert(a)
+				a = 666
+			}, 0)
+			console.log(1)
+			a = 66
+			// 结果：1  0  66
+			// 最后打印66是因为setTime开了异步，于是先执行主线程上的var a = 6和a = 66
+			// 故最后打印66
+		</script>
+	</body>
+</html>

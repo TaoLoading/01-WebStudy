@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>08_检测数据类型</title>
+	</head>
+	<body>
+		<script>
+			let obj = { name: 'lht' }
+			let obj2 = { age: 21 }
+			let obj3 = {}
+			obj3[obj] = 4
+			obj3[obj2] = 5
+			console.log(obj3[obj]) // 5
+
+			// 对象的key必须是字符串，当输入的key不是字符串时，会自动调用toString()方法转换成字符串
+			// 而对象转化成字符串后都是：[object Object]
+			console.log(obj.toString()) // [Object Object]
+			console.log(obj3.toString()) // [Object Object]
+
+			// 数组重写了Object原型的toString()方法
+			let arr = [1, 2, 3]
+			console.log(arr.toString()) // 1, 2, 3
+
+			// 证明重写：
+			// obj寻找toString()：本身 ---> Object原型找(找到)
+			console.log(obj)
+			// arr寻找toString()：本身 ---> Array原型找(找到)，找不到才去Object原型找
+			console.log(arr)
+
+			// toString()之所以能够准确的被调用，是因为toString()转化的目标是它方法内部中的this
+
+			// 让arr调用Object中的toString()
+			console.log(Object.prototype.toString.call(arr)) // [Object Array]
+
+			// 以此扩展检测数据类型
+			console.log(Object.prototype.toString.call(arr).slice(8, -1)) // slice(8, -1)作用即去掉[object ]
+			console.log(Object.prototype.toString.call(null).slice(8, -1))
+
+			// 定义方法检测数据类型
+			function checkType(target) {
+				return Object.prototype.toString.call(null).slice(8, -1)
+			}
+		</script>
+	</body>
+</html>

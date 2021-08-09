@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>10_京东1</title>
+	</head>
+	<body>
+		<script>
+			var F = function () {}
+			Object.prototype.a = function () {
+				console.log('a()')
+			}
+			Function.prototype.b = function () {
+				console.log('b()')
+			}
+			var f = new F()
+
+			F.a() // a()
+			F.b() // b()
+			f.a() // a()
+			f.b() // 报错
+			// 在找f.a()和f.b()时，查找路径为：
+			// 自身 --> f的构造函数(即F) ---> F的原型对象(代码中没有定义，故也找不到) ---> Object的原型对象
+			// 故f.a()可以找到，f.b()找不到
+		</script>
+	</body>
+</html>

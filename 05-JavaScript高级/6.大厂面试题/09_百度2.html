@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>09_百度2</title>
+	</head>
+	<body>
+		<script>
+			function A() {}
+			A.prototype.n = 1
+
+			var b = new A()
+
+			A.prototype = {
+				n: 2,
+				m: 3,
+			}
+			var c = new A()
+
+			console.log(b.n, b.m, c.n, c.m) // 1  undefined  2  3
+		</script>
+	</body>
+</html>

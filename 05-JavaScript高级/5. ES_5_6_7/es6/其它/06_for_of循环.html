@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>06_for_of循环</title>
+	</head>
+	<body>
+		<!--
+for(let value of target){}循环遍历
+  1. 遍历数组
+  2. 遍历Set
+  3. 遍历Map
+  4. 遍历字符串
+  5. 遍历伪数组
+-->
+
+		<button>按钮1</button>
+		<button>按钮2</button>
+		<button>按钮3</button>
+
+		<script type="text/javascript">
+			// 遍历数组
+			let arr = [1, 2, 3, 4, 5]
+			for (let num of arr) {
+				console.log(num)
+			}
+
+			// 遍历Set
+			let set = new Set([1, 2, 3, 4, 5])
+			for (let num of set) {
+				console.log(num)
+			}
+
+			// 遍历字符串
+			let str = 'abcdefg'
+			for (let num of str) {
+				console.log(num)
+			}
+
+			// 遍历伪数组
+			let btns = document.getElementsByTagName('button')
+			for (let btn of btns) {
+				console.log(btn.innerHTML)
+			}
+		</script>
+	</body>
+</html>

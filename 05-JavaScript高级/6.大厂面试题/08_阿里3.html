@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>08_阿里3</title>
+	</head>
+	<body>
+		<script>
+			// 试题1
+			var name = 'A'
+			var object = {
+				name: 'B',
+				getNameFunc: function () {
+					return function () {
+						return this.name
+					}
+				},
+			}
+			console.log(object.getNameFunc()()) // A
+			// object.getNameFunc()返回的是一个函数，再对其进行自调用，this指向为window
+			// 故打印A
+
+			// 试题2
+			var name2 = 'A'
+			var object2 = {
+				name2: 'B',
+				getNameFunc: function () {
+					var that = this
+					return function () {
+						return that.name2
+					}
+				},
+			}
+			console.log(object2.getNameFunc()()) // B
+			// 缓存this，使得that指向为object2
+			// 故打印B
+		</script>
+	</body>
+</html>

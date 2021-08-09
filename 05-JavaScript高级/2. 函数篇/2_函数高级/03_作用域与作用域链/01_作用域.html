@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>01_作用域</title>
+</head>
+<body>
+<!--
+1. 理解
+  * 就是一块"地盘", 一个代码段所在的区域
+  * 它是静态的(相对于上下文对象), 在编写代码时就确定了
+  * 例子： 房地产开发商盖楼盘之前批的 ‘地盘’
+2. 分类
+  * 全局作用域
+  * 函数作用域
+  * eval作用域
+  * 没有块作用域(ES6有了)
+3. 作用
+  * 隔离变量，不同作用域下同名变量不会有冲突
+  * 规定当前函数之后创建作用域链的上一个链条是什么样的
+-->
+<script type="text/javascript">
+
+  var a = 10,
+      b = 20
+  function fn(x) {
+    var a = 100,
+        c = 300;
+    console.log('fn()', a, b, c, x)
+    function bar(x) {
+      var a = 1000,
+          d = 400
+      console.log('bar()', a, b, c, d, x)
+    }
+
+    bar(100)
+    bar(200)
+  }
+  fn(10)
+
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>05_Set和Map数据结构</title>
+	</head>
+	<body>
+		<!--
+1. Set容器 : 无序(无下标)不可重复的多个value的集合体
+  * Set()
+  * Set(array)
+  * add(value)
+  * delete(value)
+  * has(value)
+  * clear()
+  * size
+2. Map容器 : 无序的 key不重复的多个key-value的集合体
+  * Map()
+  * Map(array)
+  * set(key, value)//添加
+  * get(key)
+  * delete(key)
+  * has(key)
+  * clear()
+  * size
+-->
+
+		<script type="text/javascript">
+			let set = new Set([1, 2, 3, 4, 3, 2, 1, 6])
+			console.log(set) // 重复的值会自动忽略
+			set.add('abc')
+			console.log(set, set.size)
+			//delete(value)
+			set.delete(2)
+			console.log(set)
+			//has(value)，是否有
+			console.log(set.has(2)) //false
+			console.log(set.has(1)) //true
+			//clear()，全部清空
+			set.clear()
+			console.log(set)
+
+			let map = new Map([
+				['abc', 12, 123],
+				[25, 'age'],
+			]) // 里面必须是二维数组，并且每个数组只读前两个即获得key和value
+			console.log(map)
+			map.set('男', '性别') // 添加的时候注意是加键值对，故要传入两个
+			console.log(map)
+			console.log(map.get(25)) //age
+			//delete(key)
+			map.delete('男')
+			console.log(map)
+			console.log(map.has('男')) //false
+			console.log(map.has('abc')) //true
+			map.clear()
+			console.log(map)
+		</script>
+	</body>
+</html>

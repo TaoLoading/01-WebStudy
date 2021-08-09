@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>01_字符串扩展</title>
+	</head>
+	<body>
+		<!--
+1. includes(str) : 判断是否包含指定的字符串
+2. startsWith(str) : 判断是否以指定字符串开头
+3. endsWith(str) : 判断是否以指定字符串结尾
+4. repeat(count) : 重复指定次数
+-->
+		<script type="text/javascript">
+			let str = 'abcdefg'
+
+			// str.includes(str)判断是否包含指定的字符串，类似于obj.hasOwnproperty()
+			console.log(str.includes('a')) //true
+			console.log(str.includes('h')) //false
+
+			// str.startsWith(str) : 判断是否以指定字符串开头
+			console.log(str.startsWith('a')) //true
+			console.log(str.startsWith('d')) //false
+
+			// str.endsWith(str) : 判断是否以指定字符串结尾
+			console.log(str.endsWith('g')) //true
+			console.log(str.endsWith('d')) //false
+
+			// str.repeat(count) : 重复指定次数a
+			console.log(str.repeat(5))
+		</script>
+	</body>
+</html>

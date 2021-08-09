@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>07_腾讯3</title>
+	</head>
+	<body>
+		<img
+			src="./图解/腾讯3面试题图解.PNG"
+			alt="程序执行过程图解"
+			width="1200px"
+		/>
+
+		<script>
+			function fn1() {
+				var a = 2
+				function fn2() {
+					a++
+					console.log(a)
+				}
+				return fn2
+			}
+			var f = fn1
+			f() // 3
+			f() // 4
+			// 销毁闭包
+			f = null
+		</script>
+	</body>
+</html>

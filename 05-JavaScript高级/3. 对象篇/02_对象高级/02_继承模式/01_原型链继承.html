@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>01_原型链继承</title>
+	</head>
+
+	<body>
+		<!--
+方式1: 原型链继承
+  1. 套路
+    1. 定义父类型构造函数
+    2. 给父类型的原型添加方法
+    3. 定义子类型的构造函数
+    4. 创建父类型的对象赋值给子类型的原型
+    5. 将子类型原型的构造属性设置为子类型
+    6. 给子类型原型添加方法
+    7. 创建子类型的对象: 可以调用父类型的方法
+  2. 关键
+    1. 子类型的原型为成父类型的一个实例对象
+-->
+		<script type="text/javascript">
+			function Supper() {
+				//父类型
+				this.superProp = 'The super prop'
+			}
+			//原型的数据所有的实例对象都可见
+			Supper.prototype.showSupperProp = function () {
+				console.log(this.superProp)
+			}
+
+			function Sub() {
+				//子类型
+				this.subProp = 'The sub prop'
+			}
+
+			// 子类的原型为父类的实例
+			Sub.prototype = new Supper()
+
+			// 修正Sub.prototype.constructor为Sub本身
+			// 因为原本Sub.prototype = {constructor:Sub}，而Sub.prototype = new Supper()改变了Sub.prototype的指向，
+			// 并且new Supper()中没有constructor，故需要添加上constructor
+			Sub.prototype.constructor = Sub
+
+			Sub.prototype.showSubProp = function () {
+				console.log(this.subProp)
+			}
+
+			// 创建子类型的实例
+			var sub = new Sub()
+			// 调用父类型的方法
+			sub.showSubProp()
+			// 调用子类型的方法
+			sub.showSupperProp()
+
+			// 重新定义后的原型链
+			// sub ---> Sub.prototype.__proto__ ---> Person.prototype ---> Object.prototype
+		</script>
+	</body>
+</html>

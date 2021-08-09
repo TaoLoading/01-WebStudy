@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>04_Array扩展</title>
+	</head>
+	<body>
+		<!--
+1. Array.prototype.indexOf(value) : 得到值在数组中的第一个下标
+2. Array.prototype.lastIndexOf(value) : 得到值在数组中的最后一个下标
+3. Array.prototype.forEach(function(item, index){}) : 遍历数组
+4. Array.prototype.map(function(item, index){}) : 遍历数组返回一个新的数组(不会影响原数组)，返回加工之后的值
+5. Array.prototype.filter(function(item, index){}) : 遍历过滤出一个新的子数组， 返回条件为true的值
+-->
+		<script type="text/javascript">
+			/*
+   需求:
+   1. 输出第一个6的下标
+   2. 输出最后一个6的下标
+   3. 输出所有元素的值和下标
+   4. 根据arr产生一个新数组,要求每个元素都比原来大10
+   5. 根据arr产生一个新数组, 返回的每个元素要大于4
+   */
+
+			var arr = [1, 4, 6, 2, 5, 6]
+			console.log(arr.indexOf(6)) //2
+			//Array.prototype.lastIndexOf(value) : 得到值在数组中的最后一个下标
+			console.log(arr.lastIndexOf(6)) //5
+
+			//Array.prototype.forEach(function(item, index){}) : 遍历数组
+			arr.forEach(function (item, index) {
+				console.log(item, index)
+			})
+
+			//Array.prototype.map(function(item, index){}) : 遍历数组返回一个新的数组，返回加工之后的值
+			var arr1 = arr.map(function (item, index) {
+				return item + 10
+			})
+			console.log(arr, arr1)
+
+			//Array.prototype.filter(function(item, index){}) : 遍历过滤出一个新的子数组， 返回条件为true的值
+			var arr2 = arr.filter(function (item, index) {
+				return item > 4
+			})
+			console.log(arr, arr2)
+		</script>
+	</body>
+</html>
