@@ -1,0 +1,34 @@
+// 5.引入scss文件
+@import '_mixin.scss';
+
+// 3.使用$定义变量(要放到使用语句的前面)
+$text-color : #333;
+
+.header {
+  // 1.嵌套语法
+  span{
+    color: $text-color;
+    // 2.&代表外层的结构
+    &:active {
+      // 5.darken(颜色, 百分比)将颜色加深
+      color: darken(green, 20%);
+    }
+    &:hover {
+      // 4.lighten(颜色, 百分比)将颜色变浅
+      color: lighten(blue, 20%);
+    }
+  }
+}
+
+// 5.配合mixin实现复用
+.text {
+  @include test(200px);
+}
+
+// 6.向混合样式中导入内容
+.footer {
+  color: yellow;
+  @include ipad {
+    width: 200px;
+  }
+}

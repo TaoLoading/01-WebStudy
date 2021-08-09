@@ -1,0 +1,29 @@
+.header span {
+  color: #333;
+}
+
+.header span:active {
+  color: #001a00;
+}
+
+.header span:hover {
+  color: #6666ff;
+}
+
+.text {
+  width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.footer {
+  color: yellow;
+}
+
+@media screen and (min-width: 768px) {
+  .footer {
+    width: 200px;
+  }
+}
+/*# sourceMappingURL=demo.css.map */

@@ -1,0 +1,14 @@
+@charset "UTF-8";
+/** 和scss不一样，sass不能加大括号和分号 **/
+.header span {
+  color: red;
+}
+
+.header:active {
+  color: green;
+}
+
+.header:active:hover {
+  color: blue;
+}
+/*# sourceMappingURL=demo1.css.map */

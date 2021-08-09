@@ -1,0 +1,14 @@
+// 5.配合include实现复用
+@mixin test($width) {
+  width: $width;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin ipad {
+  @media screen and (min-width:768px) {
+    // 6.向混合样式中导入内容
+    @content;
+  }
+}
