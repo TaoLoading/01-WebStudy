@@ -1,5 +1,6 @@
 <template>
-  <div></div>
+  <div>{{count}}</div>
+  <button @click="updateCount">点击增加</button>
 </template>
 
 <script lang="ts">

@@ -1,33 +1,26 @@
 <template>
-  <h2>reactive</h2>
-  <h2>姓名：{{user.name}}</h2>
-  <h2>姓名：{{user.age}}</h2>
-  <br>
-  <button @click="updateUser()">更新名字</button>
+  <div>{{msg}}</div>
+  <button @click="msg += '==='">更新数据</button>
+  <hr>
+  <child :msg="msg"
+         @xxx="xxx"></child>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue";
+import { defineComponent, ref } from "vue";
+import Child from "./components/Child.vue";
 export default defineComponent({
+  components: { Child },
   name: "App",
   setup() {
-    const obj = {
-      name: "lht",
-      age: 22,
-    };
-    // reactive定义多个数据的响应式
-    // 返回一个Proxy的代理对象，此处代理对象即user，被代理的目标对象就是obj
-    // 内部基于 ES6 的 Proxy 实现，通过代理对象操作源对象内部数据都是响应式的
-    const user = reactive(obj);
-    const updateUser = () => {
-      // 只能通过代理对象来修改属性值
-      // 修改目标对象可以同步修改代理对象，但不能实现数据的渲染
-      user.name = "xcy";
-      user.age++;
-    };
+    const msg = ref("this is a msg");
+    function xxx() {
+      console.log(msg.value);
+    }
+    // 返回一个对象
     return {
-      user,
-      updateUser,
+      msg,
+      xxx,
     };
   },
 });
