@@ -15,6 +15,7 @@
         call(obj)/apply(obj): 调用函数, 指定函数中的this为第一个参数的值
         bind(obj): 返回一个新的函数, 新函数内部会调用原来的函数, 且this为bind()指定的第一参数的值
         注意: 如果obj是null/undefined, this为window
+        call()的性能比apply()好一些，尤其是传参大于3个时
     2. 应用
         call()/bind()应用: 根据伪数组生成真数组
         bind(): react中组件的自定义方法 / vue中的事件回调函数内部
