@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>手写组合API</title>
+</head>
+
+<body>
+  <script src="./index.js"></script>
+  <script>
+    const proxyUser1 = shallowReactive({
+      name: 'xiaoming',
+      car: {
+        color: 'red'
+      }
+    })
+    // 拦截到了读取、修改数据
+    // proxyUser1.name += '=='
+    // 拦截到了读取数据，但是没有拦截到修改数据
+    // proxyUser1.car.color += '=='
+    // 拦截到了删除数据
+    // delete proxyUser1.name
+    // 拦截到了读取数据，但是没有拦截到删除数据
+    // delete proxyUser1.car.color
+
+
+    const proxyUser2 = reactive({
+      name: 'xiaoming',
+      car: {
+        color: 'red'
+      }
+    })
+    // 拦截到了读取、修改数据
+    // proxyUser2.name += '=='
+    // 拦截到了读取、修改数据
+    // proxyUser2.car.color += '=='
+    // 拦截到了删除数据
+    // delete proxyUser2.name
+    // 拦截到了读取、删除数据
+    delete proxyUser2.car.color
+  </script>
+</body>
+
+</html>
