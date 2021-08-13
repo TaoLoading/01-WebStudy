@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>关于代码的执行方式</title>
+	</head>
+	<body>
+		<script>
+			let a = 1
+			setTimeout(() => {
+				a = 2
+			}, 2000)
+			if (a == 1) {
+				console.log('这是1')
+			} else if (a == 2) {
+				console.log('这是2')
+			} else {
+				console.log('这不是1也不是2')
+			}
+
+			// 只打印'这是1'，因为定时器执行时主线程上的任务已经结束
+		</script>
+	</body>
+</html>
