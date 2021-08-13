@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<!-- 解决移动端0.3s延迟 -->
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+		/>
+		<script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+		<script>
+			if ('addEventListener' in document) {
+				document.addEventListener(
+					'DOMContentLoaded',
+					function() {
+						FastClick.attach(document.body)
+					},
+					false
+				)
+			}
+		</script>
+
+		<link rel="stylesheet" href="/static/bootstrap.css" />
+		<title>vue-component</title>
+		<style>
+			.router-link-active {
+				color: red !important;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="root"></div>
+	</body>
+</html>

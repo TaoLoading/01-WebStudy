@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>03_计算属性和监视</title>
+	</head>
+	<body>
+		<!--
+        1. 计算属性
+        在computed属性对象中定义计算属性的方法
+        在页面中使用{{方法名}}来显示计算的结果
+        2. 监视属性:
+        通过vm对象的$watch()或watch配置来监视指定的属性
+        当属性变化时, 回调函数自动调用, 在函数内部进行计算
+        3. 计算属性高级:
+        通过getter/setter实现对属性数据的显示和监视
+        计算属性存在缓存, 多次读取只执行一次getter计算
+        过程：先从缓存中读取，有则直接读取，无则进行计算
+        -->
+		<div id="demo">
+			姓:
+			<input type="text" placeholder="First Name" v-model="firstName" /><br />
+			名:
+			<input type="text" placeholder="Last Name" v-model="lastName" /><br />
+			姓名1(单向):
+			<input type="text" placeholder="Full Name1" v-model="fullName1" /><br />
+			姓名2(单向):
+			<input type="text" placeholder="Full Name2" v-model="fullName2" /><br />
+			姓名3(双向):
+			<input type="text" placeholder="Full Name3" v-model="fullName3" /><br />
+
+			<p>{{fullName1}}</p>
+			<p>{{fullName1}}</p>
+			<p>{{fullName1}}</p>
+			<p>{{fullName1}}</p>
+			<p>{{fullName1}}</p>
+			<p>{{fullName1}}</p>
+			<p>{{fullName3}}</p>
+			<p>{{fullName3}}</p>
+			<p>{{fullName3}}</p>
+		</div>
+
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript">
+			// 全局配置
+			// 取消非生产模式提示
+			Vue.config.productionTip = false
+
+			const vm = new Vue({
+				el: '#demo',
+				data: {
+					firstName: 'A',
+					lastName: 'B',
+					fullName2: 'A-B',
+				},
+				computed: {
+					/* 
+                    什么时候执行？
+                    1.初始显示执行一次
+                    2.依赖数据发生变化时执行
+                    */
+					// 写法一
+					fullName1() {
+						console.log('fullName1')
+						return this.firstName + '-' + this.lastName
+					},
+					// 写法二
+					fullName3: {
+						get() {
+							console.log('fullName3 get()')
+							return this.firstName + '-' + this.lastName
+						},
+						// 当给fullName3指定新的值时自动调用
+						set(value) {
+							console.log('fullName3 set()')
+							const names = value.split('-')
+							this.firstName = names[0]
+							this.lastName = names[1]
+						},
+					},
+				},
+				// 写法一
+				// 监视firstName
+				watch: {
+					firstName(value) {
+						console.log('fullName2 watch()')
+						this.fullName2 = value + '-' + this.lastName
+					},
+				},
+			})
+			// 写法二
+			// 监视lastName
+			vm.$watch('lastName', function (value) {
+				console.log('fullName2 watch()')
+				this.fullName2 = this.firstName + '-' + value
+			})
+
+			/* 
+            1.vue控制的所有回调的this都是vm/组件对象
+            2.vue给vm定义一些与data中的属性对应的属性
+                对应的属性：
+                1）同名
+                2）具有getter方法：当通过vm.xx读取属性值时自动调用，读取data对象中同名属性的值
+                3）具有setter方法：当通过vm.xx = value指定新的值时，值就保存在data中对应的属性上
+
+            数据代理：vm._data.xx ==> vm.xx，通过vm代理对vm内部的data对象的属性的操作（读/写）
+
+            3.什么时候使用计算属性？
+                如果需要显示的数据可以根据现有的数据计算产生
+            */
+		</script>
+	</body>
+</html>

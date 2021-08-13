@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>07_事件处理</title>
+	</head>
+	<body>
+		<!--
+        1. 绑定监听:
+        v-on:xxx="fun"
+        @xxx="fun"
+        @xxx="fun(参数)"
+        默认事件形参: event
+        隐含属性对象: $event
+        2. 事件修饰符:
+        .prevent : 阻止事件的默认行为 event.preventDefault()
+        .stop : 停止事件冒泡 event.stopPropagation()
+        3. 按键修饰符
+        .keycode : 操作的是某个keycode值的健
+        .enter : 操作的是enter键
+        -->
+
+		<div id="example">
+			<h2>1. 绑定监听</h2>
+			<button @click="test1">test1</button>
+			<button @click="test2('lht')">test2</button>
+			<button @click="test3('lht',$event)">test3</button>
+
+			<h2>2. 事件修饰符</h2>
+			<!-- 
+            事件处理的2个重要操作：
+            1.阻止事件的默认行为(vue通过.prevent实现)
+            2.停止事件冒泡(vue通过.stop实现)
+             -->
+			<a href="http://www.taoloading.top" @click.prevent="test4()">去博客</a>
+
+			<div
+				style="width: 200px; height: 200px; background-color: red"
+				@click="test5"
+			>
+				<div
+					style="width: 100px; height: 100px; background-color: blue"
+					@click.stop="test6"
+				></div>
+			</div>
+
+			<h2>3. 按键修饰符</h2>
+			<input type="text" v-model="msg" @keyup.13="test7" />
+			<input type="text" v-model="msg" @keyup.enter="test7" />
+		</div>
+
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript">
+			new Vue({
+				el: '#example',
+				data: {
+					msg: '',
+				},
+				methods: {
+					test1(event) {
+						alert(event.target.innerHTML)
+					},
+					test2(name) {
+						alert(name)
+					},
+					test3(name, event) {
+						alert(name + '---' + event.target.innerHTML)
+					},
+					test4(event) {
+						alert('点击了链接')
+					},
+					test5() {
+						alert('点击了test5')
+					},
+					test6() {
+						alert('点击了test6')
+					},
+					test7(event) {
+						// if (event.keyCode == 13) {
+						// 	alert(this.msg)
+						// }
+						alert(this.msg)
+					},
+				},
+			})
+		</script>
+	</body>
+</html>

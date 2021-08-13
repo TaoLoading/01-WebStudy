@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>12_指令_自定义指令</title>
+	</head>
+	<body>
+		<!--
+        1. 注册全局指令
+        Vue.directive('my-directive', function(el, binding){
+            el.innerHTML = binding.value.toupperCase()
+        })
+        2. 注册局部指令
+        directives : {
+            'my-directive' : {
+                bind (el, binding) {
+                el.innerHTML = binding.value.toupperCase()
+                }
+            }
+        }
+        3. 使用指令
+        v-my-directive='xxx'
+        4.局部指令只会当前vm管理的模板有效
+        -->
+		<!--
+        需求: 自定义2个指令
+        1. 功能类型于v-text, 但转换为全大写:upper-text
+        2. 功能类型于v-text, 但转换为全小写:lower-text
+        -->
+
+		<div id="test">
+			<p v-upper-text="msg"></p>
+			<p v-lower-text="msg"></p>
+		</div>
+
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript">
+			// 注册全局指令upper-text
+			/* 
+            el：指令属性所在的标签元素
+            binding：包含指令相关数据的对象
+            */
+			Vue.directive('upper-text', function (el, binding) {
+				console.log('upper-text', binding)
+				el.textContent = binding.value.toUpperCase()
+			})
+
+			new Vue({
+				el: '#test',
+				data() {
+					return {
+						msg: 'I am TaoLoading',
+					}
+				},
+
+				// 注册局部指令lower-text
+				directives: {
+					// 由于lower-text中的"-"非法，故加上引号
+					'lower-text': function (el, binding) {
+						console.log('lower-text', binding)
+						el.textContent = binding.value.toLowerCase()
+					},
+				},
+			})
+		</script>
+	</body>
+</html>

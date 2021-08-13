@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>08_表单输入绑定</title>
+	</head>
+	<body>
+		<!--
+        1. 使用v-model(双向数据绑定)自动收集数据
+        text/textarea
+        checkbox
+        radio
+        select
+        -->
+		<div id="demo">
+			<form action="/xxx">
+				<span>用户名: </span>
+				<input type="text" v-model="user.username" /><br />
+
+				<span>密码: </span>
+				<input type="password" v-model="user.password" /><br />
+
+				<span>性别: </span>
+				<input type="radio" id="female" v-model="user.sex" value="female" />
+				<label for="female">女</label>
+				<input type="radio" id="male" v-model="user.sex" value="male" />
+				<label for="male">男</label><br />
+
+				<span>爱好: </span>
+				<input
+					type="checkbox"
+					id="basket"
+					v-model="user.likes"
+					value="basket"
+				/>
+				<label for="basket">篮球</label>
+				<input
+					type="checkbox"
+					id="foot"
+					v-model="user.likes"
+					value="football"
+				/>
+				<label for="foot">足球</label>
+				<input
+					type="checkbox"
+					id="pingpang"
+					v-model="user.likes"
+					value="pingpang"
+				/>
+				<label for="pingpang">乒乓</label><br />
+
+				<span>城市: </span>
+				<select v-model="user.cityId">
+					<option v-for="city in allCities" :key="city.id" :value="city.id">
+						{{city.name}}
+					</option>
+				</select>
+				<br />
+				<span>介绍: </span>
+				<textarea rows="10" v-model="user.info"></textarea><br /><br />
+
+				<input type="submit" value="注册" @click.prevent="register" />
+			</form>
+		</div>
+
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript">
+			new Vue({
+				el: '#demo',
+				data: {
+					user: {
+						username: '',
+						password: '',
+						sex: 'male', // 与value中的值一一对应，实现绑定
+						likes: ['football'],
+						cityId: 3,
+						info: '',
+					},
+					allCities: [
+						{ id: 1, name: '北京' },
+						{ id: 2, name: '深圳' },
+						{ id: 3, name: '上海' },
+					],
+				},
+				methods: {
+					register() {
+						alert('提交成功' + JSON.stringify(this.user))
+					},
+				},
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>09_Vue实例_生命周期</title>
+	</head>
+	<body>
+		<!--
+        1. vue对象的生命周期
+        1). 初始化显示
+            * beforeCreate()
+            * created()
+            * beforeMount()
+            * mounted()
+        2). 更新状态
+            * beforeUpdate()
+            * updated()
+        3). 销毁vue实例: vm.$destory()
+            * beforeDestory()
+            * destoryed()
+        2. 常用的生命周期方法
+        created()/mounted(): 发送ajax请求, 启动定时器等异步任务
+        beforeDestory(): 做收尾工作, 如: 清除定时器
+        -->
+
+		<div>
+			<button @click="destoryVM">destory vue</button>
+			<p v-show="isShow">xxx</p>
+			<p ref="content">{{isShow?'真':'假'}}</p>
+		</div>
+
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript">
+			new Vue({
+				data: {
+					isShow: true,
+				},
+				beforeCreate() {
+					console.log('beforeCreate()', this.isShow) // beforeCreate()阶段不能通过vm读取data中的数据
+				},
+				// beforeCreate()和created()之间实现数据代理/data数据的监视
+				created() {
+					console.log('created()', this.isShow) // created()阶段可以通过vm读取data中的数据
+				},
+
+				beforeMount() {
+					console.log('beforeMount()', this.$refs.content) // beforeMount()阶段不能通过ref读取页面标签对象
+				},
+				// beforeMount()和mounted()之间实现初试显示/渲染界面
+				mounted() {
+					console.log(this.$refs.content) // mounted()阶段可以通过ref读取页面标签对象
+					this.intervalID = setInterval(
+						function () {
+							console.log('定时器正在执行')
+							this.isShow = !this.isShow
+						}.bind(this),
+						1000
+					)
+				},
+
+				beforeUpdate() {
+					console.log(
+						'beforeUpdate()',
+						this.isShow,
+						this.$refs.content.innerText
+					) // beforeUpdate()阶段看到的是老界面。此处通过读取data中的数据及页面显示的数据进行判断两者是否一致，以此判断是否进行界面更新
+				},
+				// beforeUpdate()和Updated()之间进行界面更新
+				Updated() {
+					console.log('Updated()', this.isShow, this.$refs.content.innerText) // Updated()阶段看到的是新界面
+				},
+
+				beforeDestroy() {
+					clearInterval(this.intervalID)
+				},
+				destroyed() {
+					console.log('destroyed()')
+				},
+
+				methods: {
+					destoryVM() {
+						this.$destroy()
+					},
+				},
+			}).$mount('div')
+		</script>
+	</body>
+</html>

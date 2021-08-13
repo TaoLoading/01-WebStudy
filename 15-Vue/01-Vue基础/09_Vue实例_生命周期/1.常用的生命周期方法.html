@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>09_Vue实例_生命周期</title>
+	</head>
+	<body>
+		<div>
+			<button @click="destoryVM">destory vue</button>
+			<p v-show="isShow">xxx</p>
+		</div>
+
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript">
+			new Vue({
+				data: {
+					isShow: true,
+				},
+
+				/* 
+        界面初始显示之后立即调用
+        一般在此执行异步操作，如：发送ajax请求/启动定时器/订阅消息/绑定自定义事件监听
+        */
+				mounted() {
+					this.intervalID = setInterval(
+						function () {
+							console.log('定时器正在执行')
+							this.isShow = !this.isShow
+						}.bind(this),
+						1000
+					)
+					/* 
+          bind()作用：
+          1.返回一个新函数
+          2.新函数内部会调用原函数(通过call调用)
+          3.在调用时指定原函数执行的this为bind()的第一个参数
+          */
+				},
+
+				/* 
+        在vm死亡之前调用
+        用于做一些收尾工作(如此处的清除定时器)
+        */
+				beforeDestroy() {
+					clearInterval(this.intervalID)
+				},
+
+				methods: {
+					destoryVM() {
+						this.$destroy()
+					},
+				},
+			}).$mount('div')
+		</script>
+	</body>
+</html>

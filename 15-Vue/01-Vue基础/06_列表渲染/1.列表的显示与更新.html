@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>06_列表渲染</title>
+	</head>
+	<body>
+		<!--
+        1. 列表显示
+        数组: v-for / index
+        对象: v-for / key
+        2. 列表的更新显示
+        删除item
+        替换item
+        -->
+
+		<div id="demo">
+			<h2>测试: v-for 遍历数组</h2>
+			<ul>
+				<li v-for="(item, index) in persons" :key="item.id">
+					{{item.id}}---{{item.name}}---{{item.age}} ---
+					<button @click="deleteP(index)">删除</button> ---
+					<button @click="updateP(index,{id:Date.now(),name:'cl',age:22})">
+						更新
+					</button>
+				</li>
+			</ul>
+
+			<h2>测试: v-for 遍历对象</h2>
+		</div>
+
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript">
+			new Vue({
+				el: '#demo',
+				data: {
+					persons: [
+						{ id: 1, name: 'lht1', age: 21 },
+						{ id: 2, name: 'lht2', age: 22 },
+						{ id: 3, name: 'lht3', age: 23 },
+						{ id: 4, name: 'lht4', age: 24 },
+						{ id: 5, name: 'lht5', age: 25 },
+						{ id: 6, name: 'lht6', age: 26 },
+					],
+				},
+				methods: {
+					deleteP(index) {
+						this.persons.splice(index, 1)
+					},
+					updateP(index, newP) {
+						this.persons.splice(index, 1, newP)
+
+						// this.persons[index] = newP // 数据绑定失效。即数据变化但界面不自动更新
+
+						// this.persons[index].id = newP.id // 可行
+						// this.persons[index].name = newP.name // 可行
+						// this.persons[index].age = newP.age // 可行
+					},
+				},
+			})
+
+			/* 
+            vue内部如何监视数据的变化
+            1.vm监视了data中所有层次的属性
+            2.对象中的属性数据  (响应式属性：当修改属性值时，内部就会自动更新对应的界面)
+                给属性添加setter方法
+            3.数组中的元素数据
+                重写数组一系列更新数组元素的方法。(如上方splice()方法不再是原生数组的方法，而是vue重写后的方法)
+                过程：
+                1)调用原生数组对应的方法，对数组元素进行处理
+                2)更新界面
+            */
+		</script>
+	</body>
+</html>

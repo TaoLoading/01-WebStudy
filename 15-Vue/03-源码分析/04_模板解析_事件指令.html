@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>04_模板解析_事件指令</title>
+	</head>
+	<body>
+		<div id="test">
+			<button v-on:click="show">test</button>
+		</div>
+
+		<script src="./js/compile.js"></script>
+		<script src="./js/mvvm.js"></script>
+		<script src="./js/observer.js"></script>
+		<script src="./js/watcher.js"></script>
+		<script>
+			const vm = new MVVM({
+				el: '#test',
+				data: {
+					name: 'tim',
+				},
+				methods: {
+					show() {
+						alert(this.name)
+					},
+				},
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>05_模板解析_一般指令</title>
+		<style>
+			.classA {
+				color: red;
+			}
+			.classB {
+				font-size: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="test">
+			<p v-text="msg"></p>
+			<p v-html="msg"></p>
+			<p class="classB" v-class="myClass">xxx</p>
+		</div>
+
+		<script src="./js/compile.js"></script>
+		<script src="./js/mvvm.js"></script>
+		<script src="./js/observer.js"></script>
+		<script src="./js/watcher.js"></script>
+		<script>
+			const vm = new MVVM({
+				el: '#test',
+				data: {
+					msg: '<a href="#">去学习</a>',
+					myClass: 'classA',
+				},
+			})
+		</script>
+	</body>
+</html>
