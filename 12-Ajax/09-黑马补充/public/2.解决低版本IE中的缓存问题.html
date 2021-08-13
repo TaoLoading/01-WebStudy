@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>解决低版本IE中存在的缓存问题</title>
+	</head>
+	<body>
+		<script>
+			/* 
+        问题描述：
+        低版本IE中，Ajax存在严重的缓存问题，即在请求地址不发生变化的情况下，只有第一次请求会发送到服务器，后续请求是读取这个缓存，
+        这就导致机时服务器端数据更新了，但客户端拿到的依旧的缓存中的旧数据
+
+        措施：
+        在请求地址后面加请求参数，包装每一次请求的参数值不相同
+        xhr.open('get','url' + Math.random())
+        */
+		</script>
+	</body>
+</html>

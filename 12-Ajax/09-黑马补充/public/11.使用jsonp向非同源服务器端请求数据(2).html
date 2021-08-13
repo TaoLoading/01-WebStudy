@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function fn2 (data) {
+			console.log('客户端的fn函数被调用了')
+			console.log(data);
+		}
+	</script>
+	<!-- 1.将非同源服务器端的请求地址写在script标签的src属性中 -->
+	<script src="http://localhost:3001/better?callback=fn2"></script>
+</body>
+</html>

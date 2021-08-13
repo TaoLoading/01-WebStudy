@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ajax黑马版</title>
+</head>
+
+<body>
+  <script>
+    // 创建ajax对象
+    let xhr = new XMLHttpRequest()
+
+    // 设置请求方式及请求地址
+    xhr.open('get', 'http://localhost:3000/ajax_get_heima')
+
+    // 发送请求
+    xhr.send()
+
+    // 获取服务器端相应到客户端的数据
+    xhr.onload = function () {
+      console.log(xhr.responseText)
+    }
+    // 当网络中断时会触发onerror事件
+    xhr.onerror = function () {
+      console.log('当前网络中断，无法发送Ajax请求')
+    }
+  </script>
+</body>
+
+</html>

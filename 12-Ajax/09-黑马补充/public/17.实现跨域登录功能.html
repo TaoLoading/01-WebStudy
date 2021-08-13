@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>实现跨域功能</title>
+		<link
+			rel="stylesheet"
+			href="/assets/bootstrap/dist/css/bootstrap.min.css"
+		/>
+		<style type="text/css">
+			.container {
+				padding-top: 60px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<form id="loginForm">
+				<div class="form-group">
+					<label>用户名</label>
+					<input
+						type="text"
+						name="username"
+						class="form-control"
+						placeholder="请输入用户名"
+					/>
+				</div>
+				<div class="form-group">
+					<label>密码</label>
+					<input
+						type="password"
+						name="password"
+						class="form-control"
+						placeholder="请输入用密码"
+					/>
+				</div>
+				<input
+					type="button"
+					class="btn btn-default"
+					value="登录"
+					id="loginBtn"
+				/>
+				<input
+					type="button"
+					class="btn btn-default"
+					value="检测用户登录状态"
+					id="checkLogin"
+				/>
+			</form>
+		</div>
+		<script type="text/javascript">
+			// 获取登录按钮
+			var loginBtn = document.getElementById('loginBtn')
+			// 获取检测登录状态按钮
+			var checkLogin = document.getElementById('checkLogin')
+			// 获取登录表单
+			var loginForm = document.getElementById('loginForm')
+			// 为登录按钮添加点击事件
+			loginBtn.onclick = function () {
+				// 将html表单转换为formData表单对象
+				var formData = new FormData(loginForm)
+				// 创建ajax对象
+				var xhr = new XMLHttpRequest()
+				// 对ajax对象进行配置
+				xhr.open('post', 'http://localhost:3001/login')
+				// 当发送跨域请求时，携带cookie信息
+				xhr.withCredentials = true
+				// 发送请求并传递请求参数
+				xhr.send(formData)
+				// 监听服务器端给予的响应内容
+				xhr.onload = function () {
+					console.log(xhr.responseText)
+				}
+			}
+
+			// 当检测用户状态按钮被点击时
+			checkLogin.onclick = function () {
+				// 创建ajax对象
+				var xhr = new XMLHttpRequest()
+				// 对ajax对象进行配置
+				xhr.open('get', 'http://localhost:3001/checkLogin')
+				// 当发送跨域请求时，携带cookie信息
+				xhr.withCredentials = true
+				// 发送请求并传递请求参数
+				xhr.send()
+				// 监听服务器端给予的响应内容
+				xhr.onload = function () {
+					console.log(xhr.responseText)
+				}
+			}
+		</script>
+	</body>
+</html>

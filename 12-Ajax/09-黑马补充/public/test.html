@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Document</title>
+		<link
+			rel="stylesheet"
+			href="./assets/bootstrap/dist/css/bootstrap.min.css"
+		/>
+		<style type="text/css">
+			.container {
+				padding-top: 60px;
+			}
+			.padding {
+				padding: 5px 0 20px 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="form-group">
+				<label>请选择文件</label>
+				<input type="file" id="file" />
+				<div class="padding" id="box">
+					<!--<img src="" class="img-rounded img-responsive">-->
+				</div>
+				<div class="progress">
+					<div class="progress-bar" style="width: 0%" id="bar">
+						0%
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			// 获取文件选择控件
+			var file = document.getElementById('file')
+			// 获取进度条元素
+			var bar = document.getElementById('bar')
+			// 获取图片容器
+			var box = document.getElementById('box')
+			// 为文件选择控件添加onchanges事件
+			// 在用户选择文件时触发
+			file.onchange = function () {
+				// 创建空的formData表单对象
+				var formData = new FormData()
+				// 将用户选择的文件追加到formData表单对象中
+				formData.append('attrName', this.files[0])
+				// 创建ajax对象
+				var xhr = new XMLHttpRequest()
+				// 对ajax对象进行配置
+				xhr.open('post', 'http://localhost:3000/upload')
+				// 发送ajax请求
+				xhr.send(formData)
+				// 监听服务器端响应给客户端的数据
+				xhr.onload = function () {
+					// 如果服务器端返回的http状态码为200
+					// 说明请求是成功的
+					if (xhr.status == 200) {
+						// 将服务器端返回的数据显示在控制台中
+						var result = JSON.parse(xhr.responseText)
+						// 动态创建img标签
+						var img = document.createElement('img')
+						// 给图片标签设置src属性
+						img.src = result.path
+						// 当图片加载完成以后
+						img.onload = function () {
+							// 将图片显示在页面中
+							box.appendChild(img)
+						}
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

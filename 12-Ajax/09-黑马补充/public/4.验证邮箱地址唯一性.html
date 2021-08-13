@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>验证邮箱地址是否已经注册</title>
+		<link
+			rel="stylesheet"
+			href="/assets/bootstrap/dist/css/bootstrap.min.css"
+		/>
+		<style type="text/css">
+			p:not(:empty) {
+				padding: 15px;
+			}
+			.container {
+				padding-top: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="form-group">
+				<label>邮箱地址</label>
+				<input
+					type="email"
+					class="form-control"
+					placeholder="请输入邮箱地址"
+					id="email"
+				/>
+			</div>
+			<!-- 错误 bg-danger 正确 bg-success -->
+			<p id="info"></p>
+		</div>
+		<script src="/js/ajax.js"></script>
+		<script>
+			// 获取页面中的元素
+			var emailInp = document.getElementById('email')
+			var info = document.getElementById('info')
+
+			// 当文本框离开焦点以后
+			emailInp.onblur = function () {
+				// 获取用户输入的邮箱地址
+				var email = this.value
+				// 验证邮箱地址的正则表达式
+				var reg = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/
+				// 如果用户输入的邮箱地址不符合规则
+				if (!reg.test(email)) {
+					// 给出用户提示
+					info.innerHTML = '请输入符合规则的邮箱地址'
+					// 让提示信息显示为错误提示信息的样式
+					info.className = 'bg-danger'
+					// 阻止程序向下执行
+					return
+				}
+
+				// 向服务器端发送请求
+				ajax({
+					type: 'get',
+					url: 'http://localhost:3000/verifyEmailAdress',
+					data: {
+						email: email,
+					},
+					success: function (result) {
+						console.log(result)
+						info.innerHTML = result.message
+						info.className = 'bg-success'
+					},
+					error: function (result) {
+						console.log(result)
+						info.innerHTML = result.message
+						info.className = 'bg-danger'
+					},
+				})
+			}
+		</script>
+	</body>
+</html>

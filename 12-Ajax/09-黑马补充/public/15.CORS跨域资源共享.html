@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn">点我发送请求</button>
+	<script src="/js/ajax.js"></script>
+	<script>
+		// 获取按钮
+		var btn = document.getElementById('btn');
+		// 为按钮添加点击事件
+		btn.onclick = function () {
+			ajax({
+				type: 'get',
+				url: 'http://localhost:3001/cross',
+				success: function (data) {
+					console.log(data)
+				}
+			})
+		};
+	</script>
+</body>
+</html>

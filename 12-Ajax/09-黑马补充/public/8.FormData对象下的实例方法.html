@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Document</title>
+	</head>
+	<body>
+		<!-- 创建普通的html表单 -->
+		<form id="form">
+			<input type="text" name="username" />
+			<input type="password" name="password" />
+			<input type="button" id="btn" value="提交" />
+		</form>
+		<script type="text/javascript">
+			// 获取按钮
+			var btn = document.getElementById('btn')
+			// 获取表单
+			var form = document.getElementById('form')
+			// 为按钮添加点击事件
+			btn.onclick = function () {
+				// 将普通的html表单转换为表单对象
+				var formData = new FormData(form)
+
+				/*
+				get('key') 获取表单对象属性的值
+				set('key', 'value') 设置表单对象属性的值。应用举例：对用户输入的内容重新设置后再向服务器提交，如保留两位小数
+				delete('key') 删除表单对象属性中的值。应用举例：输入两次密码确保密码正确，但提交到服务器时只提交一个，另一个删除
+			*/
+
+				console.log(formData.get('username'))
+
+				// 如果设置的表单属性存在 将会覆盖属性原有的值
+				formData.set('username', 'itcast')
+				formData.append('username', 'itheima')
+				// 如果设置的表单属性不存在 将会创建这个表单属性
+				formData.set('age', 100)
+				// 删除用户输入的密码
+				formData.delete('password')
+
+				// 创建ajax对象
+				var xhr = new XMLHttpRequest()
+				// 对ajax对象进行配置
+				xhr.open('post', 'http://localhost:3000/formData')
+				// 发送ajax请求
+				xhr.send(formData)
+				// 监听xhr对象下面的onload事件
+				xhr.onload = function () {
+					// 对象http状态码进行判断
+					if (xhr.status == 200) {
+						console.log(xhr.responseText)
+					}
+				}
+
+				// 创建空的表单对象
+				var f = new FormData()
+				f.append('sex', '男')
+				console.log(f.get('sex'))
+			}
+		</script>
+	</body>
+</html>

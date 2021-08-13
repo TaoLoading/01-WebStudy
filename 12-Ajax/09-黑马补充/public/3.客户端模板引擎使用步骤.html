@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Document</title>
+		<!-- 1. 将模板引擎的库文件引入到当前页面 -->
+		<script src="./js/template-web.js"></script>
+	</head>
+	<body>
+		<div id="container"></div>
+		<!-- 2.准备art-template模板 -->
+		<script type="text/html" id="tpl">
+			<h1>{{username}} {{age}}</h1>
+		</script>
+		<script type="text/javascript">
+			// 3.告诉模板引擎将哪个数据和哪个模板进行拼接
+			// 传两个参数：(1)模板id (2)数据，对象类型
+			// 方法的返回值就是拼接好的html字符串
+			var html = template('tpl', { username: 'zhangsan', age: 30 })
+			document.getElementById('container').innerHTML = html
+		</script>
+	</body>
+</html>
