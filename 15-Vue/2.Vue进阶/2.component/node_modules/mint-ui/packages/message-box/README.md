@@ -1,1 +1,0 @@
-# mint-message-box
