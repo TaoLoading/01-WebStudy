@@ -2,26 +2,21 @@
 
 ## 一、基本命令
 
-1.安装Angular CLI：
+1. 安装Angular CLI：
+   * `npm install -g @angular/cli`
+   * `cnpm install -g @angular/cli`
+2. 检查Angular版本
+   * `ng v`
+3. 新建项目：
+   * `ng new 项目名`
+   * 跳过包安装：`ng new 项目名 --skip-instal`
+4. 启动项目：
+   * `ng serve --open`
+5. 在components文件夹中创建组件
+   * `ng g component components/组件名`
 
-`npm install -g @angular/cli`
+## 二、组件开发基本流程
 
-`cnpm install -g @angular/cli`
-
-2.新建项目：
-
-`ng new xxx`
-
-`ng new xxx --skip-instal`
-
-注：在使用该命令新建项目时会自动下在npm包，速度较慢，可通过第二种方式跳过自动安装，跳过后再npm i手动安装速度会提升很多
-
-3.启动项目：
-
-`ng serve --open`
-
-4.在components文件夹中创建组件
-
-`ng g component components/xxx`
-
-5.创建副
+1. 创建组件
+2. 在app.module.ts中引入并配置组件(使用命令创建组件时自动配置)
+3. 

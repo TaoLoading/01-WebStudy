@@ -1,4 +1,4 @@
-// 引入核心模块里的component
+// 引入核心模块里的Component
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   // html
   templateUrl: './app.component.html',
   // css
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   // 定义属性

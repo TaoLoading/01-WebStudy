@@ -3,16 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
-  styleUrls: ['./news.component.css']
+  styleUrls: ['./news.component.scss']
 })
 export class NewsComponent implements OnInit {
-  // 定义数据
-  public title = "这是定义的第一个数据"
-  public arr: any[] = [1, 2, 3]
-  public peopleInfo: any = {
-    username: ''
-  }
-
+  title = '我是一个新闻组件'
   constructor() { }
 
   ngOnInit(): void {
