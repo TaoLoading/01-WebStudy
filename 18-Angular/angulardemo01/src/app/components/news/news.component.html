@@ -1,2 +1,64 @@
-<p>news works!</p>
-<h2>{{title}}</h2>
+<p>这是news组件</p>
+
+<h2>1.绑定数据</h2>
+<!-- 绑定数据时采用双大括号 -->
+<h3>{{infoData}}</h3>
+
+<h2>2.绑定属性</h2>
+<!-- 绑定属性时对属性才可中括号，对属性的数据直接调用 -->
+<div [title]="infoProp">鼠标瞄上去看一下</div>
+
+<h2>3.绑定html [innerHTML]</h2>
+<!-- 绑定html时使用[innerHTML]声明 -->
+<div [innerHTML]='infoHtml'></div>
+
+<h2>4.Angular模板中允许做简单运算</h2>
+<div>1+2={{1+2}}</div>
+
+<h2>5.遍历数组 *ngFor</h2>
+<ul>
+  <li *ngFor="let item of infoArr;let key = index">{{key}}---{{item}}</li>
+</ul>
+
+<h2>6.条件判断 *ngIf</h2>
+<div *ngIf="flagIf">
+  <span>*ngIf此时是true</span>
+</div>
+<div *ngIf !="flagIf">
+  <span>*ngIf此时是false</span>
+</div>
+
+<h2>7.条件判断 *ngSwitch</h2>
+<span [ngSwitch]="flagSwitch">
+  <p *ngSwitchCase="true">
+    *ngSwitch此时是true
+  </p>
+  <p *ngSwitchCase="false">
+    *ngSwitch此时是false
+  </p>
+  <p *ngSwitchDefault>
+    *ngSwitch此时是其他
+  </p>
+</span>
+
+<h2>8.属性设置 [ngClass] [ngStyle]</h2>
+<div [ngClass]="{'red': true}">
+  ngClass演示
+</div>
+<div [ngStyle]="{'color': 'blue'}">
+  ngStyle演示
+</div>
+
+<h2>9.管道</h2>
+<div>
+  <span>{{nowTime | date:'yyyy-MM-dd HH:mm ss'}}</span>
+</div>
+
+<h2>10.点击事件</h2>
+<button (click)="clickFun()">点击</button>
+
+<h2>11.键盘事件</h2>
+<input type="text" (keydown)="keyDownFun($event)">
+
+<h2>12.双向数据绑定</h2>
+<!-- <input type="text" [(ngModel)]="keyWords"> {{keyWords}} -->
