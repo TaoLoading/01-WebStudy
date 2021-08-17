@@ -1,0 +1,8 @@
+<h2>搜索记录的展示与删除</h2>
+<div class="search">
+  <input type="text" [(ngModel)]="keyWords"> <button (click)="doSearch()" #myBtn>搜索</button>
+  <hr>
+  <ul>
+    <li *ngFor="let item of historyList;let key = index">{{item}} --- <button (click)="delete(key)">X</button></li>
+  </ul>
+</div>

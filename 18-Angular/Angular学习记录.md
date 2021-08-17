@@ -9,7 +9,7 @@
     * `ng v`
 3. 新建项目：
     * `ng new 项目名`
-    * 跳过包安装：`ng new 项目名 --skip-instal`
+    * 跳过包安装：`ng new 项目名 --skip-install`
 4. 启动项目：
     * `ng serve --open`
 5. 在components文件夹中创建组件
@@ -53,3 +53,27 @@
 9. 键盘事件
     * `(keydown)="方法"`
 10. 双向数据绑定
+    1.  在app.module.ts文件中引入并在imports中声明FormsModule
+    2.  `[(ngModel)]='变量'`
+
+## 四、服务
+1. 在services文件夹中创建服务
+    * `ng g service services/组件名`
+2. 引入服务
+    1. 在app.module.ts文件中引入并在providers中声明服务名称
+    2. 在使用服务的组件内再次引入服务
+3. 使用服务
+    1. 在constructor中，`xx:服务名称`
+    2. 使用`this.xx`调用
+
+## 五、操作DOM
+1. ViewChild获取DOM
+    1. 在html中对DOM进行标记`#标记名称`
+    2. 在ts文件内引入ViewChild
+    3. 使用`@ViewChild('标记名称') 变量名称`将DOM赋给变量
+2. 在ngAfterViewInit()操作DOM
+    * 在ngAfterViewInit()生命周期内使用`this.变量名称.nativeElement`操作DOM
+3. 注意
+    * 可在ngAfterViewInit()生命周期内操作DOM，此阶段是视图/DOM加载完成后触发的方法
+    * 不可在ngOnInit()生命周期内操作DOM，此阶段是组件和指令的初始化完成，并不是真正的DOM加载完成
+    * ViewChild不止可以获取DOM，也可以获取组件
