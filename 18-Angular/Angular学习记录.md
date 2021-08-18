@@ -1,7 +1,6 @@
 # Angular学习记录
 
 ## 一、基本命令
-
 1. 安装Angular CLI：
     * `npm install -g @angular/cli`
     * `cnpm install -g @angular/cli`
@@ -16,7 +15,6 @@
     * `ng g component components/组件名`
 
 ## 二、组件开发基本流程
-
 1. 创建组件
 2. 在app.module.ts中引入并配置组件(使用命令创建组件时自动配置)
 3. 在ts文件中定义变量，在html文件中使用，声明变量类型的几种方式：
@@ -112,8 +110,8 @@
 1. Rxjs处理异步
     1. 在用到的地方引入Observable`import { Observable } from 'rxjs'`
     2. 实例化Observable`new Observable((xx)=>{})`
-      * 成功的回调`xx.next()`
-      * 失败的回调`xx.error()`
+       * 成功的回调`xx.next()`
+       * 失败的回调`xx.error()`
     3. 在用到的页面获取返回的Observable对象，并使用subscribe接收数据
     4. 使用unsubscribe取消订阅
     5. Rxjs可以多次执行，Promise不行
@@ -123,15 +121,39 @@
     * Angular6以后用的是rxjs方法，之前使用的是Rxjs的工具函数map filter，若要使用之前的方法则需要安装rxjs-compat模块
 
 ## 九、请求数据
-1. 在app.module.ts中引入HttpClientModule并在imports中注入`import { HttpClientModule } from '@angular/common/http'`
-2. 在用到的地方引入HttpCilent / HttpHeaders(post请求需要) 并在构造函数中声明
-    1. `import { HttpClient, HttpHeaders } from '@angular/common/http'`
-    2. 在构造函数中声明使用`public xx:HttpClient`
-3. 发送请求
-    * get请求`this.http.get(api).subscribe((res) => {回调})`
-    * post请求，与get请求类似，但需要传入请求头
-      1. 定义请求头`const httpOptions = {headers: new HttpHeaders({ 'Content-Type':'application/json' })}`
-      2. 发送请求`this.http.post( api,{数据}, httpOptions ).subscribe((res) => {回调})`
-4. Angular中使用jsonp解决跨域问题
-    1. 在app.module.ts中引入HttpClientJsonpModule并注入`import { HttpClientJsonpModule } from '@angular/common/http'`
+1. 方式一：使用HttpClientModule
+    1. 在app.module.ts中引入HttpClientModule并在imports中注入`import { HttpClientModule } from '@angular/common/http'`
     2. 在用到的地方引入HttpCilent / HttpHeaders(post请求需要) 并在构造函数中声明
+       1. `import { HttpClient, HttpHeaders } from '@angular/common/http'`
+       2. 在构造函数中声明使用`public xx:HttpClient`
+    3. 发送请求
+       * get请求`this.http.get(api).subscribe((res) => {回调})`
+       * post请求，与get请求类似，但需要传入请求头
+         1. 定义请求头`const httpOptions = {headers: new HttpHeaders({ 'Content-Type':'application/json' })}`
+         2. 发送请求`this.http.post( api,{数据}, httpOptions ).subscribe((res) => {回调})`
+    4. Angular中使用jsonp解决跨域问题
+       1. 在app.module.ts中引入HttpClientJsonpModule并注入`import { HttpClientJsonpModule } from '@angular/common/http'`
+       2. 在用到的地方引入HttpCilent并在构造函数中声明
+       3. 发送请求`this.http.jsonp(api, 'callback').subscribe((res) => {回调})`
+2. 方式二：使用axios
+
+## 十、路由
+1. 配置路由
+   1. 在路由配置文件中引入创建好的组件
+   2. 在const routes:Routes=[ ]内配置
+   3. 使用routerLink实现点击路由跳转
+   4. 默认路由
+      * 匹配不到路由文件时，重定向`{ path:'**', redirectTo:'xxx' }`
+   5. 选中状态`routerLinkActive="active"`
+2. 传值
+   * get传值`<a routerLink="/路由" [queryParams]="{属性名:属性值}">跳转到路由</a>`
+   * 动态路由传值
+      1. 配置`路由/:xx` 
+      2. 直接传入`<a [routerLink]="['/路由', 所传值]">xx</a>`
+3. 接收数据
+   1. 引入ActivatedRoute`import { ActivatedRoute } from '@angular/router'`
+   2. 在构造函数中声明使用`public xx:ActivatedRoute`
+   3. get传值时使用`this.xx.queryParams.subscribe((data)=>{回调})`获取值，动态路由传值时使用`this.xx.params.subscribe((data)=>{回调})`获取值
+4. 业务逻辑中的页面跳转
+   1. 使用get传值的页面跳转
+   2. 动态路由的页面跳转
