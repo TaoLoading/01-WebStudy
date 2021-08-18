@@ -25,10 +25,10 @@ export class HpmeComponent implements OnInit {
     }, 1000); */
 
     // 3.多次执行
-    var rxjsIntervalData = this.request.getRxjsIntervalData()
+    /* var rxjsIntervalData = this.request.getRxjsIntervalData()
     rxjsIntervalData.subscribe((dataInterval) => {
       console.log(dataInterval)
-    })
+    }) */
 
     // 4.使用工具函数对返回的数据进行处理
     /* var rxjshandleData = this.request.getRxjsIntervalNum()

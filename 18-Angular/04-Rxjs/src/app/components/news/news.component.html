@@ -1,0 +1,11 @@
+<!-- 演示发送请求 -->
+
+<p>演示发送请求</p>
+
+<button (click)="getData()">点击发送get请求，请求到的信息会在下方展示</button>
+
+<br>
+
+<ul>
+  <li *ngFor="let item of list">{{item.title}}</li>
+</ul>

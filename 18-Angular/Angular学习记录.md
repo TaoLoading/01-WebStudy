@@ -121,3 +121,14 @@
     1. 引入工具函数，如`import { map, filter } from 'rxjs/operators'` 
 3. 6.x之前版本使用工具函数
     * Angular6以后用的是rxjs方法，之前使用的是Rxjs的工具函数map filter，若要使用之前的方法则需要安装rxjs-compat模块
+
+## 九、请求数据
+1. 在app.module.ts中引入HttpClientModule并在imports中注入`import { HttpClientModule } from '@angular/common/http'`
+2. 在用到的地方引入HttpCilent / HttpHeaders(post请求需要) 并在构造函数中声明
+    1. `import { HttpClient, HttpHeaders } from '@angular/common/http'`
+    2. 在构造函数中声明使用`public xx:HttpClient`
+3. 发送请求
+    * get请求`this.http.get(api).subscribe((res) => {回调})`
+    * post请求，与get请求类似，但需要传入请求头
+      1. 定义请求头`const httpOptions = {headers: new HttpHeaders({ 'Content-Type':'application/json' })}`
+      2. 发送请求`this.http.post( api,{数据}, httpOptions ).subscribe((res) => {回调})`
