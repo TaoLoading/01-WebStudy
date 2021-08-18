@@ -63,7 +63,7 @@
     1. 在app.module.ts文件中引入并在providers中声明服务名
     2. 在使用服务的组件内再次引入服务
 3. 使用服务
-    1. 在constructor中，`xx:服务名`
+    1. 在constructor中，`public xx:服务名`
     2. 使用`this.xx`调用
 
 ## 五、操作DOM
@@ -107,3 +107,17 @@
 7. ngAfterViewChecked()
 8. ngOnDestroy()
     * 每当Angular每次销毁指令/组件之前调用并清扫。在这儿反订阅可观察对象和分离事件处理器，以防内存泄漏
+
+## 八、Rxjs
+1. Rxjs处理异步
+    1. 在用到的地方引入Observable`import { Observable } from 'rxjs'`
+    2. 实例化Observable`new Observable((xx)=>{})`
+      * 成功的回调`xx.next()`
+      * 失败的回调`xx.error()`
+    3. 在用到的页面获取返回的Observable对象，并使用subscribe接收数据
+    4. 使用unsubscribe取消订阅
+    5. Rxjs可以多次执行，Promise不行
+2. 6.x及以后版本使用工具函数
+    1. 引入工具函数，如`import { map, filter } from 'rxjs/operators'` 
+3. 6.x之前版本使用工具函数
+    * Angular6以后用的是rxjs方法，之前使用的是Rxjs的工具函数map filter，若要使用之前的方法则需要安装rxjs-compat模块
