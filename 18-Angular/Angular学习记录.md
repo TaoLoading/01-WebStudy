@@ -132,3 +132,6 @@
     * post请求，与get请求类似，但需要传入请求头
       1. 定义请求头`const httpOptions = {headers: new HttpHeaders({ 'Content-Type':'application/json' })}`
       2. 发送请求`this.http.post( api,{数据}, httpOptions ).subscribe((res) => {回调})`
+4. Angular中使用jsonp解决跨域问题
+    1. 在app.module.ts中引入HttpClientJsonpModule并注入`import { HttpClientJsonpModule } from '@angular/common/http'`
+    2. 在用到的地方引入HttpCilent / HttpHeaders(post请求需要) 并在构造函数中声明
