@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>菜鸟教程(runoob.com)</title>
+  <style>
+    .droptarget {
+      float: left;
+      width: 100px;
+      height: 35px;
+      margin: 15px;
+      padding: 10px;
+      border: 1px solid #aaaaaa;
+    }
+  </style>
+</head>
+
+<body>
+
+  <p>在两个矩形框中来回拖动 p 元素:</p>
+  <div class="droptarget">
+    <p draggable="true" id="dragtarget">拖动我!</p>
+  </div>
+  <div class="droptarget"></div>
+  <p style="clear:both;"><strong>注意：</strong>Internet Explorer 8 及更早 IE 版本或 Safari 5.1 及更早版本的浏览器不支持 drag 事件。</p>
+  <p id="demo"></p>
+  <script>
+    /* 拖动时触发*/
+    document.addEventListener("dragstart", function (event) {
+      event.dataTransfer.setData("Text", event.target.id);
+    });
+    /* 拖动完成后触发 */
+    // 默认情况下,数据/元素不能在其他元素中被拖放。对于drop我们必须防止元素的默认处理
+    document.addEventListener("dragover", function (event) {
+      event.preventDefault();
+    });
+    /*对于drop,防止浏览器的默认处理数据(在drop中链接是默认打开)
+    复位输出文本的颜色和DIV的边框颜色
+    利用dataTransfer.getData()方法获得拖放数据
+    拖拖的数据元素id(“drag1”)
+    拖拽元素附加到drop元素*/
+    document.addEventListener("drop", function (event) {
+      event.preventDefault();
+      if (event.target.className == "droptarget") {
+        document.getElementById("demo").style.color = "";
+        event.target.style.border = "";
+        var data = event.dataTransfer.getData("Text");
+        console.log(document.getElementById(data));
+        event.target.appendChild(document.getElementById(data));
+      }
+    });
+  </script>
+
+</body>
+
+</html>

@@ -149,11 +149,15 @@
    * get传值`<a routerLink="/路由" [queryParams]="{属性名:属性值}">跳转到路由</a>`
    * 动态路由传值
       1. 配置`路由/:xx` 
-      2. 直接传入`<a [routerLink]="['/路由', 所传值]">xx</a>`
+      2. 直接传入`<a [routerLink]="['/路由', 所传值]">xx</a>`，当所传值为静态值时需要加引号，为动态值时不需要加引号
 3. 接收数据
    1. 引入ActivatedRoute`import { ActivatedRoute } from '@angular/router'`
    2. 在构造函数中声明使用`public xx:ActivatedRoute`
    3. get传值时使用`this.xx.queryParams.subscribe((data)=>{回调})`获取值，动态路由传值时使用`this.xx.params.subscribe((data)=>{回调})`获取值
 4. 业务逻辑中的页面跳转
    1. 使用get传值的页面跳转
-   2. 动态路由的页面跳转
+      1. 引入Router和NavigationExtras模块`import { Router, NavigationExtras } from '@angular/router'`
+   2. 普通路由以及动态路由的页面跳转
+      1. 引入Router模块`import { Router } from '@angular/router'`
+      2. 在构造函数中声明使用`public xx:Router`
+      3. 使用navigate进行跳转`this.router.navigate(['/路由', '所传值'])`
