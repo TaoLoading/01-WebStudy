@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使用G2Plot制作折线图</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/g2plot/2.3.28/g2plot.min.js"></script>
+</head>
+
+<body>
+  <div id="g2-chart"></div>
+
+  <script>
+    /**
+     * AntV 是蚂蚁金服全新一代数据可视化解决方案，致力于提供一套简单方便、专业可靠、无限可能的数据可视化最佳实践。
+     * 
+     * G2Plo绘图流程：
+     * 1.引入js库
+     * 2.编写渲染容器DOM
+     * 3.准备渲染数据
+     * 4.获取渲染DOM对象
+     * 5.初始化G2绘图对象(如：G2Plot.Line)，配置绘图参数
+     * 6.调用render完成渲染
+     */
+
+    const data = [
+      { year: '1991', value: 3 },
+      { year: '1992', value: 4 },
+      { year: '1993', value: 3.5 },
+      { year: '1994', value: 5 },
+      { year: '1995', value: 4.9 },
+      { year: '1996', value: 6 },
+      { year: '1997', value: 7 },
+      { year: '1998', value: 9 },
+      { year: '1999', value: 13 },
+    ];
+    const chartDom = document.getElementById('g2-chart');
+    const plot = new G2Plot.Line(chartDom, {
+      data,
+      xField: 'year',
+      yField: 'value',
+      point: {
+        visible: true
+      },
+      label: {
+        visible: true
+      },
+      color: '#FE740C',
+      point: {
+        visible: true,
+        size: 5,
+        color: 'white',
+        style: {
+          stroke: '#FE740C',
+          lineWidth: 2,
+          fillOpacity: 0.6,
+        },
+      },
+      // 对y轴的值进行加工
+      yAxis: {
+        formatter: (v) => {
+          return v + 'k';
+        },
+      },
+    });
+    plot.render();
+  </script>
+</body>
+
+</html>
