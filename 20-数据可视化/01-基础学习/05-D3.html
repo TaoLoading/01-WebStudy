@@ -6,10 +6,44 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>D3</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/d3/7.0.0/d3.js"></script>
 </head>
 
 <body>
+  <p>Vue</p>
+  <p>React</p>
+  <p>Angular</p>
+  <button id="datum">datum</button>
+  <button id="data">data</button>
+  <script>
+    // D3（Data-Driven Documents） 是一个 Javascript 图形库，基于 Canvas、Svg 和 HTML。
 
+    // 获取D3加工后的DOM对象
+    const body = d3.select('body')
+    const p = d3.selectAll('p')
+
+    function doDatum() {
+      const str = 'Framework'
+      // 修改标签内的内容
+      p.datum(str)
+      p.text(function (d, i) {
+        return `${d}-${i}`
+      })
+    }
+    function doData() {
+      const dataset = ['Vue', 'React', 'Angular']
+      p.data(dataset)
+        .text(function (d, i) {
+          return `${d}-${i}`
+        })
+    }
+    document.getElementById('datum').addEventListener('click', function (e) {
+      doDatum()
+    })
+    document.getElementById('data').addEventListener('click', function (e) {
+      doData()
+    })
+  </script>
 </body>
 
 </html>
