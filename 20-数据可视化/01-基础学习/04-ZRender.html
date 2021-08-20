@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZRender</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/zrender/5.1.1/zrender.min.js"></script>
+</head>
+
+<body>
+  <div id="container" style="width: 800px;height: 800px;"></div>
+  <script>
+    /**
+     * zrender 是二维绘图引擎，它提供 Canvas、SVG、VML 等多种渲染方式。ZRender 也是 ECharts 的渲染器。
+     * 
+     * zrender绘制流程
+     * 1.引入zrender库
+     * 2.编写div容器
+     * 3.初始化zrender对象
+     * 4.初始化zrender绘图对象
+     * 5.调用zrender add()方法渲染图像
+     */
+
+    // 初始化zrender对象
+    const zr = zrender.init(document.getElementById('container'))
+
+    // 绘制矩形
+    const rect = new zrender.Rect({
+      // 形状
+      shape: {
+        x: 0,
+        y: 0,
+        width: 50,
+        height: 50
+      },
+      // 样式
+      style: {
+        fill: 'red',
+        lineWidth: 0
+      }
+    })
+    // 渲染矩形
+    zr.add(rect)
+
+    // 绘制线段
+    const line = new zrender.Polyline({
+      shape: {
+        points: [
+          [100, 100],
+          [250, 75],
+          [300, 100]
+        ]
+      },
+      style: {
+        stroke: 'blue',
+        lineWidth: 1
+      }
+    })
+    zr.add(line)
+
+    // 绘制圆
+    const circle = new zrender.Circle({
+      shape: {
+        cx: 200,
+        cy: 200,
+        r: 50
+      },
+      style: {
+        fill: 'orange',
+        stroke: 'green',
+        lineWidth: 2
+      }
+    })
+    zr.add(circle)
+  </script>
+</body>
+
+</html>
