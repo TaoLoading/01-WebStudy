@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>canvas实现图片压缩.</title>
+</head>
+
+<body>
+  <input type="file" id="upload">
+
+  <script>
+    const ACCEPT = ['image/jpg', 'image/png', 'image/jpeg']
+    const MAXSIZE = 3 * 1024 * 1024
+    const upload = document.getElementById('upload')
+
+    upload.addEventListener('change', function (e) {
+      // 拿到上传的文件。ES6写法，等价于e.target.files[0]
+      const [file] = e.target.files
+      if (!file) {
+        return
+      }
+      // 图片类型检查
+      const { type: fileType, size: fileSize } = file
+      if (!(ACCEPT.includes(fileType))) {
+        alert('不支持上传的文件类型')
+        upload.value = ''
+        return
+      }
+      // 图片容量检查
+      if (fileSize > MAXSIZE) {
+        alert('上传的文件过大，最大接收3MB图片')
+        upload.value = ''
+        return
+      }
+      // 将图片转换为base64格式
+      convertImageToBase64(file, compress)
+    })
+
+    // 将图片转换为base64格式
+    function convertImageToBase64(file, callback) {
+      let reader = new FileReader()
+      // 读取图片信息
+      reader.readAsDataURL(file)
+      // 获得base64信息并传入压缩函数
+      reader.addEventListener('load', function (e) {
+        const base64Image = e.target.result
+        callback && callback(base64Image)
+        reader = null
+      })
+    }
+
+    // 压缩图片
+    function compress(base64Image) {
+      // 渲染原图
+      const image = new Image()
+      image.src = base64Image
+      document.body.appendChild(image)
+
+      // 确认是否需要压缩
+      let maxW = 1024
+      let maxH = 1024
+      image.addEventListener('load', function (e) {
+        let ratio // 图片压缩比
+        let needCompress = false // 是否需要压缩
+        let picH = image.naturalHeight
+        let picW = image.naturalWidth
+        if (picH < maxH && picW < maxW) {
+          alert('图片过小不需要进行压缩')
+          upload.value = ''
+          return
+        } else {
+          needCompress = true
+          // 判断是依据高的比例还是宽的比例进行压缩
+          if (picH > maxH) {
+            // 按照高的比例进行压缩
+            ratio = picH / maxH
+            picH = picH / ratio
+            picW = picW / ratio
+          } else {
+            // 按照宽的比例进行压缩
+            ratio = picW / maxW
+            picW = picW / ratio
+            picH = picH / ratio
+          }
+        }
+
+        // 使用canvas绘制压缩后的图片
+        // 创建canvas画布
+        const canvas = document.createElement('canvas')
+        canvas.setAttribute('id', '_compress_')
+        console.log(picW, picH)
+        canvas.width = picW
+        canvas.height = picH
+        canvas.style.visibility = 'hidden'
+        document.body.appendChild(canvas)
+        // 获取canvas对象
+        const ctx = canvas.getContext('2d')
+        // 清除画布内的元素。防止重复绘制图像时导致重叠
+        ctx.clearRect(0, 0, picW, picH)
+        // 初步绘制图片(此时的压缩只是进行了等比例缩放)
+        ctx.drawImage(image, 0, 0, picW, picH)
+        // 降低分辨率，进一步压缩
+        const compressImage = canvas.toDataURL('image/jpg', 0.1)
+        // 此时图片信息已保存在compressImage，不需再依赖canvas渲染图片，故移出canvas
+        canvas.remove()
+        // 将新的图片通过DOM方式渲染
+        const newImage = new Image()
+        newImage.src = compressImage
+        document.body.append(newImage)
+      })
+    }
+  </script>
+</body>
+
+</html>
