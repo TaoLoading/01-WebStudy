@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test01-canvas</title>
+</head>
+
+<body>
+  <!-- 创建canvas画布 -->
+  <canvas id="canvas" width="800" height="800"></canvas>
+  <script>
+    /**
+     * canvas绘图流程
+     * 1.创建canvas画布(注意指定宽高)
+     * 2.获取canvas DOM对象
+     * 3.获取canvas对象
+     * 4.设置绘图属性
+     * 5.调用绘图 API
+      */
+
+    /** @type {HTMLCanvasElement} */
+    // 获取canvas DOM
+    const canvas = document.getElementById('canvas')
+    // 获取canvas对象
+    const ctx = canvas.getContext('2d')
+
+    // 绘制矩形
+    ctx.fillStyle = 'red' // 填充色为红色
+    ctx.fillRect(0, 0, 50, 50) // 渲染矩形，在(0,0)点绘制一个宽50高50的矩形
+
+    // 重新开始绘制
+    ctx.beginPath()
+
+    // 绘制圆形
+    ctx.lineWidth = 2 // 宽度为2
+    ctx.strokeStyle = 'green' // 边框为绿色
+    ctx.fillStyle = 'orange' // 填充色为橘色
+    ctx.arc(200, 200, 50, 0, 2 * Math.PI) // 绘制圆的曲线，(圆心x, 圆心y, 半径, 起始位置, 结束位置)
+    ctx.stroke() // 绘制边框
+    ctx.fill() // 绘制填充色
+
+    // 重新开始绘制
+    ctx.beginPath()
+
+    // 绘制线段
+    ctx.lineWidth = 1 // 宽度为1
+    ctx.strokeStyle = 'blue' // 填充色为蓝色
+    ctx.moveTo(100, 100) // 从(100,100)点出发
+    ctx.lineTo(250, 75) // 到(250,75)点
+    ctx.lineTo(350, 100) // 到(350,100)点
+    ctx.stroke() // 渲染线段
+
+    // 重新开始绘制
+    ctx.beginPath()
+
+    // 绘制点
+    ctx.lineWidth = 1 // 宽度为1
+    ctx.strokeStyle = 'black' // 填充色为黑色
+    ctx.moveTo(300, 300) // 从(100,100)点出发
+    ctx.lineTo(301, 301) // 到(250,75)点
+    ctx.stroke() // 渲染线段
+  </script>
+</body>
+
+</html>
