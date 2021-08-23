@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使用L7绘制气泡图</title>
+  <script src="https://unpkg.com/@antv/l7"></script>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+
+  <script>
+    /**
+     * L7：高性能/高渲染质量的地理空间数据可视化框架
+     * 
+     * G6绘图流程：
+     * 1.引入js库
+     * 2.编写渲染容器DOM
+     * 3.初始化地图对象L7.Scene
+     * 4.请求数据
+     * 5.数据清洗
+     * 6.初始化绘图对象(如：L7.PointLayer)
+     * 7.调用L7.Scene.addLayer方法绘图
+     */
+
+    const scene = new L7.Scene({
+      id: 'map',
+      // 高德底图
+      map: new L7.GaodeMap({
+        style: 'dark',
+        // 中心点
+        center: [120.19382669582967, 30.258134],
+        // 看地图的角度
+        pitch: 0,
+        // 放大比例
+        zoom: 6,
+        token: '458d902520a97d6125cde9c2f5a5810c',
+      })
+    })
+
+    scene.on('loaded', () => {
+      fetch(
+        'https://gw.alipayobjects.com/os/basement_prod/337ddbb7-aa3f-4679-ab60-d64359241955.json'
+      )
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+          data.features = data.features.filter(item => {
+            return item.properties.capacity > 800
+          })
+          const pointLayer = new L7.PointLayer({})
+            .source(data)
+            .shape('circle')
+            // 按发电容量设置点的大小
+            .size('capacity', [0, 16])
+            // 按发电容量设置点颜色的深浅
+            .color('capacity', [
+              '#34B6B7',
+              '#4AC5AF',
+              '#5FD3A6',
+              '#7BE39E',
+              '#A1EDB8',
+              '#CEF8D6'
+            ])
+            .active(true)
+            .style({
+              opacity: 0.5,
+              strokeWidth: 0
+            })
+
+          scene.addLayer(pointLayer)
+        });
+    });
+  </script>
+</body>
+
+</html>

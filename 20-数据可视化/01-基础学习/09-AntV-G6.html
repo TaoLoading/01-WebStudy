@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使用G6绘制矢量图</title>
+  <script src="https://gw.alipayobjects.com/os/lib/antv/g6/3.7.1/dist/g6.min.js"></script>
+</head>
+
+<body>
+  <div id="g6-chart"></div>
+
+  <script>
+    /**
+     * G6：便捷的关系数据可视化引擎与图分析工具
+     * 
+     * G6绘图流程：
+     * 1.引入js库
+     * 2.编写渲染容器DOM
+     * 3.准备渲染数据
+     * 4.获取渲染DOM对象
+     * 5.初始化G6绘图对象(如：G6.Graph)，配置绘图参数
+     * 6.调用render完成渲染
+     */
+
+    const data = {
+      // 节点
+      nodes: [
+        {
+          id: 'node1',
+          x: 100,
+          y: 200,
+          label: '点1',
+          size: 80,
+          labelCfg: {
+            style: {
+              fontSize: 12,
+              fill: '#fff'
+            }
+          },
+          style: {
+            fill: 'orange',
+            stroke: 'green',
+            lineWidth: 1
+          }
+        },
+        {
+          id: 'node2',
+          x: 300,
+          y: 200,
+          label: '点2',
+          size: 80
+        },
+        {
+          id: 'node3',
+          x: 500,
+          y: 200,
+          label: '点3',
+          size: 80
+        },
+      ],
+      // 连线
+      edges: [
+        {
+          source: 'node1',
+          target: 'node2',
+          label: '连接线1'
+        },
+        {
+          source: 'node2',
+          target: 'node3',
+          label: '连接线2'
+        },
+      ]
+    }
+    const graph = new G6.Graph({
+      container: 'g6-chart',
+      width: 800,
+      height: 500
+    })
+    graph.data(data)
+    graph.render()
+  </script>
+</body>
+
+</html>
