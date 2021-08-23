@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ECharts多系列混合</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.1.2/echarts.common.js"></script>
+  <style>
+    #chart {
+      width: 800px;
+      height: 400px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="chart"></div>
+  <script>
+    const chartDom = document.getElementById('chart')
+    const chart = echarts.init(chartDom)
+    const option = {
+      legend: {},
+      tooltip: {},
+      xAxis: {
+        type: 'category'
+      },
+      yAxis: [{
+        min: 0,
+        max: 100
+      }, {
+        min: 0,
+        max: 100
+      }],
+      dataset: {
+        source: [
+          ['product', '2012', '2013', '2014', '2015'],
+          ['Matcha Latte', 41.1, 30.4, 65.1, 53.3],
+          ['Milk Tea', 86.5, 92.1, 85.7, 83.1]
+        ]
+      },
+      series: [
+        {
+          type: 'bar',
+          // 表示以行的方式获取数据
+          seriesLayoutBy: 'row',
+          // 表示对于第1个y轴
+          yAxisIndex: 0
+        },
+        {
+          type: 'line',
+          // 表示以行的方式获取数据
+          seriesLayoutBy: 'row',
+          // 表示对于第2个y轴
+          yAxisIndex: 1
+        }
+      ]
+    }
+    chart.setOption(option)
+  </script>
+</body>
+
+</html>

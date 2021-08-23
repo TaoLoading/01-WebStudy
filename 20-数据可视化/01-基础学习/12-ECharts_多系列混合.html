@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ECharts多系列混合</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.1.2/echarts.common.js"></script>
+  <style>
+    #chart {
+      width: 800px;
+      height: 400px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="chart"></div>
+  <script>
+    const chartDom = document.getElementById('chart')
+    const chart = echarts.init(chartDom)
+    const option = {
+      xAxis: {
+        data: ['一季度', '二季度', '三季度', '四季度']
+      },
+      yAxis: {},
+      series: [{
+        type: 'pie',
+        center: ['50%', 50],
+        radius: 35,
+        data: [{
+          name: '分类1', value: 50
+        }, {
+          name: '分类2', value: 60
+        }, {
+          name: '分类3', value: 55
+        }, {
+          name: '分类4', value: 70
+        }]
+      }, {
+        type: 'line',
+        data: [100, 112, 96, 123]
+      }, {
+        type: 'bar',
+        data: [79, 81, 88, 72]
+      }]
+    }
+    chart.setOption(option)
+  </script>
+</body>
+
+</html>

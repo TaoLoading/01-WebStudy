@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ECharts_dataset</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.1.2/echarts.common.js"></script>
+  <style>
+    #chart {
+      width: 800px;
+      height: 400px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="chart"></div>
+  <script>
+    const chartDom = document.getElementById('chart')
+    const chart = echarts.init(chartDom)
+    const option = {
+      dataset: {
+        // 此处为以列的方式获取数据
+        source: [
+          ['一季度', 110, 79, '分类一', 50],
+          ['二季度', 112, 81, '分类二', 60],
+          ['三季度', 96, 88, '分类三', 55],
+          ['四季度', 123, 72, '分类四', 70],
+        ]
+      },
+      xAxis: {
+        data: ['一季度', '二季度', '三季度', '四季度']
+      },
+      yAxis: {},
+      series: [{
+        type: 'pie',
+        center: ['50%', 50],
+        radius: 35,
+        encode: { itemName: 3, value: 4 }
+      }, {
+        type: 'line',
+        encode: { itemName: 0, value: 1 }
+      }, {
+        type: 'bar',
+        encode: { itemName: 0, value: 2 }
+      }]
+    }
+    chart.setOption(option)
+  </script>
+</body>
+
+</html>

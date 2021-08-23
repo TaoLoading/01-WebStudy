@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ECharts组件与定位</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.1.2/echarts.common.js"></script>
+  <style>
+    #chart {
+      width: 800px;
+      height: 400px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="chart"></div>
+  <script>
+    const chartDom = document.getElementById('chart')
+    const chart = echarts.init(chartDom)
+    const option = {
+      dataset: {
+        source: [
+          ['一季度', 110, 79, '分类一', 50],
+          ['二季度', 112, 81, '分类二', 60],
+          ['三季度', 96, 88, '分类三', 55],
+          ['四季度', 123, 72, '分类四', 70],
+        ]
+      },
+      // 标题组件
+      title: {
+        text: '主标题',
+        subtext: '副标题'
+      },
+      // 图例组件(配合name使用)
+      legend: {
+        data: [{
+          name: '分类',
+          icon: 'circle',
+        }, '折线图', '柱状图']
+      },
+      // 工具集合组件
+      toolbox: {
+        feature: {
+          dataZoom: {
+            yAxisIndex: false
+          },
+          restore: {},
+          saveAsImage: {}
+        }
+      },
+      // 数据显示范围组件
+      dataZoom: [{
+        show: true,
+        start: 0,
+        end: 100
+      }],
+      xAxis: {
+        data: ['一季度', '二季度', '三季度', '四季度']
+      },
+      yAxis: {},
+      series: [{
+        name: '分类',
+        type: 'pie',
+        center: ['50%', 80],
+        radius: 35,
+        encode: { itemName: 3, value: 4 }
+      }, {
+        name: '折线图',
+        type: 'line',
+        encode: { itemName: 0, value: 1 }
+      }, {
+        name: '柱状图',
+        type: 'bar',
+        encode: { itemName: 0, value: 2 }
+      }],
+      // 定位
+      grid: {
+        top: 100,
+        left: '10%',
+        right: '10%',
+        bottom: 100
+      }
+    }
+    chart.setOption(option)
+  </script>
+</body>
+
+</html>
