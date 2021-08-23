@@ -26,13 +26,17 @@
       xAxis: {
         type: 'category'
       },
-      yAxis: [{
-        min: 0,
-        max: 100
-      }, {
-        min: 0,
-        max: 100
-      }],
+      yAxis: [
+        // 自定义y轴刻度
+        {
+          min: 0,
+          max: 100
+        },
+        {
+          min: 0,
+          max: 100
+        }
+      ],
       dataset: {
         source: [
           ['product', '2012', '2013', '2014', '2015'],
