@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>百度地图飞线图</title>
+  <script type="text/javascript"
+    src="https://api.map.baidu.com/api?v=1.0&&type=webgl&ak=4wIObEcAFFekF9IGauieRxKvINCFSCsQ"></script>
+  <script src="https://mapv.baidu.com/gl/examples/static/common.js"></script>
+  <!-- 使用mapv.js根据城市名称获取坐标 -->
+  <script src="https://mapv.baidu.com/build/mapv.js"></script>
+  <script src="https://unpkg.com/mapvgl/dist/mapvgl.min.js"></script>
+  <script src="https://unpkg.com/mapvgl/dist/mapvgl.threelayers.min.js"></script>
+  <style>
+    html,
+    body,
+    #map_container {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    .anchorBL {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- common.js限制容器id名为map_container -->
+  <div id="map_container"></div>
+  <script>
+    // 初始化百度地图
+    var cityCenter = mapv.utilCityCenter.getCenterByCityName('济南')
+    var map = initMap({
+      tilt: 60,
+      center: [cityCenter.lng, cityCenter.lat],
+      zoom: 8,
+      style: snowStyle
+    })
+
+    // 数据源
+    var data = []
+    // 绘制贝塞尔曲线
+    // 1.实例化贝塞尔曲线曲线对象
+    var curve = new mapvgl.BezierCurve()
+    // 2.设置起点和终点坐标
+    var start = mapv.utilCityCenter.getCenterByCityName('济南')
+    var end = mapv.utilCityCenter.getCenterByCityName('北京')
+    curve.setOptions({
+      start: [start.lng, start.lat],
+      end: [end.lng, end.lat]
+    })
+    // 3.生成贝塞尔曲线坐标集
+    var curveData = curve.getPoints()
+    data.push({
+      geometry: {
+        type: 'LineString',
+        coordinates: curveData
+      }
+    })
+
+    // 绘制数据源
+    // 1.初始化图层生成mapvgl视图View
+    var view = new mapvgl.View({ map })
+    // 2.初始化飞线对象
+    var flylineLayer = new mapvgl.FlyLineLayer({
+      step: 0.2,
+      color: 'rgba(50, 50, 200, 1)',
+      textureColor: 'rgba(50, 50, 200, 1)',
+      textureWidth: 10,
+      textureLength: 30,
+    })
+    // 3.将飞线对象添加到图层中
+    view.addLayer(flylineLayer)
+    // 4.将飞线对象与数据源进行绑定
+    flylineLayer.setData(data)
+  </script>
+</body>
+
+</html>

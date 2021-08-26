@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>百度地图轨迹动画</title>
+  <script type="text/javascript"
+    src="https://api.map.baidu.com/api?v=1.0&&type=webgl&ak=4wIObEcAFFekF9IGauieRxKvINCFSCsQ"></script>
+  <script type="text/javascript"
+    src="https://api.map.baidu.com/library/TrackAnimation/src/TrackAnimation_min.js"></script>
+  <style>
+    html,
+    body,
+    #map {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    .anchorBL {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+  <script>
+    var map = new BMapGL.Map('map')
+    var point = new BMapGL.Point(116.297611, 40.047363)
+    map.centerAndZoom(point, 17)
+    map.enableScrollWheelZoom(true)
+
+    // 绘制轨迹动画
+    // 点集合
+    var points = [
+      new BMapGL.Point(116.418038, 39.91979),
+      new BMapGL.Point(116.418267, 40.0592479),
+      new BMapGL.Point(116.307899, 40.057038)
+    ]
+    // 绘制路径线段
+    var lines = new BMapGL.Polyline(points)
+    var opts = {
+      delay: 1000,
+      duration: 10000,
+      titl: 30,
+      overallView: true
+    }
+    // 使用TrackAnimation_min生成动画
+    var trackAnimation = new BMapGLLib.TrackAnimation(map, lines, opts)
+    // 播放动画
+    trackAnimation.start()
+  </script>
+</body>
+
+</html>

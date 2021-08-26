@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>百度地图散点图</title>
+  <script type="text/javascript"
+    src="https://api.map.baidu.com/api?v=1.0&&type=webgl&ak=4wIObEcAFFekF9IGauieRxKvINCFSCsQ"></script>
+  <script src="https://mapv.baidu.com/gl/examples/static/common.js"></script>
+  <!-- 使用mapv.js根据城市名称获取坐标 -->
+  <script src="https://mapv.baidu.com/build/mapv.js"></script>
+  <script src="https://unpkg.com/mapvgl/dist/mapvgl.min.js"></script>
+  <style>
+    html,
+    body,
+    #map_container {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    .anchorBL {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- common.js限制容器id名为map_container -->
+  <div id="map_container"></div>
+  <script>
+    // 初始化百度地图
+    var cityCenter = mapv.utilCityCenter.getCenterByCityName('北京')
+    var map = initMap({
+      tilt: 0,
+      // cityCenter对象中lng为横坐标，lat为纵坐标
+      center: [cityCenter.lng, cityCenter.lat],
+      zoom: 10,
+      style: snowStyle
+    })
+
+    // 数据源
+    var data = []
+    // 模拟数据总条数
+    var random = 300
+    // 根据城市名称获取坐标
+    var cities = [
+      '北京', '天津', '上海', '重庆', '石家庄', '太原', '呼和浩特', '哈尔滨', '长春',
+      '沈阳', '济南', '南京', '合肥', '杭州', '南昌', '福州', '郑州', '武汉', '长沙', '广州',
+      '南宁', '西安', '银川', '兰州', '西宁', '乌鲁木齐', '成都', '贵阳', '昆明', '拉萨', '海口'
+    ]
+    while (random--) {
+      var cityCenter = mapv.utilCityCenter.getCenterByCityName(cities[parseInt(Math.random() * cities.length)])
+      data.push({
+        geometry: {
+          type: 'Point',
+          // 设置随机数作为偏移量，防止点都重合在一起
+          coordinates: [cityCenter.lng - 2 + Math.random() * 4, cityCenter.lat - 2 + Math.random() * 4]
+        },
+        // 添加额外数据
+        properties: {
+          // 销售数据
+          sales: Math.random() * 100
+        }
+      })
+    }
+
+    // 绘制数据源
+    // 1.初始化图层生成mapvgl视图View
+    var view = new mapvgl.View({ map })
+    // 2.初始化Intensity对象(控制点的大小)
+    var intensity = new mapvgl.Intensity({
+      min: 0,
+      max: 100,
+      minSize: 5,
+      maxSize: 30,
+      // 颜色渐变
+      gradient: {
+        0: 'rgb(25, 66, 102, 0.8)',
+        0.3: 'rgb(145, 102, 129, 0.8)',
+        0.7: 'rgb(210, 131, 137, 0.8)',
+        1: 'rgb(248, 177, 149, 0.8)'
+      }
+    })
+    // 3.初始化mapvgl的PointLayer对象
+    var pointLayer = new mapvgl.PointLayer({
+      // 按照销售额绘制点的大小
+      size: function (data) {
+        return intensity.getSize(data.properties.sales)
+      },
+      color: function (data) {
+        return intensity.getColor(data.properties.sales);
+      }
+    })
+    // 4.将Point对象加入View中
+    view.addLayer(pointLayer)
+    // 5.将data与Point进行绑定
+    pointLayer.setData(data)
+  </script>
+</body>
+
+</html>

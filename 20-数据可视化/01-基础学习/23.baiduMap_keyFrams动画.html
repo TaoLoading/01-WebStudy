@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>百度地图keyFrams动画</title>
+  <script type="text/javascript"
+    src="https://api.map.baidu.com/api?v=1.0&&type=webgl&ak=4wIObEcAFFekF9IGauieRxKvINCFSCsQ"></script>
+  <style>
+    html,
+    body,
+    #map {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    .anchorBL {
+      display: none;
+    }
+
+    #tools {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      z-index: 1000;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+  <div id="tools">
+    <button id="start">播放动画</button>
+    <button id="end">停止播放</button>
+  </div>
+
+  <script>
+    var map = new BMapGL.Map('map')
+    var point = new BMapGL.Point(116.404, 39.915)
+    map.centerAndZoom(point, 20)
+    map.enableScrollWheelZoom(true)
+    map.setTilt(50)
+    map.setHeading(0)
+    // 动画
+    var keyFrams = [
+      {
+        center: new BMapGL.Point(116.307092, 40.054922),
+        zoom: 20,
+        tilt: 50,
+        heading: 0,
+        percentage: 0
+      },
+      {
+        center: new BMapGL.Point(116.307631, 40.055391),
+        zoom: 21,
+        tilt: 70,
+        heading: 0,
+        percentage: 0.1
+      },
+      {
+        center: new BMapGL.Point(116.306858, 40.057887),
+        zoom: 21,
+        tilt: 70,
+        heading: 0,
+        percentage: 0.25
+      },
+      {
+        center: new BMapGL.Point(116.306858, 40.057887),
+        zoom: 21,
+        tilt: 70,
+        heading: -90,
+        percentage: 0.35
+      },
+      {
+        center: new BMapGL.Point(116.307904, 40.058118),
+        zoom: 21,
+        tilt: 70,
+        heading: -90,
+        percentage: 0.45
+      },
+      {
+        center: new BMapGL.Point(116.307904, 40.058118),
+        zoom: 21,
+        tilt: 70,
+        heading: -180,
+        percentage: 0.55
+      },
+      {
+        center: new BMapGL.Point(116.308902, 40.055954),
+        zoom: 21,
+        tilt: 70,
+        heading: -180,
+        percentage: 0.75
+      },
+      {
+        center: new BMapGL.Point(116.308902, 40.055954),
+        zoom: 21,
+        tilt: 70,
+        heading: -270,
+        percentage: 0.85
+      },
+      {
+        center: new BMapGL.Point(116.307779, 40.055754),
+        zoom: 21,
+        tilt: 70,
+        heading: -360,
+        percentage: 0.95
+      },
+      {
+        center: new BMapGL.Point(116.307092, 40.054922),
+        zoom: 20,
+        tilt: 50,
+        heading: -360,
+        percentage: 1
+      },
+    ]
+    var opts = {
+      // 动画开始延迟时间
+      delay: 3000,
+      // 动画持续时间
+      duration: 10000,
+      // 循环次数，参数类型为数字时循环固定次数，参数为'INFINITE'无限循环，默认为1
+      interation: 'INFINITE'
+    }
+    // 生成动画
+    var animation = new BMapGL.ViewAnimation(keyFrams, opts)
+    // 播放动画
+    map.startViewAnimation(animation)
+
+    // 开始播放动画
+    document.getElementById('start').addEventListener('click', function () {
+      map.startViewAnimation(animation)
+    })
+    // 停止播放动画
+    document.getElementById('end').addEventListener('click', function () {
+      map.cancelViewAnimation(animation)
+    })
+
+    // 事件监听
+    animation.addEventListener('animationstart', function (e) {
+      console.log('start')
+    })
+    animation.addEventListener('animationiterations', function (e) {
+      console.log('onanimationiterations')
+    })
+    animation.addEventListener('animationend', function (e) {
+      console.log('end')
+    })
+    animation.addEventListener('animationcancel', function (e) {
+      console.log('cancel')
+    })
+  </script>
+</body>
+
+</html>

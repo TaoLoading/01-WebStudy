@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>异步加载百度地图</title>
+  <style>
+    html,
+    body,
+    #map {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    .anchorBL {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+  <script>
+    function init() {
+      var map = new BMapGL.Map('map')
+      var point = new BMapGL.Point(116.404, 39.915)
+      map.centerAndZoom(point, 15)
+      map.enableScrollWheelZoom(true)
+    }
+    // 异步加载百度地图的原理是网页加载完毕后再加载百度地图
+    window.onload = function () {
+      var script = document.createElement('script')
+      script.src = 'https://api.map.baidu.com/api?v=1.0&&type=webgl&ak=4wIObEcAFFekF9IGauieRxKvINCFSCsQ&callback=init'
+      document.body.appendChild(script)
+    }
+  </script>
+</body>
+
+</html>

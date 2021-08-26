@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>百度地图绘图</title>
+  <script type="text/javascript"
+    src="https://api.map.baidu.com/api?v=1.0&&type=webgl&ak=4wIObEcAFFekF9IGauieRxKvINCFSCsQ"></script>
+  <style>
+    html,
+    body,
+    #map {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    .anchorBL {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+  <script>
+    var map = new BMapGL.Map('map')
+    var point = new BMapGL.Point(116.404, 39.915)
+    map.centerAndZoom(point, 13)
+    map.enableScrollWheelZoom(true)
+
+    // 绘制线段
+    var polyLine = new BMapGL.Polyline(
+      [
+        new BMapGL.Point(116.450, 39.950),
+        new BMapGL.Point(116.480, 40.000),
+      ],
+      {
+        strokeColor: 'blue',
+        storkeWeight: 5,
+        strokeOpacity: 0.5
+      }
+    )
+    map.addOverlay(polyLine)
+
+    // 绘制多边形
+    var polyLine = new BMapGL.Polygon(
+      [
+        new BMapGL.Point(116.470, 39.950),
+        new BMapGL.Point(116.500, 40.000),
+        new BMapGL.Point(116.520, 40.050),
+      ],
+      {
+        strokeColor: 'blue',
+        storkeWeight: 5,
+        fillColor: 'blue'
+      }
+    )
+    map.addOverlay(polyLine)
+
+    // 绘制文本
+    var label = new BMapGL.Label('这是一条文本', {
+      position: point,
+      // 相对于中心点位移
+      offset: new BMapGL.Size(100, 10)
+    })
+    label.setStyle({
+      color: 'orange'
+    })
+    label.addEventListener('click', function (e) {
+      alert(e.target.content)
+    })
+    map.addOverlay(label)
+  </script>
+</body>
+
+</html>

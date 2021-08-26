@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D百度地图</title>
+  <script type="text/javascript"
+    src="https://api.map.baidu.com/api?v=1.0&&type=webgl&ak=4wIObEcAFFekF9IGauieRxKvINCFSCsQ"></script>
+  <style>
+    html,
+    body,
+    #map {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    .anchorBL {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+  <script>
+    var map = new BMapGL.Map('map')
+    var point = new BMapGL.Point(116.404, 39.915)
+    map.centerAndZoom(point, 5)
+    map.enableScrollWheelZoom(true)
+
+    /* // 旋转角度
+    map.setHeading(20)
+    // 俯视角度
+    map.setTilt(70) */
+
+    // 3D地球
+    map.setMapType(BMAP_EARTH_MAP)
+  </script>
+</body>
+
+</html>

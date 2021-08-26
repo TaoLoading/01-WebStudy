@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>百度地图点汇聚飞线图</title>
+  <script type="text/javascript"
+    src="https://api.map.baidu.com/api?v=1.0&&type=webgl&ak=4wIObEcAFFekF9IGauieRxKvINCFSCsQ"></script>
+  <script src="https://mapv.baidu.com/gl/examples/static/common.js"></script>
+  <!-- 使用mapv.js根据城市名称获取坐标 -->
+  <script src="https://mapv.baidu.com/build/mapv.js"></script>
+  <script src="https://unpkg.com/mapvgl/dist/mapvgl.min.js"></script>
+  <script src="https://unpkg.com/mapvgl/dist/mapvgl.threelayers.min.js"></script>
+  <style>
+    html,
+    body,
+    #map_container {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    .anchorBL {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- common.js限制容器id名为map_container -->
+  <div id="map_container"></div>
+  <script>
+    // 初始化百度地图
+    var cityCenter = mapv.utilCityCenter.getCenterByCityName('济南')
+    var map = initMap({
+      tilt: 60,
+      center: [cityCenter.lng, cityCenter.lat],
+      zoom: 8,
+      style: purpleStyle
+    })
+
+    // 数据源
+    var data = []
+    var cities = [
+      '北京', '天津', '上海', '重庆', '石家庄', '太原', '呼和浩特', '哈尔滨', '长春',
+      '沈阳', '济南', '南京', '合肥', '杭州', '南昌', '福州', '郑州', '武汉', '长沙', '广州',
+      '南宁', '西安', '银川', '兰州', '西宁', '乌鲁木齐', '成都', '贵阳', '昆明', '拉萨', '海口'
+    ]
+    var curve = new mapvgl.BezierCurve()
+    // 目标城市
+    var targetCity = mapv.utilCityCenter.getCenterByCityName('济南')
+    // 循环数组为每个线路绘制贝塞尔曲线
+    for (var i = 0; i < cities.length; i++) {
+      // 起始城市
+      var startCity = mapv.utilCityCenter.getCenterByCityName(cities[i])
+      // 绘制贝塞尔曲线
+      curve.setOptions({
+        start: [startCity.lng, startCity.lat],
+        end: [targetCity.lng, targetCity.lat]
+      })
+      var curveData = curve.getPoints()
+      data.push({
+        geometry: {
+          type: 'LineString',
+          coordinates: curveData
+        }
+      })
+    }
+
+    // 绘制数据源
+    // 1.初始化图层生成mapvgl视图View
+    var view = new mapvgl.View({ map })
+    // 2.绘制连线
+    var lineLayer = new mapvgl.LineLayer({
+      color: 'rgba(55,50,250,0.3)'
+    })
+    view.addLayer(lineLayer)
+    lineLayer.setData(data)
+    // 5.绘制点
+    var linePointLayer = new mapvgl.LinePointLayer({
+      size: 5,
+      speed: 5,
+      color: '#FBF6CC',
+      // 动画类型
+      animationType: mapvgl.LinePointLayer.ANIMATION_TYPE_SMOOTH,
+      // 形状
+      shapeType: mapvgl.LinePointLayer.SHAPE_TYPE_CORCLE,
+      // 点交汇时处理方式
+      blend: 'lighter'
+    })
+    view.addLayer(linePointLayer)
+    linePointLayer.setData(data)
+  </script>
+</body>
+
+</html>
