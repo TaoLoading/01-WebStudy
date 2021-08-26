@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>百度地图点汇聚飞线图</title>
+  <title>百度地图点汇聚飞线图(边绑定算法)</title>
   <script type="text/javascript"
     src="https://api.map.baidu.com/api?v=1.0&&type=webgl&ak=4wIObEcAFFekF9IGauieRxKvINCFSCsQ"></script>
   <script src="https://mapv.baidu.com/gl/examples/static/common.js"></script>
@@ -36,7 +36,7 @@
     // 初始化百度地图
     var cityCenter = mapv.utilCityCenter.getCenterByCityName('济南')
     var map = initMap({
-      tilt: 60,
+      tilt: 30,
       center: [cityCenter.lng, cityCenter.lat],
       zoom: 8,
       style: purpleStyle
@@ -49,23 +49,45 @@
       '沈阳', '济南', '南京', '合肥', '杭州', '南昌', '福州', '郑州', '武汉', '长沙', '广州',
       '南宁', '西安', '银川', '兰州', '西宁', '乌鲁木齐', '成都', '贵阳', '昆明', '拉萨', '海口'
     ]
-    var curve = new mapvgl.BezierCurve()
+    // 模拟数据的个数
+    var random = 200
     // 目标城市
     var targetCity = mapv.utilCityCenter.getCenterByCityName('济南')
-    // 循环数组为每个线路绘制贝塞尔曲线
-    for (var i = 0; i < cities.length; i++) {
+    // 节点集合
+    var nodeData = [{
+      x: targetCity.lng,
+      y: targetCity.lat
+    }]
+    // 边集合
+    var edgeData = []
+    // 遍历城市集合拿到所需数据
+    for (var i = 0; i < random; i++) {
       // 起始城市
-      var startCity = mapv.utilCityCenter.getCenterByCityName(cities[i])
-      // 绘制贝塞尔曲线
-      curve.setOptions({
-        start: [startCity.lng, startCity.lat],
-        end: [targetCity.lng, targetCity.lat]
+      var startCity = mapv.utilCityCenter.getCenterByCityName(cities[parseInt(Math.random() * cities.length)])
+      // 生成nodeData数据
+      nodeData.push({
+        x: startCity.lng - 5 + Math.random() * 10,
+        y: startCity.lat - 5 + Math.random() * 10,
       })
-      var curveData = curve.getPoints()
+      // 生成edgeData数据
+      edgeData.push({
+        source: i + 1,
+        target: 0
+      })
+    }
+    // 使用变绑定算法获得每条边的坐标值
+    var bundling = mapv.utilForceEdgeBundling().nodes(nodeData).edges(edgeData)
+    var results = bundling()
+    for (var i = 0; i < results.length; i++) {
+      var line = results[i]
+      var coordinates = []
+      for (var j = 0; j < line.length; j++) {
+        coordinates.push([line[j].x, line[j].y])
+      }
       data.push({
         geometry: {
           type: 'LineString',
-          coordinates: curveData
+          coordinates
         }
       })
     }
@@ -75,15 +97,16 @@
     var view = new mapvgl.View({ map })
     // 2.绘制连线
     var lineLayer = new mapvgl.LineLayer({
-      color: 'rgba(55,50,250,0.3)'
+      color: 'rgba(55,50,250,0.7)',
+      blend: 'lighter'
     })
     view.addLayer(lineLayer)
     lineLayer.setData(data)
     // 5.绘制点
     var linePointLayer = new mapvgl.LinePointLayer({
       size: 5,
-      speed: 5,
-      color: '#FBF6CC',
+      speed: 8,
+      color: '#ADAF58',
       // 动画类型
       animationType: mapvgl.LinePointLayer.ANIMATION_TYPE_SMOOTH,
       // 形状
