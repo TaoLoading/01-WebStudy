@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>通过snabbdom理解虚拟DOM</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/snabbdom/0.7.4/h.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/snabbdom/0.7.4/snabbdom-class.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/snabbdom/0.7.4/snabbdom-eventlisteners.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/snabbdom/0.7.4/snabbdom-props.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/snabbdom/0.7.4/snabbdom-style.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/snabbdom/0.7.4/snabbdom.js"></script>
+</head>
+
+<body>
+  <h1>虚拟DOM</h1>
+  <div id="container"></div>
+  <button id="btn">改变</button>
+
+  <script>
+    /**
+     * 虚拟DOM其实就是把真实DOM数据化
+     * 
+     * 
+     * 虚拟DOM的构成：
+     * 1.tag：标签名
+     * 2.props：标签属性
+     * 3.children：子节点
+     * 
+     * 
+     * 通过snabbdom封装后的虚拟节点的构成：
+     * 1.children
+     * 2.text
+     * 3.data
+     * 4.elm
+     * 5.key
+     * 6.sel
+     * 
+     * 
+     * diff算法新老节点替换规则而：
+     * 1.新老节点不为同一节点时，则暴力删除老节点创建新节点
+     * 2.只能同级比较，不能跨级比较
+     * 
+     * 
+     * 如果要提升性能，则需要对节点加入key，则此时不会从头删除老节点再创建新节点
+     * key是唯一表示，可在更改前后确认是否为同一节点
+     */
+
+    // 初始化patch(用于新老节点的替换)
+    const patch = snabbdom.init([
+      snabbdom_class,
+      snabbdom_props,
+      snabbdom_style,
+      snabbdom_eventlisteners
+    ])
+
+    // 初始化h(用于创建虚拟节点)
+    const h = snabbdom.h
+
+    // 获取容器
+    const container = document.getElementById('container')
+    // 获取按钮
+    const btn = document.getElementById('btn')
+
+    // 创建vnode虚拟节点
+    let vnode = h('ul#list', {}, [
+      h('li.item', { key: 'a' }, 'a'),
+      h('li.item', { key: 'b' }, 'b')
+    ])
+
+    // 将虚拟节点放到空容器中(将container替换为vnode)
+    patch(container, vnode)
+
+    // 给按钮添加监听，当点击按钮时更新节点
+    btn.addEventListener('click', () => {
+      const newNode = h('ul#list', {}, [
+        h('li.item', { key: 'b' }, 'b'),
+        h('li.item', { key: 'a' }, 'a'),
+        h('li.item', { key: 'c' }, 'c')
+      ])
+      // 更新容器中的节点
+      patch(vnode, newNode)
+      // 保存更新后的节点
+      vnode = newNode
+    })
+  </script>
+</body>
+
+</html>
