@@ -26,4 +26,23 @@ export default function updateChildren(parentElm, oldCh, newCh) {
   let newStartVnode = newCh[0] // 新前的子节点
   let oldEndVnode = oldCh[oldEndIdx] // 老后的子节点
   let newEndVnode = newCh[newEndIdx] // 新后的子节点
+
+  // 判断两个节点是否为同一个
+  function sameVnode(vNode1, vNode2) {
+    return vNode1.key == vNode2.key
+  }
+
+  while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
+    if (sameVnode(oldStartIdx, newStartIdx)) {
+      // 老前 VS 新前
+    } else if (sameVnode(oldEndIdx, newEndIdx)) {
+      // 老后 VS 新后
+    } else if (sameVnode(oldStartIdx, newEndIdx)) {
+      // 老前 VS 新后
+    } else if (sameVnode(oldEndIdx, newStartIdx)) {
+      // 老后 VS 新前
+    } else {
+      // 查找
+    }
+  }
 }

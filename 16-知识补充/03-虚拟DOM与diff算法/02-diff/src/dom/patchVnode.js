@@ -1,9 +1,10 @@
-import createElement from "./createElement"
-import updateChildren from "./updateChildren"
-
 /**
  * 新老节点为同一个节点时处理情况
  */
+
+import createElement from "./createElement"
+import updateChildren from "./updateChildren"
+
 export default function patchVnode(oldVnode, newVnode) {
   // 判断新节点是否有子节点
   if (newVnode.children == undefined) {
