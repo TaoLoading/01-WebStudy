@@ -9,7 +9,19 @@
 </head>
 
 <body>
-  <script src="js/index.js"></script>
+  <div id="container">这是初始节点</div>
+
+  <script src="js/index.js">
+    /**
+     * diff算法新老节点替换规则：
+     * 1.新老节点不为同一节点时，则暴力删除老节点创建新节点
+     * 2.只能同级比较，不能跨级比较。如果跨层则暴力删除老节点创建新节点
+     * 3.新老节点为同一节点时，分为多种情况：
+     *  3-1.如果新节点没有children，则证明节点是文本，直接将老节点替换为文本
+     *  3-2.(diff算法核心)---如果新节点有children，老节点也有children
+     *  3-3.如果新节点有children，老节点没有children，则将老节点内容清空，添加新节点
+     */
+  </script>
 </body>
 
 </html>
