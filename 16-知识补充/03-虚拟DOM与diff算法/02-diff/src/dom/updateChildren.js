@@ -122,9 +122,8 @@ export default function updateChildren(parentElm, oldCh, newCh) {
 
   /**
    * 跳出循环则说明出现两种情况：
-   * 1.oldStartIdx> oldEndIdx，此时新增
-   * 2.newStartIdx> newEndIdx，此时删除
-   * 
+   * 1.oldStartIdx> oldEndIdx，此时新增节点
+   * 2.newStartIdx> newEndIdx，此时删除节点
    */
   if (oldStartIdx > oldEndIdx) {
     // 新增
