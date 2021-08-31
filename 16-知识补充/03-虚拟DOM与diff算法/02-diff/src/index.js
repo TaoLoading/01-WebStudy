@@ -17,15 +17,20 @@ let vnode4 = h('ul', {}, [
   h('li', { key: 'a' }, 'a'),
   h('li', { key: 'b' }, 'b'),
   h('li', { key: 'c' }, 'c'),
-  h('li', { key: 'd' }, '天若有情天亦老')
+  h('li', { key: 'd' }, 'd'),
+  // h('li', { key: 'e' }, 'e')
 ])
-console.log(vnode4)
+patch(container, vnode4)
+
 let vnode5 = h('ul', {}, [
-  h('li', { key: 'a' }, 'a'),
   h('li', { key: 'b' }, 'b'),
+  h('li', { key: 'e' }, 'e'),
   h('li', { key: 'c' }, 'c'),
-  h('li', { key: 'd' }, '天若有情天亦老')
+  h('li', { key: 'a' }, 'a'),
+  h('li', { key: 'd' }, 'd'),
 ])
 
 // 替换节点
-patch(container, vnode4)
+btn.onclick = function () {
+  patch(vnode4, vnode5)
+}
