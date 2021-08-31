@@ -33,7 +33,7 @@ export default function updateChildren(parentElm, oldCh, newCh) {
 
   // 判断两个节点是否为同一个
   function sameVnode(vNode1, vNode2) {
-    return vNode1.key == vNode2.key
+    return (vNode1.key == vNode2.key && vNode1.sel == vNode2.sel)
   }
 
   while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
