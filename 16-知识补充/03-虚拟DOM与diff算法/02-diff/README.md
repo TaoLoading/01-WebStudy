@@ -50,8 +50,8 @@
 2. 如果新节点有子节点，老节点没有子节点，则将老节点内容清空，添加新节点
 3. 如果新节点有子节点，老节点也有子节点，分多种情况(通过updateChildren()实现)
 
-### updateChildren() __重点__
+### updateChildren() __难点__
 
 # 待完善
 
-## 不进行真实DOMpatch处理直接patch虚拟DOM时elm挂载失败(TODO)
+## 不进行真实DOM的patch处理直接patch虚拟DOM时elm挂载失败(TODO)
