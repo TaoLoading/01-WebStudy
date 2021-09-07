@@ -36,6 +36,18 @@ app.use(async (ctx, next) => {
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
 
+// 模拟登录，演示中间件
+app.use(async (ctx, next) => {
+  const query = ctx.query
+  if (query.user == 'zhangsan') {
+    // 模拟登录成功
+    await next()
+  } else {
+    // 模拟登录失败
+    ctx.body = '登录失败'
+  }
+})
+
 // routes 注册路由
 // allowedMethods()是对404或者返回是空的情况的一种补充
 app.use(index.routes(), index.allowedMethods())
