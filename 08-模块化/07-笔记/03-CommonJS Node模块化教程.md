@@ -1,7 +1,7 @@
 ## CommonJS服务端模块化教程(Node.js模块化教程)
-###1. 安装Node.js
+### 1. 安装Node.js
 
-###2. 创建项目结构
+### 2. 创建项目结构
   ```
   |-modules
     |-module1.js
@@ -14,7 +14,7 @@
       "version": "1.0.0"
     }
   ```
-###3. 模块化编码：
+### 3. 模块化编码：
   * module1.js
     ```
     module.exports = {
@@ -62,6 +62,6 @@
     console.log(a(arr));
    
     ```
-###4. 在node环境下运行app.js的两种方法(任选其一)：
+### 4. 在node环境下运行app.js的两种方法(任选其一)：
   * 第一种方法：用命令启动: ```node app.js```
   * 第二种方法：用工具启动: 右键 --> Run 'xxxxx.js'
