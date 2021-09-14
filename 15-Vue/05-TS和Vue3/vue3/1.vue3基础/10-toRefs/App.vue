@@ -15,7 +15,7 @@ export default defineComponent({
       age: 21,
     });
     // toRefs把一个响应式对象转换成普通对象，该普通对象的每个property都是一个ref
-    // 当从合成函数返回响应式对象时，toRefs 非常有用，这样消费组件就可以在不丢失响应式的情况下对返回的对象进行分解使用
+    // 当从合成函数返回响应式对象时，toRefs 非常有用，这样对象中的数据就可以在不丢失响应式状态下分解使用
     const state2 = toRefs(state);
     setInterval(() => {
       state.name += "======";

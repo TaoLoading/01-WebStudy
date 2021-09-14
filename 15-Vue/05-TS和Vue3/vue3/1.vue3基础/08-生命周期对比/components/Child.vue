@@ -46,7 +46,7 @@ export default defineComponent({
   },
 
   setup() {
-    console.log("3.0中的setup()");
+    console.log("3.0中的setup()，继承了beforeCreate()和created()");
     const msg = ref("abc");
     const update = () => {
       msg.value += "===";
