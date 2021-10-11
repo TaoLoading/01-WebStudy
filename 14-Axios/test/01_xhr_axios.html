@@ -19,9 +19,11 @@
     /* 1. GET请求: 从服务器端获取数据*/
     function testGet() {
       axios({
+        // url: 'http://localhost:3000/posts?id=2', // query参数，标准格式
+        // url: 'http://localhost:3000/posts2', // params参数，不标准格式
         url: 'http://localhost:3000/posts',
-        // url: 'http://localhost:3000/posts2',
         method: 'GET',
+        // params参数，标准格式
         params: {
           id: 1,
           xxx: 'abc'
