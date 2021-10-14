@@ -13,10 +13,17 @@
 
   <script src="https://cdn.bootcss.com/axios/0.19.0/axios.js"></script>
   <script>
+    /**
+     * 取消请求的步骤：
+     * 1.给请求添加标识，得到一个用于取消请求的函数
+     * 2.执行取消请求函数
+     */
+
     let cancel  // 用于保存取消请求的函数
     function getProducts1() {
       axios({
         url: 'http://localhost:4000/getProducts1',
+        // 给请求添加标识
         cancelToken: new axios.CancelToken((c) => { // c是用于取消当前请求的函数
           // 保存取消函数, 用于之后可能需要取消当前请求
           cancel = c
@@ -27,22 +34,29 @@
           console.log('请求1成功了', response.data)
         },
         error => {
-          cancel = null
-          console.log('请求1失败了', error.message, error)
+          // 判断error，当error符合axios.axios.isCancel()则证明是取消了请求，否则error就是请求失败返回的错误
+          if (axios.isCancel(error)) {
+            console.log('取消请求', error.message)
+          } else {
+            console.log('请求出错', error.message)
+          }
         }
       )
     }
 
     function getProducts2() {
       axios({
-        url: 'http://localhost:4000/getProducts2'
+        url: 'http://localhost:4000/getProducts12'
       }).then(
         response => {
           console.log('请求2成功了', response.data)
         },
         error => {
-          cancel = null
-          console.log('请求2失败了', error.message)
+          if (axios.isCancel(error)) {
+            console.log('取消请求', error.message)
+          } else {
+            console.log('请求出错', error.message)
+          }
         }
       )
     }

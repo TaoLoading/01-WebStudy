@@ -52,7 +52,6 @@ app.delete('/deletePost', (req, res) => {
 
 
 app.get('/getProducts1', (req, res) => {
-  
   setTimeout(() => {
     res.send([
       {id: 1, name: 'product1.1'},
@@ -60,11 +59,9 @@ app.get('/getProducts1', (req, res) => {
       {id: 3, name: 'product1.3'}
     ])
   }, 1000 + Math.random()*2000);
-  
 })
 
 app.get('/getProducts2', (req, res) => {
-
   setTimeout(() => {
     res.send([{
         id: 1,
@@ -80,7 +77,6 @@ app.get('/getProducts2', (req, res) => {
       }
     ])
   }, 1000 + Math.random() * 2000);
-
 })
 
 app.listen(4000, () => {

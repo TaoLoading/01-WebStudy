@@ -25,8 +25,7 @@
         // 保存取消函数, 用于之后可能需要取消当前请求
         cancel = c
       })
-
-      return config
+      return config // 必须返回config
     })
 
     // 添加响应拦截器
@@ -66,7 +65,6 @@
     }
 
     function getProducts2() {
-
       axios({
         url: 'http://localhost:4000/products2',
       }).then(

@@ -45,7 +45,7 @@
         请求方式不决定请求的CRUD操作
         一个请求路径只对应一个操作
         一般只有GET/POST
-    测试: 可以使用json-server快速搭建模拟的rest api 接口
+    测试: 可以使用json-server快速搭建模拟的rest api 接口，运行命令：json-server --watch db.json
 
 ## 8. 理解XHR
     使用XMLHttpRequest (XHR)对象可以与服务器交互, 也就是发送ajax请求
