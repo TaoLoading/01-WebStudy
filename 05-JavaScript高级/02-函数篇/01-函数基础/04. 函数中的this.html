@@ -8,20 +8,19 @@
 
 <body>
     <!--
-1. this是什么?
-  * 一个关键字，一个内置的引用变量
-  * 在函数中都可以直接使用this
-  * this代表调用函数的当前对象
-  * 在定义函数时, this还没有确定, 只有在执行时才动态确定(绑定)的
-2. 如何确定this的值?
-  * test()
-  * obj.test()
-  * new test()
-  * test.call(obj)
-前置知识:
-  * 本质上任何函数在执行时都是通过某个对象调用的
--->
-
+      1. this是什么?
+        * 一个关键字，一个内置的引用变量
+        * 在函数中都可以直接使用this
+        * this代表调用函数的当前对象
+        * 在定义函数时, this还没有确定, 只有在执行时才动态确定(绑定)的
+      2. 如何确定this的值?
+        * test()
+        * obj.test()
+        * new test()
+        * test.call(obj)
+      前置知识:
+        * 本质上任何函数在执行时都是通过某个对象调用的
+    -->
     <script type="text/javascript">
         function Person(color) {
             console.log(this)

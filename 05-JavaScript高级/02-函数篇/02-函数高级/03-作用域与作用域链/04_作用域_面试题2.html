@@ -8,7 +8,7 @@
 
 <body>
     <script type="text/javascript">
-        //  说说它们的输出情况
+        // 说说它们的输出情况
 
         var fn = function() {
             console.log(fn); // 打印函数本体
@@ -32,20 +32,20 @@
 
 
 
-        // 创建全局环节 ---> 预解析工作 ---> 创建全局的执行上下文 ---> 全局变量对象{a: undefined, this: window, fun:function} ---> 作用域链[全局变量对象Global]
+        // 创建全局环节 --> 预解析工作 --> 创建全局的执行上下文 --> 全局变量对象{a: undefined, this: window, fun:function} --> 作用域链[全局变量对象Global]
         var a = 123;
         var b = 'abc';
 
-        // 定义函数fun() ---> 创建局部作用域 ---> 函数自身有一个[[scopes]]：上一级作用域链[Global]
+        // 定义函数fun() --> 创建局部作用域 --> 函数自身有一个[[scopes]]：上一级作用域链[Global]
         function fun() {
-            // 创建局部执行上下文 ---> 局部变量对象{a:undefined, this:window} --->创建作用域链[局部变量对象，Global] 
+            // 创建局部执行上下文 --> 局部变量对象{a:undefined, this:window} -->创建作用域链[局部变量对象，Global] 
             var a = 234;
             var c = 345;
             console.log(a); // 找变量a，先在自身变量对象中找，能找到打印输出
             console.log(b); // 找变量b，先在自身变量对象中找，找不到，沿着作用域链去Global中找，能找到打印输出
-            // 定义函数fun2() ---> 创建局部作用域 ---> 函数自身有一个[[scopes]]：上一级作用域链[fun局部变量对象，Global]
+            // 定义函数fun2() --> 创建局部作用域 --> 函数自身有一个[[scopes]]：上一级作用域链[fun局部变量对象，Global]
             function fun2() {
-                // 创建局部执行上下文 ---> 局部变量对象{this:window} ---> 创建作用域链[fun2局部作用域链，fun局部变量对象，Global]
+                // 创建局部执行上下文 --> 局部变量对象{this:window} --> 创建作用域链[fun2局部作用域链，fun局部变量对象，Global]
                 console.log(c); // 找变量c同理
                 console.log(d); // 找不到变量d，报错
             }
