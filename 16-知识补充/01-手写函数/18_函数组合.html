@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>函数组合</title>
+</head>
+<body>
+  <script>
+    /**
+     * 函数组合：将多个函数组合成一个函数
+     */
+
+    function add1(str) {
+      return str + 1
+    }
+    function add2(str) {
+      return str + 2
+    }
+    function add3(str) {
+      return str + 3
+    }
+
+    function flow(...fns) { // fns为所有函数形成的数据，如[add1, add2, add3]
+      if (fns.length == 1) {
+        // 如果函数个数为1时，则直接执行该函数并返回值
+        return fns[0]
+      }
+      // 如果函数个数大于1时，则对该函数进行组合
+      return fns.reduce((a, b) => (...args) => a(b(...args)))
+    }
+
+    /**
+     * 原理解析：
+     * 第一次执行，a = add1，b = add2，返回值：(...args) => add1(add2(...args))
+     * 第二次执行，a = (...args)=>add1(add2(...args))，b = add3，返回值：(...args) => add1(add2(add3(...args)))
+     */
+
+    let flowed = flow(add3, add2, add1)
+    let result = flowed('a')
+    console.log(result); // a123
+  </script>
+</body>
+</html>
