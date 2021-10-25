@@ -14,32 +14,32 @@
     -->
 		<script type="text/javascript">
 			var btns = document.getElementsByTagName('button')
-			/* // 有问题，因为函数在开始点击事件时，整个for循环已经结束了，故只能输弹出“3”
-            for(var i=0; i < btns.length; i++) {
-              var btn = btns[i]
-              btn.onclick = function () {
-                alert('第'+(i+1)+'个')
-              }
-            }*/
+			// 有问题，因为函数在开始点击事件时，整个for循环已经结束了，故只能输弹出“3”
+      for(var i=0; i < btns.length; i++) {
+        var btn = btns[i]
+        btn.onclick = function () {
+          alert('第'+i+'个')
+        }
+      }
 
 			// 解决一: 保存下标
-			/*for(var i=0; i < btns.length; i++) {
-          var btn = btns[i]
-          btn.index = i
-          btn.onclick = function () {
-            alert('第'+(this.index+1)+'个')
-          }
-        }*/
+			/* for(var i=0; i < btns.length; i++) {
+        var btn = btns[i]
+        btn.index = i
+        btn.onclick = function () {
+          alert('第'+(this.index+1)+'个')
+        }
+      } */
 
 			// 解决办法: 利用闭包
-			for (var i = 0; i < btns.length; i++) {
+			/* for (var i = 0; i < btns.length; i++) {
 				;(function (i) {
 					var btn = btns[i]
 					btn.onclick = function () {
 						alert('第' + (i + 1) + '个')
 					}
 				})(i)
-			}
+			} */
 
 			// 采用闭包能解决这个问题的原因：
 			// for循环每进行一次就会调用一次外部function，每调用一次函数就会创建一个变量对象，在变量对象中就会有对应的i
