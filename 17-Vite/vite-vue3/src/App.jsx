@@ -1,9 +1,11 @@
 import { defineComponent } from "@vue/runtime-core"
+import './styles/index.css'
+import { a } from '../test'
 
 export default defineComponent({
   setup() {
     return () => {
-      return <div>Hello Vue3 Jsx</div>
+      return <div class="root">Hello {a.name}</div>
     }
   }
 })

@@ -4,4 +4,6 @@ import App from './App'
 // App.vue文件
 // import App from './App.vue'
 
+console.log(import.meta.env, import.meta.env.VITE_TITLE)
+
 createApp(App).mount('#app')
