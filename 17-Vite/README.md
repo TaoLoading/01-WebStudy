@@ -54,3 +54,14 @@
 1. HMR API
    1. 热更新，在搭建项目架构时选择响应框架，可通过其安装的插件实现热更新
    2. 手动实现热更新
+       ```
+       if (import.meta.hot) {
+         // 接收模块自身
+         import.meta.hot.accept((newModule) => {
+           // newModule为暴露出来的模块，即之前定义的render()
+           console.log(newModule)
+           newModule.render()
+         })
+       }
+       ```
+2. 
