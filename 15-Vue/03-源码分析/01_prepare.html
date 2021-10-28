@@ -16,13 +16,13 @@
 		</div>
 
 		<!--
-        1. [].slice.call(lis): 将伪数组转换为真数组
-        2. node.nodeType: 得到节点类型
-        3. Object.defineProperty(obj, propertyName, {}): 给对象添加属性(指定描述符)
-        4. Object.keys(obj): 得到对象自身可枚举属性组成的数组
-        5. obj.hasOwnProperty(prop): 判断prop是否是obj自身的属性
-        6. DocumentFragment: 文档碎片(高效批量更新多个节点)
-        -->
+      1. [].slice.call(lis): 将伪数组转换为真数组
+      2. node.nodeType: 得到节点类型
+      3. Object.defineProperty(obj, propertyName, {}): 给对象添加属性(指定描述符)
+      4. Object.keys(obj): 得到对象自身可枚举属性组成的数组
+      5. obj.hasOwnProperty(prop): 判断prop是否是obj自身的属性
+      6. DocumentFragment: 文档碎片(高效批量更新多个节点)
+    -->
 
 		<script type="text/javascript">
 			// 1. [].slice.call(lis): 将伪数组转换为真数组
@@ -34,10 +34,11 @@
 
 			const lis3 = Array.prototype.slice.call(lis)
 			console.log(lis3 instanceof Array) // true
-			/* 解析
-			         slice(start,end)方法可从已有数组中返回选定的元素，数组的方法最初都是在Array.prototype上，
-			         lis由于是个伪数组不能直接调用slice方法，故通过call来实现调用方法，最终返回新的真数组
-			          */
+			/*
+      解析
+      slice(start,end)方法可从已有数组中返回选定的元素，数组的方法最初都是在Array.prototype上，
+      lis由于是个伪数组不能直接调用slice方法，故通过call来实现调用方法，最终返回新的真数组
+      */
 
 			// 2. node.nodeType: 得到节点类型，返回一个整数，代表节点类型(值对应的类型参考文档)
 			const elementNode = document.getElementById('test') // 元素节点，值为1
@@ -95,9 +96,7 @@
 				fragment.appendChild(child)
 			}
 			// 处理fragment中的li
-			const list = Array.prototype.slice.call(
-				fragment.children[0].children
-			) // fragment.children[0].children为全部li，将其放到一个真数组中
+			const list = Array.prototype.slice.call(fragment.children[0].children) // fragment.children[0].children为全部li，将其放到一个真数组中
 			list.forEach((li) => {
 				li.textContent = 'web' // 此时不会更新界面，因为fragment只存在于内存中，不会自动进入页面
 			})
