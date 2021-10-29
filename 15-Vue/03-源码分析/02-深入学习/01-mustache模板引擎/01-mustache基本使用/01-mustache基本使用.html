@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="container"></div>
+
+  <script src="./js/mustache.js"></script>
+  <script>
+    // 直接显示
+    var templateStr1 = `<h1>我是{{name}}，我今年{{age}}岁了</h1>`
+    // 循环数组
+    var templateStr2 = `
+                          <ul>
+                            {{#arr}}
+                              <li>{{number}}</li>
+                            {{/arr}}
+                          </ul>
+                       `
+
+    var data1 = {
+      name: '猪猪侠',
+      age: 22
+    }
+    var data2 = {
+      arr: [
+        { "number": 1 },
+        { "number": 2 },
+        { "number": 3 }
+      ]
+    }
+
+    var domStr1 = Mustache.render(templateStr1, data1)
+    var domStr2 = Mustache.render(templateStr2, data2)
+    var container = document.getElementById('container')
+    container.innerHTML = domStr1
+    container.innerHTML += domStr2
+  </script>
+</body>
+</html>
