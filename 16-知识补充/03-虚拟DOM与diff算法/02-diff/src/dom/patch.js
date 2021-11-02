@@ -6,7 +6,7 @@ import createElement from "./createElement"
 import vnode from "./vnode"
 import patchVnode from './patchVnode'
 
-export default function (oldVnode, newVnode) {
+export default function patch(oldVnode, newVnode) {
   // 判断老节点是否为虚拟节点
   if (oldVnode.sel == undefined) {
     // 若老节点没有sel属性，则证明为真实节点，将其转换为虚拟节点方便节点的替换
@@ -27,7 +27,7 @@ export default function (oldVnode, newVnode) {
 
     // 将虚拟节点创建为dom节点
     let newVnodeElm = createElement(newVnode)
-    // 获取老节点
+    // 获取老节点的真实DOM节点
     let oldVnodeElm = oldVnode.elm
     // 插入新节点
     if (newVnodeElm) {
