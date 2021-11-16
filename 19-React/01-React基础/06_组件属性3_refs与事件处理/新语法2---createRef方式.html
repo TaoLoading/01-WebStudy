@@ -14,31 +14,31 @@
 
   <script type="text/babel">
   /*
-  需求: 自定义组件, 功能说明如下:
+    需求: 自定义组件, 功能说明如下:
     1. 点击按钮, 提示第一个输入框中的值
     2. 当第2个输入框失去焦点时, 提示这个输入框中的值
  */
 
-  //1.定义组件
+  // 1.定义组件
   class UserInput extends React.Component{
     
-    //创建一个ref容器
-    //这个容器是一个“专用容器”，只能保存一个元素
+    // 创建一个ref容器
+    // 这个容器是一个“专用容器”，只能保存一个元素
     myRef = React.createRef()
 
-    //响应点击的方法
+    // 响应点击的方法
     handlerClick = ()=>{
       //通过ref获取DOM
       let {current} = this.myRef
       alert(current.value)
     }
 
-    //响应失去焦点的方法
+    // 响应失去焦点的方法
     handlerBlur = (event)=>{
       console.log(event.target.value);
     }
 
-    //重写父类的render
+    // 重写父类的render
     render(){
       return (
         <div>
@@ -51,7 +51,7 @@
     }
   }
 
-  //2.渲染组件标签
+  // 2.渲染组件标签
   ReactDOM.render(<UserInput/>,document.getElementById('example'))
 
 </script>

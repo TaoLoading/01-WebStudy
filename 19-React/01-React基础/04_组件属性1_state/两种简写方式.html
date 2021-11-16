@@ -15,35 +15,37 @@
 
 <script type="text/babel">
   /*
-  需求: 自定义组件, 功能如下：
-    1. 显示h2标题, 初始文本为: 佩奇是一头猪
-    2. 点击标题更新为: 佩奇不是猪
+    简写的原理
+    1.state初始化简写原理：在类中可直接对变量赋值
+    2.点击函数简写原理：之前的方式是为了将this指向修改为实例对象，利用箭头函数无this的原理，
+                      当在箭头函数内部使用this时，自动到箭头函数的外层寻找this，即类中，
+                      恰好类的this指向为实例对象
   */
 
-  //1.定义组件
+  // 1.定义组件
   class Pig extends React.Component{
-    //初始化状态
+    // 初始化状态
     state = {isPig:true}
     
-    //自定义一个响应点击的函数
+    // 自定义一个响应点击的函数
     handlerClick = ()=> {
       let isPig = !this.state.isPig
-      //如下代码属于直接更改状态，不会被react所认可，不会被react“监听”到
-      //this.state.isPig = isPig //不可以直接修改状态数据
-      //要更新状态，必须使用this.setState()
+      // 如下代码属于直接更改状态，不会被react所认可，不会被react“监听”到
+      // this.state.isPig = isPig //不可以直接修改状态数据
+      // 要更新状态，必须使用this.setState()
       this.setState({isPig})
     }
 
-    //重写父类的render
+    // 重写父类的render
     render(){
       let {isPig} = this.state
-      //如下代码，在指定点击事件的时候，不要加()
+      // 如下代码，在指定点击事件的时候，不要加()
       return <h2 onClick={this.handlerClick}>{isPig?'佩奇是一头可爱的猪':'佩奇不是猪'}</h2>
     }
 
   }
 
-  //2.渲染组件标签
+  // 2.渲染组件标签
   ReactDOM.render(<Pig/>,document.getElementById('example'))
   ReactDOM.render(<Pig/>,document.getElementById('example2'))
 
