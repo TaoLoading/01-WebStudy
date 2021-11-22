@@ -5,7 +5,6 @@
   <title>组件组合使用</title>
 </head>
 <body>
-
   <div id="example"></div>
 
   <script type="text/javascript" src="../js/react.development.js"></script>
@@ -26,7 +25,7 @@
         // 1.获取原状态中的数据
         let {todos} = this.state
         // 2.追加新数据
-        todos.unshift(data)
+        todos.push(data)
         // 3.更新状态
         this.setState({ todos })
       }
