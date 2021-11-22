@@ -20,9 +20,8 @@
     */
     
     class MyComponent extends React.Component{
-      clickHandle = ()=> {
-        console.log(this)
-        // this.refs用于收集所有用ref声明的内容
+      clickHandle = () => {
+        console.log(this) // { current: input }
         alert(this.refs.input1.value)
       }
 

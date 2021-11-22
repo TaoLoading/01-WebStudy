@@ -27,22 +27,22 @@
     myRef = React.createRef()
 
     // 响应点击的方法
-    handlerClick = ()=>{
-      //通过ref获取DOM
-      let {current} = this.myRef
+    handlerClick = () => {
+      // 通过ref获取DOM
+      let { current } = this.myRef
       alert(current.value)
     }
 
     // 响应失去焦点的方法
-    handlerBlur = (event)=>{
+    handlerBlur = (event) => {
       console.log(event.target.value);
     }
 
     // 重写父类的render
-    render(){
+    render() {
       return (
         <div>
-          {/*如下代码的意思是：将当前元素放入组件对象身上的myRef容器中*/}
+          {/* this.myRef：将该ref所在的节点存在创建好的ref容器容器中 */}
           <input type="text" ref={this.myRef}/>&nbsp;
           <button onClick={this.handlerClick}>弹出数据</button>&nbsp;
           <input type="text" placeholder="失去焦点弹出数据" onBlur={this.handlerBlur}/>&nbsp;

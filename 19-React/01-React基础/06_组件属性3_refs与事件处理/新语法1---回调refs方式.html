@@ -20,22 +20,23 @@
     */
 
     class MyComponent extends React.Component{
-      clickHandle = ()=> {
+      clickHandle = () => {
         console.log(this)
         // this.refs用于收集所有用ref声明的内容
-        alert(this.refs.input1.value)
+        alert(this.input.value)
       }
 
       blurHandle = () => {
-        alert(this.refs.input2.value)
+        alert(this.input.value)
       }
 
       render() {
         return (
           <div>
-            <input type="text" placeholder="点击按钮时提示" ref="input1" />&nbsp;
+            {/* this.input = input：在组件的实例对象中创建一个属性为input，并将输入的input作为值传给input属性 */}
+            <input type="text" placeholder="点击按钮时提示" ref={ (input) => { console.log('输入的input是', input); this.input = input } } />&nbsp;
             <button onClick={ this.clickHandle }>按钮</button>&nbsp;
-            <input type="text" placeholder="失去焦点时提示" onBlur={ this.blurHandle } ref="input2" />
+            <input type="text" placeholder="失去焦点时提示" onBlur={ this.blurHandle } ref={ (input) => { this.input = input } } />
           </div>
         )
       }
