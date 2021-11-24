@@ -34,7 +34,9 @@
      * 
      * 3.卸载
      * 触发条件：ReactDOM.unmountComponentAtNode()
-     * componentWillUnmount()：收尾工作，例如：清除定时器，只执行一次
+     * componentWillUnmount()：收尾工作，例如：清除定时器，只执行一次(若不清除定时器则会报错：不能在组件被卸载后更新组件)
+     * 
+     * 在这几个生命周期内this都为组件的实例对象
      */
     
     class Life extends React.Component{
@@ -44,24 +46,42 @@
         this.state = { opacity:1 }
       }
 
+      // 即将挂载组件
       componentWillMount() {
         console.log('--componentwillMount--')
       }
       
-      death = () => {
-        ReactDOM.unmountComponentAtNode(document.getElementById('example'))
-        //clearInterval(this.timeID)
+      // 组件挂载完成
+      componentDidMount() {
+        console.log('--componentDidMount--')
+        this.timeID = setInterval(() => {
+          let { opacity } = this.state
+          opacity -= 0.1
+          if (opacity <= 0) {
+            opacity = 1
+          }
+          this.setState({ opacity })
+        }, 200)
       }
-      
+
+      death = () => {
+        // 卸载组件
+        ReactDOM.unmountComponentAtNode(document.getElementById('example'))
+        // clearInterval(this.timeID)
+      }
+
+      // 即将卸载组件
       componentWillUnmount() {
         console.log('--componentWillUnmount--')
         clearInterval(this.timeID)
       }
 
+      // 即将更新组件
       componentWillUpdate() {
         console.log('--componentwillUdate--')
       }
 
+      // 更新完毕组件
       componentDidUpdate() {
         console.log('--componentDidUpdate--')
       }
@@ -76,22 +96,7 @@
           </div>
         )
       }
-      
-      
-      componentDidMount(){
-        console.log('--componentDidMount--')
-        this.timeID = setInterval(() => {
-          let { opacity } = this.state
-          opacity -= 0.1
-          if (opacity <= 0) {
-            opacity = 1
-          }
-          this.setState({ opacity })
-        }, 200)
-      }
     }
-    
-    
     
     ReactDOM.render(<Life/>, document.getElementById('example'))
   </script>

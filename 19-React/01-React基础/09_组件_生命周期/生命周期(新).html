@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>10_ComponentLife</title>
+</head>
+<body>
+  <div id="example"></div>
+
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  <script type="text/babel">
+    /**
+     * 新生命周期中即将被废弃的钩子：
+     * 1. componentWillMount
+     * 2. componentWillReceiveProps
+     * 3. componentWillUpdate
+     */
+    
+    class Life extends React.Component{
+      constructor(props) {
+        console.log('--constructor--')
+        super(props)
+        this.state = { opacity:1 }
+      }
+
+      // getDerivedStateFromProps
+      /**
+       * getDerivedStateFromProps用于取代componentWillMount、componentWillUpdate
+       * 接收两个参数，都是对象，分别是组件传过来的值props和state中的值
+       * 必须有返回值
+       */
+      static getDerivedStateFromProps(props, state) {
+        console.log('--getDerivedStateFromProps--')
+        return null
+      }
+      
+      // 组件挂载完成
+      componentDidMount() {
+        console.log('--componentDidMount--')
+        /* this.timeID = setInterval(() => {
+          let { opacity } = this.state
+          opacity -= 0.1
+          if (opacity <= 0) {
+            opacity = 1
+          }
+          this.setState({ opacity })
+        }, 200) */
+      }
+
+      // getSnapshotBeforeUpdate
+      /**
+       * getSnapshotBeforeUpdate位于render和componentDidUpdate之间
+       * 接收两个参数，都是对象，分别是组件传过来的值props和state中的值
+       * 必须与componentDidUpdate配合使用
+       * 必须有返回值
+       */
+      getSnapshotBeforeUpdate(props, state) {
+        console.log('--getSnapshotBeforeUpdate--')
+        return null
+      }
+
+      // 更新完毕组件
+      /**
+       * 接收三个参数，分别是props、state和getSnapshotBeforeUpdate中传过来的值
+       */
+      componentDidUpdate(props, state, data) {
+        console.log('--componentDidUpdate--')
+      }
+
+      death = () => {
+        // 卸载组件
+        ReactDOM.unmountComponentAtNode(document.getElementById('example'))
+        // clearInterval(this.timeID)
+      }
+
+      // 即将卸载组件
+      /* componentWillUnmount() {
+        console.log('--componentWillUnmount--')
+        clearInterval(this.timeID)
+      } */
+      
+      render() {
+        console.log('--render--')
+        let { opacity } = this.state
+        return (
+          <div>
+            <h2 style = {{ opacity }}>react学不会怎么办？</h2>
+            <button onClick = { this.death }>不活了</button>
+          </div>
+        )
+      }
+    }
+    
+    ReactDOM.render(<Life/>, document.getElementById('example'))
+  </script>
+</body>
+</html>
