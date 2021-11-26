@@ -3,7 +3,17 @@ import Add from './component/add/add.jsx'
 import List from './component/list/list.jsx'
 
 export default class MyComponent extends Component {
+  // 定义评论数据
+  state = {
+    comments: [
+      { id: '1', name: '小明', content: '挺好' },
+      { id: '2', name: '小华', content: '挺好+1' },
+      { id: '3', name: '小红', content: '挺好++1' }
+    ]
+  }
+
   render() {
+    let { comments } = this.state
     return (
       <div id="root">
         <div>
@@ -18,7 +28,7 @@ export default class MyComponent extends Component {
           </header>
           <div className="container">
             <Add />
-            <List />
+            <List comments={comments} />
           </div>
         </div>
       </div>
