@@ -4,8 +4,7 @@ import './list.css'
 
 export default class MyComponent extends Component {
   render() {
-    // 接收父组件传来的评论数据
-    let { comments } = this.props
+    let { comments, deleteComment } = this.props
 
     return (
       <div className="col-md-8">
@@ -16,7 +15,7 @@ export default class MyComponent extends Component {
             comments.map((item) => {
               // 向子组件传参，注意此处使用了三点运算符减少编码
               // return <Item key={item.id} name={item.name} content={item.content} />
-              return <Item key={item.id} {...item} />
+              return <Item key={item.id} {...item} deleteComment={deleteComment} />
             })
           }
         </ul>

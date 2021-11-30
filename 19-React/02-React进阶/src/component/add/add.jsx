@@ -14,6 +14,9 @@ export default class MyComponent extends Component {
     }
     // 添加评论
     addComment({ id: uuid(), name, content })
+    // 清空输入
+    this.name.value = ''
+    this.content.value = ''
   }
 
   render() {

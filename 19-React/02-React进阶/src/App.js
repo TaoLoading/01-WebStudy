@@ -28,6 +28,18 @@ export default class MyComponent extends Component {
     this.setState({ comments })
   }
 
+  // 删除评论
+  deleteComment = (id) => {
+    // 获取原状态
+    let comments = [...this.state.comments]
+    // 删除id指定的评论
+    comments = comments.filter((item) => {
+      return item.id !== id
+    })
+    // 新数据维护到状态中
+    this.setState({ comments })
+  }
+
   render() {
     let { comments } = this.state
     return (
@@ -44,7 +56,7 @@ export default class MyComponent extends Component {
           </header>
           <div className="container">
             <Add addComment={this.addComment} />
-            <List comments={comments} />
+            <List comments={comments} deleteComment={this.deleteComment} />
           </div>
         </div>
       </div>
