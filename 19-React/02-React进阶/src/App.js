@@ -12,6 +12,22 @@ export default class MyComponent extends Component {
     ]
   }
 
+  // 添加评论(放在父组件，因为数据在哪就把操作数据的方法放在哪)
+  addComment = (commentObj) => {
+    /**
+     * 特别注意：
+     * 不能直接修改state中的数据，后期可能会产生一些问题
+     */
+
+    // 获取原状态
+    // let { comments } = this.state // 不能以此种方式获取state中的数据，因为虽然拿到了原数据，但修改此数据则会导致直接修改了state中的数据
+    let comments = [...this.state.comments]
+    // 追加数据
+    comments.unshift(commentObj)
+    // 新数据维护到状态中
+    this.setState({ comments })
+  }
+
   render() {
     let { comments } = this.state
     return (
@@ -27,7 +43,7 @@ export default class MyComponent extends Component {
             </div>
           </header>
           <div className="container">
-            <Add />
+            <Add addComment={this.addComment} />
             <List comments={comments} />
           </div>
         </div>
