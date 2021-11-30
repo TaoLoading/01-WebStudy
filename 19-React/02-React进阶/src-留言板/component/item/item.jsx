@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './item.css'
 
-export default class MyComponent extends Component {
+export default class Item extends Component {
   // 删除评论
   delete = (id) => {
     let { deleteComment } = this.props

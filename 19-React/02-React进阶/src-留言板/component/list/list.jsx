@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Item from '../item/item.jsx'
 import './list.css'
 
-export default class MyComponent extends Component {
+export default class List extends Component {
   render() {
     let { comments, deleteComment } = this.props
 
