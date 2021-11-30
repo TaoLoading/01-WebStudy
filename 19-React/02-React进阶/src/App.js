@@ -1,10 +1,18 @@
 import React, { Component } from 'react'
+import Search from './components/search/search.jsx'
+import List from './components/list/list.jsx'
 
 export default class MyComponent extends Component {
   render() {
     return (
-      <div>
-        <h2>github以XXX开头的仓库中，点赞最多的是XXX</h2>
+      <div className="container">
+        <section className="jumbotron">
+          <h3 className="jumbotron-heading">Search Github Users</h3>
+          {/* search组件 */}
+          <Search />
+        </section>
+        {/* list组件 */}
+        <List />
       </div>
     )
   }
