@@ -8849,6 +8849,11 @@ public-encrypt@^4.0.0:
     randombytes "^2.0.1"
     safe-buffer "^5.1.2"
 
+pubsub-js@^1.9.4:
+  version "1.9.4"
+  resolved "https://registry.npmmirror.com/pubsub-js/download/pubsub-js-1.9.4.tgz?cache=0&sync_timestamp=1636629886569&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fpubsub-js%2Fdownload%2Fpubsub-js-1.9.4.tgz#5c8678600e34e95b1269e96c17e1b51dab3ecb5a"
+  integrity sha512-hJYpaDvPH4w8ZX/0Fdf9ma1AwRgU353GfbaVfPjfJQf1KxZ2iHaHl3fAUw1qlJIR5dr4F3RzjGaWohYUEyoh7A==
+
 pump@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/pump/-/pump-2.0.1.tgz#12399add6e4cf7526d973cbc8b5ce2e2908b3909"
