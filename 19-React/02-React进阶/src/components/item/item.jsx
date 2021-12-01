@@ -3,12 +3,13 @@ import './item.css'
 
 export default class Item extends Component {
   render() {
+    let { html_url, avatar_url, login } = this.props
     return (
       <div className="card">
-        <a href="https://github.com/reactjs" target="_blank">
-          <img src="https://avatars.githubusercontent.com/u/6412038?v=3" style={{ width: '100px' }} />
+        <a href={html_url}>
+          <img src={avatar_url} style={{ width: '100px' }} alt="用户头像" />
         </a>
-        <p className="card-text">reactjs</p>
+        <p className="card-text">{login}</p>
       </div>
     )
   }
