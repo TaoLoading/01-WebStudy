@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
+import PubSub from 'pubsub-js'
 import axios from 'axios'
 
 export default class Search extends Component {
   myRef = React.createRef()
 
   search = () => {
-    let { updateState } = this.props
     // 获取输入
     let keyWord = this.myRef.current.value
     // 校验数据
@@ -13,7 +13,7 @@ export default class Search extends Component {
     // 发生请求
     let URL = `https://api.github.com/search/users?q=${keyWord}`
     // 更新状态
-    updateState({
+    PubSub.publish('updateState', {
       user: [],
       isFirst: false,
       isLoading: true,
@@ -21,7 +21,7 @@ export default class Search extends Component {
     })
     axios.get(URL)
       .then((value) => {
-        updateState({
+        PubSub.publish('updateState', {
           user: value.data.items,
           isFirst: false,
           isLoading: false,
@@ -29,7 +29,7 @@ export default class Search extends Component {
         })
       })
       .catch((error) => {
-        updateState({
+        PubSub.publish('updateState', {
           user: [],
           isFirst: false,
           isLoading: false,
