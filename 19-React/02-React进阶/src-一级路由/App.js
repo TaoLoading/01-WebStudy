@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { NavLink, Routes, Route } from 'react-router-dom'
-import Home from './pages/home.jsx'
-import About from './pages/about.jsx'
+import Home from './pages/Home.jsx'
+import About from './pages/About.jsx'
 
 export default class App extends Component {
   /**
@@ -37,7 +37,7 @@ export default class App extends Component {
               <div className="panel-body">
                 <Routes>
                   <Route path="/about" element={<About />} />
-                  <Route path="/home/*" element={<Home />} />
+                  <Route path="/home" element={<Home />} />
                 </Routes>
               </div>
             </div>
