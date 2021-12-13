@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-
 import logo from "./assets/images/logo.svg";
-import robots from './mockdata/robots.json'
 import Robot from "./components/Robot";
 import ShoppingCart from "./components/ShoppingCart";
 import styles from './App.module.css'
@@ -10,13 +8,15 @@ interface Props { }
 
 interface State {
   robotGallery: any[]
+  count: number
 }
 
 export default class App extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      robotGallery: []
+      robotGallery: [],
+      count: 0
     }
   }
 
