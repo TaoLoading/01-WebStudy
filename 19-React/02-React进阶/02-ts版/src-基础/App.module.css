@@ -1,0 +1,35 @@
+.app {
+  text-align: center;
+}
+
+.appHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 36px;
+  margin-bottom: 24px;
+}
+
+.appLogo {
+  height: 10vmin;
+  pointer-events: none;
+}
+
+h1 {
+  font-family: 'Slidefu';
+  font-size: 72px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .appLogo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.robotList {
+	width: 85vw;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-gap: 20px;
+}
