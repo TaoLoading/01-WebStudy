@@ -1,32 +1,33 @@
 <template>
   <fieldset>
     <legend>姓名操作</legend>
-    姓氏：<input type="text"
-           placeholder="请输入姓氏"
-           v-model="user.firstName">
-    <br>
-    名字：<input type="text"
-           placeholder="请输入名字"
-           v-model="user.lastName">
+    姓氏：<input
+      type="text"
+      placeholder="请输入姓氏"
+      v-model="user.firstName"
+    />
+    <br />
+    名字：<input type="text" placeholder="请输入名字" v-model="user.lastName" />
   </fieldset>
   <fieldset>
     <legend>计算属性和监视的演示</legend>
-    姓名：<input type="text"
-           placeholder="显示姓名"
-           v-model="fullName1">
-    <br>
-    姓名：<input type="text"
-           placeholder="显示姓名"
-           v-model="fullName2">
-    <br>
-    姓名：<input type="text"
-           placeholder="显示姓名"
-           v-model="fullName3">
+    姓名：<input type="text" placeholder="显示姓名" v-model="fullName1" />
+    <br />
+    姓名：<input type="text" placeholder="显示姓名" v-model="fullName2" />
+    <br />
+    姓名：<input type="text" placeholder="显示姓名" v-model="fullName3" />
   </fieldset>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, ref, watch } from "vue";
+import {
+  computed,
+  defineComponent,
+  reactive,
+  ref,
+  watch,
+  watchEffect,
+} from "vue";
 export default defineComponent({
   name: "App",
   setup() {
@@ -68,6 +69,18 @@ export default defineComponent({
     /* watchEffect(() => {
       fullName3.value = user.firstName + "_" + user.lastName;
     }); */
+
+    // watchEffect清除副作用
+    const stop = watchEffect((onInvalidate) => {
+      const timer = setInterval(() => {
+        console.log("发起了网络请求");
+      }, 2000);
+      onInvalidate(() => {
+        clearInterval(timer);
+        console.log("执行了onInvalidate");
+      });
+    });
+
     return {
       user,
       fullName1,
