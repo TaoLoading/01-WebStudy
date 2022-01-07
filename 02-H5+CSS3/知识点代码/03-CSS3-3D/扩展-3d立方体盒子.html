@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		body {
+			padding: 200px 300px;
+		}
+		ul {
+			position: relative;
+			list-style: none;
+			width: 300px;
+			height: 300px;
+			transform: rotate3d(1, 1, 0, -45deg);
+			transform-style: preserve-3d;
+			/* perspective: 500;
+			-webkit-perspective: 500;
+			perspective-origin: 10% 10%; */
+		}
+		ul > li {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 300px;
+			height: 300px;
+			line-height: 300px;
+			text-align: center;
+			font-size: 40px;
+		}
+		ul > li:nth-of-type(1) {
+			background-color: #ccc;
+			transform: translateZ(150px);
+		}
+		ul > li:nth-of-type(2) {
+			background-color: skyblue;
+			transform: translateZ(-150px) rotateY(180deg);
+		}
+		ul > li:nth-of-type(3) {
+			background-color: greenyellow;
+			transform: translateX(-150px) rotateY(-90deg);
+		}
+		ul > li:nth-of-type(4) {
+			background-color: deeppink;
+			transform: translateX(150px) rotateY(90deg);
+		}
+		ul > li:nth-of-type(5) {
+			background-color: rebeccapurple;
+			transform: translateY(-150px) rotateX(90deg);
+		}
+		ul > li:nth-of-type(6) {
+			background-color: saddlebrown;
+			transform: translateY(150px) rotateX(-90deg);
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li>01-前面</li>
+		<li>02-后面</li>
+		<li>03-左面</li>
+		<li>04-右面</li>
+		<li>05-上面</li>
+		<li>06-下面</li>
+	</ul>
+</body>
+</html>

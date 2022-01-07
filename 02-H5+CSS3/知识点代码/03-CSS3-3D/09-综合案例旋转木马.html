@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            perspective: 1000px;
+        }
+        
+        section {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            margin: 150px auto;
+            transform-style: preserve-3d;
+            /* 添加动画效果 */
+            animation: rotate 10s linear infinite;
+            background: url(media/pig.jpg) no-repeat;
+        }
+        
+        section:hover {
+            /* 鼠标放入section 停止动画 */
+            animation-play-state: paused;
+        }
+        
+        @keyframes rotate {
+            0% {
+                transform: rotateY(0);
+            }
+            100% {
+                transform: rotateY(360deg);
+            }
+        }
+        
+        section div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url(media/dog.jpg) no-repeat;
+        }
+        
+        section div:nth-child(1) {
+            transform: rotateY(0) translateZ(300px);
+        }
+        
+        section div:nth-child(2) {
+            /* 先旋转好了再 移动距离 */
+            transform: rotateY(60deg) translateZ(300px);
+        }
+        
+        section div:nth-child(3) {
+            /* 先旋转好了再 移动距离 */
+            transform: rotateY(120deg) translateZ(300px);
+        }
+        
+        section div:nth-child(4) {
+            /* 先旋转好了再 移动距离 */
+            transform: rotateY(180deg) translateZ(300px);
+        }
+        
+        section div:nth-child(5) {
+            /* 先旋转好了再 移动距离 */
+            transform: rotateY(240deg) translateZ(300px);
+        }
+        
+        section div:nth-child(6) {
+            /* 先旋转好了再 移动距离 */
+            transform: rotateY(300deg) translateZ(300px);
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </section>
+</body>
+
+</html>
