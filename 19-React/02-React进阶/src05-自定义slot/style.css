@@ -1,0 +1,24 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.navBar {
+  display: flex;
+}
+
+.navItem {
+  height: 44px;
+  line-height: 44px;
+  text-align: center;
+}
+
+.navLeft, .navRight {
+  width: 70px;
+  background-color: red;
+}
+
+.navCenter {
+  flex: 1;
+  background-color: blue;
+}
