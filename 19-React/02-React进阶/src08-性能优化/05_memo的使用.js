@@ -33,8 +33,8 @@ class Main extends PureComponent {
     console.log("Main render函数被调用");
     return (
       <div>
-        <Banner />
-        <MemoProductList />
+        <Banner/>
+        <MemoProductList/>
       </div>
     )
   }
@@ -62,9 +62,9 @@ export default class App extends PureComponent {
       <div>
         <h2>当前计数: {this.state.counter}</h2>
         <button onClick={e => this.increment()}>+1</button>
-        <MemoHeader />
-        <Main />
-        <MemoFooter />
+        <MemoHeader/>
+        <Main/>
+        <MemoFooter/>
       </div>
     )
   }

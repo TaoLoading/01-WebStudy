@@ -1,11 +1,10 @@
-import React, { PureComponent, memo } from 'react';
+import React, { PureComponent } from 'react';
 
 // Header
-const MemoHeader = memo(function Header() {
+function Header() {
   console.log("Header被调用");
   return <h2>我是Header组件</h2>
-})
-
+}
 
 // Main
 class Banner extends PureComponent {
@@ -15,7 +14,7 @@ class Banner extends PureComponent {
   }
 }
 
-const MemoProductList = memo(function ProductList() {
+function ProductList() {
   console.log("ProductList被调用");
   return (
     <ul>
@@ -26,25 +25,25 @@ const MemoProductList = memo(function ProductList() {
       <li>商品列表5</li>
     </ul>
   )
-})
+}
 
 class Main extends PureComponent {
   render() {
     console.log("Main render函数被调用");
     return (
       <div>
-        <Banner />
-        <MemoProductList />
+        <Banner/>
+        <ProductList/>
       </div>
     )
   }
 }
 
 // Footer
-const MemoFooter = memo(function Footer() {
+function Footer() {
   console.log("Footer被调用");
   return <h2>我是Footer组件</h2>
-})
+}
 
 
 export default class App extends PureComponent {
@@ -62,9 +61,9 @@ export default class App extends PureComponent {
       <div>
         <h2>当前计数: {this.state.counter}</h2>
         <button onClick={e => this.increment()}>+1</button>
-        <MemoHeader />
-        <Main />
-        <MemoFooter />
+        <Header/>
+        <Main/>
+        <Footer/>
       </div>
     )
   }
