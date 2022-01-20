@@ -32,8 +32,8 @@ class Main extends Component {
     console.log("Main render函数被调用");
     return (
       <div>
-        <Banner/>
-        <ProductList/>
+        <Banner />
+        <ProductList />
       </div>
     )
   }
@@ -61,9 +61,9 @@ export default class App extends Component {
       <div>
         <h2>当前计数: {this.state.counter}</h2>
         <button onClick={e => this.increment()}>+1</button>
-        <Header/>
-        <Main/>
-        <Footer/>
+        <Header />
+        <Main />
+        <Footer />
       </div>
     )
   }
