@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 
 export default class App extends PureComponent {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       fruits: "orange"
@@ -27,8 +27,8 @@ export default class App extends PureComponent {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
-    console.log(this.state.fruits);
+    event.preventDefault()
+    console.log(this.state.fruits)
   }
 
   handleChange(event) {

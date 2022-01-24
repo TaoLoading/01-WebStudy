@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 /**
  * setState在以下方式中是同步的：
@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 
 export default class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       message: "Hello World"
@@ -30,13 +30,13 @@ export default class App extends Component {
       this.setState({
         message: "你好啊,李银河"
       })
-      console.log(this.state.message);
+      console.log(this.state.message)
     })
 
     // this.setState({
     //   message: "你好啊,李银河"
     // })
-    // console.log(this.state.message);
+    // console.log(this.state.message)
   }
 
   changeText() {
@@ -45,7 +45,7 @@ export default class App extends Component {
       this.setState({
         message: "你好啊,李银河"
       })
-      console.log(this.state.message);
-    }, 0);
+      console.log(this.state.message)
+    }, 0)
   }
 }

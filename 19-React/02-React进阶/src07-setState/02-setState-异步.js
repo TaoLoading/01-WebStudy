@@ -23,7 +23,7 @@ function Home(props) {
 
 export default class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       message: "Hello World"
@@ -42,7 +42,7 @@ export default class App extends Component {
 
   componentDidUpdate() {
     // 方式二: 获取异步更新的state
-    console.log(this.state.message);
+    console.log(this.state.message)
   }
 
   changeText() {
@@ -57,7 +57,7 @@ export default class App extends Component {
     this.setState({
       message: "你好啊,李银河"
     }, () => {
-      console.log(this.state.message);
+      console.log(this.state.message)
     })
   }
 }

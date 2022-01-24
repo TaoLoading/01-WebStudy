@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 export default class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       counter: 0,
@@ -11,7 +11,7 @@ export default class App extends Component {
   }
 
   render() {
-    console.log("App render函数被调用");
+    console.log("App render函数被调用")
     return (
       <div>
         <h2>当前计数: {this.state.counter}</h2>

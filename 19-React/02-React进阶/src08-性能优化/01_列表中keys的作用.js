@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export default class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       movies: ["星际穿越", "盗梦空间"]

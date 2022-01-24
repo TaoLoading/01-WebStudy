@@ -7,7 +7,7 @@ import React, { PureComponent } from 'react'
 
 export default class App extends PureComponent {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       username: ""
@@ -33,8 +33,8 @@ export default class App extends PureComponent {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
-    console.log(this.state.username);
+    event.preventDefault()
+    console.log(this.state.username)
   }
 
   handleChange(event) {

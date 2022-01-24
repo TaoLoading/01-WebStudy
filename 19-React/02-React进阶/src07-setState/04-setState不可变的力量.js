@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from 'react'
 
 export default class App extends PureComponent {
   constructor(props) {
@@ -52,15 +52,15 @@ export default class App extends PureComponent {
     // });
 
     // 2.推荐做法
-    const newFriends = [...this.state.friends];
-    newFriends.push({ name: "tom", age: 30 });
+    const newFriends = [...this.state.friends]
+    newFriends.push({ name: "tom", age: 30 })
     this.setState({
       friends: newFriends
     })
   }
 
   incrementAge(index) {
-    const newFriends = [...this.state.friends];
+    const newFriends = [...this.state.friends]
     newFriends[index].age += 1;
     this.setState({
       friends: newFriends

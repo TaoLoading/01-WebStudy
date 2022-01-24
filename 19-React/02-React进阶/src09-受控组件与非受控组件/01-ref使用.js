@@ -14,7 +14,7 @@ import React, { PureComponent, createRef } from 'react';
 
 class Counter extends PureComponent {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       counter: 0
@@ -42,9 +42,9 @@ export default class App extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.titleRef = createRef();
-    this.counterRef = createRef();
-    this.titleEl = null;
+    this.titleRef = createRef()
+    this.counterRef = createRef()
+    this.titleEl = null
   }
 
   render() {
@@ -66,15 +66,15 @@ export default class App extends PureComponent {
 
   changeText() {
     // 1.使用方式一: 字符串(不推荐, 后续的更新会删除)
-    this.refs.titleRef.innerHTML = "Hello LHT";
+    this.refs.titleRef.innerHTML = "Hello LHT"
     // 2.使用方式二: 对象方式
-    this.titleRef.current.innerHTML = "Hello JavaScript";
+    this.titleRef.current.innerHTML = "Hello JavaScript"
     // 3.使用方式三: 回调函数方式
-    this.titleEl.innerHTML = "Hello TypeScript";
+    this.titleEl.innerHTML = "Hello TypeScript"
   }
 
   appBtnClick() {
     console.log(this.counterRef)
-    this.counterRef.current.increment();
+    this.counterRef.current.increment()
   }
 }

@@ -2,9 +2,9 @@ import React, { PureComponent, createRef } from 'react'
 
 export default class App extends PureComponent {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.usernameRef = createRef();
+    this.usernameRef = createRef()
   }
 
   render() {
@@ -22,7 +22,7 @@ export default class App extends PureComponent {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
-    console.log(this.usernameRef.current.value);
+    event.preventDefault()
+    console.log(this.usernameRef.current.value)
   }
 }
