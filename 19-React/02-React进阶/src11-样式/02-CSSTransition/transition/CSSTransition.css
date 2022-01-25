@@ -1,0 +1,41 @@
+/* 
+CSSTransition是基于Transition组件构建的，
+CSSTransition执行过程中有三个状态，分别是：appear、enter、exit，
+这三种状态需要对应相应的CSS样式，分别是：
+  1.开始状态：-appear、-enter、exit
+  2.执行动画：-appear-active、-enter-active、-exit-active
+  2.执行结束：-appear-done、-enter-done、-exit-done
+*/
+
+/* 下方类名为'card-'是由于在CSSTransition组建中使用了'classNames="card"' */
+
+.card-enter, .card-appear {
+  opacity: 0;
+  transform: scale(.6);
+}
+
+.card-enter-active, .card-appear-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.card-enter-done, .card-appear-done {
+
+}
+
+.card-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.card-exit-active {
+  opacity: 0;
+  transform: scale(.6);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.card-exit-done {
+  opacity: 0;
+}
+
