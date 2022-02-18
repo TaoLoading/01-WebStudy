@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { PureComponent } from 'react';
+import Addition from './pages/addition-抽离代码'
+import Subtraction from './pages/subtraction-抽离代码'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends PureComponent {
+  render() {
+    return (
+      <div>
+        <Addition />
+        <Subtraction />
+      </div>
+    );
+  }
 }
 
 export default App;

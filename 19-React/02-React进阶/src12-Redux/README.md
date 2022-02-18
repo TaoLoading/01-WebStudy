@@ -59,3 +59,28 @@
   ```
 ## 5. 工程化下Redux的基本使用
 ### 见01-Redux的基本使用文件夹
+## 6. Redux案例 ———— 加减法
+### 6.1 基础版，见02-结合Redux使用文件夹
+### 6.2 抽离代码版，见02-结合Redux使用文件夹，其中：
+* 通过connect.js文件抽离部分公共代码，用作组件和Redux的连接
+  1. 定义connect函数，接收从组件中传来的mapStateToProps、mapDispatchProps两个参数
+  2. 返回一个高阶函数，接收一个组件参数，返回一个组件
+* 改良组件代码，减少对store的依赖
+  1. 将state的定义、订阅与卸载订阅抽离到connect.js文件中
+  2. 将组件改为函数式组件
+  3. 修改state的定义，不从store中读取，减少对store的依赖
+    ```
+      const mapStateToProps = state => {
+       return {
+         counter: state.counter
+       }
+      }
+    ```
+  4. 修改dispatch的分发，不从store中读取，减少对store的依赖
+    ```
+     decrement: function () {
+       dispatch(decAction())
+     }
+    ```
+  5. 调用connect并暴露
+    ``` export default connect(mapStateToProps, mapDispatchProps)(subtraction) ```

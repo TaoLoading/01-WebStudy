@@ -1,5 +1,7 @@
-const redux = require('redux')
+// const redux = require('redux')
+import redux from 'redux'
 
+// state初始化值
 const initialState = {
   counter: 0
 }
@@ -24,7 +26,7 @@ function reducer(state = initialState, action) {
 // 创建store(创建时传入一个reducer)
 const store = redux.createStore(reducer)
 
-// 订阅state的修改
+// 订阅state的修改(放到派发action前)
 store.subscribe(() => {
   console.log('counter:', store.getState().counter)
 })
