@@ -18,13 +18,18 @@ export function connect(mapStateToProps, mapDispatchProps) {
       componentDidMount() {
         this.unsubscribe = store.subscribe(() => {
           this.setState({
-            counter: mapStateToProps(store.getState())
+            storeState: mapStateToProps(store.getState())
           })
         })
       }
 
+      // 取消订阅
+      componentWillUnmount() {
+        this.unsubscribe()
+      }
+
       render() {
-        return <WrappedComponent{...this.props} {...mapStateToProps(store.getState())} {...mapDispatchProps(store.dispatch)} />
+        return <WrappedComponent {...this.props} {...mapStateToProps(store.getState())} {...mapDispatchProps(store.dispatch)} />
       }
     }
   }
