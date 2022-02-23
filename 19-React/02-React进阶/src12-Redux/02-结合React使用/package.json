@@ -36,7 +36,9 @@
     ]
   },
   "devDependencies": {
+    "axios": "^0.26.0",
     "react-redux": "^7.2.6",
-    "redux": "^4.1.2"
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.1"
   }
 }

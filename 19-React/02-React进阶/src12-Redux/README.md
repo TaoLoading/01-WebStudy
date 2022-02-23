@@ -62,10 +62,9 @@
    })
   ```
 
-## 5. 工程化下Redux的基本使用
-### 见01-Redux的基本使用文件夹
+## 5. 工程化下Redux的基本使用（见01-Redux的基本使用文件夹）
 
-## 6. Redux案例 ———— 加减法
+## 6. Redux案例 —— 加减法（见结合React使用文件夹的01和02代码）
 ### 6.1 基础版
 ### 6.2 抽离代码版
 * 通过connect.js文件抽离部分公共代码，用作组件和Redux的连接
@@ -90,6 +89,68 @@
     ```
   5. 调用connect并暴露
     ``` export default connect(mapStateToProps, mapDispatchProps)(subtraction) ```
-### 6.3 封装context版
+
+## 7. 封装context（见结合React使用文件夹的03代码）
 * 封装目的：通过context.js帮助connect.js完全脱离项目文件的引入，使其独立
-### 6.4 使用react-redux库版
+
+## 8. react-redux库版（见结合React使用文件夹的04代码）
+
+## 9. 组件中的异步操作，以发送网络请求为例（见结合React使用文件夹的05代码）
+1. 在componentDidMount()中发送网络请求
+2. 拿到数据后通过dispatch派发事件
+3. 使用reducer将处理后的state导出，此时完成网络请求的数据放到state中
+
+## 10. redux中的异步操作（见结合React使用文件夹的06代码）
+### 10.1 操作原因：
+* 在组件中进行异步操作则必须将网络请求的异步代码放到组件的生命周期中来完成
+* 事实上，网络请求到的数据也属于我们状态管理的一部分，更好的一种方式应该是将其也交给redux来管理
+### 10.2 实现途径
+* 中间件，如redux-thunk
+### 10.3 redux-thunk基础介绍
+* 默认情况下的dispatch(action)，action需要传入是一个对象
+* redux-thunk可以让dispatch(action函数)，action可以是一个函数
+* 该函数会被调用，并且会传给这个函数一个dispatch函数和getState函数
+  1. dispatch函数用于我们之后再次派发action
+  2. getState函数考虑到我们之后的一些操作需要依赖原来的状态，用于让我们可以获取之前的一些状态
+### 10.4 redux-thunk具体使用
+1. 在store中引入redux-thunk并进行应用，拿到返回值
+  ```
+    const storeEnhancer = applyMiddleware(thunkMiddleware)
+  ```
+2. 在createStore中传入拿到的storeEnhancer
+  ```
+    const store = createStore(reducer, storeEnhancer)
+  ```
+3. 创建相关action，在其中书写发送网络请求的函数，由于redux-thunk的作用，该函数会被自动调用
+  ```
+    export const getHomeMultidataAction = (dispatch, getState) => {
+      axios({
+        url: "xxx",
+      }).then(res => {
+        const data = res.data.data;
+        dispatch(changeBannersAction(data.banner.list));
+        dispatch(changeRecommendAction(data.recommend.list));
+      })
+    }
+  ```
+4. 在组件中引入相关action，此时不在componentDidMount中发送网络请求，而是调用映射的函数
+  ```
+    componentDidMount() {
+      this.props.getHomeMultidata()
+    }
+
+    const mapDispatchToProps = dispatch => {
+      return {
+        increment: function () {
+          dispatch(incAction())
+        },
+        addNumber: function (num) {
+          dispatch(addAction(num))
+        },
+        getHomeMultidata() {
+          // 传入一个函数
+          dispatch(getHomeMultidataAction)
+        }
+      }
+    }
+  ```
