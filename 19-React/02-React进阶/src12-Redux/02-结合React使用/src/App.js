@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
-import Addition from './pages/addition-抽离代码'
-import Subtraction from './pages/subtraction-抽离代码'
+import Addition from './pages/04-addition-react-redux'
+import Subtraction from './pages/04-subtraction-react-redux'
 
 class App extends PureComponent {
   render() {

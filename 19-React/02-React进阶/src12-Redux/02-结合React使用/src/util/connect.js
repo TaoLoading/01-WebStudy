@@ -1,10 +1,11 @@
 import { PureComponent } from "react"
 import store from '../store/index'
+import StoreContext from './context'
 
 // 用于将组件和redux相连接，并抽离部分公共代码
 export function connect(mapStateToProps, mapDispatchProps) {
   return function enhanceHOC(WrappedComponent) {
-    return class extends PureComponent {
+    class EnhanceComponent extends PureComponent {
       constructor(props) {
         super(props)
 
@@ -16,9 +17,9 @@ export function connect(mapStateToProps, mapDispatchProps) {
 
       // 订阅store中数据的变化
       componentDidMount() {
-        this.unsubscribe = store.subscribe(() => {
+        this.unsubscribe = this.context.subscribe(() => {
           this.setState({
-            storeState: mapStateToProps(store.getState())
+            storeState: mapStateToProps(this.context.getState())
           })
         })
       }
@@ -29,8 +30,10 @@ export function connect(mapStateToProps, mapDispatchProps) {
       }
 
       render() {
-        return <WrappedComponent {...this.props} {...mapStateToProps(store.getState())} {...mapDispatchProps(store.dispatch)} />
+        return <WrappedComponent {...this.props} {...mapStateToProps(this.context.getState())} {...mapDispatchProps(this.context.dispatch)} />
       }
     }
+    EnhanceComponent.contextType = StoreContext
+    return EnhanceComponent
   }
 }
