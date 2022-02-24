@@ -154,3 +154,19 @@
       }
     }
   ```
+
+## 11. React DevTools调试工具的使用
+1. 安装插件
+2. 修改store代码
+* 初始代码：
+    ```
+      const storeEnhancer = applyMiddleware(thunkMiddleware)
+      const store = createStore(reducer, storeEnhancer)
+    ```
+* 修改后代码：
+    ```
+      const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ trace: true }) || compose;
+      const storeEnhancer = applyMiddleware(thunkMiddleware)
+      const store = createStore(reducer, composeEnhancers(storeEnhancer))
+    ```
+注：不使用中间件时将代码修改为：`const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION && window.__REDUX_DEVTOOLS_EXTENSION__())`即可
