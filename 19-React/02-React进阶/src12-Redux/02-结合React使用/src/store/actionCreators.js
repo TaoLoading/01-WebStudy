@@ -1,4 +1,4 @@
-import { ADD_NUMBER, SUB_NUMBER, INCREMENT, DECREMENT, CHANGE_BANNERS, CHANGE_RECOMMEND } from './constants.js'
+import { ADD_NUMBER, SUB_NUMBER, INCREMENT, DECREMENT, CHANGE_BANNERS, CHANGE_RECOMMEND, FETCH_HOME_MULTIDATA } from './constants.js'
 import axios from 'axios'
 
 // 写法一
@@ -51,4 +51,9 @@ export const getHomeMultidataAction = (dispatch, getState) => {
     dispatch(changeBannersAction(data.banner.list));
     dispatch(changeRecommendAction(data.recommend.list));
   })
+}
+
+// redux-saga拦截的action
+export const fetchHomeMultidataAction = {
+  type: FETCH_HOME_MULTIDATA
 }
