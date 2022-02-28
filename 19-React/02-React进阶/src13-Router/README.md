@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+# react-router
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 1. 基础API
+* BrowserRouter或HashRouter
+  * Router中包含了对路径改变的监听，并且会将相应的路径传递给子组件
+  * BrowserRouter使用history模式
+  * HashRouter使用hash模式
+* Link和NavLink
+  * 通常路径的跳转是使用Link组件，最终会被渲染成a元素
+  * NavLink是在Link基础之上增加了一些样式属性
+    * activeStyle：活跃时（匹配时）的样式
+    * activeClassName：活跃时添加的class
+    * exact：是否精准匹配
+    * 在默认匹配成功时，NavLink就会添加上一个动态的active class
+  * to属性：Link中最重要的属性，用于设置跳转到的路径
+* Route
+  * Route用于路径的匹配
+  * path属性：用于设置匹配到的路径
+  * component属性：设置匹配到路径后，渲染的组件
+  * exact：精准匹配，只有精准匹配到完全一致的路径，才会渲染对应的组件
+* Redirect
+  * Redirect用于路由的重定向，当这个组件出现时，就会执行跳转到对应的to路径中
 
-## Available Scripts
+## 3. 路由嵌套
+* 见“关于”页面
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 2. 手动跳转路由
+* 目前我们实现的跳转主要是通过Link或者NavLink进行跳转的，实际上我们也可以通过JavaScript代码进行跳转
+* 通过JavaScript代码进行跳转有一个前提：必须获取到history对象。获取到history的两种方式
+   1. 如果该组件是通过路由直接跳转过来的，那么可以直接获取history、location、match对象
+   2. 如果该组件是一个普通渲染的组件，那么不可以直接获取history、location、match对象

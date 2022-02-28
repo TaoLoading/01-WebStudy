@@ -1,0 +1,13 @@
+a {
+  margin: 0 10px;
+}
+
+a.active, a.link-active {
+  color: red;
+  font-size: 30px;
+}
+
+a.about-active {
+  color: orange;
+  font-size: 20px;
+}
