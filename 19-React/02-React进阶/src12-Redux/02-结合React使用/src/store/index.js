@@ -5,7 +5,7 @@ import saga from './saga'
 import reducer from './reducer.js'
 
 // 案例1，应用中间件并创建store
-/* const storeEnhancer = applyMiddleware(thunkMiddleware)
+/* const storeEnhancer = applyMiddleware(thunkMiddleware) // 可以应用多个中间件
 const store = createStore(reducer, storeEnhancer) */
 
 // 案例2，整合composeEnhancers函数，方便调试工具的使用
@@ -21,7 +21,7 @@ const sagaMiddleware = createSagaMiddleware()
 const storeEnhancer = applyMiddleware(thunkMiddleware, sagaMiddleware)
 // 3. 创建store
 const store = createStore(reducer, composeEnhancers(storeEnhancer))
-// 4.运行创建的sagaMiddleware中间件
+// 4.运行创建的sagaMiddleware中间件，传入一个生成器函数
 sagaMiddleware.run(saga)
 
 export default store

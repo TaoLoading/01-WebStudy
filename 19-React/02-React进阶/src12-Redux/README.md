@@ -105,7 +105,7 @@
 * 在组件中进行异步操作则必须将网络请求的异步代码放到组件的生命周期中来完成
 * 事实上，网络请求到的数据也属于我们状态管理的一部分，更好的一种方式应该是将其也交给redux来管理
 ### 10.2 实现途径
-* 中间件，如redux-thunk
+* 中间件，如redux-thunk、redux-saga
 ### 10.3 redux-thunk基础介绍
 * 默认情况下的dispatch(action)，action需要传入是一个对象
 * redux-thunk可以让dispatch(action函数)，action可以是一个函数
@@ -154,6 +154,39 @@
       }
     }
   ```
+### 10.5 redux-saga基础介绍
+* redux-saga是另一个比较常用在redux发送异步请求的中间件，它的使用更加的灵活
+### 10.6 redux-saga具体使用
+1. 导入创建中间件的函数，并创建中间件
+2. 将中间件放到applyMiddleware函数中进行应用，并使用run()语法进行运行
+3. 启动中间件的监听过程，并传入要监听的saga.js文件(生成器函数)
+4. saga.js文件的编写
+   1. 向外暴露一个生成器函数
+   2. 在生成器函数内监听想要进行监听的action，通过传入对应的生成器函数进行执行
+    ```
+      function* mySaga() {
+        yield all([
+          // 监听action中的type，进行拦截
+          // takeLatest takeEvery区别:
+          // takeLatest: 依次只能监听一个对应的action
+          // takeEvery: 每一个都会被执行
+          takeLatest(FETCH_HOME_MULTIDATA, fetchHomeMultidata),
+          // takeLatest(ADD_NUMBER, fetchHomeMultidata),
+        ])
+      }
+
+      function* fetchHomeMultidata() {
+        const res = yield axios.get('xxx')
+        const banners = res.data.data.banner.list
+        const recommends = res.data.data.recommend.list
+        // yield put(changeBannersAction(banners))
+        // yield put(changeRecommendAction(recommends))
+        yield all([
+          yield put(changeBannersAction(banners)),
+          yield put(changeRecommendAction(recommends))
+        ])
+      }
+    ```
 
 ## 11. React DevTools调试工具的使用
 1. 安装插件
