@@ -1,10 +1,11 @@
 import React from 'react'
-import CounterHook from './01-体验hooks/03-counter-hook'
+import ComplexHookState from './02-useState使用/02-复杂状态的修改'
 
 function App() {
   return (
-    <div style={{ textAlign: "center", padding: "30px" }}>
-      <CounterHook />
+    // <div style={{ textAlign: "center", padding: "30px" }}>
+    <div>
+      <ComplexHookState />
     </div>
   )
 }

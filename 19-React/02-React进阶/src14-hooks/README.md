@@ -18,8 +18,16 @@
 * Hook只能在函数组件中使用，不能在类组件，或者函数组件之外的地方使用
 
 ## 2. useState
-* useState来自react，需要从react中导入，它是一个hook
-* 参数：初始化值，如果不设置为undefined
-* 返回值：数组，共有两个元素
-  * 元素1: 当前state的值
-  * 元素2: 新函数，用于设置新的值
+1. useState来自react，需要从react中导入，它是一个hook
+2. 参数：初始化值，如果不设置为undefined
+3. 返回值：数组，共有两个元素
+   * 元素1: 当前state的值
+   * 元素2: 新函数，用于设置新的值
+4. 使用规则
+   * 只能在函数最外层调用 Hook。不要在循环、条件判断或者子函数中调用
+   * 只能在React的函数组件中调用Hook。不要在其他JavaScript函数中调用
+5. 注意事项
+   * 修改值时不可直接采用点击事件的方式修改，应展开原State再传入新元素
+    ```
+      <button onClick={e => setFriends([...friends, "tom"])}>添加朋友</button>
+    ```
