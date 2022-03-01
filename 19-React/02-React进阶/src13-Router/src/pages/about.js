@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { BrowserRouter, NavLink, Switch, Route } from 'react-router-dom'
-// import { renderRoutes, matchRoutes } from 'react-router-config'
+import { renderRoutes, matchRoutes } from 'react-router-config'
 
 export function AboutHistory(props) {
   return <h2>企业成立于2000年, 拥有悠久的历史文化</h2>
@@ -29,14 +29,14 @@ export default class About extends PureComponent {
           <NavLink exact to="/about/contact" activeClassName="about-active">联系我们</NavLink>
           <button onClick={e => this.jumpToJoin()}>加入我们</button>
 
-          <Switch>
+          {/* <Switch>
             <Route exact path="/about" component={AboutHistory} />
             <Route path="/about/culture" component={AboutCulture} />
             <Route path="/about/contact" component={AboutContact} />
             <Route path="/about/join" component={AboutJoin} />
-          </Switch>
+          </Switch> */}
 
-          {/* {renderRoutes(this.props.route.routes)} */}
+          {renderRoutes(this.props.route.routes)}
         </BrowserRouter>
       </div>
     )

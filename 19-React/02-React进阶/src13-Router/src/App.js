@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { BrowserRouter, Link, Route, NavLink, Switch, withRouter } from 'react-router-dom'
+import { renderRoutes } from 'react-router-config'
 import './App.css'
 import Home from './pages/home'
 import About from './pages/about'
@@ -11,6 +12,7 @@ import Detail from './pages/detail1'
 import Detail2 from './pages/detail2'
 import Detail3 from './pages/detail3'
 import NoMatch from './pages/noMatch'
+import routes from './router'
 
 class App extends PureComponent {
   constructor(props) {
@@ -50,7 +52,7 @@ class App extends PureComponent {
         <NavLink exact to="/nothing" activeClassName="link-active">未匹配路由</NavLink>
 
         {/* 3.使用Switch实现只匹配一次 */}
-        <Switch>
+        {/* <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={About} />
           <Route exact path="/profile" component={Profile} />
@@ -61,9 +63,12 @@ class App extends PureComponent {
           <Route path="/detail2" component={Detail2} />
           <Route path="/detail3" component={Detail3} />
           <Route component={NoMatch} />
-        </Switch>
+        </Switch> */}
 
         {/* </BrowserRouter> */}
+
+        {/* 4.使用路由文件 */}
+        {renderRoutes(routes)}
       </div>
     )
   }

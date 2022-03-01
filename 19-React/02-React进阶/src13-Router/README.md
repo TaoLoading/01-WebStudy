@@ -52,3 +52,12 @@
   ```
     <NavLink to={{ pathname: "/detail3", search: "name=abc", state: info }} activeClassName="link-active">详情3(对象)</NavLink>
   ```
+
+## 5. 剥离路由文件
+* 见router文件夹下“index.js”文件
+1. 定义路由文件
+2. 引入路由文件，并从react-router-config中引入renderRoutes
+3. 使用路由文件
+  ```
+    {renderRoutes(routes)}
+  ```
