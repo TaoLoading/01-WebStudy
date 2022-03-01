@@ -7,6 +7,9 @@ import Profile from './pages/profile'
 import User from './pages/user'
 import Login from './pages/login'
 import Product from './pages/product'
+import Detail from './pages/detail1'
+import Detail2 from './pages/detail2'
+import Detail3 from './pages/detail3'
 import NoMatch from './pages/noMatch'
 
 class App extends PureComponent {
@@ -23,6 +26,9 @@ class App extends PureComponent {
   }
 
   render() {
+    const id = "123"
+    const info = { name: "TaoLoading", age: 18, height: 1.88 }
+
     return (
       <div>
         {/* <BrowserRouter> */}
@@ -38,6 +44,9 @@ class App extends PureComponent {
         <NavLink exact to="/profile" activeClassName="link-active">我的</NavLink>
         <NavLink exact to="/user" activeClassName="link-active">用户</NavLink>
         <NavLink exact to="/product" activeClassName="link-active">商品</NavLink>
+        <NavLink to={`/detail/${id}`} activeClassName="link-active">详情(动态路由跳转)</NavLink>
+        <NavLink to={`/detail2?name=why&age=18`} activeClassName="link-active">详情2(字符串)</NavLink>
+        <NavLink to={{ pathname: "/detail3", search: "name=abc", state: info }} activeClassName="link-active">详情3(对象)</NavLink>
         <NavLink exact to="/nothing" activeClassName="link-active">未匹配路由</NavLink>
 
         {/* 3.使用Switch实现只匹配一次 */}
@@ -48,6 +57,9 @@ class App extends PureComponent {
           <Route exact path="/user" component={User} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/product" component={Product} />
+          <Route exact path="/detail/:id" component={Detail} />
+          <Route path="/detail2" component={Detail2} />
+          <Route path="/detail3" component={Detail3} />
           <Route component={NoMatch} />
         </Switch>
 
