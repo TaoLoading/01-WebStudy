@@ -6,9 +6,10 @@ import About from './pages/about'
 import Profile from './pages/profile'
 import User from './pages/user'
 import Login from './pages/login'
+import Product from './pages/product'
 import NoMatch from './pages/noMatch'
 
-export default class App extends PureComponent {
+class App extends PureComponent {
   constructor(props) {
     super(props)
 
@@ -24,30 +25,36 @@ export default class App extends PureComponent {
   render() {
     return (
       <div>
-        <BrowserRouter>
-          {/* 1.基础路由 */}
-          {/* <Link to="/">首页</Link>
+        {/* <BrowserRouter> */}
+
+        {/* 1.基础路由 */}
+        {/* <Link to="/">首页</Link>
           <Link to="/about">关于</Link>
           <Link to="/profile">我的</Link> */}
 
-          {/* 2.加入样式 */}
-          <NavLink exact to="/" activeClassName="link-active">首页</NavLink>
-          <NavLink exact to="/about" activeClassName="link-active">关于</NavLink>
-          <NavLink exact to="/profile" activeClassName="link-active">我的</NavLink>
-          <NavLink exact to="/user" activeClassName="link-active">用户</NavLink>
-          <NavLink exact to="/nothing" activeClassName="link-active">未匹配路由</NavLink>
+        {/* 2.加入样式 */}
+        <NavLink exact to="/" activeClassName="link-active">首页</NavLink>
+        <NavLink exact to="/about" activeClassName="link-active">关于</NavLink>
+        <NavLink exact to="/profile" activeClassName="link-active">我的</NavLink>
+        <NavLink exact to="/user" activeClassName="link-active">用户</NavLink>
+        <NavLink exact to="/product" activeClassName="link-active">商品</NavLink>
+        <NavLink exact to="/nothing" activeClassName="link-active">未匹配路由</NavLink>
 
-          {/* 3.使用Switch实现只匹配一次 */}
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/about" component={About} />
-            <Route exact path="/profile" component={Profile} />
-            <Route exact path="/user" component={User} />
-            <Route exact path="/login" component={Login} />
-            <Route component={NoMatch} />
-          </Switch>
-        </BrowserRouter>
+        {/* 3.使用Switch实现只匹配一次 */}
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/user" component={User} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/product" component={Product} />
+          <Route component={NoMatch} />
+        </Switch>
+
+        {/* </BrowserRouter> */}
       </div>
     )
   }
 }
+
+export default withRouter(App)
