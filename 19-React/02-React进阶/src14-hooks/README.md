@@ -26,12 +26,12 @@
 * 元素1: 当前state的值
 * 元素2: 新函数，用于设置新的值
 ### 2.4 使用规则
-* 只能在函数最外层调用 Hook。不要在循环、条件判断或者子函数中调用
-* 只能在React的函数组件中调用Hook。不要在其他JavaScript函数中调用
+1. 只能在函数最外层调用 Hook。不要在循环、条件判断或者子函数中调用
+2. 只能在React的函数组件中调用Hook。不要在其他JavaScript函数中调用
 ### 2.5 注意事项
 * 修改值时不可直接采用点击事件的方式修改，应展开原State再传入新元素
   ```
-    <button onClick={e => setFriends([...friends, "tom"])}>添加朋友</button>
+  <button onClick={e => setFriends([...friends, "tom"])}>添加朋友</button>
   ```
     
 ## 3. useEffect
@@ -50,5 +50,25 @@
 ### 4.1 介绍
 * 简化共享文件时Context的使用，直接获取Context的值
    ```
-     const user = useContext(UserContext)
+   const user = useContext(UserContext)
+   ```
+
+## 5. useReducer
+### 5.1 介绍
+* useReducer并非是Redux的替代品，而是类似useState的替代方案
+* 在某些场景下，如果state的处理逻辑比较复杂，我们可以通过useReducer来对其进行拆分
+* 数据是不会共享的，它们只是使用了相同的counterReducer的函数而已
+### 5.2 参数
+* 参数一：reducer函数
+* 参数二：初始值，类型不限
+### 5.3 使用规则
+1. 创建reducer纯函数
+2. 在组件内引入useReducer并传入reducer和初始值从而创建state
+   ```
+   const [state, dispatch] = useReducer(reducer, { counter: 0 })
+   ```
+3. 分发对应事件
+   ```
+   <button onClick={e => dispatch({ type: "increment" })}>+1</button>
+   <button onClick={e => dispatch({ type: "decrement" })}>-1</button>
    ```
