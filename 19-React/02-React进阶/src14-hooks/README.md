@@ -72,3 +72,15 @@
    <button onClick={e => dispatch({ type: "increment" })}>+1</button>
    <button onClick={e => dispatch({ type: "decrement" })}>-1</button>
    ```
+
+## 6. useCallback
+### 6.1 介绍
+* useCallback实际的目的是为了进行性能的优化
+* 将回调函数传入useCallback中，当所依赖值发生变化时才渲染该函数
+### 6.2 传参(参数形式类似useEffect)
+* 参数一：回调函数
+* 参数二：所依赖的值
+### 6.3 应用场景
+* 在将一个组件中的函数, 传递给子组件进行回调使用时, 使用useCallback对函数进行处理
+### 6.4 注意点
+* 子组件为函数式组件时需要用memo()进行包裹，见06-02文件

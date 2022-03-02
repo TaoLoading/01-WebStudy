@@ -1,6 +1,5 @@
 import React, { useState, createContext } from 'react'
-import Home from './05-useReducer使用/home'
-import Profile from './05-useReducer使用/profile'
+import CallbackHookDemo02 from './06-useCallback使用/02-useCallback进行的性能优化'
 
 export const UserContext = createContext()
 export const ThemeContext = createContext()
@@ -11,8 +10,7 @@ function App() {
 
   return (
     <div>
-      <Home />
-      <Profile />
+      <CallbackHookDemo02 />
 
       {/* 验证组件卸载时取消事件订阅，见03文件 */}
       {/* {show && <EffectHookCancelDemo />} */}
