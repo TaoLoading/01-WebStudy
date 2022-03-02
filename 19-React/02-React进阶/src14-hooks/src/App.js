@@ -1,5 +1,5 @@
 import React, { useState, createContext } from 'react'
-import CallbackHookDemo02 from './06-useCallback使用/02-useCallback进行的性能优化'
+import MemoHookDemo02 from './07-useMemo使用/02-useMemo传入子组件应用类型'
 
 export const UserContext = createContext()
 export const ThemeContext = createContext()
@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div>
-      <CallbackHookDemo02 />
+      <MemoHookDemo02 />
 
       {/* 验证组件卸载时取消事件订阅，见03文件 */}
       {/* {show && <EffectHookCancelDemo />} */}
