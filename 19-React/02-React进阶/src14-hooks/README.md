@@ -39,9 +39,16 @@
 * useEffect会在函数式组件中实现类似class生命周期的功能，通过useEffect的Hook可以告诉React需要在渲染后执行某些操作
 ### 3.2 参数
 * 参数一：传入一个回调函数，在React执行完更新DOM操作之后，就会回调这个函数
-* 参数二：传入一个数组，数组内传入useEffect执行所依赖的元素，即当该元素发生变化或页面刷新时才执行该useEffect。传入空数组则该useEffect只在页面刷新时执行
+* 参数二：传入一个数组，数组内传入useEffect执行所依赖的元素，即当该元素发生变化或页面刷新时才执行该useEffect。传入空数组则该useEffect只在页面刷新时执行。涉及到useEffect的性能优化
 ### 3.3 执行规则
 1. 在React执行完更新DOM操作之后，就会回调这个函数
 2. 默认情况下，无论是第一次渲染之后还是每次更新之后，都会执行这个回调函数
 3. return一个回调函数，在取消事件订阅时自动调用
 4. 定义多个useEffect时按其定义的先后顺序执行
+
+## 4. useContext
+### 4.1 介绍
+* 简化共享文件时Context的使用，直接获取Context的值
+   ```
+     const user = useContext(UserContext)
+   ```
