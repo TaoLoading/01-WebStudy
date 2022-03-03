@@ -1,5 +1,5 @@
 import React, { useState, createContext } from 'react'
-import UseImperativeHandleHookDemo from './09-useImperativeHandle/02-useImperativeHandle用法'
+import EffectCounterDemo from './10-useLayoutEffect/01-useEffect的count修改'
 
 export const UserContext = createContext()
 export const ThemeContext = createContext()
@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div>
-      <UseImperativeHandleHookDemo />
+      <EffectCounterDemo />
 
       {/* 验证组件卸载时取消事件订阅，见03文件 */}
       {/* {show && <EffectHookCancelDemo />} */}

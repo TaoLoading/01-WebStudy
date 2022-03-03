@@ -139,4 +139,16 @@
 3. 最后父组件使用的inputRef是经过处理后的只有focus的元素
 
 ## 10. useLayoutEffect
-### 10.1 
+### 10.1 与useEffect的区别
+* useEffect会在渲染的内容更新到DOM上后执行，不会阻塞DOM的更新
+* useLayoutEffect会在渲染的内容更新到DOM上之前执行，会阻塞DOM的更新
+### 10.2 10-02文件执行顺序
+* useEffect
+   1. 点击修改数字，将10修改为0
+   2. 渲染完毕界面，执行useEffect()
+   3. 符合if语句条件，又将0修改为随机数，重新
+* useLayoutEffect
+   1. 点击修改数字，将10修改为0
+   2. 此时页面为进行渲染，页面还是10，而state中是0
+   3. 在渲染完毕页面之前执行useLayoutEffect()
+   4. 符合if语句条件，又将0修改为随机数，渲染页面
