@@ -1,5 +1,5 @@
 import React, { useState, createContext } from 'react'
-import MemoHookDemo02 from './07-useMemo使用/02-useMemo传入子组件应用类型'
+import RefHookDemo02 from './08-useRef/02-useRef引用其他数据'
 
 export const UserContext = createContext()
 export const ThemeContext = createContext()
@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div>
-      <MemoHookDemo02 />
+      <RefHookDemo02 />
 
       {/* 验证组件卸载时取消事件订阅，见03文件 */}
       {/* {show && <EffectHookCancelDemo />} */}

@@ -92,3 +92,37 @@
 ### 7.2 传参(参数形式类似useEffect)
 * 参数一：回调函数
 * 参数二：所依赖的值
+
+## 7. useRef
+### 7.1 介绍
+* useRef返回一个Ref对象，返回的Ref对象再组件的整个生命周期保持不变
+* 即当组件重新渲染时，无论传入的值是否变化，useRef返回的值总是最初值
+### 7.2 使用规则
+1. 用法一：
+   1. 通过useRef()创建一个Ref
+      ```
+      const titleRef = useRef()
+      ```
+   2. 在组件中绑定到对应的ref
+      ```
+      <h2 ref={titleRef}>RefHookDemo01</h2>
+      ```
+   3. 获取相对的元素
+      ```
+      titleRef.current.innerHTML = "Hello World"
+      ```
+2. 用法二：
+   1. 在组件内直接使用useRef()创建一个Ref
+      ```
+      const numRef = useRef(0)
+      ```
+   2. 读取Ref中的值
+      ```
+      <h2>count上一次的值: {numRef.current}</h2>
+      ```
+   3. 在组件整个生命周期内返回的Ref对象总是不变的
+### 7.3 使用场景
+* 引用DOM
+* 使用ref保存上一次的某一个值
+### 7.4 注意点
+* 不能直接对函数式组件使用useRef()
