@@ -125,4 +125,15 @@
 * 引用DOM
 * 使用ref保存上一次的某一个值
 ### 7.4 注意点
-* 不能直接对函数式组件使用useRef()
+* 不能直接对函数式组件使用useRef()，需要在其外侧包裹forwardRef()，将函数式组件作为参数传递给，需要在其外侧包裹forwardRef()，并在函数内再进行一次ref的传值。见09-01文件
+
+## 8. useImperativeHandle
+### 8.1 介绍
+* 在使用ref时是将整个组件进行暴露，这就导致其他组件拿到该组件后可以进行任意修改
+* useImperativeHandle()可以对暴露的进行限制
+### 8.2 使用规则
+* 在函数式组件内对返回的值使用useImperativeHandle()进行修改。见09-02文件
+* 其中：
+1. 父组件中将inputRef传递给子组件
+2. 子组件经过useImperativeHandle()将useImperativeHandle()返回的对象绑定到ref返回的current中
+3. 最后父组件使用的inputRef是经过处理后的只有focus的元素

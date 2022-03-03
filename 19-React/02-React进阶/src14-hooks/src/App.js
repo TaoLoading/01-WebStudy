@@ -1,5 +1,5 @@
 import React, { useState, createContext } from 'react'
-import RefHookDemo02 from './08-useRef/02-useRef引用其他数据'
+import UseImperativeHandleHookDemo from './09-useImperativeHandle/02-useImperativeHandle用法'
 
 export const UserContext = createContext()
 export const ThemeContext = createContext()
@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div>
-      <RefHookDemo02 />
+      <UseImperativeHandleHookDemo />
 
       {/* 验证组件卸载时取消事件订阅，见03文件 */}
       {/* {show && <EffectHookCancelDemo />} */}
