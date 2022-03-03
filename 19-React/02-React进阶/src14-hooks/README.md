@@ -93,11 +93,11 @@
 * 参数一：回调函数
 * 参数二：所依赖的值
 
-## 7. useRef
-### 7.1 介绍
+## 8. useRef
+### 8.1 介绍
 * useRef返回一个Ref对象，返回的Ref对象再组件的整个生命周期保持不变
 * 即当组件重新渲染时，无论传入的值是否变化，useRef返回的值总是最初值
-### 7.2 使用规则
+### 8.2 使用规则
 1. 用法一：
    1. 通过useRef()创建一个Ref
       ```
@@ -121,19 +121,22 @@
       <h2>count上一次的值: {numRef.current}</h2>
       ```
    3. 在组件整个生命周期内返回的Ref对象总是不变的
-### 7.3 使用场景
+### 8.3 使用场景
 * 引用DOM
 * 使用ref保存上一次的某一个值
-### 7.4 注意点
+### 8.4 注意点
 * 不能直接对函数式组件使用useRef()，需要在其外侧包裹forwardRef()，将函数式组件作为参数传递给，需要在其外侧包裹forwardRef()，并在函数内再进行一次ref的传值。见09-01文件
 
-## 8. useImperativeHandle
-### 8.1 介绍
+## 9. useImperativeHandle
+### 9.1 介绍
 * 在使用ref时是将整个组件进行暴露，这就导致其他组件拿到该组件后可以进行任意修改
 * useImperativeHandle()可以对暴露的进行限制
-### 8.2 使用规则
+### 9.2 使用规则
 * 在函数式组件内对返回的值使用useImperativeHandle()进行修改。见09-02文件
 * 其中：
 1. 父组件中将inputRef传递给子组件
 2. 子组件经过useImperativeHandle()将useImperativeHandle()返回的对象绑定到ref返回的current中
 3. 最后父组件使用的inputRef是经过处理后的只有focus的元素
+
+## 10. useLayoutEffect
+### 10.1 
