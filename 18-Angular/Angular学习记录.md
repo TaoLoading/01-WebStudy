@@ -123,7 +123,7 @@
 ## 九、请求数据
 1. 方式一：使用HttpClientModule
     1. 在app.module.ts中引入HttpClientModule并在imports中注入`import { HttpClientModule } from '@angular/common/http'`
-    2. 在用到的地方引入HttpCilent / HttpHeaders(post请求需要) 并在构造函数中声明
+    2. 在用到的地方引入HttpClient / HttpHeaders(post请求需要) 并在构造函数中声明
        1. `import { HttpClient, HttpHeaders } from '@angular/common/http'`
        2. 在构造函数中声明使用`public xx:HttpClient`
     3. 发送请求
@@ -133,7 +133,7 @@
          2. 发送请求`this.http.post( api,{数据}, httpOptions ).subscribe((res) => {回调})`
     4. Angular中使用jsonp解决跨域问题
        1. 在app.module.ts中引入HttpClientJsonpModule并注入`import { HttpClientJsonpModule } from '@angular/common/http'`
-       2. 在用到的地方引入HttpCilent并在构造函数中声明
+       2. 在用到的地方引入HttpClient并在构造函数中声明
        3. 发送请求`this.http.jsonp(api, 'callback').subscribe((res) => {回调})`
 2. 方式二：使用axios
 
