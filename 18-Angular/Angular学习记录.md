@@ -15,7 +15,7 @@
     * `ng g component components/组件名`
 
 ## 二、组件开发基本流程
-1. 创建组件
+1. 创建组件`ng generate component 组件名`
 2. 在app.module.ts中引入并配置组件(使用命令创建组件时自动配置)
 3. 在ts文件中定义变量，在html文件中使用，声明变量类型的几种方式：
     * public      共有类型(默认)
