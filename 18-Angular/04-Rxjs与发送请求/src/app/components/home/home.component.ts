@@ -3,11 +3,11 @@ import { RequestService } from '../../services/request.service'
 import { map, filter } from 'rxjs/operators'
 
 @Component({
-  selector: 'app-hpme',
-  templateUrl: './hpme.component.html',
-  styleUrls: ['./hpme.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class HpmeComponent implements OnInit {
+export class HomeComponent implements OnInit {
 
   constructor(public request: RequestService) { }
 

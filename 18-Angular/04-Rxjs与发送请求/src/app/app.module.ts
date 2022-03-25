@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
-import { HpmeComponent } from './components/hpme/hpme.component';
+import { HomeComponent } from './components/home/home.component';
 
 import { RequestService } from './services/request.service';
 import { NewsComponent } from './components/news/news.component'
@@ -13,7 +13,7 @@ import { NewsComponent } from './components/news/news.component'
 @NgModule({
   declarations: [
     AppComponent,
-    HpmeComponent,
+    HomeComponent,
     NewsComponent
   ],
   imports: [

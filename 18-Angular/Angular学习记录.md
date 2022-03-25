@@ -108,11 +108,30 @@
 
 ## 八、Rxjs
 1. Rxjs处理异步
-    1. 在用到的地方引入Observable`import { Observable } from 'rxjs'`
-    2. 实例化Observable`new Observable((xx)=>{})`
+    1. 在服务中引入Observable`import { Observable } from 'rxjs'`
+    2. 在服务中封装异步方法
+       * 在改变数据处实例化Observable`new Observable((xx)=>{})`
        * 成功的回调`xx.next()`
        * 失败的回调`xx.error()`
-    3. 在用到的页面获取返回的Observable对象，并使用subscribe接收数据
+        ```
+         getRxjsData() {
+          return new Observable((observer) => {
+            setTimeout(() => {
+              var data = '这是一条用于测试异步的数据'
+              // 成功的回调
+              observer.next(data)
+            }, 2000);
+          })
+         }
+        ```
+    3. 外部调用异步方法获取数据
+       * 在用到的页面获取返回的Observable对象，并使用subscribe接收数据
+        ```
+         var rxjsData = this.request.getRxjsData()
+         var d = rxjsData.subscribe((data) => {
+           console.log(data)
+         })
+        ```
     4. 使用unsubscribe取消订阅
     5. Rxjs可以多次执行，Promise不行
 2. 6.x及以后版本使用工具函数
