@@ -1,11 +1,11 @@
 <template>
   <div>Child</div>
-  <div>{{msg}}</div>
+  <div>{{ msg }}</div>
   <button @click="emitXxx">输出数据</button>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 export default defineComponent({
   /**
    * setup()细节问题：
@@ -23,22 +23,22 @@ export default defineComponent({
    * slots: 包含所有传入的插槽内容的对象, 相当于 this.$slots
    * emit: 用来分发自定义事件的函数, 相当于 this.$emit
    */
-  name: "Child",
-  props: ["msg"],
+  name: 'Child',
+  props: ['msg'],
   beforeCreate() {
-    console.log("beforeCreate()执行了");
+    console.log('beforeCreate()执行了')
   },
   setup(props, context) {
     function emitXxx() {
       // 通过context.emit()分发事件
-      context.emit("xxx");
+      context.emit('xxx')
     }
-    console.log("setup()执行了");
+    console.log('setup()执行了')
     return {
-      emitXxx,
-    };
-  },
-});
+      emitXxx
+    }
+  }
+})
 </script>
 
 <style scoped>

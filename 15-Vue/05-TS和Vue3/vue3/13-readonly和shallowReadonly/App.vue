@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 export default defineComponent({
   /**
    * readonly:
@@ -15,8 +15,8 @@ export default defineComponent({
    * 浅只读数据
    * 创建一个代理，使其自身的 property 为只读，但不执行嵌套对象的深度只读转换
    */
-  name: "",
-});
+  name: ''
+})
 </script>
 
 <style scoped>

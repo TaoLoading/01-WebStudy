@@ -1,6 +1,6 @@
 <template>
   <h2>子级组件</h2>
-  <h3>{{msg}}</h3>
+  <h3>{{ msg }}</h3>
   <button @click="update">更新数据</button>
 </template>
 
@@ -13,68 +13,69 @@ import {
   onBeforeUpdate,
   onUpdated,
   onBeforeUnmount,
-  onUnmounted,
-} from "vue";
+  onUnmounted
+} from 'vue'
 
 export default defineComponent({
-  name: "Child",
+  name: 'Child',
   // vue2.x生命周期
   beforeCreate() {
-    console.log("2.x中的beforeCreate()");
+    console.log('2.x中的beforeCreate()')
   },
   created() {
-    console.log("2.x中的created()");
+    console.log('2.x中的created()')
   },
   beforeMount() {
-    console.log("2.x中的beforeMount()");
+    console.log('2.x中的beforeMount()')
   },
   mounted() {
-    console.log("2.x中的mounted()");
+    console.log('2.x中的mounted()')
   },
   beforeUpdate() {
-    console.log("2.x中的beforeUpdate()");
+    console.log('2.x中的beforeUpdate()')
   },
   updated() {
-    console.log("2.x中的updated()");
+    console.log('2.x中的updated()')
   },
-  // vue3中beforeDestory和destoryed已更名
+  // vue3中beforeDestroy和destroyed已更名
   beforeUnmount() {
-    console.log("2.x中的beforeDestroy()");
+    console.log('2.x中的beforeDestroy()')
   },
   unmounted() {
-    console.log("2.x中的destroyed()");
+    console.log('2.x中的destroyed()')
   },
 
   setup() {
-    console.log("3.0中的setup()，继承了beforeCreate()和created()");
-    const msg = ref("abc");
+    // vue3生命周期
+    console.log('3.0中的setup()，继承了beforeCreate()和created()')
+    const msg = ref('abc')
     const update = () => {
-      msg.value += "===";
-    };
+      msg.value += '==='
+    }
     onBeforeMount(() => {
-      console.log("3.0中的onBeforeMount");
-    });
+      console.log('3.0中的onBeforeMount')
+    })
     onMounted(() => {
-      console.log("3.0中的onMounted");
-    });
+      console.log('3.0中的onMounted')
+    })
     onBeforeUpdate(() => {
-      console.log("3.0中的onBeforeUpdate");
-    });
+      console.log('3.0中的onBeforeUpdate')
+    })
     onUpdated(() => {
-      console.log("3.0中的onUpdated");
-    });
+      console.log('3.0中的onUpdated')
+    })
     onBeforeUnmount(() => {
-      console.log("3.0中的onBeforeUnmount");
-    });
+      console.log('3.0中的onBeforeUnmount')
+    })
     onUnmounted(() => {
-      console.log("3.0中的onUnmounted");
-    });
+      console.log('3.0中的onUnmounted')
+    })
     return {
       msg,
-      update,
-    };
-  },
-});
+      update
+    }
+  }
+})
 </script>
 
 <style scoped>

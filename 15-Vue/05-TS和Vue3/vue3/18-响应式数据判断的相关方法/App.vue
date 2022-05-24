@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 export default defineComponent({
   /**
    * isRef: 检查一个值是否为一个 ref 对象
@@ -11,8 +11,8 @@ export default defineComponent({
    * isReadonly: 检查一个对象是否是由 readonly 创建的只读代理
    * isProxy: 检查一个对象是否是由 reactive 或者 readonly 方法创建的代理
    */
-  name: "",
-});
+  name: ''
+})
 </script>
 
 <style scoped>

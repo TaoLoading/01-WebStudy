@@ -1,16 +1,16 @@
 <template>
   <div>
     <h2>子组件</h2>
-    <hr>
+    <hr />
     <GrandSon />
   </div>
 </template>
 
 <script lang="ts">
-import GrandSon from "./GrandSon.vue";
+import GrandSon from './GrandSon.vue'
 export default {
   components: {
-    GrandSon,
-  },
-};
+    GrandSon
+  }
+}
 </script>
