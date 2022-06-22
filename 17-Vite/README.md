@@ -47,7 +47,7 @@
 7. 自定义环境变量
    1. 配置.env文件并在内部声明环境变量，注意命名时要以'VITE_'开头
    2. 开发环境下使用`import.meta.env.VITE_XXX`进行使用
-   3. 注意生产环境下不能使用`import.meta.env`拿到数据，开发环境下通过打包会将需要使用`import.meta.env`的数据自动转换成相关的值，如生产环境下`import.meta.env`通过打包拿到的是一个对象，`import.meta.env.xxx`拿到的是具体的值
+   3. 注意生产环境下不能使用`import.meta.env`拿到数据，开发环境下通过打包会将需要使用`import.meta.env`的数据自动转换成相关的值，如生产环境下`import.meta.env`通过打包拿到的是一个对象，`import.meta.env.xxx`拿到的是这个对象的值
    4. 当.env配置不同的后缀如development和production时，里面的值只有在对应环境下才能拿到
 
 ## 高级应用
@@ -64,4 +64,8 @@
          })
        }
        ```
-2. 
+2. glob import
+3. 预编译
+   1. 第一次运行项目前，vite将对所使用的包会进行一次预编译，同时将编译后的文件放在cache中，之后启动项目时直接在cache中读取，提升速度
+   2. CommonJS to ESM。预编译时vite通过CommonJS to ESM将非ESM语法的包转换为ESM语法规范
+   3. bundle files together。将零碎的包文件打包到一起。如对于lodash这种包含多个文件的包，使用一个lodash会导致多个引用，影响性能，通过将其打包到一个文件解决此问题
