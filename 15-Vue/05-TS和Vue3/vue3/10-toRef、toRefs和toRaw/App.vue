@@ -32,9 +32,9 @@ export default defineComponent({
       name: 'xh',
       age: 24
     })
-    let { name, age } = toRefs(obj2)
+    let { age } = toRefs(obj2)
     const change2 = () => {
-      age++
+      age.value++
     }
     return {
       obj,
