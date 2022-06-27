@@ -1,10 +1,13 @@
 <template>
   <div>
+    <h2>{{ obj2.name }}</h2>
+    <h2>{{ obj2.age }}</h2>
+    <button @click="change2">更改</button>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, toRef, toRefs } from 'vue'
+import { defineComponent, toRef, toRefs, reactive } from 'vue'
 
 export default defineComponent({
   /**
@@ -35,11 +38,14 @@ export default defineComponent({
     let { age } = toRefs(obj2)
     const change2 = () => {
       age.value++
+      obj2.name += '111'
     }
     return {
       obj,
       newObj,
-      change
+      change,
+      obj2,
+      change2
     }
   }
 })
