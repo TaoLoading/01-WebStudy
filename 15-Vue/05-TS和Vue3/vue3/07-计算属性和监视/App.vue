@@ -1,11 +1,7 @@
 <template>
   <fieldset>
     <legend>姓名操作</legend>
-    姓氏：<input
-      type="text"
-      placeholder="请输入姓氏"
-      v-model="user.firstName"
-    />
+    姓氏：<input type="text" placeholder="请输入姓氏" v-model="user.firstName" />
     <br />
     名字：<input type="text" placeholder="请输入名字" v-model="user.lastName" />
   </fieldset>
@@ -85,7 +81,8 @@ export default defineComponent({
       user,
       fullName1,
       fullName2,
-      fullName3
+      fullName3,
+      stop
     }
   }
 })
