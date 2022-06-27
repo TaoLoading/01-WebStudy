@@ -10,8 +10,7 @@ import App from './App.vue'
 
 const app = createApp(App)
 // 注册pinia
-const store = createPinia()
-app.use(store)
+app.use(createPinia())
 
 app.mount('#app')
 
