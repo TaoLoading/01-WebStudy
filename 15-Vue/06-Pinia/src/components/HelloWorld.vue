@@ -1,52 +1,42 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useMainStore } from '../store/index'
 
-defineProps<{ msg: string }>()
+const store = useMainStore()
 
-const count = ref(0)
+// 使用 storeToRefs 结构容器中的数据，以确保响应式正常
+const { msg, count } = storeToRefs(store)
+
+// 修改数据
+const modifyState = () => {
+  // 单条数据修改
+  // store.count++
+
+  // 多条数据修改
+  // 传入对象
+  /* store.$patch({
+    msg: 'hello',
+    count: store.count + 1
+  }) */
+
+  // 传入函数
+  /* store.$patch(state => {
+    state.msg = 'hello'
+    state.count++
+  }) */
+
+  // 使用 action 修改
+  store.changeData()
+}
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
-
-  <p>
-    Recommended IDE setup:
-    <a href="https://code.visualstudio.com/" target="_blank">VS Code</a>
-    +
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
-  </p>
-
-  <p>See <code>README.md</code> for more information.</p>
-
-  <p>
-    <a href="https://vitejs.dev/guide/features.html" target="_blank">
-      Vite Docs
-    </a>
-    |
-    <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Docs</a>
-  </p>
-
-  <button type="button" @click="count++">count is: {{ count }}</button>
-  <p>
-    Edit
-    <code>components/HelloWorld.vue</code> to test hot module replacement.
-  </p>
+  <div>
+    <p>{{ msg }}</p>
+    <p>{{ count }}</p>
+    <button @click="modifyState">修改数据</button>
+  </div>
 </template>
 
 <style scoped>
-a {
-  color: #42b983;
-}
-
-label {
-  margin: 0 0.5em;
-  font-weight: bold;
-}
-
-code {
-  background-color: #eee;
-  padding: 2px 4px;
-  border-radius: 4px;
-  color: #304455;
-}
 </style>
