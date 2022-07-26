@@ -1,0 +1,10 @@
+## koa学习
+1. 洋葱圈模型
+2. 结合async和await的使用
+3. koa-router：定义路由
+4. koa-body：解析http中的body
+5. @koa/cors：跨域
+6. 开发热加载
+  * 安装nodemon
+  * 修改启动脚本
+  * 执行启动命令
