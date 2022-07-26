@@ -19,7 +19,7 @@ router.get('/test', ctx => {
   const params = ctx.request.query
   console.log('params', params)
   ctx.body = {
-    name: params.name
+    ...params
   }
 })
 
@@ -40,7 +40,7 @@ router.post('/post', async ctx => {
   console.log('ctx.request', ctx.request)
   // 此时ctx.body相当于response
   ctx.body = {
-    body
+    ...body
   }
 })
 
