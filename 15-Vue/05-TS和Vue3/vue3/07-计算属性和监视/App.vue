@@ -53,7 +53,7 @@ export default defineComponent({
     // 第三个姓名的显示(监视)
     const fullName3 = ref('')
     watch(
-      user, // 第一项也可以是数组
+      user, // 如果监听引用类型中的某个属性是，要写成回调函数的形式：() => obj.a
       ({ firstName, lastName }) => {
         fullName3.value = firstName + '_' + lastName
       },
