@@ -1,53 +1,55 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>2种创建组件方式</title>
-  </head>
 
-  <body>
-    <div id="example1"></div>
-    <div id="example2"></div>
+<head>
+  <meta charset="UTF-8" />
+  <title>2种创建组件方式</title>
+</head>
 
-    <script type="text/javascript" src="../js/react.development.js"></script>
-    <script type="text/javascript" src="../js/react-dom.development.js"></script>
-    <script type="text/javascript" src="../js/babel.min.js"></script>
+<body>
+  <div id="example1"></div>
+  <div id="example2"></div>
 
-    <script type="text/babel">
-      // 1.定义一个组件(组件名大写)
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
 
-      // 方式1: 工厂函数定义组件(适用简单组件/无状态)
-      function MyComponent() {
-        // console.log(this) // 工厂函数定义组件时this为undefined
-        return <h2>工厂函数组件(简单组件/无状态)</h2>
+  <script type="text/babel">
+    // 1.定义一个组件(组件名大写)
+
+    // 方式1: 工厂函数定义组件(适用简单组件/无状态)
+    function MyComponent() {
+      // console.log(this) // 工厂函数定义组件时this为undefined
+      return <h2>工厂函数组件(简单组件/无状态)</h2>
+    }
+
+    // 方式2:  ES6类定义组件(适用复杂组件/有状态)
+    class MyComponent2 extends React.Component {
+      // 重写父类的render
+      render() {
+        console.log(this) // ES6类定义组件时this为组件的实例
+        return <h2>ES6类组件(复杂组件/有状态)</h2>
       }
+    }
 
-      // 方式2:  ES6类定义组件(适用复杂组件/有状态)
-      class MyComponent2 extends React.Component {
-        // 重写父类的render
-        render() {
-          console.log(this) // ES6类定义组件时this为组件的实例
-          return <h2>ES6类组件(复杂组件/有状态)</h2>
-        }
-      }
+    // 2.渲染组件标签
+    /**
+     * 渲染标签时，如果首字母是小写的，则会尝试寻找html与之对应的标签进行渲染，未找到则报错
+     *            如果首字母是大写的，则会尝试寻找与之对应的组件是否定义
+     */
 
-      // 2.渲染组件标签
-      /**
-       * 渲染标签时，如果首字母是小写的，则会尝试寻找html与之对应的标签进行渲染，未找到则报错
-       *            如果首字母是大写的，则会尝试寻找与之对应的组件是否定义
-       */
+    /*
+     * 如下代码：当渲染组件标签的时候，会触发react底层自动调用定义组件的工厂函数
+     * 经过babel的编译，开启了严格模式，禁止工厂函数里的this指向window
+    */
+    ReactDOM.render(<MyComponent />, document.getElementById('example1'))
 
-      /*
-       * 如下代码：当渲染组件标签的时候，会触发react底层自动调用定义组件的工厂函数
-       * 经过babel的编译，开启了严格模式，禁止工厂函数里的this指向window
-      */
-      ReactDOM.render(<MyComponent />, document.getElementById('example1'))
+    /**
+     * 如下代码：当渲染组件标签的时候，会触发react底层创建一个组件类的实例对象，
+     * 随后使用该实例对象调用render方法
+     */
+    ReactDOM.render(<MyComponent2 />, document.getElementById('example2'))
+  </script>
+</body>
 
-      /**
-       * 如下代码：当渲染组件标签的时候，会触发react底层创建一个组件类的实例对象，
-       * 随后使用该实例对象调用render方法
-       */
-      ReactDOM.render(<MyComponent2 />, document.getElementById('example2'))
-    </script>
-  </body>
 </html>

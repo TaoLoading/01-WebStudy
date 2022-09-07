@@ -12,10 +12,6 @@
 </style>
 
 <body>
-  <!-- 
-    jsx只能有一个根标签，书写标签时，如果书写js语句则需要使用大括号将变量包裹起来
-  -->
-
   <div id="demo"></div>
   <div id="test1"></div>
   <div id="test2"></div>
@@ -24,36 +20,27 @@
   <script type="text/javascript" src="../js/react-dom.development.js"></script>
   <script type="text/javascript" src="../js/babel.min.js"></script>
 
-  <!--使用原生js创建虚拟DOM-->
-  <script type="text/javascript">
-    let myID = 'atguigu'
-    let myData = 'hello,world'
+  <script>
+    let myID = 'abcd'
+    let myData = 'hello, world'
+  </script>
 
-    // 1.创建虚拟DOM对象
-    let vDOM = React.createElement('h2', { id: myID }, React.createElement('span', {}, myData))
-    let trueDOM = document.getElementById('demo')
-    // 2.渲染虚拟DOM到页面
+  <!-- 方式一： 使用原生js创建虚拟DOM -->
+  <script type="text/javascript">
+    let vDOM = React.createElement('h2', { id: myID }, React.createElement('span', {}, myData)) // React.createElement(标签名, 属性, 内容)
     ReactDOM.render(vDOM, document.getElementById('test1'))
   </script>
 
-  <!--使用jsx语法创建虚拟DOM-->
+  <!-- 方式二： 使用jsx语法创建虚拟DOM -->
   <script type="text/babel">
-    // 1.创建虚拟DOM
     let vDOM2 =
       <h2 id={myID.toUpperCase()}>
         <span className="red">
           {myData.toUpperCase()}
         </span>
       </h2>
-    // 2.渲染虚拟DOM到页面
     ReactDOM.render(vDOM2, document.getElementById('test2'))
   </script>
-
-  <!--
-      虚拟DOM：较轻(无需有过多的API)，就是一个js的对象。
-      真实DOM：较重，实实在在页面中显示的DOM
-  -->
-
 </body>
 
 </html>
