@@ -17,20 +17,19 @@
   <script type="text/javascript" src="../js/prop-types.js"></script>
 
   <script type="text/babel">
-    /*
-      需求: 自定义用来显示一个人员信息的组件，包含：姓名、年龄、性别三个信息
-      1). 姓名须为字符串类型，且是必要信息
-      2). 性别必须为字符串类型，且是必要信息
-      3). 年龄必须为数字类型，默认为18
-    */
+    /**
+     * 需求：自定义用来显示一个人员信息的组件，包含：姓名、年龄、性别三个信息
+     * 1. 姓名须为字符串类型，且是必要信息
+     * 2. 性别必须为字符串类型，且是必要信息
+     * 3. 年龄必须为数字类型，默认为18
+     */
 
-    // 1.定义组件
     // 使用ES6类定义组件
     class Person extends React.Component {
-      /*
-       * 备注：
-       * 类里面的方法一旦加上static关键字，该方法只能有类本身调用，类的实例对象不能使用。
-       * */
+      /**
+       * 注：
+       * 类里面的方法一旦加上static关键字，该方法只能有类本身调用，类的实例对象不能使用
+       */
       // 限制接收参数的类型以及必要性
       static propTypes = {
         name: PropTypes.string.isRequired,
@@ -57,7 +56,7 @@
       }
     }
 
-    // 2.工厂函数创建组件
+    // 工厂函数创建组件
     function Person(prop) {
       return (
         <ul>
@@ -81,7 +80,6 @@
       sex: '女',
     }
 
-    // 2.渲染组件标签
     ReactDOM.render(
       <Person name={p1.name} sex={p1.sex} />,
       document.getElementById('example1')

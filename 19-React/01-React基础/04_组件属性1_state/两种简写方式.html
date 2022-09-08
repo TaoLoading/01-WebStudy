@@ -16,15 +16,12 @@
   <script type="text/javascript" src="../js/babel.min.js"></script>
 
   <script type="text/babel">
-    /*
-      简写的原理
-      1.state初始化简写原理：在类中可直接对变量赋值
-      2.点击函数简写原理：之前的方式是为了将this指向修改为实例对象，利用箭头函数无this的原理，
-                        当在箭头函数内部使用this时，自动到箭头函数的外层寻找this，即类中，
-                        恰好类的this指向为实例对象
-    */
+    /**
+     * 简写的原理
+     * 1. state初始化简写原理：在类中可直接对变量赋值
+     * 2. 函数简写原理：箭头函数的this指向与外层一致，故无需担心this问题
+     */
 
-    // 1.定义组件
     class Pig extends React.Component {
       // 初始化状态
       state = { isPig: true }
@@ -44,10 +41,8 @@
         // 如下代码，在指定点击事件的时候，不要加()
         return <h2 onClick={this.handlerClick}>{isPig ? '佩奇是一头可爱的猪' : '佩奇不是猪'}</h2>
       }
-
     }
 
-    // 2.渲染组件标签
     ReactDOM.render(<Pig />, document.getElementById('example'))
     ReactDOM.render(<Pig />, document.getElementById('example2'))
 

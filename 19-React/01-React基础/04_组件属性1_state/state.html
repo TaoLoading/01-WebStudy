@@ -16,16 +16,16 @@
   <script type="text/javascript" src="../js/babel.min.js"></script>
 
   <script type="text/babel">
-    /*
-      需求: 自定义组件, 功能如下：
-      1. 显示h2标题, 初始文本为: 佩奇是一头猪
-      2. 点击标题更新为: 佩奇不是猪
-    */
+    /**
+     * 需求: 自定义组件, 功能如下：
+     * 1. 显示h2标题, 初始文本为: 佩奇是一头猪
+     * 2. 点击标题更新为: 佩奇不是猪
+     */
 
     // 1.定义组件
     class Pig extends React.Component {
       constructor(props) {
-        // console.log(props)
+        console.log(props)
         super(props)
         // 初始化状态
         this.state = {
@@ -45,7 +45,6 @@
 
       // 重写父类的render
       render() {
-        //console.log('render()')
         let { isPig } = this.state
         // 如下代码，在指定点击事件的时候，不要加()
         return <h2 onClick={this.handlerClick}>{isPig ? '佩奇是一头可爱的猪' : '佩奇不是猪'}</h2>

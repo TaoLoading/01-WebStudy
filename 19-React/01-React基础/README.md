@@ -34,4 +34,20 @@
 1. 工厂函数
 2. 类（继承React.Component）
 
-### state
+### 一般方法
+1. 方法定义在类的原型对象上(即类中，与构造器同级)，供实例使用
+2. 在调用方法时，以点击为例：
+```
+ return <h2 onClick={this.handlerClick}>{isPig ? '佩奇是一头可爱的猪' : '佩奇不是猪'}</h2>
+```
+3. 在上述基础上，若定义方法时采用function方式，则调用方法时需注意this指向问题
+   1. 直接使用上述形式调用会报this为undefined，因为此种方式调用方法的不是类的实例对象而是全局，而在类中自动开启严格模式，导致this为undefined
+   2. 修改this执行，在构造其中执行``` this.handlerClick = this.handlerClick.bind(this) ```。由于构造器中的this指向实例对象，即对方法的this指向进行修改后返回，返回的是this指向为实例对象的新方法
+   3. 若定义方法时采用箭头函数方式，则不会出现该问题
+
+### state (状态)
+1. 初始化状态``` this.state = { key: value } ``` 或者 ``` state = { key: value } ```
+2. 修改状态``` this.state({ key: value }) ```
+
+
+### props (属性)
