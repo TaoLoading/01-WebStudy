@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>refs与事件处理</title>
 </head>
+
 <body>
-<br>
+  <br>
   <div id="example"></div>
 
   <script type="text/javascript" src="../js/react.development.js"></script>
@@ -13,13 +15,13 @@
   <script type="text/javascript" src="../js/babel.min.js"></script>
 
   <script type="text/babel">
-    /*
-      需求: 自定义组件, 功能说明如下:
-      1. 点击按钮, 提示第一个输入框中的值
-      2. 当第2个输入框失去焦点时, 提示这个输入框中的值
-    */
+    /**
+     * 需求: 自定义组件, 功能说明如下:
+     * 1. 点击按钮, 提示第一个输入框中的值
+     * 2. 当第2个输入框失去焦点时, 提示这个输入框中的值
+     */
 
-    class MyComponent extends React.Component{
+    class MyComponent extends React.Component {
       clickHandle = () => {
         console.log(this)
         // this.refs用于收集所有用ref声明的内容
@@ -34,15 +36,16 @@
         return (
           <div>
             {/* this.input = input：在组件的实例对象中创建一个属性为input，并将输入的input作为值传给input属性 */}
-            <input type="text" placeholder="点击按钮时提示" ref={ (input) => { console.log('输入的input是', input); this.input = input } } />&nbsp;
-            <button onClick={ this.clickHandle }>按钮</button>&nbsp;
-            <input type="text" placeholder="失去焦点时提示" onBlur={ this.blurHandle } ref={ (input) => { this.input = input } } />
+            <input type="text" placeholder="点击按钮时提示" ref={(input) => { console.log('输入的input是', input); this.input = input }} />&nbsp;
+            <button onClick={this.clickHandle}>按钮</button>&nbsp;
+            <input type="text" placeholder="失去焦点时提示" onBlur={this.blurHandle} ref={(input) => { this.input = input }} />
           </div>
         )
       }
     }
 
-    ReactDOM.render(<MyComponent/>, document.getElementById('example'))
-</script>
+    ReactDOM.render(<MyComponent />, document.getElementById('example'))
+  </script>
 </body>
+
 </html>
