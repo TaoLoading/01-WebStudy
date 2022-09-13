@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
-  <title>受控组件&非受控组件</title>
+  <title>受控组件 & 非受控组件</title>
 </head>
+
 <body>
   <div id="example"></div>
 
@@ -11,24 +13,23 @@
   <script type="text/javascript" src="../js/react-dom.development.js"></script>
   <script type="text/javascript" src="../js/babel.min.js"></script>
   <script type="text/babel">
-    /*
-      需求: 自定义包含表单的组件
-      1. 界面如下所示
-      2. 输入用户名密码后, 点击登陆提示输入信息
-      3. 不提交表单
-    */
+    /**
+     * 需求: 自定义包含表单的组件
+     * 1. 界面如下所示
+     * 2. 输入用户名密码后, 点击登陆提示输入信息
+     * 3. 不提交表单
+     */
 
     /**
      * 受控组件：如果输入项在输入时会自动将内容维护到state中，则该组件叫做受控组件
      * 非受控组件：即不会维护到state中
      */
-  
-    // 1.创建组件
-    class Login extends React.Component{
-      
+
+    class Login extends React.Component {
+
       myRef = React.createRef()
-      
-      state = { username:'' }
+
+      state = { username: '' }
 
       handlerChange = (event) => {
         let { username } = this.state
@@ -40,24 +41,25 @@
       handlerSubmit = (event) => {
         // 阻止默认事件(页面跳转)
         event.preventDefault()
+
         let pwdDOM = this.myRef.current
         let { username } = this.state
-        alert(`用户名是：${ username }，密码：${ pwdDOM.value }`)
+        alert(`用户名是：${username}，密码：${pwdDOM.value}`)
       }
-      
+
       render() {
         return (
-          <form onSubmit = { this.handlerSubmit }>
-            用户名：<input type="text" onChange = { this.handlerChange }/>
-            密码：<input type="password" ref = { this.myRef }/>
+          <form onSubmit={this.handlerSubmit}>
+            用户名：<input type="text" onChange={this.handlerChange} />
+            密码：<input type="password" ref={this.myRef} />
             <button>登录</button>
           </form>
         )
       }
     }
-    
-    // 2.渲染组件标签
-    ReactDOM.render(<Login/>, document.getElementById('example'))
+
+    ReactDOM.render(<Login />, document.getElementById('example'))
   </script>
 </body>
+
 </html>

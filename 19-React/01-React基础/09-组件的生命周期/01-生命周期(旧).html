@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
-  <title>10_ComponentLife</title>
+  <title>声明周期 (旧)</title>
 </head>
+
 <body>
   <div id="example"></div>
 
   <script type="text/javascript" src="../js/react.development.js"></script>
   <script type="text/javascript" src="../js/react-dom.development.js"></script>
   <script type="text/javascript" src="../js/babel.min.js"></script>
+
   <script type="text/babel">
-    /*
-      需求: 自定义组件
-      1. 让指定的文本做显示/隐藏的动画
-      2. 切换时间为2S
-      3. 点击按钮从界面中移除组件界面（当前组件在页面上消失）
-    */
+    /**
+     * 需求: 自定义组件
+     * 1. 让指定的文本做显示/隐藏的动画
+     * 2. 切换时间为2S
+     * 3. 点击按钮从界面中移除组件界面（当前组件在页面上消失）
+     */
 
     /**
      * 1.初始化
@@ -28,7 +31,7 @@
      * 
      * 2.更新
      * 触发条件：this.setState({})
-     * componentWillUdate()
+     * componentWillUpdate()
      * render()
      * componentDidUpdate()
      * 
@@ -38,19 +41,19 @@
      * 
      * 在这几个生命周期内this都为组件的实例对象
      */
-    
-    class Life extends React.Component{
+
+    class Life extends React.Component {
       constructor(props) {
         console.log('--constructor--')
         super(props)
-        this.state = { opacity:1 }
+        this.state = { opacity: 1 }
       }
 
       // 即将挂载组件
       componentWillMount() {
-        console.log('--componentwillMount--')
+        console.log('--componentWillMount--')
       }
-      
+
       // 组件挂载完成
       componentDidMount() {
         console.log('--componentDidMount--')
@@ -78,27 +81,28 @@
 
       // 即将更新组件
       componentWillUpdate() {
-        console.log('--componentwillUdate--')
+        console.log('--componentWillUpdate--')
       }
 
       // 更新完毕组件
       componentDidUpdate() {
         console.log('--componentDidUpdate--')
       }
-      
+
       render() {
         console.log('--render--')
         let { opacity } = this.state
         return (
           <div>
-            <h2 style = {{ opacity }}>react学不会怎么办？</h2>
-            <button onClick = { this.death }>不活了</button>
+            <h2 style={{ opacity }}>react学不会怎么办？</h2>
+            <button onClick={this.death}>不活了</button>
           </div>
         )
       }
     }
-    
-    ReactDOM.render(<Life/>, document.getElementById('example'))
+
+    ReactDOM.render(<Life />, document.getElementById('example'))
   </script>
 </body>
+
 </html>

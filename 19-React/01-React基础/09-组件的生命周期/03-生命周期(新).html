@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
-  <title>10_ComponentLife</title>
+  <title>声明周期 (新)</title>
 </head>
+
 <body>
   <div id="example"></div>
 
@@ -17,12 +19,12 @@
      * 2. componentWillReceiveProps
      * 3. componentWillUpdate
      */
-    
-    class Life extends React.Component{
+
+    class Life extends React.Component {
       constructor(props) {
         console.log('--constructor--')
         super(props)
-        this.state = { opacity:1 }
+        this.state = { opacity: 1 }
       }
 
       // getDerivedStateFromProps
@@ -35,18 +37,18 @@
         console.log('--getDerivedStateFromProps--')
         return null
       }
-      
+
       // 组件挂载完成
       componentDidMount() {
         console.log('--componentDidMount--')
-        /* this.timeID = setInterval(() => {
+        this.timeID = setInterval(() => {
           let { opacity } = this.state
           opacity -= 0.1
           if (opacity <= 0) {
             opacity = 1
           }
           this.setState({ opacity })
-        }, 200) */
+        }, 200)
       }
 
       // getSnapshotBeforeUpdate
@@ -76,24 +78,25 @@
       }
 
       // 即将卸载组件
-      /* componentWillUnmount() {
+      componentWillUnmount() {
         console.log('--componentWillUnmount--')
         clearInterval(this.timeID)
-      } */
-      
+      }
+
       render() {
         console.log('--render--')
         let { opacity } = this.state
         return (
           <div>
-            <h2 style = {{ opacity }}>react学不会怎么办？</h2>
-            <button onClick = { this.death }>不活了</button>
+            <h2 style={{ opacity }}>react学不会怎么办？</h2>
+            <button onClick={this.death}>不活了</button>
           </div>
         )
       }
     }
-    
-    ReactDOM.render(<Life/>, document.getElementById('example'))
+
+    ReactDOM.render(<Life />, document.getElementById('example'))
   </script>
 </body>
+
 </html>
