@@ -1,19 +1,19 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from 'react'
 // 用于创建时间总线
-import { EventEmitter } from 'events';
+import { EventEmitter } from 'events'
 
 // 事件总线: event bus
-const eventBus = new EventEmitter();
+const eventBus = new EventEmitter()
 
 class Home extends PureComponent {
   componentDidMount() {
     // 添加事件监听
-    eventBus.addListener("sayHello", this.handleSayHelloListener);
+    eventBus.addListener('sayHello', this.handleSayHelloListener)
   }
 
   componentWillUnmount() {
     // 取消事件监听
-    eventBus.removeListener("sayHello", this.handleSayHelloListener);
+    eventBus.removeListener('sayHello', this.handleSayHelloListener)
   }
 
   handleSayHelloListener(num, message) {
@@ -42,7 +42,7 @@ class Profile extends PureComponent {
 
   emitEvent() {
     // 发出事件
-    eventBus.emit("sayHello", 123, "Hello Home");
+    eventBus.emit('sayHello', 123, 'Hello Home')
   }
 }
 

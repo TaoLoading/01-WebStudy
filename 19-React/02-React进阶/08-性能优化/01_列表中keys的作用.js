@@ -5,7 +5,7 @@ export default class App extends Component {
     super(props)
 
     this.state = {
-      movies: ["星际穿越", "盗梦空间"]
+      movies: ['星际穿越', '盗梦空间']
     }
   }
 
@@ -27,10 +27,10 @@ export default class App extends Component {
 
   insertMovie() {
     // this.setState({
-    //   movies: [...this.state.movies, "大话西游"]
+    //   movies: [...this.state.movies, '大话西游']
     // })
     this.setState({
-      movies: ["大话西游", ...this.state.movies]
+      movies: ['大话西游', ...this.state.movies]
     })
   }
 }

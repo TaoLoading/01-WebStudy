@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 /**
  * Context 提供了一个无需为每层组件手动添加 props，就能在组件树间进行数据传递的方法。
@@ -19,13 +19,13 @@ import React, { Component } from 'react';
 
 // 创建Context对象
 const UserContext = React.createContext({
-  nickname: "HT",
+  nickname: 'HT',
   level: 100
 })
 
 class ProfileHeader extends Component {
   render() {
-    console.log(this.context);
+    console.log(this.context)
     return (
       <div>
         <h2>用户昵称: {this.context.nickname}</h2>
@@ -56,7 +56,7 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      nickname: "LHT",
+      nickname: 'LHT',
       level: 99
     }
   }

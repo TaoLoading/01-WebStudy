@@ -1,9 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from 'react'
 
-import { 
-  HomeWrapper,
-  TitleWrapper
-} from "./style";
+import { HomeWrapper, TitleWrapper } from './style'
 
 export default class Home extends PureComponent {
   render() {

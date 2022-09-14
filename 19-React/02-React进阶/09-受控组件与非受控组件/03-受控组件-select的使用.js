@@ -5,7 +5,7 @@ export default class App extends PureComponent {
     super(props)
 
     this.state = {
-      fruits: "orange"
+      fruits: 'orange'
     }
   }
 

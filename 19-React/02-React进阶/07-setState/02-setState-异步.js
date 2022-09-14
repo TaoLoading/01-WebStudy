@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 /**
  * 为什么setState是异步更新的：
@@ -26,7 +26,7 @@ export default class App extends Component {
     super(props)
 
     this.state = {
-      message: "Hello World"
+      message: 'Hello World'
     }
   }
 
@@ -48,14 +48,14 @@ export default class App extends Component {
   changeText() {
     // 2.setState是异步更新
     // this.setState({
-    //   message: "你好啊,李银河"
+    //   message: '你好啊,李银河'
     // })
-    // console.log(this.state.message); // Hello World
+    // console.log(this.state.message) // Hello World
 
     // 方式一: 获取异步更新后的数据
     // setState(更新的state, 回调函数)
     this.setState({
-      message: "你好啊,李银河"
+      message: '你好啊,李银河'
     }, () => {
       console.log(this.state.message)
     })

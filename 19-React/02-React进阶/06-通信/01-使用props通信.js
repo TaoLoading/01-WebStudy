@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 function ProfileHeader(props) {
   return (
@@ -29,13 +29,13 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      nickname: "LHT",
+      nickname: 'LHT',
       level: 99
     }
   }
 
   render() {
-    // const {nickname, level} = this.state;
+    // const {nickname, level} = this.state
 
     return (
       <div>

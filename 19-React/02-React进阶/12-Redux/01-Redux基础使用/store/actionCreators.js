@@ -2,14 +2,14 @@ import { ADD_NUMBER, SUB_NUMBER, INCREMENT, DECREMENT } from './constants.js'
 
 // export function addAction(num) {
 //   return {
-//     type: "ADD_NUMBER",
+//     type: 'ADD_NUMBER',
 //     num
 //   }
 // }
 
 // export const addAction = (num) => {
 //   return {
-//     type: "ADD_NUMBER",
+//     type: 'ADD_NUMBER',
 //     num
 //   }
 // }

@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react';
-import styled from 'styled-components';
+import React, { PureComponent } from 'react'
+import styled from 'styled-components'
 
 /**
  * 特点:
@@ -25,7 +25,7 @@ export default class Profile extends PureComponent {
     super(props);
 
     this.state = {
-      color: "purple"
+      color: 'purple'
     }
   }
 

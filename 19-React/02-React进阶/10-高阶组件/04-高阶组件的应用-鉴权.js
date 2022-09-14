@@ -17,8 +17,8 @@ function withAuth(WrappedComponent) {
     }
   }
 
-  NewCpn.displayName = "AuthCpn"
-  return NewCpn;
+  NewCpn.displayName = 'AuthCpn'
+  return NewCpn
 }
 
 class CartPage extends PureComponent {

@@ -18,7 +18,7 @@ function enhanceComponent(WrappedComponent) {
     }
   }
   // 组件重命名
-  NewComponent.displayName = "newName"
+  NewComponent.displayName = 'newName'
   return NewComponent
 }
 
@@ -28,7 +28,7 @@ function enhanceComponent2(WrappedComponent) {
     return <WrappedComponent {...props} />
   }
   // 组件重命名
-  NewComponent.displayName = "newName"
+  NewComponent.displayName = 'newName'
   return NewComponent
 }
 

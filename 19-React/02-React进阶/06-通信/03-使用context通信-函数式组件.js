@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 /**
  * 当接收数据的组件为函数式组件时，则不能使用 "接收数据组件名称.contextType = Context共享对象名称"，
@@ -8,7 +8,7 @@ import React, { Component } from 'react';
  */
 
 const UserContext = React.createContext({
-  nickname: "HT2",
+  nickname: 'HT2',
   level: 100
 })
 
@@ -48,7 +48,7 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      nickname: "LHT2",
+      nickname: 'LHT2',
       level: 99
     }
   }

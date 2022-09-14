@@ -17,7 +17,7 @@ function withAuth(WrappedComponent) {
     }
   }
 
-  NewCpn.displayName = "AuthCpn"
+  NewCpn.displayName = 'AuthCpn'
   return NewCpn;
 }
 

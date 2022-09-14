@@ -5,9 +5,9 @@ export default class App extends PureComponent {
     super(props);
 
     this.state = {
-      username: "",
-      password: "",
-      valid: ""
+      username: '',
+      password: '',
+      valid: ''
     }
   }
 
@@ -49,9 +49,9 @@ export default class App extends PureComponent {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
-    const { username, password, valid } = this.state;
-    console.log(username, password, valid);
+    event.preventDefault()
+    const { username, password, valid } = this.state
+    console.log(username, password, valid)
   }
 
   handleChange(event) {

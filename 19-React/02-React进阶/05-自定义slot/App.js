@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import NavBar from './NavBar'
 import NavBar2 from './NavBar2'
 

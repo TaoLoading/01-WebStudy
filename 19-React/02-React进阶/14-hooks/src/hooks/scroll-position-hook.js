@@ -7,10 +7,10 @@ function useScrollPosition() {
     const handleScroll = () => {
       setScrollPosition(window.scrollY)
     }
-    document.addEventListener("scroll", handleScroll)
+    document.addEventListener('scroll', handleScroll)
 
     return () => {
-      document.removeEventListener("scroll", handleScroll)
+      document.removeEventListener('scroll', handleScroll)
     }
   }, [])
 

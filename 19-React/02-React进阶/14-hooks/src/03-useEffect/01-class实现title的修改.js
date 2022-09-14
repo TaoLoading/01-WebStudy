@@ -13,12 +13,12 @@ export default class ClassCounterTitleChange extends PureComponent {
     // 1.修改DOM
     document.title = this.state.counter
     // 2.订阅事件
-    console.log("订阅一些事件")
+    console.log('订阅一些事件')
     // 3.网络请求
-    console.log("发送一些网络请求")
+    console.log('发送一些网络请求')
   }
   componentWillUnmount() {
-    console.log("取消事件订阅")
+    console.log('取消事件订阅')
   }
   componentDidUpdate() {
     document.title = this.state.counter

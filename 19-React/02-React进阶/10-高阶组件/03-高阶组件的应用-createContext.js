@@ -1,4 +1,4 @@
-import React, { PureComponent, createContext } from 'react';
+import React, { PureComponent, createContext } from 'react'
 
 /**
  * 需求分析：
@@ -20,9 +20,9 @@ import React, { PureComponent, createContext } from 'react';
 
 // 1.创建Context
 const UserContext = createContext({
-  nickname: "默认",
+  nickname: '默认',
   level: -1,
-  区域: "中国"
+  区域: '中国'
 })
 
 // 2.创建子组件

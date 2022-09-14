@@ -2,16 +2,16 @@ import React, { useState } from 'react'
 
 export default function ComplexHookState() {
 
-  const [friends, setFriends] = useState(["xiaoming", "xiaohong"])
+  const [friends, setFriends] = useState(['xiaoming', 'xiaohong'])
   const [students, setStudents] = useState([
-    { id: 110, name: "why", age: 18 },
-    { id: 111, name: "xiaoming", age: 30 },
-    { id: 112, name: "xiaohong", age: 25 },
+    { id: 110, name: 'why', age: 18 },
+    { id: 111, name: 'xiaoming', age: 30 },
+    { id: 112, name: 'xiaohong', age: 25 },
   ])
 
   function addFriend() {
-    friends.push("hmm");
-    setFriends(friends);
+    friends.push('hmm')
+    setFriends(friends)
   }
 
   function incrementAgeWithIndex(index) {
@@ -30,7 +30,7 @@ export default function ComplexHookState() {
           })
         }
       </ul>
-      <button onClick={e => setFriends([...friends, "tom"])}>添加朋友</button>
+      <button onClick={e => setFriends([...friends, 'tom'])}>添加朋友</button>
       {/* 错误的做法 */}
       <button onClick={addFriend}>添加朋友</button>
 

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react'
 
 function calcNumber(count) {
-  console.log("calcNumber重新计算")
+  console.log('calcNumber重新计算')
   let total = 0
   for (let i = 1; i <= count; i++) {
     total += i

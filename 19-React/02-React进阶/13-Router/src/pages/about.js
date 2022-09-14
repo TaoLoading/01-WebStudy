@@ -18,7 +18,7 @@ export function AboutJoin(props) {
 export default class About extends PureComponent {
   render() {
     // console.log(this.props.route)
-    // const branch = matchRoutes(this.props.route.routes, "/about")
+    // const branch = matchRoutes(this.props.route.routes, '/about')
     // console.log(branch)
 
     return (
@@ -46,6 +46,6 @@ export default class About extends PureComponent {
     /* console.log(this.props.history)
     console.log(this.props.location)
     console.log(this.props.match) */
-    this.props.history.push("/about/join")
+    this.props.history.push('/about/join')
   }
 }

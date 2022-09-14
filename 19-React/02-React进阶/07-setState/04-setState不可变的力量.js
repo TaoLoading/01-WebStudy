@@ -46,7 +46,7 @@ export default class App extends PureComponent {
   insertData() {
     // 1.在开发中不要这样来做
     // const newData = {name: "tom", age: 30}
-    // this.state.friends.push(newData);
+    // this.state.friends.push(newData)
     // this.setState({
     //   friends: this.state.friends
     // });

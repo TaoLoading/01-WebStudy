@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 /**
  * 当使用多个context时，则通过多层嵌套实现通信
@@ -57,10 +57,10 @@ function Profile(props) {
 
 export default class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
-      nickname: "LHT",
+      nickname: 'LHT',
       level: 99
     }
   }

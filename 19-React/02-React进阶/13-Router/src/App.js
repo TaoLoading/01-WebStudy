@@ -20,16 +20,16 @@ class App extends PureComponent {
 
     this.state = {
       links: [
-        { to: "/", title: "首页" },
-        { to: "/about", title: "关于" },
-        { to: "/profile", title: "我的" },
+        { to: '/', title: '首页' },
+        { to: '/about', title: '关于' },
+        { to: '/profile', title: '我的' },
       ]
     }
   }
 
   render() {
-    const id = "123"
-    const info = { name: "TaoLoading", age: 18, height: 1.88 }
+    const id = '123'
+    const info = { name: 'TaoLoading', age: 18, height: 1.88 }
 
     return (
       <div>

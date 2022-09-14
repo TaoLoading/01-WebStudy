@@ -4,14 +4,14 @@ import axios from 'axios'
 // 写法一
 /* export function addAction(num) {
   return {
-    type: "ADD_NUMBER",
+    type: 'ADD_NUMBER',
     num
   }
 } */
 // 写法二
 /* export const addAction = (num) => {
   return {
-    type: "ADD_NUMBER",
+    type: 'ADD_NUMBER',
     num
   }
 } */
@@ -45,7 +45,7 @@ export const changeRecommendAction = (recommends) => ({
 // 该函数会被自动调用
 export const getHomeMultidataAction = (dispatch, getState) => {
   axios({
-    url: "xxx",
+    url: 'xxx',
   }).then(res => {
     const data = res.data.data;
     dispatch(changeBannersAction(data.banner.list));

@@ -4,7 +4,7 @@ export default function MultiHookState() {
 
   const [count, setCount] = useState(0)
   const [age, setAge] = useState(18)
-  const [friends, setFriends] = useState(["xiaoming", "xiaohong"])
+  const [friends, setFriends] = useState(['xiaoming', 'xiaohong'])
 
   return (
     <div>

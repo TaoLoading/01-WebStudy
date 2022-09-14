@@ -7,7 +7,7 @@ export default class TransitionGroupDemo extends PureComponent {
     super(props)
 
     this.state = {
-      names: ["name1", "name2", "name3"]
+      names: ['name1', 'name2', 'name3']
     }
   }
 
@@ -37,7 +37,7 @@ export default class TransitionGroupDemo extends PureComponent {
 
   addName() {
     this.setState({
-      names: [...this.state.names, "name1"]
+      names: [...this.state.names, 'name1']
     })
   }
 

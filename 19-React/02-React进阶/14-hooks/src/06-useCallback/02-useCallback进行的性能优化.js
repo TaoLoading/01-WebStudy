@@ -6,23 +6,23 @@ import React, { useState, useCallback, memo } from 'react'
  */
 
 const HYButton = memo((props) => {
-  console.log("HYButton重新渲染: " + props.title);
+  console.log('HYButton重新渲染: ' + props.title)
   return <button onClick={props.increment}>HYButton +1</button>
 })
 
 export default function CallbackHookDemo02() {
-  console.log("CallbackHookDemo02重新渲染")
+  console.log('CallbackHookDemo02重新渲染')
 
   const [count, setCount] = useState(0)
   const [show, setShow] = useState(true)
 
   const increment1 = () => {
-    console.log("执行increment1函数")
+    console.log('执行increment1函数')
     setCount(count + 1)
   }
 
   const increment2 = useCallback(() => {
-    console.log("执行increment2函数")
+    console.log('执行increment2函数')
     setCount(count + 1)
   }, [count])
 

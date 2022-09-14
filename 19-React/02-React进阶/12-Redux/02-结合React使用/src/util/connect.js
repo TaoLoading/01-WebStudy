@@ -1,4 +1,4 @@
-import { PureComponent } from "react"
+import { PureComponent } from 'react'
 import store from '../store/index'
 import StoreContext from './context'
 

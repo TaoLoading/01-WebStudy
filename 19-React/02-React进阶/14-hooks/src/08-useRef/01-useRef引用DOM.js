@@ -18,7 +18,7 @@ export default function RefHookDemo01() {
   const testRef2 = useRef()
 
   function changeDOM() {
-    titleRef.current.innerHTML = "Hello World"
+    titleRef.current.innerHTML = 'Hello World'
     inputRef.current.focus()
     console.log(testRef.current)
     console.log(testRef2.current)

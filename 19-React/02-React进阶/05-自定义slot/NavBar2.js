@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 class NavBar2 extends Component {
   render() {
-    const { leftSlot, centerSlot, rightSlot } = this.props;
+    const { leftSlot, centerSlot, rightSlot } = this.props
 
     return (
       <div className='navBar'>

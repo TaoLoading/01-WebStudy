@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 // 通过'styled-components'使用js语法写css
 // 返回一个react组件，组件的标签为'styled.标签名'中规定的标签

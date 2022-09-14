@@ -10,8 +10,8 @@ class addition extends PureComponent {
       url: 'xxx'
     }).then(res => {
       const data = res.data.data;
-      this.props.changeBanners(data.banner.list);
-      this.props.changeRecommends(data.recommend.list);
+      this.props.changeBanners(data.banner.list)
+      this.props.changeRecommends(data.recommend.list)
     })
   }
 
@@ -44,10 +44,10 @@ const mapDispatchToProps = dispatch => {
       dispatch(addAction(num))
     },
     changeBanners(banners) {
-      dispatch(changeBannersAction(banners));
+      dispatch(changeBannersAction(banners))
     },
     changeRecommends(recommends) {
-      dispatch(changeRecommendAction(recommends));
+      dispatch(changeRecommendAction(recommends))
     }
   }
 }

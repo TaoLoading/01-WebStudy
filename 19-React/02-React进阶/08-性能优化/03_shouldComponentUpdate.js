@@ -6,12 +6,12 @@ export default class App extends Component {
 
     this.state = {
       counter: 0,
-      message: "Hello World"
+      message: 'Hello World'
     }
   }
 
   render() {
-    console.log("App render函数被调用")
+    console.log('App render函数被调用')
     return (
       <div>
         <h2>当前计数: {this.state.counter}</h2>
@@ -37,7 +37,7 @@ export default class App extends Component {
 
   changeText() {
     this.setState({
-      message: "你好啊,李银河"
+      message: '你好啊,李银河'
     })
   }
 }

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 export default function CounterHook() {
   const [count, setCount] = useState(() => 10)
 
-  console.log("CounterHook渲染")
+  console.log('CounterHook渲染')
 
   function handleBtnClick() {
     // setCount(count + 10)

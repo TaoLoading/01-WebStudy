@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from 'react'
 
 /**
  * 需求分析：
@@ -12,7 +12,7 @@ import React, { PureComponent } from 'react';
 // 1.定义高阶组件
 function enhanceRegionProps(WrappedComponent) {
   return props => {
-    return <WrappedComponent {...props} region="中国" />
+    return <WrappedComponent {...props} region='中国' />
   }
 }
 
