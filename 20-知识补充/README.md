@@ -1,2 +1,2 @@
 # 文件夹迁移
-## 此部分为手写代码，由于文件夹迁移此部分不在更新，最新代码在仓库[08-Algorithm](https://github.com/TaoLoading/08-Algorithm)中
+## 此子文件夹已弃用，会随更新逐渐迁移到新仓库[08-Coding](https://github.com/TaoLoading/08-Coding)，更新完毕后会删除此子文件夹
