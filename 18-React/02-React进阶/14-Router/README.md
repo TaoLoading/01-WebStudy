@@ -13,13 +13,17 @@
     * exact：是否精准匹配
     * 在默认匹配成功时，NavLink就会添加上一个动态的active class
   * to属性：Link中最重要的属性，用于设置跳转到的路径
+    ``` <NavLink className="list-group-item" to="/about">About</NavLink> ```
 * Route
   * Route用于路径的匹配
   * path属性：用于设置匹配到的路径
   * component属性：设置匹配到路径后，渲染的组件
   * exact：精准匹配，只有精准匹配到完全一致的路径，才会渲染对应的组件
-* Redirect
-  * Redirect用于路由的重定向，当这个组件出现时，就会执行跳转到对应的to路径中
+    ``` <Route path="/about" element={<About />} /> ```
+* Navigate
+  * ~~Redirect用于路由的重定向，当这个组件出现时，就会执行跳转到对应的to路径中~~ **最新版本中已删除Redirect，改为Navigate**
+  * Navigate用于路由的重定向，当这个组件出现时，就会执行跳转到对应的to路径中
+    ``` <Route path="/" element={<Navigate to="/about" />}></Route> ```
 
 ## 2. 路由嵌套
 * 见“关于”页面
