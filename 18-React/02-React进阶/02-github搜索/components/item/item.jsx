@@ -7,7 +7,7 @@ export default class Item extends Component {
     return (
       <div className="card">
         <a href={html_url}>
-          <img src={avatar_url} style={{ width: '100px' }} alt="用户头像" />
+          <img src={avatar_url} style={{ width: "100px" }} alt="用户头像" />
         </a>
         <p className="card-text">{login}</p>
       </div>

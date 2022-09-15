@@ -4,9 +4,13 @@ import List from './components/list/list.jsx'
 
 export default class MyComponent extends Component {
   state = {
+    // 用户列表
     user: [],
+    // 是否是第一次查询
     isFirst: true,
+    // 是否开启loading
     isLoading: false,
+    // 报错
     error: ''
   }
 
