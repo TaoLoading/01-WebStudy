@@ -2,22 +2,12 @@ import React, { Component } from 'react'
 import Search from './components/search/search.jsx'
 import List from './components/list/list.jsx'
 
-export default class MyComponent extends Component {
-  state = {
-    // 用户列表
-    user: [],
-    // 是否是第一次查询
-    isFirst: true,
-    // 是否开启loading
-    isLoading: false,
-    // 报错
-    error: ''
-  }
-
-  // 更新状态
-  updateState = (obj) => {
-    this.setState(obj)
-  }
+export default class App extends Component {
+  /**
+   * 利用PubSub实现消息订阅发布机制
+   * 订阅：PubSub.subscribe('消息名', () => {})
+   * 发布：PubSub.publish('消息名', data)
+   */
 
   render() {
     return (
@@ -25,10 +15,10 @@ export default class MyComponent extends Component {
         <section className="jumbotron">
           <h3 className="jumbotron-heading">搜索github用户</h3>
           {/* search组件 */}
-          <Search updateState={this.updateState} />
+          <Search />
         </section>
         {/* list组件 */}
-        <List {...this.state} />
+        <List />
       </div>
     )
   }

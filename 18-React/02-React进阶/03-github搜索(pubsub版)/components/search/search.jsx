@@ -8,8 +8,9 @@ export default class Search extends Component {
   search = () => {
     // 获取输入
     let keyWord = this.myRef.current.value
-    // 校验数据
-    if (keyWord.trim() === '') return
+    if (keyWord.trim() === '') {
+      return alert('请输入内容')
+    }
     // 发生请求
     let URL = `https://api.github.com/search/users?q=${keyWord}`
     // 更新状态
