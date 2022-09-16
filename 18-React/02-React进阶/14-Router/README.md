@@ -8,24 +8,24 @@
 * Link和NavLink
   * 通常路径的跳转是使用Link组件，最终会被渲染成a元素
   * NavLink是在Link基础之上增加了一些样式属性
-    * activeStyle：活跃时（匹配时）的样式
-    * activeClassName：活跃时添加的class
-    * exact：是否精准匹配
-    * 在默认匹配成功时，NavLink就会添加上一个动态的active class
-  * to属性：Link中最重要的属性，用于设置跳转到的路径
-    ``` <NavLink className="list-group-item" to="/about">About</NavLink> ```
+    * ~~activeStyle：活跃时（匹配时）的样式~~**6版本中已删除**
+    * ~~activeClassName：活跃时添加的class~~**6版本中已删除**
+    * ~~在默认匹配成功时，NavLink就会添加上一个动态的active class~~**6版本中已删除**
+    * 6版本中设置NavLink样式的方式为在className中设置函数，通过判断isActive的值来增加相关类型
+    ``` <NavLink className={({ isActive }) => { return isActive ? '类名' : '' }} to="/about">About</NavLink> ```
 * Route
   * Route用于路径的匹配
   * path属性：用于设置匹配到的路径
   * component属性：设置匹配到路径后，渲染的组件
   * exact：精准匹配，只有精准匹配到完全一致的路径，才会渲染对应的组件
+  * caseSensitive：用于规定匹配时是否区分大小写
     ``` <Route path="/about" element={<About />} /> ```
 * Navigate
-  * ~~Redirect用于路由的重定向，当这个组件出现时，就会执行跳转到对应的to路径中~~ **最新版本中已删除Redirect，改为Navigate**
+  * ~~Redirect用于路由的重定向，当这个组件出现时，就会执行跳转到对应的to路径中~~ **6版本中已删除Redirect，改为Navigate**
   * Navigate用于路由的重定向，当这个组件出现时，就会执行跳转到对应的to路径中
     ``` <Route path="/" element={<Navigate to="/about" />}></Route> ```
 
-## 2. 路由嵌套
+## 2. 嵌套路由
 * 见“关于”页面
 
 ## 3. 手动跳转路由
