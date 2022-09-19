@@ -44,36 +44,59 @@
       ```
       {element}
       ```
-3. 使用嵌套路由时，在父组件内用``` <Outlet /> ```来指定路由展示位置
+3. 嵌套路由
+   * 在父组件内用``` <Outlet /> ```来指定路由展示位置
+   * 嵌套路由在路由跳转时可简写to的值，即路由不需要写完整的路由，简写时自动将该路由拼接到当前路由下
+     ```
+     <NavLink className="list-group-item" to="news">News</NavLink>
+     ```
 
 ## 手动跳转路由
 * 目前我们实现的跳转主要是通过Link或者NavLink进行跳转的，实际上我们也可以通过JavaScript代码进行跳转
 * 通过JavaScript代码进行跳转有一个前提：必须获取到history对象。获取到history的两种方式
    1. 如果该组件是通过路由直接跳转过来的，那么可以直接获取history、location、match对象
     ```
-      this.props.history.push("/about/join")
+    this.props.history.push("/about/join")
     ```
    2. 如果该组件是一个普通渲染的组件，那么不可以直接获取history、location、match对象。使用withRouter高阶组件获取
       1. 在index.js文件中将App组件包裹在BrowserRouter标签中
       2. 在组件内使用withRouter进行处理
-        ```
-          export default withRouter(App)
-        ```
+       ```
+       export default withRouter(App)
+       ```
 
-## 路由传参
-* 见“详情”页面
-1. 动态路由
-  ```
-    <NavLink to={`/detail/${id}`} activeClassName="link-active">详情</NavLink
-  ```
-2. 传递字符串
-  ```
-    <NavLink to={`/detail2?name=why&age=18`} activeClassName="link-active">详情2(字符串)</NavLink>
-  ```
-3. 传递对象state
-  ```
-    <NavLink to={{ pathname: "/detail3", search: "name=abc", state: info }} activeClassName="link-active">详情3(对象)</NavLink>
-  ```
+## 路由传参（见 Detail 页面）
+1. params参数
+   * 路由跳转
+   ```
+   <Link to={`detail/${item.id}/${item.title}/${item.content}`}>{item.content}</Link>
+   ```
+   * 路由配置
+   ```
+   ......
+   {
+     path: 'message',
+     element: <Message />,
+     children: [
+       {
+         path: 'detail/:id/:title/:content',
+         element: <Detail />
+       }
+     ]
+   }
+   ```
+   * 接收参数。使用useParams()
+   ```
+   const { id, title, content } = useParams()
+   ```
+1. 传递字符串
+   ```
+   <NavLink to={`/detail2?name=why&age=18`} activeClassName="link-active">详情2(字符串)</NavLink>
+   ```
+2. 传递对象state
+   ```
+   <NavLink to={{ pathname: "/detail3", search: "name=abc", state: info }} activeClassName="link-active">详情3(对象)</NavLink>
+   ```
 
 ## 剥离路由文件
 * 见router文件夹下“index.js”文件
