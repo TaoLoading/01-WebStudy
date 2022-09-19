@@ -1,4 +1,6 @@
-# react-router
+# React Router
+
+**以下内容基于React Router6版本**
 
 ## 基础API
 1. BrowserRouter或HashRouter
