@@ -89,11 +89,33 @@
    ```
    const { id, title, content } = useParams()
    ```
-1. 传递字符串
+2. search参数
+   * 路由跳转
    ```
-   <NavLink to={`/detail2?name=why&age=18`} activeClassName="link-active">详情2(字符串)</NavLink>
+   <Link to={`detail?id=${item.id}&title=${item.title}&content=${item.content}`}>{item.content}</Link>
    ```
-2. 传递对象state
+   * 路由配置
+   ```
+   ......
+   {
+    path: 'message',
+    element: <Message />,
+    children: [
+      {
+        path: 'detail',
+        element: <Detail />
+      }
+    ]
+   }
+   ```
+   * 接收参数。使用useSearchParams()
+   ```
+   const [search] = useSearchParams()
+   const id = search.get('id')
+   const title = search.get('title')
+   const content = search.get('content')
+   ```
+3. 传递对象state
    ```
    <NavLink to={{ pathname: "/detail3", search: "name=abc", state: info }} activeClassName="link-active">详情3(对象)</NavLink>
    ```
