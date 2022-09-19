@@ -51,20 +51,6 @@
      <NavLink className="list-group-item" to="news">News</NavLink>
      ```
 
-## 手动跳转路由
-* 目前我们实现的跳转主要是通过Link或者NavLink进行跳转的，实际上我们也可以通过JavaScript代码进行跳转
-* 通过JavaScript代码进行跳转有一个前提：必须获取到history对象。获取到history的两种方式
-   1. 如果该组件是通过路由直接跳转过来的，那么可以直接获取history、location、match对象
-    ```
-    this.props.history.push("/about/join")
-    ```
-   2. 如果该组件是一个普通渲染的组件，那么不可以直接获取history、location、match对象。使用withRouter高阶组件获取
-      1. 在index.js文件中将App组件包裹在BrowserRouter标签中
-      2. 在组件内使用withRouter进行处理
-       ```
-       export default withRouter(App)
-       ```
-
 ## 路由传参（见 Detail 页面）
 1. params参数
    * 路由跳转
@@ -144,12 +130,25 @@
    ```
    const { state: { id, title, content } } = useLocation()
    ```
+   
+## 编程式路由导航
+通过useNavigate()来实现，如下。navigate()中还可直接传入数字实现前进后退
+```
+const navigate = useNavigate()
+function jumpDetail(item) {
+ navigate('detail', {
+   replace: false,
+   state: {
+     id: item.id,
+     title: item.title,
+     content: item.content
+   }
+ })
+}
 
-## 剥离路由文件
-* 见router文件夹下“index.js”文件
-1. 定义路由文件
-2. 引入路由文件，并从react-router-config中引入renderRoutes
-3. 使用路由文件
-  ```
-    {renderRoutes(routes)}
-  ```
+......
+
+<li key={item.id}>
+ <button onClick={() => jumpDetail(item)}>跳转到详情{item.id}</button>
+</li>
+```
