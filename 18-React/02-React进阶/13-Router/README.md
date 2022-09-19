@@ -115,9 +115,34 @@
    const title = search.get('title')
    const content = search.get('content')
    ```
-3. 传递对象state
+3. state参数
+   * 路由跳转
    ```
-   <NavLink to={{ pathname: "/detail3", search: "name=abc", state: info }} activeClassName="link-active">详情3(对象)</NavLink>
+   <Link to="detail" state={{
+    id: item.id,
+    title: item.title,
+    content: item.content
+   }}>
+    {item.content}
+   </Link>
+   ```
+   * 路由配置
+   ```
+   ......
+   {
+    path: 'message',
+    element: <Message />,
+    children: [
+      {
+        path: 'detail',
+        element: <Detail />
+      }
+    ]
+   }
+   ```
+   * 接收参数。使用useLocation()
+   ```
+   const { state: { id, title, content } } = useLocation()
    ```
 
 ## 剥离路由文件
