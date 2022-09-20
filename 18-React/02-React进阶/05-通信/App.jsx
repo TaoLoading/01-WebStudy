@@ -7,12 +7,12 @@ import React, { Component } from 'react'
  */
 
 const UserContext = React.createContext({
-  nickname: "HT",
+  nickname: 'HT',
   level: 100
 })
 
 const ThemeContext = React.createContext({
-  color: "black"
+  color: 'black'
 })
 
 function ProfileHeader() {

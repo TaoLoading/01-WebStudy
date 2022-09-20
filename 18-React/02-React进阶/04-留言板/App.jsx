@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Add from './component/add/add.jsx'
-import List from './component/list/list.jsx'
+import Add from './component/add/add'
+import List from './component/list/list'
 
 export default class MyComponent extends Component {
   // 定义评论数据
