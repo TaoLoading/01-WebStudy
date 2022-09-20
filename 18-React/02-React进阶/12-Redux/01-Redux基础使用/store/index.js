@@ -3,4 +3,4 @@ import reducer from './reducer.js'
 
 const store = redux.createStore(reducer)
 
-export default store;
+export default store
