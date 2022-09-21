@@ -10,7 +10,7 @@ root.render(
   </React.StrictMode>
 )
 
-// 检测store的改变，改变时渲染页面
+// 监测store的改变，改变时渲染页面
 // 因为redux只负责管理状态，不进行页面的渲染
 store.subscribe(() => {
   root.render(
