@@ -1,36 +1,36 @@
+/**
+ * 此文件为Count组件的UI组件(具体见react-redux模型图)
+ */
+
 import React, { Component } from 'react'
-import store from './redux/store'
-import { incrementAction, incrementAsyncAction, decrementAction } from './redux/actions'
 
 export default class index extends Component {
-
   // 加
   increment = () => {
     const { value } = this.selectNumber
-    store.dispatch(incrementAction(value))
+    this.props.add(value)
   }
   // 减
   decrement = () => {
     const { value } = this.selectNumber
-    store.dispatch(decrementAction(value))
+    this.props.reduce(value)
   }
   // 和为奇数时再加
   incrementOfOdd = () => {
-    const count = store.getState()
-    if (count % 2 === 0) return
+    if (this.props.count % 2 === 0) return
     const { value } = this.selectNumber
-    store.dispatch(incrementAction(value))
+    this.props.add(value)
   }
   // 异步加
   incrementOfAsync = () => {
     const { value } = this.selectNumber
-    store.dispatch(incrementAsyncAction(value, 1000))
+    this.props.addAsync(value, 1000)
   }
 
   render() {
     return (
       <div>
-        <h1>当前求和为{store.getState()}</h1>&nbsp;
+        <h1>当前求和为{this.props.count}</h1>&nbsp;
         <select ref={c => this.selectNumber = c}>
           <option value="1">1</option>
           <option value="2">2</option>
