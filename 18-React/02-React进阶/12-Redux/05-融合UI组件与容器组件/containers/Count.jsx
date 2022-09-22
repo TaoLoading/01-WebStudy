@@ -1,10 +1,14 @@
 /**
- * 此文件为Count组件的UI组件(具体见react-redux模型图)
+ * 此文件为Count组件的容器组件(具体见react-redux模型图)
  */
 
 import React, { Component } from 'react'
+// 用于连接UI组件与redux
+import { connect } from 'react-redux'
+import { incrementAction, incrementAsyncAction, decrementAction } from '../redux/actions'
 
-export default class index extends Component {
+// 定义UI组件
+class Count extends Component {
   // 加
   increment = () => {
     const { value } = this.selectNumber
@@ -44,3 +48,17 @@ export default class index extends Component {
     )
   }
 }
+
+// 定义容器组件
+export default connect(
+  // mapStateToProps
+  state => ({
+    count: state
+  }),
+  // mapDispatchToProps
+  {
+    add: incrementAction,
+    addAsync: incrementAsyncAction,
+    reduce: decrementAction
+  }
+)(Count)

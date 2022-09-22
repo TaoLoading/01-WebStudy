@@ -2,47 +2,63 @@
  * 此文件为Count组件的容器组件(具体见react-redux模型图)
  */
 
+import React, { Component } from 'react'
 // 用于连接UI组件与redux
 import { connect } from 'react-redux'
-import CountUI from '../components/Count'
 import { incrementAction, incrementAsyncAction, decrementAction } from '../redux/actions'
 
-/**
- * mapStateToProps()
- * 1. 用于传递状态
- * 2. 返回一个对象
- * 3. react-redux在调用该函数时已经传入了state
- */
-const mapStateToProps = (state) => {
-  return {
-    count: state
+// 定义UI组件
+class Count extends Component {
+  // 加
+  increment = () => {
+    const { value } = this.selectNumber
+    this.props.add(value)
   }
-}
+  // 减
+  decrement = () => {
+    const { value } = this.selectNumber
+    this.props.reduce(value)
+  }
+  // 和为奇数时再加
+  incrementOfOdd = () => {
+    if (this.props.count % 2 === 0) return
+    const { value } = this.selectNumber
+    this.props.add(value)
+  }
+  // 异步加
+  incrementOfAsync = () => {
+    const { value } = this.selectNumber
+    this.props.addAsync(value, 1000)
+  }
 
-/**
- * mapDispatchToProps()
- * 1. 用于传递操作状态的方法
- * 2. 返回一个对象，对象的value是一个方法
- */
-const mapDispatchToProps = (dispatch) => {
-  return {
-    add: (num) => {
-      dispatch(incrementAction(num))
-    },
-    addAsync: (num, delay) => {
-      dispatch(incrementAsyncAction(num, delay))
-    },
-    reduce: (num) => {
-      dispatch(decrementAction(num))
-    }
+  render() {
+    return (
+      <div>
+        <h1>当前求和为{this.props.count}</h1>&nbsp;
+        <select ref={c => this.selectNumber = c}>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>&nbsp;
+        <button onClick={this.increment}>+</button>&nbsp;
+        <button onClick={this.decrement}>-</button>&nbsp;
+        <button onClick={this.incrementOfOdd}>和为奇数时再加</button>&nbsp;
+        <button onClick={this.incrementOfAsync}>异步加</button>
+      </div>
+    )
   }
 }
-// 可简写为：
-/* const mapDispatchToProps = {
-  add: incrementAction,
-  addAsync: incrementAsyncAction,
-  reduce: decrementAction
-} */
 
 // 定义容器组件
-export default connect(mapStateToProps, mapDispatchToProps)(CountUI)
+export default connect(
+  // mapStateToProps
+  state => ({
+    count: state
+  }),
+  // mapDispatchToProps
+  {
+    add: incrementAction,
+    addAsync: incrementAsyncAction,
+    reduce: decrementAction
+  }
+)(Count)
