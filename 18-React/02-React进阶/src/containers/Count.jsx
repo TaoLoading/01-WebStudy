@@ -1,5 +1,5 @@
 /**
- * 此文件为Count组件的容器组件(具体见react-redux模型图)
+ * 此文件为Count组件的容器组件
  */
 
 import React, { Component } from 'react'
