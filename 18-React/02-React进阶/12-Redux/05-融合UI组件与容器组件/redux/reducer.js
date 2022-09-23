@@ -5,7 +5,7 @@
  *                        第一次被调用时，preState为undefined
  */
 
-import { INCREMENT, DECREMENT } from '../constant'
+import { INCREMENT, DECREMENT } from './constant'
 
 export default function countReducer(preState, action) {
   if (preState === undefined) {

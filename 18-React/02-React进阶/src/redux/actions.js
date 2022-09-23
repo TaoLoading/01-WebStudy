@@ -2,7 +2,8 @@
  * 该文件用于创建action对象
  */
 
-import { INCREMENT, DECREMENT } from '../constant'
+import { INCREMENT, DECREMENT } from './constant'
+import store from './store'
 
 // 加
 /**

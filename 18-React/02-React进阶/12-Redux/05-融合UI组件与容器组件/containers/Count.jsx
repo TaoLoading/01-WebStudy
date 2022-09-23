@@ -51,11 +51,12 @@ class Count extends Component {
 
 // 定义容器组件
 export default connect(
-  // mapStateToProps
+  // mapStateToProps，用于映射状态
+  // 此处的值传入UI组件中，UI组件可使用this.props.xxx拿到对应的值
   state => ({
     count: state
   }),
-  // mapDispatchToProps
+  // mapDispatchToProps，用于映射操作状态的方法
   {
     add: incrementAction,
     addAsync: incrementAsyncAction,

@@ -12,6 +12,7 @@ import { incrementAction, incrementAsyncAction, decrementAction } from '../redux
  * 1. 用于传递状态
  * 2. 返回一个对象
  * 3. react-redux在调用该函数时已经传入了state
+ * 4. 此处的值传入UI组件中，UI组件可使用this.props.xxx拿到对应的值
  */
 const mapStateToProps = (state) => {
   return {
