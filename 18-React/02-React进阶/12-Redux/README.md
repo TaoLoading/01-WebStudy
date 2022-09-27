@@ -157,10 +157,9 @@ react-redux其实是Redux的官方React绑定库，其中封装了一些Redux与
 
 ## 多个组件间的数据共享（重要，见06-react-redux数据共享）
 1. 完善各个组件的action和reducer
-2. 修改store。合并reducer，如下
+2. 合并reducer，如下
 ```javascript
-import { legacy_createStore, applyMiddleware, combineReducers } from 'redux'
-import thunk from 'redux-thunk'
+import { combineReducers } from 'redux'
 import countReducer from './reducers/count'
 import personReducer from './reducers/person'
 
@@ -168,11 +167,19 @@ import personReducer from './reducers/person'
  * 合并Reducer
  * 使用combineReducers合并Reducer，key为自定义，value为reducer
  */
-const allReducer = combineReducers({
+export default allReducer = combineReducers({
   count: countReducer,
   persons: personReducer
 })
+```
+  注意：合并reducer后导致state变化，变为一个新的对象，对于组件mapStateToProps中对应的state需要通过`.属性`的方式取到
+3. 修改store，使用合并后的reducer
+```javascript
+import { legacy_createStore, applyMiddleware } from 'redux'
+// 用于支持异步action
+import thunk from 'redux-thunk'
+// 合并后的reducer
+import allReducer from './reducers/index'
 
 export default legacy_createStore(allReducer, applyMiddleware(thunk))
 ```
-  注意：合并reducer后导致state变化，变为一个新的对象，对于组件mapStateToProps中对应的state需要通过`.属性`的方式取到
