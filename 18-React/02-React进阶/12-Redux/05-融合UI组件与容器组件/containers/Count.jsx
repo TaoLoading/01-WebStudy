@@ -1,7 +1,3 @@
-/**
- * 此文件为Count组件的容器组件
- */
-
 import React, { Component } from 'react'
 // 用于连接UI组件与redux
 import { connect } from 'react-redux'

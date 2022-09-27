@@ -5,9 +5,6 @@
 import { INCREMENT, DECREMENT } from '../constant'
 
 // 加
-/**
- * 异步action中，返回值为对象
- */
 export const incrementAction = (data) => {
   return { type: INCREMENT, data }
 }

@@ -6,16 +6,10 @@ import { INCREMENT, DECREMENT } from './constant'
 import store from './store'
 
 // 加
-/**
- * 异步action中，返回值为对象
- */
 export const incrementAction = (data) => {
   return { type: INCREMENT, data }
 }
 // 异步加
-/**
- * 异步action中，返回值为函数，其中一般会调用同步action
- */
 export const incrementAsyncAction = (data, delay) => {
   return (dispatch) => {
     setTimeout(() => {
