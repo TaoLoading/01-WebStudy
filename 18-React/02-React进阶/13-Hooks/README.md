@@ -30,7 +30,7 @@
 2. 只能在React的函数组件中调用Hook。不要在其他JavaScript函数中调用
 ### 2.5 注意事项
 * 修改值时不可直接采用点击事件的方式修改，应展开原State再传入新元素
-  ```
+  ```javascript
   <button onClick={e => setFriends([...friends, "tom"])}>添加朋友</button>
   ```
     
@@ -49,7 +49,7 @@
 ## 4. useContext
 ### 4.1 介绍
 * 简化共享文件时Context的使用，直接获取Context的值
-   ```
+   ```javascript
    const user = useContext(UserContext)
    ```
 
@@ -64,11 +64,11 @@
 ### 5.3 使用规则
 1. 创建reducer纯函数
 2. 在组件内引入useReducer并传入reducer和初始值从而创建state
-   ```
+   ```javascript
    const [state, dispatch] = useReducer(reducer, { counter: 0 })
    ```
 3. 分发对应事件
-   ```
+   ```javascript
    <button onClick={e => dispatch({ type: "increment" })}>+1</button>
    <button onClick={e => dispatch({ type: "decrement" })}>-1</button>
    ```
@@ -100,24 +100,24 @@
 ### 8.2 使用规则
 1. 用法一：
    1. 通过useRef()创建一个Ref
-      ```
+      ```javascript
       const titleRef = useRef()
       ```
    2. 在组件中绑定到对应的ref
-      ```
+      ```javascript
       <h2 ref={titleRef}>RefHookDemo01</h2>
       ```
    3. 获取相对的元素
-      ```
+      ```javascript
       titleRef.current.innerHTML = "Hello World"
       ```
 2. 用法二：
    1. 在组件内直接使用useRef()创建一个Ref
-      ```
+      ```javascript
       const numRef = useRef(0)
       ```
    2. 读取Ref中的值
-      ```
+      ```javascript
       <h2>count上一次的值: {numRef.current}</h2>
       ```
    3. 在组件整个生命周期内返回的Ref对象总是不变的

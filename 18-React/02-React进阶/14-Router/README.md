@@ -14,7 +14,7 @@
      * ~~activeClassName：活跃时添加的class~~**6版本中已删除**
      * ~~在默认匹配成功时，NavLink就会添加上一个动态的active class~~**6版本中已删除**
      * 6版本中设置NavLink样式的方式为在className中设置函数，通过判断isActive的值来增加相关类型
-   ```
+   ```javascript
    <NavLink className={({ isActive }) => { return isActive ? '类名' : '' }} to="/about">About</NavLink>
    ```
 3. Route
@@ -23,13 +23,13 @@
    * component属性：设置匹配到路径后，渲染的组件
    * exact：精准匹配，只有精准匹配到完全一致的路径，才会渲染对应的组件
    * caseSensitive：用于规定匹配时是否区分大小写
-   ```
+   ```javascript
    <Route path="/about" element={<About />} />
    ```
 4. Navigate
    * ~~Redirect用于路由的重定向，当这个组件出现时，就会执行跳转到对应的to路径中~~ **6版本中已删除Redirect，改为Navigate**
    * Navigate用于路由的重定向，当这个组件出现时，就会执行跳转到对应的to路径中
-   ```
+   ```javascript
    <Route path="/" element={<Navigate to="/about" />}></Route>
    ```
 
@@ -39,28 +39,28 @@
    * 在使用嵌套路由时，子路由的path最前面不加'/'
 2. 使用路由。在App.js文件内使用如下，其中routes为路由文件
    * 声明路由
-      ```
+      ```javascript
       const element = useRoutes(routes)
       ```
    * 注册路由
-      ```
+      ```javascript
       {element}
       ```
 3. 嵌套路由
    * 在父组件内用``` <Outlet /> ```来指定路由展示位置
    * 嵌套路由在路由跳转时可简写to的值，即路由不需要写完整的路由，简写时自动将该路由拼接到当前路由下
-     ```
+     ```javascript
      <NavLink className="list-group-item" to="news">News</NavLink>
      ```
 
 ## 路由传参（见 Detail 页面）
 1. params参数
    * 路由跳转
-   ```
+   ```javascript
    <Link to={`detail/${item.id}/${item.title}/${item.content}`}>{item.content}</Link>
    ```
    * 路由配置
-   ```
+   ```javascript
    ......
    {
      path: 'message',
@@ -74,16 +74,16 @@
    }
    ```
    * 接收参数。使用useParams()
-   ```
+   ```javascript
    const { id, title, content } = useParams()
    ```
 2. search参数
    * 路由跳转
-   ```
+   ```javascript
    <Link to={`detail?id=${item.id}&title=${item.title}&content=${item.content}`}>{item.content}</Link>
    ```
    * 路由配置
-   ```
+   ```javascript
    ......
    {
     path: 'message',
@@ -97,7 +97,7 @@
    }
    ```
    * 接收参数。使用useSearchParams()
-   ```
+   ```javascript
    const [search] = useSearchParams()
    const id = search.get('id')
    const title = search.get('title')
@@ -105,7 +105,7 @@
    ```
 3. state参数
    * 路由跳转
-   ```
+   ```javascript
    <Link to="detail" state={{
     id: item.id,
     title: item.title,
@@ -115,7 +115,7 @@
    </Link>
    ```
    * 路由配置
-   ```
+   ```javascript
    ......
    {
     path: 'message',
@@ -129,13 +129,13 @@
    }
    ```
    * 接收参数。使用useLocation()
-   ```
+   ```javascript
    const { state: { id, title, content } } = useLocation()
    ```
    
 ## 编程式路由导航
 通过useNavigate()来实现，如下。navigate()中还可直接传入数字实现前进后退
-```
+```javascript
 const navigate = useNavigate()
 function jumpDetail(item) {
  navigate('detail', {
