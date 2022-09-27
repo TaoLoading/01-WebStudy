@@ -1,6 +1,16 @@
-import { legacy_createStore, applyMiddleware } from 'redux'
+import { legacy_createStore, applyMiddleware, combineReducers } from 'redux'
 // 用于支持异步action
 import thunk from 'redux-thunk'
-import countReducer from './reducer'
+import countReducer from './reducers/count'
+import personReducer from './reducers/person'
 
-export default legacy_createStore(countReducer, applyMiddleware(thunk))
+/**
+ * 合并Reducer
+ * 使用combineReducers合并Reducer，key为自定义，value为reducer
+ */
+const allReducer = combineReducers({
+  count: countReducer,
+  persons: personReducer
+})
+
+export default legacy_createStore(allReducer, applyMiddleware(thunk))

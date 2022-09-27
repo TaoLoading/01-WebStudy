@@ -1,11 +1,7 @@
-/**
- * 此文件为Count组件的容器组件
- */
-
 import React, { Component } from 'react'
 // 用于连接UI组件与redux
 import { connect } from 'react-redux'
-import { incrementAction, incrementAsyncAction, decrementAction } from '../redux/actions'
+import { incrementAction, incrementAsyncAction, decrementAction } from '../redux/actions/count'
 
 // 定义UI组件
 class Count extends Component {
@@ -34,7 +30,8 @@ class Count extends Component {
   render() {
     return (
       <div>
-        <h1>当前求和为{this.props.count}</h1>&nbsp;
+        <h2>Count组件</h2>
+        <h1>当前求和为{this.props.count}；下方组件总人数为{this.props.personNum}</h1>&nbsp;
         <select ref={c => this.selectNumber = c}>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -54,7 +51,8 @@ export default connect(
   // mapStateToProps，用于映射状态
   // 此处的值传入UI组件中，UI组件可使用this.props.xxx拿到对应的值
   state => ({
-    count: state
+    count: state.count,
+    personNum: state.persons.length
   }),
   // mapDispatchToProps，用于映射操作状态的方法
   {
