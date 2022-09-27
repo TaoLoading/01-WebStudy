@@ -10,9 +10,9 @@ export default function CounterHook() {
    *      * 元素1: 当前state的值
    *      * 元素2: 新函数，用于设置新的值
    */
-  const arr = useState(0);
-  const state = arr[0];
-  const setState = arr[1];
+  const arr = useState(0)
+  const state = arr[0]
+  const setState = arr[1]
 
   return (
     <div>

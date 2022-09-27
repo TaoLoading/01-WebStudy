@@ -10,7 +10,7 @@ export default class CounterClass extends PureComponent {
   }
 
   render() {
-    console.log('class counter渲染');
+    console.log('class counter渲染')
     return (
       <div>
         <h2>当前计数: {this.state.counter}</h2>
