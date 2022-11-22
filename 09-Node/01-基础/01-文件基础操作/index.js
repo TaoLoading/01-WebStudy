@@ -1,0 +1,38 @@
+const fs = require('fs')
+
+/**
+ * 读取文件
+ * 参数1：文件路径
+ * 参数2：字符类型
+ * 参数3：回调函数
+ *      参数1：失败的结果
+ *      参数2：成功的结果
+ */
+/* fs.readFile('./01-文件基础操作/test.txt', 'utf8', (err, data) => {
+  console.log('err', err)
+  console.log('data', data)
+}) */
+
+/**
+ * 写入文件
+ * 参数1：文件路径
+ * 参数2：写入的内容
+ * 参数3：回调函数
+ *      参数1：失败的结果
+ */
+/* fs.writeFile('./01-文件基础操作/test.txt', '这是替换后的文字', (err) => {
+  console.log('err', err)
+}) */
+
+/**
+ * 追加文字
+ */
+fs.readFile('./01-文件基础操作/test.txt', 'utf8', (err, data) => {
+  if (!err) {
+    const newData = data + '这是追加的内容'
+    fs.writeFile('./01-文件基础操作/test.txt', newData, (err) => {
+      console.log('err', err)
+    })
+  }
+})
+
