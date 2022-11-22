@@ -1,0 +1,21 @@
+{
+  "name": "my-cli",
+  "version": "1.0.0",
+  "description": "* 全局命令执行\r * 命令行交互\r * 创建项目初始化代码文件及目录",
+  "main": "index.js",
+  "bin": {
+    "myClI": "bin/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "TaoLoading",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "4.1.2",
+    "commander": "^9.4.1",
+    "download-git-repo": "^3.0.2",
+    "inquirer": "8.2.1",
+    "ora": "5.4.1"
+  }
+}
