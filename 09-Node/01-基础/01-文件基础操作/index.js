@@ -36,7 +36,7 @@ const fs = require('fs')
  */
 fs.readFile(__dirname + '/test.txt', 'utf8', (err, data) => {
   if (!err) {
-    const newData = data + '这是追加的内容'
+    const newData = data + '\n' + '这是追加的内容'
     fs.writeFile(__dirname + '/test.txt', newData, (err) => {
       if (!err) {
         console.log('追加成功')
