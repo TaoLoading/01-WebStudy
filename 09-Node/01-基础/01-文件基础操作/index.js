@@ -8,9 +8,12 @@ const fs = require('fs')
  *      参数1：失败的结果
  *      参数2：成功的结果
  */
-/* fs.readFile('./01-文件基础操作/test.txt', 'utf8', (err, data) => {
-  console.log('err', err)
-  console.log('data', data)
+/* fs.readFile(__dirname + '/test.txt', 'utf8', (err, data) => {
+  if (!err) {
+    console.log('data', data)
+  } else {
+    console.log('err', err)
+  }
 }) */
 
 /**
@@ -20,19 +23,29 @@ const fs = require('fs')
  * 参数3：回调函数
  *      参数1：失败的结果
  */
-/* fs.writeFile('./01-文件基础操作/test.txt', '这是替换后的文字', (err) => {
-  console.log('err', err)
+/* fs.writeFile(__dirname + '/test.txt', '这是替换后的文字', (err) => {
+  if (!err) {
+    console.log('写入成功')
+  } else {
+    console.log('err', err)
+  }
 }) */
 
 /**
  * 追加文字
  */
-fs.readFile('./01-文件基础操作/test.txt', 'utf8', (err, data) => {
+fs.readFile(__dirname + '/test.txt', 'utf8', (err, data) => {
   if (!err) {
     const newData = data + '这是追加的内容'
-    fs.writeFile('./01-文件基础操作/test.txt', newData, (err) => {
-      console.log('err', err)
+    fs.writeFile(__dirname + '/test.txt', newData, (err) => {
+      if (!err) {
+        console.log('追加成功')
+      } else {
+        console.log('err', err)
+      }
     })
+  } else {
+    console.log('err', err)
   }
 })
 
