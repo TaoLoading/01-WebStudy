@@ -15,7 +15,7 @@ const actionContent = async (projectName) => {
       choices: config.frameworkArr
     }
   ])
-  console.log('-------', config.frameworkUrl[answer.framework])
+  // console.log('下载地址', config.frameworkUrl[answer.framework])
   downloadFun(config.frameworkUrl[answer.framework], projectName)
 }
 

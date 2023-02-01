@@ -3,7 +3,7 @@
  */
 
 const helpContent = (program) => {
-  program.option('-f <framework>', '设置框架')
+  program.option('crt projectName', '新建项目')
 }
 
 module.exports = helpContent
