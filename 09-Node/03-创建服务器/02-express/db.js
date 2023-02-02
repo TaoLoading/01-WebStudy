@@ -1,14 +1,19 @@
+/**
+ * 操作数据
+ */
+
 const fs = require('fs')
 const { promisify } = require('util')
+
+// 将读写操作 promise化，用于避免产生回调地狱
 const readFile = promisify(fs.readFile)
 const writeFile = promisify(fs.writeFile)
-exports.getDb = async () => {
-  let data = await readFile('./db.json', 'utf8')
+
+exports.getData = async () => {
+  const data = await readFile(__dirname + '/db.json', 'utf-8')
   return JSON.parse(data)
 }
 
-exports.serveDb = async (data) => {
-  let stringData = JSON.stringify(data)
-  return await writeFile('./db.json', stringData)
-
+exports.writeData = async (data) => {
+  return await writeFile(__dirname + '/db.json', JSON.stringify(data))
 }
