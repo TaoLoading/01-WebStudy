@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000
 app.use(express.json())
 app.use(express.urlencoded())
 
-// 跨域请求处理中华将军
+// 跨域请求处理中间件
 app.use(cors())
 
 // 日志记录中间件
