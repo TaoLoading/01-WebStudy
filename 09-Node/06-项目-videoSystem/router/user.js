@@ -7,6 +7,7 @@ router
   .get('/', (req, res) => {
     res.send('/user')
   })
+  .post('/register', userController.register)
   .get('/list', userController.userList)
   .delete('/', userController.deleteUser)
 
