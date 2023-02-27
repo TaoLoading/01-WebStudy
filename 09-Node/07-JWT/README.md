@@ -12,7 +12,7 @@ JSON Web Token（缩写 JWT）是目前最流行的跨域认证解决方案
 
 JWT 由 Header、Payload、Signature三部分组成，如图所示：
 
-![](D:\MyProjects\01-WebStudy\09-Node\07-JWT\数据结构.jpg)
+![](./数据结构.jpg)
 
 1. Header
    
