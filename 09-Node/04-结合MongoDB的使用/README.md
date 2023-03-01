@@ -64,7 +64,7 @@
 ```javascript
 const u = new userModel({ username: 'test01', age: 18 })
 ```
-5. 结束
+5. 保存
 ```javascript
 u.save()
 ```
