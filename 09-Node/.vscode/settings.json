@@ -1,0 +1,29 @@
+{
+  "cSpell.words": [
+    "HDEL",
+    "HGET",
+    "HGETALL",
+    "hset",
+    "LINDEX",
+    "LLEN",
+    "LPOP",
+    "LPUSH",
+    "LRANGE",
+    "RPOP",
+    "RPUSH",
+    "SADD",
+    "SCARD",
+    "SISMEMBER",
+    "SMEMBERS",
+    "SPOP",
+    "SREM",
+    "ZADD",
+    "ZCARD",
+    "ZRANGE",
+    "ZRANGEBYSCORE",
+    "ZRANK",
+    "zrem",
+    "ZREVRANK",
+    "ZSCORE"
+  ]
+}
