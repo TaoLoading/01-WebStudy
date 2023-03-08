@@ -69,3 +69,10 @@
 
 2. 路由
 
+   2. 实现路由架构：使用@koa/router
+   2. 传参处理：
+      2. 动态参数：ctx.params
+      2. query参数：ctx.query
+      2. body参数：使用koa-body
+
+
