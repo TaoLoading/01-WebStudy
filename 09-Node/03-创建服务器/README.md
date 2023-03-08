@@ -65,14 +65,14 @@
 
 2. 洋葱圈模型
 
-   ![](D:\MyProjects\01-WebStudy\09-Node\03-创建服务器\03-koa\img\洋葱圈模型.png)
+   ![](./03-koa/img/洋葱圈模型.png)
 
-2. 路由
+3. 路由
 
-   2. 实现路由架构：使用@koa/router
+   1. 实现路由架构：使用@koa/router
    2. 传参处理：
-      2. 动态参数：ctx.params
+      1. 动态参数：ctx.params
       2. query参数：ctx.query
-      2. body参数：使用koa-body
+      3. body参数：使用koa-body
 
 
