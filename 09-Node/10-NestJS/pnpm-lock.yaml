@@ -4,8 +4,10 @@ specifiers:
   '@nestjs/cli': ^9.0.0
   '@nestjs/common': ^9.0.0
   '@nestjs/core': ^9.0.0
+  '@nestjs/mapped-types': '*'
   '@nestjs/platform-express': ^9.0.0
   '@nestjs/schematics': ^9.0.0
+  '@nestjs/swagger': ^6.2.1
   '@nestjs/testing': ^9.0.0
   '@types/express': ^4.17.13
   '@types/jest': 29.2.4
@@ -27,11 +29,14 @@ specifiers:
   ts-node: ^10.0.0
   tsconfig-paths: 4.1.1
   typescript: ^4.7.4
+  webpack: ^5.0.0
 
 dependencies:
   '@nestjs/common': registry.npmmirror.com/@nestjs/common/9.3.9_mnr6j2del53muneqly5h4y27ai
   '@nestjs/core': registry.npmmirror.com/@nestjs/core/9.3.9_q6agyr4hwia55oswpsa7zjxcpm
+  '@nestjs/mapped-types': registry.npmmirror.com/@nestjs/mapped-types/1.2.2_ilxajbd2e536h4oohar7aljlry
   '@nestjs/platform-express': registry.npmmirror.com/@nestjs/platform-express/9.3.9_77foi4w27ghy47yutmnzv7krjy
+  '@nestjs/swagger': registry.npmmirror.com/@nestjs/swagger/6.2.1_shbtxdxgogsm4p64bg2toeylku
   reflect-metadata: registry.npmmirror.com/reflect-metadata/0.1.13
   rxjs: registry.npmmirror.com/rxjs/7.8.0
 
@@ -53,10 +58,11 @@ devDependencies:
   source-map-support: registry.npmmirror.com/source-map-support/0.5.21
   supertest: registry.npmmirror.com/supertest/6.3.3
   ts-jest: registry.npmmirror.com/ts-jest/29.0.3_hfbqr3rujuziiw7lzul6vua4r4
-  ts-loader: registry.npmmirror.com/ts-loader/9.4.2_typescript@4.9.5
+  ts-loader: registry.npmmirror.com/ts-loader/9.4.2_hhrrucqyg4eysmfpujvov2ym5u
   ts-node: registry.npmmirror.com/ts-node/10.9.1_bdgp3l2zgaopogaavxusmetvge
   tsconfig-paths: registry.npmmirror.com/tsconfig-paths/4.1.1
   typescript: registry.npmmirror.com/typescript/4.9.5
+  webpack: registry.npmmirror.com/webpack/5.75.0
 
 packages:
 
@@ -1117,6 +1123,26 @@ packages:
     transitivePeerDependencies:
       - encoding
 
+  registry.npmmirror.com/@nestjs/mapped-types/1.2.2_ilxajbd2e536h4oohar7aljlry:
+    resolution: {integrity: sha512-3dHxLXs3M0GPiriAcCFFJQHoDFUuzTD5w6JDhE7TyfT89YKpe6tcCCIqOZWdXmt9AZjjK30RkHRSFF+QEnWFQg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@nestjs/mapped-types/-/mapped-types-1.2.2.tgz}
+    id: registry.npmmirror.com/@nestjs/mapped-types/1.2.2
+    name: '@nestjs/mapped-types'
+    version: 1.2.2
+    peerDependencies:
+      '@nestjs/common': ^7.0.8 || ^8.0.0 || ^9.0.0
+      class-transformer: ^0.2.0 || ^0.3.0 || ^0.4.0 || ^0.5.0
+      class-validator: ^0.11.1 || ^0.12.0 || ^0.13.0 || ^0.14.0
+      reflect-metadata: ^0.1.12
+    peerDependenciesMeta:
+      class-transformer:
+        optional: true
+      class-validator:
+        optional: true
+    dependencies:
+      '@nestjs/common': registry.npmmirror.com/@nestjs/common/9.3.9_mnr6j2del53muneqly5h4y27ai
+      reflect-metadata: registry.npmmirror.com/reflect-metadata/0.1.13
+    dev: false
+
   registry.npmmirror.com/@nestjs/platform-express/9.3.9_77foi4w27ghy47yutmnzv7krjy:
     resolution: {integrity: sha512-f8ja2sYuDGj2QSMmjg05n3WF19wJG5yTiYxRi64nsu5GKL0qLM1LzxNemehkni/knExlvF2bDpbKKpna9nC1JA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@nestjs/platform-express/-/platform-express-9.3.9.tgz}
     id: registry.npmmirror.com/@nestjs/platform-express/9.3.9
@@ -1171,6 +1197,36 @@ packages:
     transitivePeerDependencies:
       - chokidar
     dev: true
+
+  registry.npmmirror.com/@nestjs/swagger/6.2.1_shbtxdxgogsm4p64bg2toeylku:
+    resolution: {integrity: sha512-9M2vkfJHIzLqDZwvM5TEZO0MxRCvIb0xVy0LsmWwxH1lrb0z/4MhU+r2CWDhBtTccVJrKxVPiU2s3T3b9uUJbg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@nestjs/swagger/-/swagger-6.2.1.tgz}
+    id: registry.npmmirror.com/@nestjs/swagger/6.2.1
+    name: '@nestjs/swagger'
+    version: 6.2.1
+    peerDependencies:
+      '@fastify/static': ^6.0.0
+      '@nestjs/common': ^9.0.0
+      '@nestjs/core': ^9.0.0
+      class-transformer: '*'
+      class-validator: '*'
+      reflect-metadata: ^0.1.12
+    peerDependenciesMeta:
+      '@fastify/static':
+        optional: true
+      class-transformer:
+        optional: true
+      class-validator:
+        optional: true
+    dependencies:
+      '@nestjs/common': registry.npmmirror.com/@nestjs/common/9.3.9_mnr6j2del53muneqly5h4y27ai
+      '@nestjs/core': registry.npmmirror.com/@nestjs/core/9.3.9_q6agyr4hwia55oswpsa7zjxcpm
+      '@nestjs/mapped-types': registry.npmmirror.com/@nestjs/mapped-types/1.2.2_ilxajbd2e536h4oohar7aljlry
+      js-yaml: registry.npmmirror.com/js-yaml/4.1.0
+      lodash: registry.npmmirror.com/lodash/4.17.21
+      path-to-regexp: registry.npmmirror.com/path-to-regexp/3.2.0
+      reflect-metadata: registry.npmmirror.com/reflect-metadata/0.1.13
+      swagger-ui-dist: registry.npmmirror.com/swagger-ui-dist/4.15.5
+    dev: false
 
   registry.npmmirror.com/@nestjs/testing/9.3.9_yqmogfxzeu633isbftgaoi4ho4:
     resolution: {integrity: sha512-+mPvSVvSC2SAkYgZZv1mOI2xsdGc1pmq7/sem7iin/JDoFtlvoGSK+pfZHD3IV3EpYtq1v/8/5gi+UFH9yZnDg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@nestjs/testing/-/testing-9.3.9.tgz}
@@ -1998,7 +2054,6 @@ packages:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/argparse/-/argparse-2.0.1.tgz}
     name: argparse
     version: 2.0.1
-    dev: true
 
   registry.npmmirror.com/array-flatten/1.1.1:
     resolution: {integrity: sha512-PCVAQswWemu6UdxsDFFX/+gVeYqKAod3D3UVm91jHwynguOwAvYPhx8nNlM++NqRcK6CxxpUafjmhIdKiHibqg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/array-flatten/-/array-flatten-1.1.1.tgz}
@@ -4328,7 +4383,6 @@ packages:
     hasBin: true
     dependencies:
       argparse: registry.npmmirror.com/argparse/2.0.1
-    dev: true
 
   registry.npmmirror.com/jsesc/2.5.2:
     resolution: {integrity: sha512-OYu7XEzjkCQ3C5Ps3QIZsQfNpqoJyZZA99wd9aWd05NCtC5pWOkShK2mkL6HXQR6/Cy2lbNdPlZBpuQHXE63gA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/jsesc/-/jsesc-2.5.2.tgz}
@@ -4457,7 +4511,6 @@ packages:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lodash/-/lodash-4.17.21.tgz}
     name: lodash
     version: 4.17.21
-    dev: true
 
   registry.npmmirror.com/log-symbols/4.1.0:
     resolution: {integrity: sha512-8XPvpAA8uyhfteu8pIvQxpJZ7SYYdpUivZpGy6sFsBuKRY/7rQGavedeB8aK+Zkyq6upMFVL/9AW6vOYzfRyLg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/log-symbols/-/log-symbols-4.1.0.tgz}
@@ -5650,6 +5703,12 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
+  registry.npmmirror.com/swagger-ui-dist/4.15.5:
+    resolution: {integrity: sha512-V3eIa28lwB6gg7/wfNvAbjwJYmDXy1Jo1POjyTzlB6wPcHiGlRxq39TSjYGVjQrUSAzpv+a7nzp7mDxgNy57xA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/swagger-ui-dist/-/swagger-ui-dist-4.15.5.tgz}
+    name: swagger-ui-dist
+    version: 4.15.5
+    dev: false
+
   registry.npmmirror.com/symbol-observable/4.0.0:
     resolution: {integrity: sha512-b19dMThMV4HVFynSAM1++gBHAbk2Tc/osgLIBZMKsyqh34jb2e8Os7T6ZW/Bt3pJFdBTd2JwAnAAEQV7rSNvcQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/symbol-observable/-/symbol-observable-4.0.0.tgz}
     name: symbol-observable
@@ -5812,7 +5871,7 @@ packages:
       yargs-parser: registry.npmmirror.com/yargs-parser/21.1.1
     dev: true
 
-  registry.npmmirror.com/ts-loader/9.4.2_typescript@4.9.5:
+  registry.npmmirror.com/ts-loader/9.4.2_hhrrucqyg4eysmfpujvov2ym5u:
     resolution: {integrity: sha512-OmlC4WVmFv5I0PpaxYb+qGeGOdm5giHU7HwDDUjw59emP2UYMHy9fFSDcYgSNoH8sXcj4hGCSEhlDZ9ULeDraA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/ts-loader/-/ts-loader-9.4.2.tgz}
     id: registry.npmmirror.com/ts-loader/9.4.2
     name: ts-loader
@@ -5827,6 +5886,7 @@ packages:
       micromatch: registry.npmmirror.com/micromatch/4.0.5
       semver: registry.npmmirror.com/semver/7.3.8
       typescript: registry.npmmirror.com/typescript/4.9.5
+      webpack: registry.npmmirror.com/webpack/5.75.0
     dev: true
 
   registry.npmmirror.com/ts-node/10.9.1_bdgp3l2zgaopogaavxusmetvge:

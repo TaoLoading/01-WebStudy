@@ -1,73 +1,94 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# NestJS
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## 初始化
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+```
+安装脚手架：
+$ npm i -g @nestjs/cli
 
-## Description
+创建项目：
+$ nest new project-name
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
-```bash
-$ pnpm install
+运行：
+pnpm start
+pnpm start:dev
 ```
 
-## Running the app
+## 核心文件
 
-```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
+```js
+src
+├── app.controller.spec.ts // 针对控制器的单元测试
+├── app.controller.ts // 单个路由的基本控制器(Controller)
+├── app.module.ts // 应用程序的根模块(Module)
+├── app.service.ts // 具有单一方法的基本服务(Service)
+├── main.ts // 应用程序的入口文件，它使用核心函数 NestFactory 来创建 Nest 应用程序的实例
 ```
 
-## Test
+## @Module()装饰器
 
-```bash
-# unit tests
-$ pnpm run test
+@Module装饰器接收四个属性：
 
-# e2e tests
-$ pnpm run test:e2e
+1. providers：Nest.js注入器实例化的服务提供者，即数据来源的逻辑处理
+2. controllers：处理http请求，包括路由控制，向客户端返回响应，将具体业务逻辑委托给providers处理
+3. imports：导入模块
+4. exports：导出模块
 
-# test coverage
-$ pnpm run test:cov
+## 创建基础指令
+
+```
+// 创建完整功能模块：
+// 1. 生成module
+nest g mo [name]
+// 2. 生成controller
+nest g co [name]
+// 3. 生成service
+nest g s [name]
+
+// 创建基础CRUD模块：
+nest g res user
 ```
 
-## Support
+## Swagger的使用
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+1. 安装包
 
-## Stay in touch
+   ```js
+   pnpm i @nestjs/swagger
+   ```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+2. 配置main.ts
 
-## License
+   ```js
+   import { NestFactory } from '@nestjs/core'
+   import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
+   import { AppModule } from './app.module'
+   
+   async function bootstrap() {
+     const app = await NestFactory.create(AppModule)
+   
+     const config = new DocumentBuilder()
+       .setTitle('Swagger example')
+       .setDescription('The example API description')
+       .setVersion('1.0')
+       .addTag('example')
+       .build()
+     const document = SwaggerModule.createDocument(app, config)
+     SwaggerModule.setup('doc', app, document)
+   
+     await app.listen(3000, () => {
+       console.log('服务器运行成功，点击打开 http://localhost:3000')
+     })
+   }
+   bootstrap()
+   ```
 
-Nest is [MIT licensed](LICENSE).
+3. 配置接口说明（controller文件中）
+
+   ```js
+   @ApiTags('用户相关') // 模块说明
+   
+   @ApiOperation({ summary: '添加用户' }) // 接口说明
+   ```
+
+   
