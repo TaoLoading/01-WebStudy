@@ -25,7 +25,7 @@ app.get('/', async (req, res) => {
 app.post('/', async (req, res) => {
   let body = req.body
   if (req.body) {
-    // 实现id自增
+    // 实现 id 自增
     let userList = await dbOption.getData()
     body.id = userList.users.length + 1
 
@@ -56,7 +56,7 @@ app.post('/', async (req, res) => {
 
 // 改
 app.put('/:id', async (req, res) => {
-  // 根据id匹配到用户信息
+  // 根据 id 匹配到用户信息
   let userList = await dbOption.getData()
   const userID = Number.parseInt(req.params.id)
   const user = userList.users.find(item => item.id == userID)

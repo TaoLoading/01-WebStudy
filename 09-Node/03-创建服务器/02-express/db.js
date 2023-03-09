@@ -5,7 +5,7 @@
 const fs = require('fs')
 const { promisify } = require('util')
 
-// 将读写操作 promise化，用于避免产生回调地狱
+// 将读写操作 promise 化，用于避免产生回调地狱
 const readFile = promisify(fs.readFile)
 const writeFile = promisify(fs.writeFile)
 
