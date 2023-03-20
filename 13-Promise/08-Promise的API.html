@@ -1,85 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>07_Promise的API</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>07_Promise的API</title>
 </head>
+
 <body>
-  <!-- 
-    1. Promise构造函数: Promise (excutor) {}
-        excutor函数: 同步执行  (resolve, reject) => {}
-        resolve函数: 内部定义成功时我们调用的函数 value => {}
-        reject函数: 内部定义失败时我们调用的函数 reason => {}
-        说明: excutor会在Promise内部立即同步回调,异步操作在执行器中执行
+    <!-- 
+    1. Promise 构造函数：Promise (executor) {}
+        executor 函数：同步执行  (resolve, reject) => {}
+        resolve 函数：内部定义成功时我们调用的函数 value => {}
+        reject 函数：内部定义失败时我们调用的函数 reason => {}
+        说明：executor 会在 Promise 内部立即同步回调，异步操作在执行器中执行
 
-    2. Promise.prototype.then方法: (onResolved, onRejected) => {}
-        onResolved函数: 成功的回调函数  (value) => {}
-        onRejected函数: 失败的回调函数 (reason) => {}
-        说明: 指定用于得到成功value的成功回调和用于得到失败reason的失败回调
-              返回一个新的promise对象
+    2. Promise.prototype.then 方法：(onResolved, onRejected) => {}
+        onResolved 函数：成功的回调函数  (value) => {}
+        onRejected 函数：失败的回调函数 (reason) => {}
+        说明：指定用于得到成功 value 的成功回调和用于得到失败 reason 的失败回调
+              返回一个新的 promise 对象
 
-    3. Promise.prototype.catch方法: (onRejected) => {}
-        onRejected函数: 失败的回调函数 (reason) => {}
-        说明: then()的语法糖, 相当于: then(undefined, onRejected)
+    3. Promise.prototype.catch 方法：(onRejected) => {}
+        onRejected 函数：失败的回调函数 (reason) => {}
+        说明：then() 的语法糖，相当于：then(undefined, onRejected)
 
-    4. Promise.resolve方法: (value) => {}
-        value: 成功的数据或promise对象
-        说明: 返回一个成功/失败的promise对象
+    4. Promise.resolve 方法：(value) => {}
+        value: 成功的数据或 promise 对象
+        说明：返回一个成功/失败的 promise 对象
 
-    5. Promise.reject方法: (reason) => {}
+    5. Promise.reject 方法：(reason) => {}
         reason: 失败的原因
-        说明: 返回一个失败的promise对象
+        说明：返回一个失败的 promise 对象
 
-    6. Promise.all方法: (promises) => {}
-        promises: 包含n个promise的数组
-        说明: 返回一个新的promise, 只有所有的promise都成功才成功, 只要有一个失败了就直接失败
-    7. Promise.race方法: (promises) => {}
-        promises: 包含n个promise的数组
-        说明: 返回一个新的promise, 第一个完成的promise的结果状态就是最终的结果状态
+    6. Promise.all 方法：(promises) => {}
+        promises: 包含 n 个 promise 的数组
+        说明：返回一个新的 promise, 只有所有的 promise 都成功才成功，只要有一个失败了就直接失败
+    7. Promise.race 方法：(promises) => {}
+        promises: 包含 n 个 promise 的数组
+        说明：返回一个新的 promise, 第一个完成的 promise 的结果状态就是最终的结果状态
   -->
 
-  <script>
-    new Promise((resolve, reject) => {
-        setTimeout(() => {
-            // resolve(1)
-            reject(2)
-        }, 1000);
-    }).then(value => {
-        console.log('onResolved()', value)
-    }/* , reason => {
+    <script>
+        new Promise((resolve, reject) => {
+            setTimeout(() => {
+                // resolve(1)
+                reject(2)
+            }, 1000);
+        }).then(value => {
+            console.log('onResolved()', value)
+        }/* , reason => {
         console.log('onRejected()', reason)
     } */).catch(reason => {
-        console.log('onRejected2()', reason)
-    })
+            console.log('onRejected2()', reason)
+        })
 
-    /* 创建一个value值为3的promise对象 */
-    const p1 = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(3)
-        }, 1000);
-    })
-    const p2 = Promise.resolve(5)
-    const p3 = Promise.reject(4)
-    p1.then(value => console.log('p1 value', value))
-    p2.then(value => console.log('p2 value', value))
-    p3.catch(reason => console.log('p3 value', reason))
+        /* 创建一个 value 值为 3 的 promise 对象 */
+        const p1 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(3)
+            }, 1000);
+        })
+        const p2 = Promise.resolve(5)
+        const p3 = Promise.reject(4)
+        p1.then(value => console.log('p1 value', value))
+        p2.then(value => console.log('p2 value', value))
+        p3.catch(reason => console.log('p3 value', reason))
 
-    // const p4 = Promise.all([p1, p2, p3]) // 有一个错误则错误，返回错误的值
-    // const p4 = Promise.all([p1, p2]) // 全部正确则正确，按数组顺序返回正确的值
-    // p4.then(
-    //     values => console.log('p4 all onResolved()', values), // 数据的顺序与promise数组顺序一致
-    //     reason => console.log('p4 all onRejected()', reason),
-    // )
+        // const p4 = Promise.all([p1, p2, p3]) // 有一个错误则错误，返回错误的值
+        // const p4 = Promise.all([p1, p2]) // 全部正确则正确，按数组顺序返回正确的值
+        // p4.then(
+        //     values => console.log('p4 all onResolved()', values), // 数据的顺序与 promise 数组顺序一致
+        //     reason => console.log('p4 all onRejected()', reason),
+        // )
 
-    const p5 = Promise.race([p1, p3, p2])
-    p5.then(
-        value => console.log('p5 race onResolved()', value),
-        reason => console.log('p5 race onRejected()', reason),
-    )
+        const p5 = Promise.race([p1, p3, p2])
+        p5.then(
+            value => console.log('p5 race onResolved()', value),
+            reason => console.log('p5 race onRejected()', reason),
+        )
 
 
-  </script>
+    </script>
 </body>
+
 </html>

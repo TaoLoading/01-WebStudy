@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>04-Promise的基本使用1</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * Promise 的定义：
+     * 1. Promise 是一门新的技术 (ES6 规范)
+     * 2. Promise 是 JS 中进行异步编程的新解决方案 (旧的是谁？)
+     * 
+     * 理解：
+     * 1. 从语法上来说：Promise 是一个构造函数
+     * 2. 从功能上来说：promise 对象用来封装一个异步操作并可以获取其成功/失败的结果值
+     * 
+     * 流程：
+     * 1. 创建 promise 对象 (pending 状态), 指定执行器函数
+     * 2. 在执行器函数中启动异步任务
+     *    2.1 如果成功了，调用 resolve(), 指定成功的 value, 变为 resolved 状态
+     *    2.2 如果失败了，调用 reject(), 指定失败的 reason, 变为 rejected 状态
+     * 3. 根据结果做不同处理
+     * 
+     * 状态：
+     * 1. 三个状态：
+     *    1.1 pending: 未确定的，起始时的状态
+     *    1.2 resolved: 成功的，调用 resolve() 后的状态
+     *    1.3 rejected: 失败的，调用 reject() 后的状态
+     * 2. 2 种状态改变的形式
+     *    2.2 pending ==> resolved
+     *    2.3 pending ==> rejected
+     * 3. 状态只能改变一次
+     */
+
+    var promise1 = new Promise(function (resolve, reject) { // 此处的 function 就是 executor 执行器函数
+      // 1. 初始时 promise 的状态为 pending，即未确定的/初始的
+
+      // 2. 启动异步任务
+      setTimeout(function () {
+        const time = Date.now()
+        // 3. 异步任务成功/失败
+        if (time % 2 == 1) {
+          resolve('成功的数据 ' + time) // 成功，调用 resolve(), promise 对象的状态变为 resolved, 同时指定成功的 value
+        } else {
+          reject('失败的数据 ' + time) // 失败，调用 reject(),promise 对象的状态变为 rejected, 同时指定失败的 error
+        }
+      }, 1000)
+    })
+    console.log('new Promise() 之后')
+
+    // 4. 通过.then() 进行下一步处理，即成功/失败对应的情况
+    promise1.then((value) => {
+      // 处理成功
+      console.log('value', value)
+    }).catch((err) => {
+      // 处理失败
+      console.log('err', err)
+    })
+
+    console.log(promise1)
+  </script>
+</body>
+
+</html>

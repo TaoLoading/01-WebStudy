@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>03-准备_错误</title>
+</head>
+
+<body>
+
+  <script>
+    /**
+     * MDN 文档：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Error
+     * 
+     * 错误的类型：
+     * 1. Error: 所有错误的父类型
+     * 2. ReferenceError: 引用的变量不存在
+     * 3. TypeError: 数据类型不正确的错误
+     * 4. RangeError: 数据值不在其所允许的范围内
+     * 5. SyntaxError: 语法错误
+     * 
+     * 错误的处理：
+     * 1. 捕获错误：try ... catch
+     * 2. 抛出错误：throw error
+     * 
+     * 错误对象的属性：
+     * 1. message 属性：错误相关信息
+     * 2. stack 属性：函数调用栈记录信息
+     */
+
+    // 1. ReferenceError: 引用的变量不存在
+    // console.log(a)
+
+    // 2. TypeError: 数据类型不正确的错误
+    /* const b = {}
+    console.log(b.xxx) // TypeError: Cannot read property 'xxx' of null
+    b.xxx() // TypeError: b.xxx is not a function
+    b() */
+
+    // 3. RangeError: 数据值不在其所允许的范围内
+    /* function fn() {
+      fn() // RangeError: Maximum call stack size exceeded。无限的递归
+    }
+    fn() */
+
+    // 4. SyntaxError: 语法错误
+    // const c = '''' //  SyntaxError: Unexpected string
+
+    // 错误的处理：
+
+    // 1. 捕获
+    /* try {
+      const e = {}
+      e()
+    } catch (error) {
+      console.log(error.message)
+      console.log(error.stack)
+    } */
+
+    // 2，抛出并捕获
+    function doThing() {
+      const time = Date.now()
+      if (time % 2 == 1) {
+        console.log('当前时间为奇数，可以正常工作....' + time)
+      } else {
+        // 抛出错误
+        throw new Error('当前时间为偶数，不能工作' + time)
+      }
+    }
+    try {
+      doThing()
+    } catch (error) {
+      alert(error.message)
+    }</script>
+</body>
+
+</html>

@@ -23,7 +23,7 @@
   <script>
     /* 先改变状态, 后指定回调函数 */
     new Promise((resolve, resject) => {
-      console.log('excutor()') // 第一输出
+      console.log('executor()') // 第一输出
       setTimeout(() => {
         resolve(2)
         console.log('resolve()改变状态之后') // 第三输出

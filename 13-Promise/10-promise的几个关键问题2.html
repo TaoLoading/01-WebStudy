@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>08_promise的几个关键问题2</title>
 </head>
+
 <body>
   <!-- 
     3.改变promise状态和指定回调函数谁先谁后?
@@ -21,7 +23,7 @@
   <script>
     /* 常规: 先指定回调函数, 后改变状态 */
     new Promise((resolve, reject) => { // 同步回调
-      console.log('excutor()')
+      console.log('executor()')
       // 启动异步任务
       setTimeout(() => {
         resolve(1)  // pending ==> resolved  value为1
@@ -36,4 +38,5 @@
     console.log('new Promise()之后')
   </script>
 </body>
+
 </html>

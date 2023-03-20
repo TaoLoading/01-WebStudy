@@ -12,7 +12,7 @@ class版本
     /* 
     Promise构造函数
     */
-    constructor (excutor) {
+    constructor(executor) {
       const self = this // Promise的实例对象
       self.status = PENDING // 状态属性, 初始值为pending, 代表初始未确定的状态
       self.data = undefined // 用来存储结果数据的属性, 初始值为undefined
@@ -23,13 +23,13 @@ class版本
       */
       function resolve(value) {
         // 如果当前不是pending, 直接结束
-        if (self.status!==PENDING) return
+        if (self.status !== PENDING) return
 
         self.status = RESOLVED // 将状态改为成功
         self.data = value // 保存成功的value
 
         // 异步调用所有缓存的待执行成功的回调函数
-        if (self.callbacks.length>0) {
+        if (self.callbacks.length > 0) {
           // 启动一个延迟时间为0的定时器, 在定时器的回调中执行所有成功的回调
           setTimeout(() => {
             self.callbacks.forEach(cbsObj => {
@@ -44,13 +44,13 @@ class版本
       */
       function reject(reason) {
         // 如果当前不是pending, 直接结束
-        if (self.status!==PENDING) return
+        if (self.status !== PENDING) return
 
         self.status = REJECTED // 将状态改为失败
         self.data = reason // 保存reason数据
 
         // 异步调用所有缓存的待执行失败的回调函数
-        if (self.callbacks.length>0) {
+        if (self.callbacks.length > 0) {
           // 启动一个延迟时间为0的定时器, 在定时器的回调中执行所有失败的回调
           setTimeout(() => {
             self.callbacks.forEach(cbsObj => {
@@ -59,15 +59,15 @@ class版本
           })
         }
       }
-      
-      // 调用excutor来启动异步任务
+
+      // 调用executor来启动异步任务
       try {
-        excutor(resolve, reject)
+        executor(resolve, reject)
       } catch (error) { // 执行器执行出错, 当前promise变为失败
         console.log('-----')
         reject(error)
       }
-      
+
     }
 
     /* 
@@ -81,11 +81,11 @@ class版本
         2.2). 返回值不是promise   ==> 变为resolved, 结果值为返回值
         2.3). 返回值是promise    ===> 由这个promise的决定新的promise的结果(成功/失败)
     */
-    then (onResolved, onRejected) {
+    then(onResolved, onRejected) {
       const self = this
-      
-      onResolved = typeof onResolved==='function' ? onResolved : value => value // 将value向下传递
-      onRejected = typeof onRejected==='function' ? onRejected : reason => {throw reason} // 将reason向下传递
+
+      onResolved = typeof onResolved === 'function' ? onResolved : value => value // 将value向下传递
+      onRejected = typeof onRejected === 'function' ? onRejected : reason => { throw reason } // 将reason向下传递
 
       return new Promise((resolve, reject) => { // 什么时候改变它的状态
 
@@ -93,7 +93,7 @@ class版本
         1. 调用指定的回调函数
         2. 根据回调执行结果来更新返回promise的状态
         */
-        function handle (callback) {
+        function handle(callback) {
           try {
             const result = callback(self.data)
             if (!(result instanceof Promise)) { //  2.2). 返回值不是promise   ==> 变为resolved, 结果值为返回值
@@ -110,20 +110,20 @@ class版本
           }
         }
 
-        if (self.status===RESOLVED) {
+        if (self.status === RESOLVED) {
           setTimeout(() => {
             handle(onResolved)
           })
-        } else if (self.status===REJECTED) {
+        } else if (self.status === REJECTED) {
           setTimeout(() => {
             handle(onRejected)
           })
         } else { // PENDING
           self.callbacks.push({
-            onResolved (value) {
+            onResolved(value) {
               handle(onResolved)
-            }, 
-            onRejected (reason) {
+            },
+            onRejected(reason) {
               handle(onRejected)
             }
           })
@@ -135,7 +135,7 @@ class版本
     用来指定失败回调函数的方法
     catch是then的语法糖
     */
-    catch (onRejected) {
+    catch(onRejected) {
       return this.then(undefined, onRejected)
     }
 
@@ -144,7 +144,7 @@ class版本
     value可能是一个一般的值, 也可能是promise对象
     */
     static resolve = function (value) {
-      return new Promise((resolve, reject)=> {
+      return new Promise((resolve, reject) => {
         // 如果value是一个promise, 最终返回的promise的结果由value决定
         if (value instanceof Promise) {
           value.then(resolve, reject)
@@ -154,7 +154,7 @@ class版本
       })
     }
 
-      
+
     /* 
     用来返回一个指定reason的失败的promise
     */
@@ -178,7 +178,7 @@ class版本
             value => {
               resolvedCount++
               values[index] = value
-              if (resolvedCount===promises.length) { // 都成功了
+              if (resolvedCount === promises.length) { // 都成功了
                 resolve(values)
               }
             },

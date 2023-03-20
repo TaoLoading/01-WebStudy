@@ -2,7 +2,7 @@
   const PENDING = 'pending'
   const RESOLVED = 'resolved'
   const REJECTED = 'rejected'
-  function Promise(excutor) {
+  function Promise(executor) {
     const self = this
     self.status = PENDING
     self.data = undefined
@@ -10,12 +10,12 @@
 
     function resolve(value) {
       self.status = RESOLVED
-      self.data =value
+      self.data = value
 
-      if(self.callbacks.length>0){
-        setTimeout(()=>{
+      if (self.callbacks.length > 0) {
+        setTimeout(() => {
           self.callbacks.forEach(cbsobj => {
-            cbsobj.onResolved(value) 
+            cbsobj.onResolved(value)
           })
         })
       }
@@ -25,25 +25,25 @@
       self.status = REJECTED
       self.data = reason
 
-      if(self.callbacks.length>0){
-        setTimeout(()=>{
+      if (self.callbacks.length > 0) {
+        setTimeout(() => {
           self.callbacks.forEach(cbsobj => {
-            cbsobj.onRejected(reason) 
+            cbsobj.onRejected(reason)
           })
         })
       }
     }
 
-    excutor(resolve,reject)
+    executor(resolve, reject)
   }
-   
 
-  Promise.prototype.then = function (onResolved,onRejected) {
+
+  Promise.prototype.then = function (onResolved, onRejected) {
     this.callbacks.push({
       onResolved,
       onRejected
     })
   }
 
-  window.Promise =Promise
+  window.Promise = Promise
 })(window)
