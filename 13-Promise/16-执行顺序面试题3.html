@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>16-执行顺序面试题3</title>
+</head>
+
+<body>
+  <script>
+    setTimeout(() => {
+      console.log('0')
+    }, 0)
+    new Promise((resolve, reject) => {
+      console.log('1')
+      resolve()
+    }).then(() => {
+      console.log('2')
+      new Promise((resolve, reject) => {
+        console.log('3')
+        resolve()
+      }).then(() => {
+        console.log('4')
+      }).then(() => {
+        console.log('5')
+      })
+    }).then(() => {
+      console.log('6')
+    })
+
+    new Promise((resolve, reject) => {
+      console.log('7')
+      resolve()
+    }).then(() => {
+      console.log('8')
+    })
+
+    /**
+     * 执行顺序：1,7,2,3,8,4,6,5,0
+     */
+  </script>
+</body>
+
+</html>

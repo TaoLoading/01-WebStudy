@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>08-如何改变Promise的状态</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * 1. 如何改变 promise 的状态？
+     *    使用 resolve(value): 如果当前是 pending 就会变为 resolved
+     *    使用 reject(error): 如果当前是 pending 就会变为 rejected
+     *    抛出异常：如果当前是 pending 就会变为 rejected
+     * 
+     * 2. 一个 promise 指定多个成功/失败回调函数，都会调用吗？
+     *    当 promise 改变为对应状态时都会调用
+     */
+
+    // 演示改变 promise 的状态
+    const p = new Promise((resolve, reject) => {
+      // resolve(1) // pending ==> resolved
+      // reject(2) // pending ==> rejected
+      // throw 3 // 执行器中抛出异常  pending ==> rejected
+      // resolve(1) // pending ==> resolved
+      // reject(2) //没有任何作用
+    })
+
+    // 演示 promise 的回调函数调用
+    p.then(
+      value = console.log('onResolved()', value),
+      error => console.log('onRejected()', error)
+    )
+    p.then(
+      value => console.log('onResolved2()', value),
+      error => console.log('onRejected2()', error)
+    )
+    console.log(p)
+  </script>
+</body>
+
+</html>

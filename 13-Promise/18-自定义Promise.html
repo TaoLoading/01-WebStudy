@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>09_自定义Promise</title>
+  <title>18-自定义Promise</title>
 </head>
 
 <body>
@@ -13,12 +13,12 @@
     const p = new Promise((resolve, reject) => {
       setTimeout(() => {
         // resolve(1)
-        // console.log('resolve()之后')
+        // console.log('resolve() 之后')
 
         reject(2)
         reject(3)
 
-        console.log('reject()之后')
+        console.log('reject() 之后')
       }, 1000)
       // throw 4
     })

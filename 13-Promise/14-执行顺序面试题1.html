@@ -3,11 +3,12 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>12_Promise相关面试题2</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>14-执行顺序面试题1</title>
 </head>
 
 <body>
-
   <script>
     setTimeout(() => {
       console.log(1)
@@ -22,11 +23,9 @@
     })
     console.log(5)
 
-    /*
-    执行流程：
-    1放到宏队列中 → 2立即执行 → 3放到未队列中 → 由于3还未执行则4为pending状态不放到队列中 → 5立即执行
-    故结果为：2,5,3,4,1
-    */
+    /**
+     * 执行顺序：2,5,3,4,1
+     */
   </script>
 </body>
 

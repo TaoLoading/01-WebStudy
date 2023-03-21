@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>12-async与await</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * 1. async/await和Promise的关系
+     *    1. async/await 是一种基于 promise 的异步编程的语法糖
+     *    2. async/await 可以使用同步的形式去写异步代码，避免 promise 的链式调用
+     *    
+     * 2. 使用方法
+     *    1. 在函数前面加上 async 关键字，此时这个函数会返回一个 promise 对象
+     *    2. 在函数体的异步操作部分加上 await 关键字，await 就会暂停当前函数的执行，直到 promise 被解决或拒绝
+     * 
+     * 3. 注意点
+     *    1. await 必须写在 async 函数中，但 async 函数中可以没有 await
+     *    2. await 写在 promise 的左侧，async 写在 await 所在函数定义的左侧
+     *    3. 如果 await 的 promise 失败了，就会抛出异常，需要通过 try...catch 来捕获处理
+     */
+
+    function delay() {
+      // return new Promise(reject => setTimeout(reject, 1000))
+      return new Promise((resolve, reject) =>
+        setTimeout(() => {
+          reject(new Error('Something went wrong'))
+        }, 1000)
+      )
+    }
+
+
+    async function sayHello() {
+      try {
+        console.log('Hello')
+        // 等待 1 秒
+        await delay()
+        console.log('World')
+      } catch (error) {
+        console.log('error', error)
+      }
+    }
+
+    sayHello()
+
+  </script>
+</body>
+
+</html>

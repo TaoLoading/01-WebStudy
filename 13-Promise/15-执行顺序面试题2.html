@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>15-执行顺序面试题2</title>
+</head>
+
+<body>
+  <script>
+    const first = () => (new Promise((resolve, reject) => {
+      console.log(3)
+      let p = new Promise((resolve, reject) => {
+        console.log(7)
+        setTimeout(() => {
+          console.log(5)
+          resolve(6)
+        }, 0)
+        resolve(1)
+      })
+      resolve(2)
+      p.then((arg) => {
+        console.log(arg)
+      })
+
+    }))
+
+    first().then((arg) => {
+      console.log(arg)
+    })
+    console.log(4)
+
+    /**
+     * 执行顺序：3,7,4,1,2,5
+     */
+  </script>
+</body>
+
+</html>

@@ -23,7 +23,7 @@
           if (xhr.status >= 200 && xhr.status < 300) {
             resolve(JSON.parse(xhr.response))
           } else {
-            // 如果失败了, 调用reject(), 并指定失败的reason
+            // 如果失败了, 调用 reject(), 并指定失败的 error
             reject(new Error('request error status: ' + xhr.status))
           }
         }

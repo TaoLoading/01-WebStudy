@@ -3,15 +3,16 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>12_Promise相关面试题5</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>17-执行顺序面试题4</title>
 </head>
 
 <body>
-
   <script>
     async function async1() {
       console.log('async1 start')
-      await async2()  // async2().then(() => {})，故async2不会放入微队列中，而是将其后的"console.log('async1 end')"放入微队列中
+      await async2()  // async2().then(() => {})，故 async2 不会放入微队列中，而是将其后的"console.log('async1 end')"放入微队列中
       console.log('async1 end')
     }
 
@@ -35,24 +36,10 @@
     })
     console.log('script end')
 
-    /*
-      宏: []
-      微: []
-      */
-
-    /*
-    输出:
-      script start
-      async1 start
-      async2
-      promise1
-      script end
-      async1 end
-      promise2
-      setTimeout
+    /**
+     * 执行顺序：script start,async1 start,async2,promise1,script end,async1 end,promise2,setTimeout
      */
   </script>
-
 </body>
 
 </html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>13-宏任务与微任务</title>
+</head>
+
+<body>
+  <img
+    src="http://vipkshttp1.wiz.cn/ks/share/resources/49c30824-dcdf-4bd0-af2a-708f490b44a1/92b8cbfb-a474-4859-943b-6048e9dc66f6/index_files/60b9ff398449db2dcfef9197e2187ae6.png"
+    alt="">
+  <script>
+    /**
+     * 1. 概念
+     *    1. JavaScript 运行时分为两类任务队列：宏任务队列和微任务队列
+     *    2. 宏任务队列是负责存放宏任务的队列，而微任务队列是负责存放微任务的队列
+     * 
+     * 2. 为什么区分宏任务和微任务
+     *    JS 引擎是单线程的，如果将全部任务都放到一个队列中会造成阻塞，例如比较耗时的操作，区分宏任务和微任务可以避免队列的阻塞
+     * 
+     * 3. 分类
+     *    宏任务：同步任务、dom 事件回调、ajax 回调、定时器回调...
+     *    微任务：promise 回调 (promise 状态为 pending 时不放到队列中)、mutation 回调...
+     * 
+     * 4. 执行顺序（简述）
+     *    1. 宏任务中的同步任务
+     *    2. 微任务
+     *    3. 宏任务中的异步任务
+     * 
+     * 5. 执行顺序（详细）
+     *    1. 首先执行主线程上的同步宏任务
+     *    2. 遇到异步代码时，如果是宏任务（如 setTimeout/setInterval），则将其放入宏任务队列；如果是微任务（如 Promise.then/nextTick），则将其放入微任务队列
+     *    3. 当主线程上的同步代码执行完毕后，在 Event Loop 开始之前，会先检查微任务队列，如果有未执行的微任务，则依次执行完所有的微任务
+     *    4. 然后再检查 DOM 渲染，如果有需要更新的 DOM，则进行渲染
+     *    5. 最后再从宏任务队列中取出一个宏任务并执行，然后重复上述过程
+     */
+
+    setTimeout(() => {
+      console.log('setTimeout callback()', 1)
+      Promise.resolve(5).then(value => {
+        console.log('onResolved3()', value)
+      })
+    }, 0)
+    setTimeout(() => {
+      console.log('setTimeout callback()', 2)
+    }, 0)
+    Promise.resolve(3).then(value => {
+      console.log('onResolved()', value)
+    })
+    Promise.resolve(4).then(value => {
+      console.log('onResolved2()', value)
+    })
+
+    /**
+     * 结果：3,4,1,5,2
+     * 顺序：执行完 3 和 4 后开始执行宏任务，即开始执行 1，同时将 5 放到微队列中使其成为微任务，故先执行 5，后执行宏任务 2
+     */
+  </script>
+</body>
+
+</html>
