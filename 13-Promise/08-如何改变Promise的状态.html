@@ -12,7 +12,7 @@
   <script>
     /**
      * 1. 如何改变 promise 的状态？
-     *    使用 resolve(value): 如果当前是 pending 就会变为 resolved
+     *    使用 resolve(value): 如果当前是 pending 就会变为 fulfilled
      *    使用 reject(error): 如果当前是 pending 就会变为 rejected
      *    抛出异常：如果当前是 pending 就会变为 rejected
      * 
@@ -22,7 +22,7 @@
 
     // 演示改变 promise 的状态
     const p = new Promise((resolve, reject) => {
-      // 1. pending ==> resolved
+      // 1. pending ==> fulfilled
       // resolve(1)
 
       // 2. pending ==> rejected
