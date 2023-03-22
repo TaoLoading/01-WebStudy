@@ -22,23 +22,27 @@
 
     // 演示改变 promise 的状态
     const p = new Promise((resolve, reject) => {
-      // resolve(1) // pending ==> resolved
-      // reject(2) // pending ==> rejected
-      // throw 3 // 执行器中抛出异常  pending ==> rejected
-      // resolve(1) // pending ==> resolved
-      // reject(2) //没有任何作用
-    })
+      // 1. pending ==> resolved
+      // resolve(1)
 
-    // 演示 promise 的回调函数调用
-    p.then(
-      value = console.log('onResolved()', value),
-      error => console.log('onRejected()', error)
-    )
-    p.then(
-      value => console.log('onResolved2()', value),
-      error => console.log('onRejected2()', error)
-    )
-    console.log(p)
+      // 2. pending ==> rejected
+      // reject(2)
+
+      // 3. pending ==> rejected
+      throw 3
+
+      // 4. 自己捕获错误，promise 状态不改变，应该 promise 自身可以捕获错误
+      /* try {
+        throw 3
+      } catch (error) {
+        console.log('err', error)
+      } */
+    })
+    p.then((value) => {
+      console.log('onResolved()', value)
+    }, (error) => {
+      console.log('onRejected()', error)
+    })
   </script>
 </body>
 
