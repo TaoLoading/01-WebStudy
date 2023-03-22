@@ -12,7 +12,7 @@
   <script>
     async function async1() {
       console.log('async1 start')
-      await async2()  // async2().then(() => {})，故 async2 不会放入微队列中，而是将其后的"console.log('async1 end')"放入微队列中
+      await async2()
       console.log('async1 end')
     }
 
@@ -37,7 +37,11 @@
     console.log('script end')
 
     /**
-     * 执行顺序：script start,async1 start,async2,promise1,script end,async1 end,promise2,setTimeout
+     * 执行顺序：script start, async1 start, async2, promise1, script end, async1 end, promise2, setTimeout
+     * 
+     * async2() 步骤中：
+     * 注意，async() 相当于返回一个 promise，相当于 promise.then()，即将 async 后的程序放到微队列中，而不是将 async 本身的程序放到微队列中，
+     * 故 async2 输出早
      */
   </script>
 </body>
