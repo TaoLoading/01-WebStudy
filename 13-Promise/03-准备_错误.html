@@ -34,10 +34,10 @@
     // console.log(a)
 
     // 2. TypeError: 数据类型不正确的错误
-    /* const b = {}
+    const b = {}
     console.log(b.xxx) // TypeError: Cannot read property 'xxx' of null
     b.xxx() // TypeError: b.xxx is not a function
-    b() */
+    b()
 
     // 3. RangeError: 数据值不在其所允许的范围内
     /* function fn() {
@@ -60,7 +60,7 @@
     } */
 
     // 2，抛出并捕获
-    function doThing() {
+    /* function doThing() {
       const time = Date.now()
       if (time % 2 == 1) {
         console.log('当前时间为奇数，可以正常工作....' + time)
@@ -73,7 +73,8 @@
       doThing()
     } catch (error) {
       alert(error.message)
-    }</script>
+    } */
+  </script>
 </body>
 
 </html>
