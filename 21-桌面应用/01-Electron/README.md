@@ -31,8 +31,6 @@
    })
    ```
 
-   
-
 4. 创建 html 页面
 
    ```html
@@ -56,8 +54,6 @@
    </html>
    ```
 
-   
-
 5. 修改启动命令：`"dev": "nodemon --exec electron ."`
 
 6. 执行启动命令
@@ -79,8 +75,6 @@
    })
    ```
 
-   
-
 2. 在 macOS 中，关闭窗口后程序依然运行，此时在没有窗口可用时调用 app 会打开一个新窗口
 
    ```js
@@ -92,7 +86,7 @@
 
 ## 多进程
 
-###  为什么是多进程而不是单进程？
+###  为什么是多进程而不是单进程
 
 浏览器功能复杂，在早期是通过单进程来处理功能的，这样的缺点就是某一个标签页发生错误可能会导致整个浏览器的崩溃
 
@@ -122,7 +116,7 @@
    2. 修改默认行为：预加载脚本可以修改 Electron 默认的行为，例如修改 ipcRenderer 对象的默认行为，或者修改 BrowserWindow 的默认菜单栏
    3. 保持安全性：预加载脚本可以在渲染进程和主进程之间充当一个安全层，它可以拦截和处理渲染进程发送的消息，从而保护主进程的安全性
 
-3. 使用方法
+3. 示例
    1. 创建一个预加载文件 `preload.js` 并定义操作
    
    2. 在 BrowserWindow 构造函数中的 webPreferences 中进行加入
@@ -137,4 +131,73 @@
       })
       ```
    
-      
+
+## 进程通信（IPC Inter-Process Communication）
+
+### 为什么使用进程通信
+
+Electron 的主进程和渲染进程有着清楚的分工并且不可互换，这代表着无论是从渲染进程直接访问 Node.js 接口，或者是从主进程访问 DOM 都是不可能的
+
+### 渲染进程到主进程
+
+1. 原理：渲染进程使用 ipcRenderer 模块向主进程发送消息，主进程使用 ipcMain 模块监听渲染进程发送的消息
+
+2. 示例
+
+   ```js
+   /**
+    * 预加载脚本
+    */
+   
+   const { contextBridge, ipcRenderer } = require('electron')
+   
+   contextBridge.exposeInMainWorld('versions', {
+     node: () => process.versions.node,
+     chrome: () => process.versions.chrome,
+     electron: () => process.versions.electron,
+     // 向主进程发生消息
+     ping: () => ipcRenderer.invoke('ping')
+   })
+   ```
+   
+   **注意上述代码中，使用了一个辅助函数来包裹 `ipcRenderer.invoke('ping')` 调用，而并非直接通过 contextBridge 暴露 ipcRenderer 模块。如果使用 contextBridge 直接暴露 ipcRenderer 模块，则会导致渲染进程能像主进程发生任意的 IPC 信息，这种方式容易被恶意代码攻击**
+   
+   ```js
+   /**
+    * 主进程
+    */
+   
+   const { app, BrowserWindow, ipcMain } = require('electron')
+   const path = require('path')
+   
+   const createWindow = () => {
+     const win = new BrowserWindow({
+       width: 800,
+       height: 600,
+       webPreferences: {
+         preload: path.join(__dirname, 'preload.js'),
+       },
+     })
+     // 接收渲染进程发来的消息
+     ipcMain.handle('ping', () => 'pong')
+     win.loadFile('index.html')
+   }
+   app.whenReady().then(createWindow)
+   ```
+   
+   ```js
+   /**
+    * 渲染进程
+    */
+   
+   const func = async () => {
+     const response = await window.versions.ping()
+     console.log(response) // 打印 'pong'
+   }
+   
+   func()
+   ```
+
+### 主进程到渲染进程
+
+1. 原理：主进程使用 webContents 模块向主进程发送消息，渲染进程使用 ipcRenderer 模块监听渲染进程发送的消息

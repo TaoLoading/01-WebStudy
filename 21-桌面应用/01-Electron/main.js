@@ -1,4 +1,8 @@
-const { app, BrowserWindow } = require('electron')
+/**
+ * 主进程
+ */
+
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 
 const createWindow = () => {
@@ -10,12 +14,18 @@ const createWindow = () => {
     }
   })
 
+  // 接收渲染进程发来的消息
+  ipcMain.handle('renderingMsg', () => '我是渲染进程发送的消息')
+
+  // 向渲染进程发送消息
+  win.webContents.send('mainMsg', { data: '我是主线程发送的消息' })
+
   // 加载 html 页面
   // win.loadURL('https://github.com/TaoLoading')
   win.loadFile('index.html')
 
   // 打开 devtools
-  // win.webContents.openDevTools()
+  win.webContents.openDevTools()
 }
 
 // 当 Electron 完成初始化后，加载应用
