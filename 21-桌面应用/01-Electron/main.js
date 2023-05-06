@@ -18,7 +18,9 @@ const createWindow = () => {
   ipcMain.handle('renderingMsg', () => '我是渲染进程发送的消息')
 
   // 向渲染进程发送消息
-  win.webContents.send('mainMsg', { data: '我是主线程发送的消息' })
+  ipcMain.on('mainMsg', () => {
+
+  })
 
   // 加载 html 页面
   // win.loadURL('https://github.com/TaoLoading')
@@ -34,12 +36,16 @@ app.whenReady().then(() => {
 
   // 如果没有窗口打开则打开一个窗口 (macOS)
   app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow()
+    }
   })
 })
 
 // 关闭所有窗口时退出应用 (Windows & Linux)
 app.on('window-all-closed', () => {
   console.log('closed')
-  if (process.platform !== 'darwin') app.quit()
+  if (process.platform !== 'darwin') {
+    app.quit()
+  }
 })
