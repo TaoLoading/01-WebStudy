@@ -9,9 +9,15 @@
 </head>
 
 <body>
-  <h1>来自 Electron 渲染器的问好！</h1>
-  <p>👋</p>
+  <h3>演示获取版本信息</h3>
   <p id="info"></p>
+
+  <h3>演示渲染器进程到主进程通信（单向）</h3>
+  <button id="btn1" type="button">发送</button>
+
+  <h3>演示渲染器进程到主进程通信（双向）</h3>
+  <button type="button" id="btn2">打开文件夹</button>
+  文件路径：<strong id="filePath"></strong>
 </body>
 
 <script src="./renderer.js"></script>

@@ -5,12 +5,14 @@
 const information = document.getElementById('info')
 information.innerText = `本应用正在使用 Chrome (v${versions.chrome()}), Node.js (v${versions.node()}), 和 Electron (v${versions.electron()})`
 
-const func = async () => {
-  // 测试从渲染进程向主进程通信
-  const res1 = await window.versions.renderingMsg()
-  console.log(res1)
+const btn1 = document.getElementById('btn1')
+btn1.addEventListener('click', () => {
+  window.communication.renderSendMsg1()
+})
 
-  /* const res2 = await window.versions.mainMsg()
-  console.log(res2) */
-}
-func()
+const btn2 = document.getElementById('btn2')
+const filePathElement = document.getElementById('filePath')
+btn2.addEventListener('click', async () => {
+  const filePath = await window.communication.renderSendMsg2()
+  filePathElement.innerText = filePath
+})

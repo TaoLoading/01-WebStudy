@@ -141,66 +141,96 @@
 
 Electron 的主进程和渲染进程有着清楚的分工并且不可互换，这代表着无论是从渲染进程直接访问 Node.js 接口，或者是从主进程访问 DOM 都是不可能的
 
-### 渲染进程到主进程
+### 渲染进程到主进程（单向）
 
-1. 原理：渲染进程使用 ipcRenderer 模块向主进程发送消息，主进程使用 ipcMain 模块监听渲染进程发送的消息
+1. 方法：渲染进程使用 ipcRenderer.send 向主进程发送消息，主进程使用 ipcMain.on 监听渲染进程发送的消息
 
 2. 示例
+
+   ```js
+   /**
+    * 主进程
+    */
+   
+   // ipcMain.on 用于监听渲染进程发来的事件
+   ipcMain.on('renderToMain1', (event, msg) => {
+     console.log('msg', msg)
+   })
+   ```
 
    ```js
    /**
     * 预加载脚本
     */
    
-   const { contextBridge, ipcRenderer } = require('electron')
-   
-   contextBridge.exposeInMainWorld('versions', {
-     node: () => process.versions.node,
-     chrome: () => process.versions.chrome,
-     electron: () => process.versions.electron,
-     // 向主进程发生消息
-     ping: () => ipcRenderer.invoke('ping')
+   contextBridge.exposeInMainWorld('communication', {
+     // 渲染进程向主进程通信（单向）
+     renderSendMsg1: () => ipcRenderer.send('renderToMain1', 'render To Main')
    })
    ```
-   
-   **注意上述代码中，使用了一个辅助函数来包裹 `ipcRenderer.invoke('ping')` 调用，而并非直接通过 contextBridge 暴露 ipcRenderer 模块。如果使用 contextBridge 直接暴露 ipcRenderer 模块，则会导致渲染进程能像主进程发生任意的 IPC 信息，这种方式容易被恶意代码攻击**
-   
-   ```js
-   /**
-    * 主进程
-    */
-   
-   const { app, BrowserWindow, ipcMain } = require('electron')
-   const path = require('path')
-   
-   const createWindow = () => {
-     const win = new BrowserWindow({
-       width: 800,
-       height: 600,
-       webPreferences: {
-         preload: path.join(__dirname, 'preload.js'),
-       },
-     })
-     // 接收渲染进程发来的消息
-     ipcMain.handle('ping', () => 'pong')
-     win.loadFile('index.html')
-   }
-   app.whenReady().then(createWindow)
-   ```
-   
+
    ```js
    /**
     * 渲染进程
     */
    
-   const func = async () => {
-     const response = await window.versions.ping()
-     console.log(response) // 打印 'pong'
-   }
-   
-   func()
+   const btn1 = document.getElementById('btn1')
+   btn1.addEventListener('click', () => {
+     window.communication.renderSendMsg1()
+   })
    ```
 
-### 主进程到渲染进程
+### 渲染进程到主进程（双向）
 
-1. 原理：主进程使用 webContents 模块向主进程发送消息，渲染进程使用 ipcRenderer 模块监听渲染进程发送的消息
+1. 方法：渲染进程使用 ipcRenderer.invoke 向主进程发送请求，主进程使用 ipcMain.handle 监听渲染进程发送的请求
+
+2. 与单向的区别：从渲染器进程代码调用主进程模块后，拿到由主进程返回的结果
+
+3. 示例：
+
+   ```js	
+   /**
+    * 主进程
+    */
+   
+   // ipcMain.handle 用于向渲染进程提供一种类似于方法调用的形式来处理请求
+   // 当渲染进程向主进程发出请求时，可以使用 ipcMain.handle 注册一个处理函数，主进程会调用该函数来处理请求，并将结果返回给渲染进程
+   const createWindow = () => {
+     ipcMain.handle('renderToMain2', handleFileOpen)
+   }
+   
+   async function handleFileOpen() {
+     const { canceled, filePaths } = await dialog.showOpenDialog()
+     if (canceled) {
+   
+     } else {
+       return filePaths[0]
+     }
+   }
+   ```
+
+   ```js
+   /**
+    * 预加载脚本
+    */
+   
+   contextBridge.exposeInMainWorld('communication', {
+     // 渲染进程向主进程通信（双向）
+     renderSendMsg2: () => ipcRenderer.invoke('renderToMain2'),
+   })
+   ```
+
+   ```js
+   /**
+    * 渲染进程
+    */
+   
+   const btn2 = document.getElementById('btn2')
+   const filePathElement = document.getElementById('filePath')
+   btn2.addEventListener('click', async () => {
+     const filePath = await window.communication.renderSendMsg2()
+     filePathElement.innerText = filePath
+   })
+   ```
+
+   
