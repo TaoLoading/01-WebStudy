@@ -171,7 +171,15 @@ Electron 的主进程和渲染进程有着清楚的分工并且不可互换，�
 
    ```js
    /**
-    * 渲染进程
+    * 渲染进程页面
+    */
+   
+   <button id="btn1" type="button">发送</button>
+   ```
+   
+   ```js
+   /**
+    * 渲染进程逻辑
     */
    
    const btn1 = document.getElementById('btn1')
@@ -184,9 +192,9 @@ Electron 的主进程和渲染进程有着清楚的分工并且不可互换，�
 
 1. 方法：渲染进程使用 ipcRenderer.invoke 向主进程发送请求，主进程使用 ipcMain.handle 监听渲染进程发送的请求
 
-2. 与单向的区别：从渲染器进程代码调用主进程模块后，拿到由主进程返回的结果
+2. 与单向的区别：从渲染进程代码调用主进程模块后，拿到由主进程返回的结果
 
-3. 示例：
+3. 示例
 
    ```js	
    /**
@@ -222,7 +230,16 @@ Electron 的主进程和渲染进程有着清楚的分工并且不可互换，�
 
    ```js
    /**
-    * 渲染进程
+    * 渲染进程页面
+    */
+   
+   <button type="button" id="btn2">打开文件夹</button>
+   文件路径：<strong id="filePath"></strong>
+   ```
+   
+   ```js
+   /**
+    * 渲染进程逻辑
     */
    
    const btn2 = document.getElementById('btn2')
@@ -233,4 +250,65 @@ Electron 的主进程和渲染进程有着清楚的分工并且不可互换，�
    })
    ```
 
+
+### 主进程进程到渲染进程
+
+1. 方法：主进程使用 webContents.send 向渲染进程发送消息，渲染进程使用 ipcRenderer.on 监听主进程发送的消息
+
+2. 示例
+
+   ```js
+   /**
+    * 主进程
+    */
    
+   const menu = Menu.buildFromTemplate([
+   {
+     label: '加减数值',
+     submenu: [
+       {
+         // 向渲染进程发送消息
+         click: () => win.webContents.send('update-counter', 1),
+         label: '+'
+       },
+       {
+         click: () => win.webContents.send('update-counter', -1),
+         label: '-'
+       }
+     ]
+   }
+   ])
+   Menu.setApplicationMenu(menu)
+   ```
+
+   ```js
+   /**
+    * 预加载脚本
+    */
+   
+   contextBridge.exposeInMainWorld('communication', {
+     // 主进程向渲染进程通信
+     mainSendMsg: (callback) => ipcRenderer.on('update-counter', callback)
+   })
+   ```
+
+   ```js
+   /**
+    * 渲染进程页面
+    */
+   
+   当前数值：<strong id="counter">0</strong>
+   ```
+
+   ```js
+   /**
+    * 渲染进程逻辑
+    */
+   
+   const counter = document.getElementById('counter')
+   window.communication.mainSendMsg((_event, value) => {
+     const oldValue = Number(counter.innerText)
+     const newValue = oldValue + value
+     counter.innerText = newValue
+   })
+   ```

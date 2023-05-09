@@ -3,21 +3,27 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
-  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
-  <title>来自 Electron 渲染器的问好！</title>
+  <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" /> -->
+  <title>主窗口</title>
 </head>
 
 <body>
   <h3>演示获取版本信息</h3>
   <p id="info"></p>
 
-  <h3>演示渲染器进程到主进程通信（单向）</h3>
-  <button id="btn1" type="button">发送</button>
+  <h3>演示渲染进程到主进程通信（单向）</h3>
+  <button id="btn1" type="button">发送主进程</button>
 
-  <h3>演示渲染器进程到主进程通信（双向）</h3>
+  <h3>演示渲染进程到主进程通信（双向）</h3>
   <button type="button" id="btn2">打开文件夹</button>
   文件路径：<strong id="filePath"></strong>
+
+  <h3>演示主进程到渲染进程通信</h3>
+  当前数值：<strong id="counter">0</strong>
+
+  <h3>演示使用 MessagePorts 实现渲染进程之间的通信</h3>
+  <button id="btn3" type="button">向 worker 窗口发送信息</button>
 </body>
 
 <script src="./renderer.js"></script>
