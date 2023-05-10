@@ -312,3 +312,12 @@ Electron 的主进程和渲染进程有着清楚的分工并且不可互换，�
      counter.innerText = newValue
    })
    ```
+
+## 与框架组合使用
+
+### 推荐库：
+
+1. Vue CLI Plugin Electron Builder（Vue + Webpack）
+2. electron-vite-vue（Vue + Vite）
+3. electron-react-boilerplate（React + Webpack）
+4. vite-electron-builder（Vue/React/Angular/Svelte/Vanilla + Vite）
