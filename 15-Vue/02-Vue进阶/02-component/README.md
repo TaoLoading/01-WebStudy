@@ -70,7 +70,9 @@
         也就是将本来应该作为前台路由路径的'/xxx'作为后台路由路径发送给了服务器，服务器没有对应的资源，于是出现 404
 2. 解决：
    * 解决思路：在任意路由下刷新服务器都能返回 index 页面
-   * 解决方法：配置 webpack 中的 dev-server，historyApiFallback: true
+   * 解决方法：
+    * 方法一：配置 webpack 中的 dev-server，historyApiFallback: true
+    * 方法二：配置 Nginx 中 location / { try_files $uri $uri/ /index.html; }
 
 ## history 模式下点击任意一个路由的子路由后刷新页面报错
 1. 原因：

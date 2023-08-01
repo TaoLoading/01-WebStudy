@@ -1,6 +1,6 @@
-## pinia学习记录
+## pinia 学习记录
 
-## 注册pinia
+## 注册 pinia
 1. vue3 中使用 pinia
 ```
 import { createApp } from 'vue'
@@ -30,7 +30,7 @@ new Vue({
 })
 ```
 
-### 使用pinia
+### 使用 pinia
 1. 页面中引入暴露出的容器并调用
 2. 解构时使用 storeToRefs 以确保响应式正常
 ```
@@ -73,7 +73,7 @@ const { msg, count } = storeToRefs(store)
 3. 逻辑比较多时封装到 action 中进行修改，在页面内调用
    ```
    changeData() {
-     this.msg = 'world',
+     this.msg = 'world'
      this.count++
    }
    ```
@@ -87,7 +87,7 @@ getters: {
  }
 }
 ```
-PS: 如果在 getters 中使用了 this且未使用 state ，则必须手动指定返回值类型，否则类型推导失败
+PS: 如果在 getters 中使用了 this 且未使用 state，则必须手动指定返回值类型，否则类型推导失败
 
-### store之间的相互调用
-可以在一个 store 中 import 另外一个 store ，然后通过调用引入 store 方法的形式，获取引入 store 的状态
+### store 之间的相互调用
+可以在一个 store 中 import 另外一个 store，然后通过调用引入 store 方法的形式，获取引入 store 的状态
