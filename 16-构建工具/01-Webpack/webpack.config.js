@@ -18,7 +18,7 @@ module.exports = {
 	entry: './src/index.js',
 	// 对象形式：
 	// entry: {
-	// 	main: './src/index.js',
+	// 	main: './src/index.js'
 	// },
 
 	// 出口 (值只能是对象)
@@ -29,7 +29,7 @@ module.exports = {
 		// 指定打包生产文件的名字
 		filename: '[name]bundle.js', // [name] 是个占位符，对应 entry 中的'main'
 		// 生成的引用路径左边都加一个'/'
-		publicPath: '/',
+		publicPath: '/'
 	},
 
 	// 模块加载器 (值是对象)
@@ -41,7 +41,7 @@ module.exports = {
 			// 处理 vue 文件
 			{
 				test: /\.vue$/,
-				loader: 'vue-loader',
+				loader: 'vue-loader'
 			},
 
 			// 处理 ES6 语法 (ES6 ==> ES5)
@@ -66,12 +66,12 @@ module.exports = {
 									// 针对 mint-ui 来实现按需引入打包
 									libraryName: 'mint-ui',
 									// 自动打包组件对应的样式
-									style: true,
-								},
-							],
-						],
-					},
-				},
+									style: true
+								}
+							]
+						]
+					}
+				}
 			},
 
 			// 处理 CSS
@@ -80,8 +80,8 @@ module.exports = {
 				// css-loader：将 css 转移到 js 文件中
 				// style-loader：将 js 中的 css 转移到 html 中的<style>
 				// vue-style-loader 是对 style-loader 的增强
-				use: ['style-loader', 'css-loader'],
-				// use: ['vue-style-loader', 'css-loader'],
+				use: ['style-loader', 'css-loader']
+				// use: ['vue-style-loader', 'css-loader']
 			},
 
 			// 处理图片
@@ -97,10 +97,10 @@ module.exports = {
 					// static/img：指定路径(相对于output.path)
 					// [name]：保留图片的名字
 					// .[ext]：保留图片的后缀
-					name: 'static/img/[name].[hash:7].[ext]',
-				},
-			},
-		],
+					name: 'static/img/[name].[hash:7].[ext]'
+				}
+			}
+		]
 	},
 
 	// 插件
@@ -115,7 +115,7 @@ module.exports = {
 		// 自动清除 dist 文件夹中无用的文件
 		new CleanWebpackPlugin(),
 		// 搭建 vue 环境
-		new VueLoaderPlugin(),
+		new VueLoaderPlugin()
 	],
 
 	// 开发服务器
@@ -135,11 +135,11 @@ module.exports = {
 				// 在转发请求前去除路径中的/api
 				pathRewrite: { '^/api': '' },
 				// 支持协议名的跨域
-				changeOrigin: true,
-			},
+				changeOrigin: true
+			}
 		},
 		// 请求 404 时返回 index 页面
-		historyApiFallback: true,
+		historyApiFallback: true
 	},
 
 	// 开启 SourceMap
@@ -158,7 +158,7 @@ module.exports = {
 			 */
 			'@': resolve('src'),
 			'@comps': resolve('src/components'),
-			// vue$: 'vue/dist/vue.esm.js',
+			// vue$: 'vue/dist/vue.esm.js'
 		}
 	}
 }

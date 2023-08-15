@@ -103,7 +103,7 @@ module.exports = {
 1. 开发环境：cheap-module-eval-source-map
 2. 生成环境：cheap-module-source-map
 
-## Bable
+## Babel
 
 ### 作用
 
@@ -143,9 +143,9 @@ module.exports = {
 1. @babel/preset-env 只转换语法，并不处理新的 API
 2. @babel/polyfill 是一个用于转换新的 API，如 Promise、Array.from、Object.assign 等
 
-### .bablerc
+### .babelrc
 
-.bablerc 文件内就是 babel-loader 中 options 的内容
+.babelrc 文件内就是 babel-loader 中 options 的内容
 
 ## Tree shaking
 
@@ -188,3 +188,35 @@ Tree shaking 只支持 ES Module 的引入方式
 无需配置自动开启 Tree shaking
 
 ## Code Splitting（代码分包）
+
+## 概念
+
+代码分割（Code splitting）是一种将应用程序的代码分割成多个较小文件的技术，有助于优化应用程序的加载性能。不仅限于 Webpack 中
+
+### Webpack 中使用代码分包
+
+1. 方式 1：无需配置实现代码分包（只针对异步导入的代码）
+
+   ```js
+   import('./module')
+     .then(module => {
+       // 使用加载的模块
+     })
+     .catch(error => {
+       // 处理加载失败的情况
+     })
+   ```
+
+2. 方式 2：配置 optimization.splitChunks 实现代码分包（针对同步代码）
+
+   ```js
+   module.exports = {
+     optimization: {
+       splitChunks: {
+         chunks: 'all' // 指定对所有的代码进行代码分包
+       }
+     }
+   }
+   ```
+
+3. 方式 3：使用 MiniCssExtractPlugin 和 SplitChunksPlugin 插件实现代码分包
