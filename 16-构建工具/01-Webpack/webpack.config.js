@@ -55,15 +55,16 @@ module.exports = {
 				use: {
 					loader: 'babel-loader',
 					options: {
-						// 使用预设包配置常用的 babel 插件 (预设包是包含了多个解析 ES6 语法的 plugin 包，但此预设包只能解析部分 ES6 语法，其他语法使用入口文件引入 polyfill 来解析)
+						// 使用预设包配置常用的 babel 插件 
+						// 预设包是包含了多个解析 ES6 语法的 plugin 包，但此预设包只能解析部分 ES6 语法，其他语法使用入口文件引入 polyfill 来解析
 						presets: ['@babel/preset-env'],
 						// 配置预设包不包含的 babel 插件
 						plugins: [
 							[
-								// 配置 babel-plugin-component(与 minti-ui 相关)
+								// 配置 babel-plugin-component，指定对特定库实现按需引入
 								'babel-plugin-component',
 								{
-									// 针对 mint-ui 来实现按需引入打包
+									// 指定库名
 									libraryName: 'mint-ui',
 									// 自动打包组件对应的样式
 									style: true

@@ -18,7 +18,9 @@
 
 ### 作用
 
-用于打包非 JavaScript 文件。放在 module 中配置
+用于对不同类型的文件进行加载和转换
+
+在 module 中配置，使用多个 loader 时，loader 的执行顺序为从下到上，从右到左
 
 ### 使用
 
@@ -43,20 +45,12 @@ module: {
 }
 ```
 
-### 示例：打包样式
+### 常用的 loader
 
-除 css 外还可处理 sass、postcss 等。当使用多个 loader 时，loader 的执行顺序为从右到左
-
-```js
-module: {
-  rules: [
-    {
-      test: /\.css$/,
-      use: ['style-loader', 'css-loader']
-    }
-  ]
-}
-```
+1. babel-loader：将 ES6+的 JavaScript 代码转换为 ES5 兼容的代码
+2. css-loader：解析 css 文件中的@import 和 url 语句，处理 css-modules，并将结果作为一个 js 模块返回
+3. sass-loader：将 Sass 或 Scss 文件转换为 CSS
+4. file-loader：处理文件，将文件复制到输出目录，并返回文件的 URL 路径
 
 ## plugins
 
@@ -83,6 +77,16 @@ module.exports = {
   ]
 }
 ```
+
+### 常用的 plugin
+
+1. MiniCssExtractPlugin：对 css 文件进行代码分包
+2. SplitChunksPlugin：对 js 文件进行代码分包
+3. CleanWebpackPlugin：打包前清理输出目录，保证每次都是最新的打包文件
+
+### loader 和 plugin 的区别
+
+loader 是用于处理文件内容的转换；而 plugin 是用于丰富 webpack 的功能，如优化输出结果、资源管理、注入环境变量等，可以在 webpack 不同的生命周期阶段执行特定的功能
 
 ## SourceMap
 
@@ -189,7 +193,7 @@ Tree shaking 只支持 ES Module 的引入方式
 
 ## Code Splitting（代码分包）
 
-## 概念
+### 概念
 
 代码分割（Code splitting）是一种将应用程序的代码分割成多个较小文件的技术，有助于优化应用程序的加载性能。不仅限于 Webpack 中
 
@@ -207,16 +211,192 @@ Tree shaking 只支持 ES Module 的引入方式
      })
    ```
 
-2. 方式 2：配置 optimization.splitChunks 实现代码分包（针对同步代码）
+2. 方式 3：使用 MiniCssExtractPlugin 和 SplitChunksPlugin 插件实现代码分包
 
-   ```js
-   module.exports = {
-     optimization: {
-       splitChunks: {
-         chunks: 'all' // 指定对所有的代码进行代码分包
-       }
-     }
-   }
-   ```
+   1. MiniCssExtractPlugin：用于将 CSS 代码从打包生成的 JavaScript 文件中提取出来，生成独立的 CSS 文件
 
-3. 方式 3：使用 MiniCssExtractPlugin 和 SplitChunksPlugin 插件实现代码分包
+      ```js
+      const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+      
+      module.exports = {
+        module: {
+          rules: [
+            {
+              test: /\.css$/,
+              use: [MiniCssExtractPlugin.loader, 'css-loader']
+            }
+          ]
+        },
+        plugins: [new MiniCssExtractPlugin()]
+      }
+      ```
+
+   2. SplitChunksPlugin：用于将公共的 js 模块（包括代码和依赖）提取出来，生成单独的文件，用于缓存和复用（同步异步都可，配置 chunks）
+
+      ```js
+      module.exports = {
+        optimization: {
+          splitChunks: {
+            chunks: 'all',
+            // 下列配置可不显式配置，使用默认项即可
+            minSize: 20000,
+            minRemainingSize: 0,
+            minChunks: 1,
+            maxAsyncRequests: 30,
+            maxInitialRequests: 30,
+            enforceSizeThreshold: 50000,
+            cacheGroups: {
+              defaultVendors: {
+                test: /[\\/]node_modules[\\/]/,
+                priority: -10,
+                reuseExistingChunk: true
+              },
+              default: {
+                minChunks: 2,
+                priority: -20,
+                reuseExistingChunk: true
+              }
+            }
+          }
+        }
+      }
+      ```
+
+## 懒加载
+
+### 概念
+
+懒加载是一种优化技术，用于延迟加载模块，直到其真正需要使用时才进行加载
+
+### 使用
+
+异步引入模块即可实现懒加载
+
+```js
+import('./module')
+  .then(module => {
+    // 使用加载的模块
+  })
+  .catch(error => {
+    // 处理加载失败的情况
+  })
+
+// 或
+
+async function getModule() {
+  const xxx = await import('./module')
+}
+```
+
+## webpackPrefetch 和 webpackPreload
+
+### webpackPrefetch
+
+#### 概念
+
+prefetch（预取）用于在浏览器**空闲时**提前加载某些资源
+
+#### 使用
+
+```js
+import(/* webpackPrefetch: true */ './myModule.js')
+```
+
+### webpackPreLoad
+
+#### 概念
+
+preload（预加载）用于在当前页面**加载完成后**，预加载其他页面可能需要的资源
+
+#### 使用
+
+```js
+import(/* webpackPreload: true */ './myModule.js')
+```
+
+## 手写 loader
+
+### 实现 loader
+
+```js
+/**
+ * 自定义 loader：文本转大写
+ * @param {*} source 资源文件内容，表示待处理的源代码或文件内容
+ * @param {*} map 资源文件的源映射
+ * @param {*} meta 源文件的附加信息
+ */
+module.exports = function (source, map, meta) { // 不可使用箭头函数，因为 webpack 会对 this 进行处理以获取某些方法或变量
+  const uppercaseText = source.toUpperCase()
+  return uppercaseText
+}
+```
+
+### 使用 loader
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.txt$/, // 匹配的文件类型
+        use: [
+          {
+            loader: path.resolve(__dirname, '自定义 loader 的路径')
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+## 手写 plugin
+
+### 实现 plugin
+
+```js
+/**
+ * 自定义 plugin：打包完成后生成一个版权文件
+ */
+const fs = require('fs')
+
+class CopyrightPlugin {
+  constructor(options) {
+    // 插件的配置选项
+    this.options = options
+  }
+
+  /**
+   * apply() 是插件的入口点，webpack 在启动时会调用该方法
+   * @param {*} compiler // webpack 的实例。包含了 webpack 的配置信息、各种钩子函数以及其他与构建相关的功能
+   */
+  apply(compiler) {
+    compiler.hooks.done.tap('CopyrightPlugin', (stats) => {
+      const { output } = stats.compilation.options
+      const { author, year } = this.options
+
+      const content = `/**\n * Copyright (c) ${year} ${author}\n */`
+
+      fs.writeFileSync(`${output.path}/copyright.txt`, content)
+    })
+  }
+}
+
+module.exports = CopyrightPlugin
+```
+
+### 使用 plugin
+
+```js
+const CopyrightPlugin = require('自定义 loader 的路径')
+
+module.exports = {
+  plugins: [
+    new CopyrightPlugin({
+      author: 'TaoLoading',
+      year: '2023'
+    })
+  ]
+}
+```
+
