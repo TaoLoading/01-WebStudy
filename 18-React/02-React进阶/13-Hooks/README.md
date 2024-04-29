@@ -48,7 +48,7 @@
 
 ## 4. useContext
 ### 4.1 介绍
-* 简化共享文件时Context的使用，直接获取Context的值
+* 共享某个值时使用，从某一个组件中解构出某个值
    ```javascript
    const user = useContext(UserContext)
    ```
